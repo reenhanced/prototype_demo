@@ -30,7 +30,7 @@ end
 
 def sign_up
   delete_user
-  visit '/users/sign_up'
+  visit '/signup'
   fill_in "Name", :with => @visitor[:name]
   fill_in "Email", :with => @visitor[:email]
   fill_in "Password", :with => @visitor[:password]
@@ -40,7 +40,7 @@ def sign_up
 end
 
 def sign_in
-  visit '/sign_in'
+  visit '/login'
   fill_in "Email", :with => @visitor[:email]
   fill_in "Password", :with => @visitor[:password]
   click_button "Sign in"
@@ -136,13 +136,11 @@ end
 ### THEN ###
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
-  page.should_not have_content "Sign up"
-  page.should_not have_content "Login"
+  page.should_not have_content "Sign in"
 end
 
 Then /^I should be signed out$/ do
-  page.should have_content "Sign up"
-  page.should have_content "Login"
+  page.should have_content "Sign in"
   page.should_not have_content "Logout"
 end
 
@@ -175,7 +173,7 @@ Then /^I should see a mismatched password message$/ do
 end
 
 Then /^I should see a signed out message$/ do
-  page.should have_content "Signed out successfully."
+  page.should have_content "You need to sign in or sign up before continuing."
 end
 
 Then /^I see an invalid login message$/ do
