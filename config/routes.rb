@@ -1,4 +1,6 @@
 Bridgeway::Application.routes.draw do
+  resources :family_cards
+
   devise_for :users, :skip => [:sessions]
   as :user do
     get  'login'  => 'devise/sessions#new',     :as => :new_user_session

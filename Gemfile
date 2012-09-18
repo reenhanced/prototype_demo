@@ -22,7 +22,12 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'debugger'
   gem 'factory_girl'
+  gem 'faker'
   gem 'rspec-rails'
+end
+
+group :development do
+  gem "nifty-generators"
 end
 
 group :test do
@@ -36,3 +41,5 @@ group :cucumber do
   gem 'spork'
   gem 'launchy'
 end
+
+gem "mocha", :group => :test
