@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ApplicationHelper do
   context "instance methods" do
-    describe "#twitterized_type" do
+    describe "#twitterized_flash_class" do
       let(:twitter_flashes) do
         {
           :alert => 'alert-block',
