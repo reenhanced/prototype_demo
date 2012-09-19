@@ -10,7 +10,7 @@ class CreateFamilyCards < ActiveRecord::Migration
       t.string :address2
       t.string :city
       t.string :state
-      t.string :zipcode
+      t.string :zip_code
       t.integer :primary_parent_id
       t.timestamps
     end

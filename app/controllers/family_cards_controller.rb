@@ -1,10 +1,17 @@
 class FamilyCardsController < ApplicationController
+  before_filter :find_family_card, :except => [:index, :new, :create, :search]
+
   def index
     @family_cards = FamilyCard.all
   end
 
+  def search
+    if request.post?
+      @family_cards = FamilyCard.find_all_from_search(params[:family_card])
+    end
+  end
+
   def show
-    @family_card = FamilyCard.find(params[:id])
   end
 
   def new
@@ -21,11 +28,9 @@ class FamilyCardsController < ApplicationController
   end
 
   def edit
-    @family_card = FamilyCard.find(params[:id])
   end
 
   def update
-    @family_card = FamilyCard.find(params[:id])
     if @family_card.update_attributes(params[:family_card])
       redirect_to @family_card, :notice  => "Successfully updated family card."
     else
@@ -34,8 +39,12 @@ class FamilyCardsController < ApplicationController
   end
 
   def destroy
-    @family_card = FamilyCard.find(params[:id])
     @family_card.destroy
     redirect_to family_cards_url, :notice => "Successfully destroyed family card."
+  end
+
+  private
+  def find_family_card
+    @family_card = FamilyCard.find(params[:id])
   end
 end

@@ -11,7 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918173757) do
+ActiveRecord::Schema.define(:version => 20120919155658) do
+
+  create_table "family_cards", :force => true do |t|
+    t.string   "parent_first_name"
+    t.string   "parent_last_name"
+    t.string   "student_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.integer  "primary_parent_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "family_cards", ["user_id"], :name => "index_family_cards_on_user_id"
+
+  create_table "parents", :force => true do |t|
+    t.integer  "family_card_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

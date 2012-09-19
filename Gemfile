@@ -32,6 +32,7 @@ end
 
 group :test do
   gem "email_spec", ">= 1.2.1"
+  gem "shoulda-matchers"
 end
 
 group :cucumber do
@@ -41,5 +42,3 @@ group :cucumber do
   gem 'spork'
   gem 'launchy'
 end
-
-gem "mocha", :group => :test
