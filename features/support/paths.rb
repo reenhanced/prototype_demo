@@ -11,6 +11,9 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
+    when /the user dashboard page/
+      '/dashboard'
+
     when /the sign in page/
       '/login'
 

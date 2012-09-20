@@ -1,0 +1,53 @@
+= form_for @family_card do |f|
+  - if @family_card.errors?
+    .alert.alert-error{ "data-alert" => 'alert' }
+      %button.close{ :type => "button", :'data-dismiss' => "alert"} ×
+      %ul
+        - form.errors.full_messages.each do |message|
+          %li= message
+  %p
+    = f.label :parent_first_name, "Parent's first name"
+    %br
+    = f.text_field :parent_first_name
+  %p
+    = f.label :parent_last_name
+    %br
+    = f.text_field :parent_last_name, "Parent's last name"
+  %p
+    = f.label :student_name, "Student's name"
+    %br
+    = f.text_field :student_name
+  %p
+    = f.label :phone
+    %br
+    = f.text_field :phone
+  %p
+    = f.label :email
+    %br
+    = f.text_field :email
+  %p
+    = f.label :address1
+    %br
+    = f.text_field :address1
+  %p
+    = f.label :address2
+    %br
+    = f.text_field :address2
+  %p
+    = f.label :city
+    %br
+    = f.text_field :city
+  %p
+    = f.label :state
+    %br
+    = f.text_field :state
+  %p
+    = f.label :zip_code
+    %br
+    = f.text_field :zip_code
+  %p
+    = f.label :primary_parent_id
+    %br
+    = f.number_field :primary_parent_id
+  %p
+    = f.submit

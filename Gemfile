@@ -21,12 +21,18 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'debugger'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'rspec-rails'
+end
+
+group :development do
+  gem "nifty-generators"
 end
 
 group :test do
   gem "email_spec", ">= 1.2.1"
+  gem "shoulda-matchers"
 end
 
 group :cucumber do
