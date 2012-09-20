@@ -5,6 +5,7 @@ class FamilyCard < ActiveRecord::Base
 
   def self.find_all_from_search(params={})
     conditions = {}
+    params ||= {}
     params.each do |key, value|
       conditions[key] = value if self.attribute_names.include?(key.to_s) and value.present?
     end

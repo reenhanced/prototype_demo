@@ -83,6 +83,9 @@ GEM
       multi_json (~> 1.0)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.1.0)
+      factory_girl (~> 4.1.0)
+      railties (>= 3.0.0)
     faker (1.0.0)
       i18n (~> 0.4)
     ffi (1.1.5)
@@ -199,7 +202,7 @@ DEPENDENCIES
   debugger
   devise
   email_spec (>= 1.2.1)
-  factory_girl
+  factory_girl_rails
   faker
   haml-rails
   jquery-rails

@@ -1,7 +1,6 @@
 Bridgeway::Application.routes.draw do
   resources :family_cards do
     get  'search', :on => :collection
-    post 'search', :on => :collection
   end
 
   match 'dashboard' => 'family_cards#index'

@@ -6,9 +6,8 @@ class FamilyCardsController < ApplicationController
   end
 
   def search
-    if request.post?
-      @family_cards = FamilyCard.find_all_from_search(params[:family_card])
-    end
+    @family_cards = FamilyCard.find_all_from_search(params[:family_card])
+    flash[:error] = render_to_string(:partial => "no_results_message").html_safe if params[:family_card].present? and @family_cards.empty?
   end
 
   def show

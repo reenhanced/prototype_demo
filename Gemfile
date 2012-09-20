@@ -21,7 +21,7 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'debugger'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
 end

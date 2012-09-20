@@ -1,17 +1,10 @@
 %h1 Prospect Search
 
-- if @family_cards
-  - if @family_cards.empty?
-    .alert.fade.in.info{ "data-alert" => "alert" }
-      %button.close{ :type => "button", :'data-dismiss' => "alert"} ×
-      %p
-        No prospects were found.
-        = link_to "Try another search?", search_family_cards_path
-  - else
-    %h2 Found:
-    = render @family_cards
+- if @family_cards.any?
+  %h2 Found:
+  = render @family_cards
 - else
-  = form_for :family_card, as: :post, url: search_family_cards_path do |form|
+  = form_for :family_card, method: :get, url: search_family_cards_path do |form|
     .control-group
       = form.label :parent_first_name, "Parent/Guardian First Name", class: 'control-label'
       .controls
