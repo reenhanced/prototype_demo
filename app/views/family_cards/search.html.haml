@@ -1,4 +1,7 @@
-%h1 Prospect Search
+.nav.navbar-form
+  %h1.pull-left Prospect Search
+  = link_to "Create new record", new_family_card_path, class: 'btn pull-right'
+.clearfix
 
 - if @family_cards.any?
   %h2 Found:
