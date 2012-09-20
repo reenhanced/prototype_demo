@@ -1,4 +1,10 @@
 Bridgeway::Application.routes.draw do
+  resources :family_cards do
+    get  'search', :on => :collection
+  end
+
+  match 'dashboard' => 'family_cards#index'
+
   devise_for :users, :skip => [:sessions]
   as :user do
     get  'login'  => 'devise/sessions#new',     :as => :new_user_session
@@ -6,5 +12,5 @@ Bridgeway::Application.routes.draw do
     get  'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  root :to => 'home#show'
+  root :to => 'family_cards#search'
 end

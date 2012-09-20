@@ -1,0 +1,43 @@
+%h1 Prospect Search
+
+- if @family_cards.any?
+  %h2 Found:
+  = render @family_cards
+- else
+  = form_for :family_card, method: :get, url: search_family_cards_path do |form|
+    .control-group
+      = form.label :parent_first_name, "Parent/Guardian First Name", class: 'control-label'
+      .controls
+        = form.text_field :parent_first_name, placeholder: 'Parent_first_name'
+    .control-group
+      = form.label :parent_last_name, "Parent/Guardian Last Name",  class: 'control-label'
+      .controls
+        = form.text_field :parent_last_name, placeholder: 'parent_last_name'
+    .control-group
+      = form.label :student_name, class: 'control-label'
+      .controls
+        = form.text_field :student_name, placeholder: 'Student Name'
+    .control-group
+      = form.label :phone, class: 'control-label'
+      .controls
+        = form.text_field :phone, placeholder: 'phone'
+    .control-group
+      = form.label :email, class: 'control-label'
+      .controls
+        = form.text_field :email, placeholder: 'email'
+    .control-group
+      = form.label :address1, class: 'control-label'
+      .controls
+        = form.text_field :address1, placeholder: 'address1'
+    .control-group
+      = form.label :address2, class: 'control-label'
+      .controls
+        = form.text_field :address2, placeholder: 'address2'
+    .control-group
+      = form.label :zip_code, class: 'control-label'
+      .controls
+        = form.text_field :zip_code, placeholder: 'zip_code'
+
+    .form-actions
+      = form.submit "Search Prospect Records", class: 'btn btn-primary'
+

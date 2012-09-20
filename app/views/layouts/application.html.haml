@@ -10,6 +10,7 @@
 
   .container
     = render :partial => "shared/flash_messages", :locals => {:flash => flash}
+    = render :partial => "shared/user_links"
   - if content_for? :sidebar
     .container-fluid
       .row-fluid

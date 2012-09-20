@@ -1,0 +1,20 @@
+=family_card.id
+%dl.dl-horizontal.contact.span4
+  %dt Parent/Guardian Name:
+  %dd= family_card.parent_name
+  %dt Student Name:
+  %dd= family_card.student_name
+  %dt Phone:
+  %dd= family_card.phone
+  %dt Email:
+  %dd= family_card.email
+%dl.dl-horizontal.address.span4
+  %dt Address:
+  %dd
+    %address
+      = family_card.address1
+      %br/
+      - if family_card.address2
+        = family_card.address2
+        %br/
+      = "#{family_card.city}, #{family_card.state}  #{family_card.zip_code}"

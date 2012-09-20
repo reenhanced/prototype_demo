@@ -2,8 +2,8 @@
 # credit: https://github.com/RailsApps/rails3-devise-rspec-cucumber/blob/master/features/step_definitions/user_steps.rb
 
 def create_visitor
-  @visitor ||= { :name => "Testy McUserton", :email => "example@example.com",
-    :password => "please", :password_confirmation => "please" }
+  @visitor ||= { :name => "Testy McUserton", :email => Faker::Internet.email,
+    :password => "fodrizzle", :password_confirmation => "fodrizzle" }
 end
 
 def find_user
