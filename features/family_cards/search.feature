@@ -14,6 +14,12 @@ Feature: Search for card
     And I press "Search Prospect Records"
     Then I should see the parent's name
 
+  Scenario: User searches for a family card with empty optional data
+    Given I have 1 incomplete family card
+    And I fill in the form with an existing parent's name
+    And I press "Search Prospect Records"
+    Then I should see the parent's name
+
   Scenario: No family cards are found
     When I press "Search Prospect Records"
     Then I should see "No prospects were found."

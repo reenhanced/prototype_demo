@@ -25,5 +25,9 @@ FactoryGirl.define do
     state Faker::Address.state_abbr
     student_name Faker::Name.name
     zip_code Faker::Address.zip_code
+
+    trait :incomplete do
+      address2 ''
+    end
   end
 end
