@@ -18,4 +18,5 @@ Feature: Search for card
     When I press "Search Prospect Records"
     Then I should see "No prospects were found."
     When I follow "Try another search?"
-    Then I should see "Prosect Search"
+    Then I should see "Prospect Search"
+    And I should not see the parent's name

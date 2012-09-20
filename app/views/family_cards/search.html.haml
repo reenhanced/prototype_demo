@@ -1,7 +1,7 @@
 %h1 Prospect Search
 
 - if @family_cards
-  = render :partial => "search_results"
+  = render "search_results", family_cards: @family_cards
 - else
   = form_for :family_card, as: :post, url: search_family_cards_path do |form|
     .control-group

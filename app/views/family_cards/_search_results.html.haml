@@ -1,14 +1,15 @@
-- if @family_cards.empty?
+- if family_cards.empty?
   .alert.fade.in.info{ "data-alert" => "alert" }
     %button.close{ :type => "button", :'data-dismiss' => "alert"} ×
     %p
       No prospects were found.
       = link_to "Try another search?", search_family_cards_path
-- @family_cards.each do |family_card|
+- family_cards.each do |family_card|
   %h2 Found:
+  =family_card.id
   %dl.dl-horizontal.contact.span4
     %dt Parent/Guardian Name:
-    %dd= family_card.default_parent.name
+    %dd= family_card.parent_name
     %dt Student Name:
     %dd= family_card.student_name
     %dt Phone:
