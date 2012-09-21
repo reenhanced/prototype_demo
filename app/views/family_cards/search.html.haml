@@ -1,6 +1,6 @@
 .nav.navbar
   %h1.pull-left.page-header Prospect Search
-  - if params[:utf8].present?
+  - if family_card_search_made?
     = link_to "Create new record", new_family_card_path, class: 'btn pull-right'
 .clearfix
 
