@@ -1,0 +1,4 @@
+.alert.fade.in{ "data-alert" => "alert", :class => "alert-error" }
+  %button.close{ :type => "button", :'data-dismiss' => "alert"} &#215;
+  - record.errors.full_messages.each do |message|
+    %p=message
