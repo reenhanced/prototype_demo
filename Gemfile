@@ -13,12 +13,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'carmen-rails'#, '~> 1.0.0.beta3'
 gem 'devise'
 gem "haml-rails"
 gem 'jquery-rails'
 
 group :development, :test do
-  gem 'capybara'
   gem 'capybara-webkit'
   gem 'debugger'
   gem 'factory_girl_rails'
@@ -33,12 +33,12 @@ end
 group :test do
   gem "email_spec", ">= 1.2.1"
   gem "shoulda-matchers"
+  gem 'spork'
 end
 
 group :cucumber do
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'database_cleaner'
-  gem 'spork'
   gem 'launchy'
 end
