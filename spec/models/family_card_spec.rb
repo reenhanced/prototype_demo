@@ -11,6 +11,42 @@ describe FamilyCard do
     it { should validate_uniqueness_of(:phone) }
   end
 
+  context "callbacks" do
+    describe "#before_create" do
+      let(:family_card) { FamilyCard.new FactoryGirl.attributes_for(:family_card) }
+
+      it "builds a new parent for the family card" do
+        family_card.default_parent.should_not be
+
+        family_card.save!
+        family_card.default_parent.should be
+      end
+    end
+
+    describe "#after_save" do
+      let(:family_card) { FactoryGirl.create(:family_card) }
+      let(:new_family_card_attributes) { FactoryGirl.attributes_for(:family_card) }
+      let(:syncable_attributes) do
+        {
+          parent_first_name: :first_name,
+          parent_last_name:  :last_name,
+          email: :email,
+          phone: :phone
+        }
+      end
+
+      it "syncs the default parent data on save" do
+        syncable_attributes.each do |family_card_attribute, parent_attribute|
+          family_card.default_parent.should_receive(:"#{parent_attribute}=")
+
+          family_card.send(:"#{family_card_attribute.to_s}=", new_family_card_attributes[family_card_attribute])
+        end
+
+        family_card.save!
+      end
+    end
+  end
+
   context "class methods" do
     let(:user)                { FactoryGirl.create(:user) }
     let(:family_card)         { FactoryGirl.create(:family_card, user: user, parent_first_name: "Willie", parent_last_name: "Nelson") }

@@ -12,7 +12,7 @@ RSpec::Core::RakeTask.new(:factory_specs) do |t|
 end
 
 Cucumber::Rake::Task.new(:cucumber) do |t|
-  t.cucumber_opts = "--format pretty"
+  t.cucumber_opts = "--format progress"
 end
 
 RSpec::Core::RakeTask.new(:rspec) do |t|
