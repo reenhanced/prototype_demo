@@ -13,6 +13,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'carmen-rails'#, '~> 1.0.0.beta3'
 gem 'devise'
 gem "haml-rails"
 gem 'jquery-rails'
