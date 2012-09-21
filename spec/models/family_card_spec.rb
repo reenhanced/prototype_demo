@@ -4,6 +4,13 @@ describe FamilyCard do
   it { should belong_to(:user) }
   it { should have_one(:default_parent).class_name('Parent') }
 
+  context "validations" do
+    let!(:family_card) { FactoryGirl.create(:family_card) }
+
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_uniqueness_of(:phone) }
+  end
+
   context "class methods" do
     let(:user)                { FactoryGirl.create(:user) }
     let(:family_card)         { FactoryGirl.create(:family_card, user: user, parent_first_name: "Willie", parent_last_name: "Nelson") }
