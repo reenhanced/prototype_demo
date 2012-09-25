@@ -1,9 +1,8 @@
 class FamilyCard < ActiveRecord::Base
   belongs_to :user
-  has_one :default_parent, :class_name => 'Parent', :dependent => :nullify
+  has_one :default_parent, :class_name => 'Parent', :autosave => true, :dependent => :nullify
 
-  before_create :build_default_parent
-  after_save :sync_default_parent
+  before_save :sync_default_parent
 
   attr_accessible :parent_first_name, :parent_last_name, :student_name, :phone, :email, :address1, :address2, :city, :state, :zip_code
 
@@ -33,6 +32,7 @@ class FamilyCard < ActiveRecord::Base
 
   private
   def sync_default_parent
+    default_parent = build_default_parent unless default_parent
     SYNCABLE_PARENT_ATTRIBUTES.each do |family_card_attribute, parent_attribute|
       default_parent.send(:"#{parent_attribute}=", self.send(:"#{family_card_attribute}"))
     end

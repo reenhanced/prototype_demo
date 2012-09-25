@@ -12,37 +12,40 @@ describe FamilyCard do
   end
 
   context "callbacks" do
-    describe "#before_create" do
-      let(:family_card) { FamilyCard.new FactoryGirl.attributes_for(:family_card) }
-
-      it "builds a new parent for the family card" do
-        family_card.default_parent.should_not be
-
-        family_card.save!
-        family_card.default_parent.should be
-      end
+    let(:family_card) { FactoryGirl.create(:family_card) }
+    let(:new_family_card) { FamilyCard.new FactoryGirl.attributes_for(:family_card) }
+    let!(:new_family_card_attributes) { FactoryGirl.attributes_for(:family_card) }
+    let(:syncable_attributes) do
+      {
+        parent_first_name: :first_name,
+        parent_last_name:  :last_name,
+        email: :email,
+        phone: :phone
+      }
     end
 
-    describe "#after_save" do
-      let(:family_card) { FactoryGirl.create(:family_card) }
-      let(:new_family_card_attributes) { FactoryGirl.attributes_for(:family_card) }
-      let(:syncable_attributes) do
-        {
-          parent_first_name: :first_name,
-          parent_last_name:  :last_name,
-          email: :email,
-          phone: :phone
-        }
+    before :each do
+      # for some reason calling `family_card` in the it blocks returns nil
+      @family_card = family_card
+    end
+
+    describe "#before_save" do
+      it "builds a new parent for the family card" do
+        new_family_card.default_parent.should_not be
+
+        new_family_card.save!
+        new_family_card.default_parent.should be
       end
 
-      it "syncs the default parent data on save" do
+      it "syncs the default parent data" do
         syncable_attributes.each do |family_card_attribute, parent_attribute|
-          family_card.default_parent.should_receive(:"#{parent_attribute}=")
-
-          family_card.send(:"#{family_card_attribute.to_s}=", new_family_card_attributes[family_card_attribute])
+          @family_card.send(:"#{family_card_attribute.to_s}=", new_family_card_attributes[family_card_attribute])
         end
 
-        family_card.save!
+        @family_card.save!
+        syncable_attributes.each do |family_card_attribute, parent_attribute|
+          @family_card.default_parent.send(:"#{parent_attribute}").should == new_family_card_attributes[family_card_attribute]
+        end
       end
     end
   end
