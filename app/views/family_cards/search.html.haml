@@ -1,7 +1,7 @@
-.nav.navbar
-  %h1.pull-left.page-header= t('search.heading')
+.navbar
   - if family_card_search_made?
     = link_to t("create_new_record"), new_family_card_path, class: 'btn pull-right'
+  %h1.page-header= t('search.heading')
 .clearfix
 
 - if @family_cards.any?

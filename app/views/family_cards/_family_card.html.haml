@@ -1,19 +1,30 @@
-%dl.dl-horizontal.contact.span4
-  %dt= t('family_card.parent_first_name')
-  %dd= family_card.parent_name
-  %dt= t('family_card.student_name')
-  %dd= family_card.student_name
-  %dt= t('family_card.phone')
-  %dd= family_card.phone
-  %dt= t('family_card.email')
-  %dd= family_card.email
-%dl.dl-horizontal.address.span4
-  %dt= t('family_card.address')
-  %dd
-    %address
-      = family_card.address1
-      %br/
-      - if family_card.address2
-        = family_card.address2
+.well.prospect-card
+  %h3= t('family_card.family_info')
+  %dl.dl-horizontal.contact.span5
+    %dt= t('family_card.parent_name')
+    %dd= link_to_unless_current family_card.parent_name, family_card_path(family_card)
+    %dt= t('family_card.phone')
+    %dd= family_card.phone
+    %dt= t('family_card.email')
+    %dd= family_card.email
+  %dl.dl-horizontal.address.span6
+    %dt= t('family_card.address')
+    %dd
+      %address
+        = family_card.address1
         %br/
-      = "#{family_card.city}, #{family_card.state}  #{family_card.zip_code}"
+        - if family_card.address2
+          = family_card.address2
+          %br/
+        = "#{family_card.city}, #{family_card.state}  #{family_card.zip_code}"
+
+  %ul.nav.nav-tabs.clearfix
+    %li.active>
+      %a{ href: "#default-student-#{family_card.id}", :'data-toggle' => "tab"}
+        = t('family_card.default_student')
+
+  .tab-content
+    .tab-pane.active{ id: "default-student-#{family_card.id}" }
+      %dl.dl-horizontal.contact
+        %dt= t('family_card.student_name')
+        %dd= family_card.student_name

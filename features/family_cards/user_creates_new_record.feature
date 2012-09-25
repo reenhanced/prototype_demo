@@ -11,8 +11,8 @@ Feature: User creates a new family card
     Then I should see "Create new record"
     When I follow "Create new record"
     And I fill in the following:
-      | Parent's/Guardian's First Name | Dolly                   |
-      | Parent's/Guardian's Last Name  | Parton                  |
+      | Parent/Guardian First Name | Dolly                   |
+      | Parent/Guardian Last Name  | Parton                  |
       | Phone                          | (911) 555-1212          |
       | Email                          | dollyparton@example.com |
       | family_card_address1           | 123 Easy St             |
