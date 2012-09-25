@@ -12,7 +12,7 @@ Feature: Search for card
   Scenario: User searches for a family card
     When I fill in the form with an existing parent's name
     And I press "Search Prospect Records"
-    Then I should see the parent's name
+    Then I should see the family card
     When I follow the parent's name
     Then I should be on the family card's page
 
