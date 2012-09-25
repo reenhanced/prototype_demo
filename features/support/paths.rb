@@ -17,6 +17,10 @@ module NavigationHelpers
     when /the sign in page/
       '/login'
 
+    when /the family card's page/
+      raise "No @family_card exists, please reference features/step_definitions/family_card_steps.rb" unless @family_card
+      "/family_cards/#{@family_card.id}"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -13,6 +13,8 @@ Feature: Search for card
     When I fill in the form with an existing parent's name
     And I press "Search Prospect Records"
     Then I should see the parent's name
+    When I follow the parent's name
+    Then I should be on the family card's page
 
   Scenario: User searches for a family card with empty optional data
     Given I have 1 incomplete family card

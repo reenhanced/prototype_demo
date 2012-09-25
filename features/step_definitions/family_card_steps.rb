@@ -18,6 +18,10 @@ When /^I fill in the form with an existing parent's name$/ do
   step "I fill in \"Parent/Guardian Last Name\" with \"#{@family_card.parent_last_name}\""
 end
 
+When /^I follow the parent's name$/ do
+  step "I follow \"#{@parent_name}\""
+end
+
 Then /^I should( not)? see the parent's name$/ do |negator|
   @parent_name = "#{FamilyCard.last.parent_first_name} #{FamilyCard.last.parent_last_name}"
   if negator
