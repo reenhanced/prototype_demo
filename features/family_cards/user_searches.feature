@@ -13,6 +13,7 @@ Feature: Search for card
     When I fill in the form with an existing parent's name
     And I press "Search Prospect Records"
     Then I should see the family card
+    And I should see "Edit file"
     When I follow the parent's name
     Then I should be on the family card's page
 
@@ -21,6 +22,14 @@ Feature: Search for card
     And I fill in the form with an existing parent's name
     And I press "Search Prospect Records"
     Then I should see the parent's name
+
+  Scenario: User searches for and finds a family card they don't own
+    Given I am logged in as "jimmy.buffet@example.com"
+    And I am on the search family cards page
+    When I fill in the form with an existing parent's name
+    And I press "Search Prospect Records"
+    Then I should see the family card
+    But I should not see "Edit file"
 
   Scenario: No family cards are found
     When I press "Search Prospect Records"
