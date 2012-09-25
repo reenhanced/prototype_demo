@@ -1,14 +1,14 @@
 %dl.dl-horizontal.contact.span4
-  %dt Parent/Guardian Name:
+  %dt= t('family_card.parent_first_name')
   %dd= family_card.parent_name
-  %dt Student Name:
+  %dt= t('family_card.student_name')
   %dd= family_card.student_name
-  %dt Phone:
+  %dt= t('family_card.phone')
   %dd= family_card.phone
-  %dt Email:
+  %dt= t('family_card.email')
   %dd= family_card.email
 %dl.dl-horizontal.address.span4
-  %dt Address:
+  %dt= t('family_card.address')
   %dd
     %address
       = family_card.address1

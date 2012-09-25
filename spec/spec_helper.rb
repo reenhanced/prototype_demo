@@ -10,6 +10,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 Spork.prefork do
   RSpec.configure do |config|
+    # this let's us do `create(:factory)` instead of `FactoryGirl.create(:factory)`
+    config.include FactoryGirl::Syntax::Methods
+
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

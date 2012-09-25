@@ -6,6 +6,7 @@ FactoryGirl.define do
   end
 
   factory :parent, aliases: [:default_parent] do
+    family_card
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
@@ -13,7 +14,6 @@ FactoryGirl.define do
   end
 
   factory :family_card do
-    default_parent
     user
     address1 { Faker::Address.street_address }
     address2 { Faker::Address.secondary_address }

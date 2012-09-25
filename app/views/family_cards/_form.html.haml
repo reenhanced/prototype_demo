@@ -2,32 +2,32 @@
   = render 'shared/error_messages', record: @family_card
 
   .control-group
-    = f.label :parent_first_name, "Parent's/Guardian's First Name", class: 'control-label'
+    = f.label :parent_first_name, "#{t('family_card.parent_first_name')}:", class: 'control-label'
     .controls
-      = f.text_field :parent_first_name, placeholder: "Registering P/G Last Name"
+      = f.text_field :parent_first_name, placeholder: t('family_card.parent_first_name_placeholder')
   .control-group
-    = f.label :parent_last_name, "Parent's/Guardian's Last Name", class: 'control-label'
+    = f.label :parent_last_name, "#{t('family_card.parent_last_name')}:", class: 'control-label'
     .controls
-      = f.text_field :parent_last_name, placeholder: "Registering P/G Last Name"
+      = f.text_field :parent_last_name, placeholder: t('family_card.parent_last_name_placeholder')
   .control-group
-    = f.label :phone, class: 'control-label'
+    = f.label :phone, "#{t('family_card.phone')}:", class: 'control-label'
     .controls
-      = f.text_field :phone, placeholder: 'Phone Number'
+      = f.text_field :phone, placeholder: t('family_card.phone_number')
   .control-group
-    = f.label :email, class: 'control-label'
+    = f.label :email, "#{t('family_card.parent_first_name')}:", class: 'control-label'
     .controls
-      = f.text_field :email, placeholder: 'E-mail Address'
+      = f.text_field :email, placeholder: t('family_card.email_placeholder')
   .control-group
-    = f.label :address1, "Address", class: 'control-label'
+    = f.label :address1, "#{t('family_card.address')}:", class: 'control-label'
     .controls
       %p
-        = f.text_field :address1, placeholder: 'Street Address'
+        = f.text_field :address1, placeholder: t('family_card.street_address')
       %p
-        = f.text_field :address2, placeholder: 'Address2'
+        = f.text_field :address2, placeholder: t('family_card.address2')
       %p
-        = f.text_field :city, placeholder: 'City', class: 'inline input-medium'
+        = f.text_field :city, placeholder: t('family_card.city'), class: 'inline input-medium'
         = subregion_select :family_card, :state, 'US', class: 'inline input-medium'
-        = f.text_field :zip_code, placeholder: 'Zip Code', class: 'inline input-small'
+        = f.text_field :zip_code, placeholder: t('family_card.zip_code'), class: 'inline input-small'
 
   .form-actions.clearfix
-    = f.submit "Create Family Card", class: 'btn btn-primary'
+    = f.submit t('create_family_card'), class: 'btn btn-primary'

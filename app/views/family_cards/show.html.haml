@@ -1,3 +1,3 @@
-%h1.page-header= "Family of: #{@family_card.parent_name}"
+%h1.page-header= t('family_card.family_of', parent_name: @family_card.parent_name)
 
 = render @family_card
