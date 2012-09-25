@@ -2,4 +2,33 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  create_family_card: "Create Family Card"
+  create_new_record: "Create new record"
+  family_card:
+    address: "Address"
+    address2: "Address2"
+    city: "City:"
+    email: "Email"
+    email_placeholder: "Email Address"
+    family_of: "Family of: %{parent_name}"
+    headings:
+      edit: "Edit Family Card"
+      new: "New Family Card"
+    parent_name: "Parent/Guardian Name"
+    parent_first_name: "Parent's/Guardian's First Name"
+    parent_last_name: "Parent's/Guardian's Last Name"
+    parent_first_name_placeholder: "Registering P/G First Name"
+    parent_last_name_placeholder: "Registering P/G Last Name"
+    phone: "Phone"
+    phone_number: "Phone Number"
+    street_address: "Street Address"
+    student_name: "Student Name"
+    zip_code: "Zip Code"
+  search:
+    found: "Found"
+    heading: "Prospect Search"
+    prospect_not_found: "No prospects were found."
+    search_prospect_records: "Search Prospect Records"
+    try_another_search: "Try another search?"
+  user:
+    logout: "Logout"

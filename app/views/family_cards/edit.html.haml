@@ -1,8 +1,3 @@
-%h1 Edit Family Card
+%h1= t('family_card.headings.edit')
 
 = render 'form'
-
-%p
-  = link_to "Show", @family_card
-  |
-  = link_to "View All", family_cards_path

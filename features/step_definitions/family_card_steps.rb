@@ -1,10 +1,10 @@
 Given /^I have (\d+)( incomplete)? family card[s]?$/ do |card_quantity, incomplete|
-  @user = @user || FactoryGirl.create(:user)
+  @user = @user || create(:user)
   card_quantity.to_i.times do
     if incomplete
-      FactoryGirl.create(:family_card, :incomplete, user: @user)
+      create(:family_card, :incomplete, user: @user)
     else
-      FactoryGirl.create(:family_card, user: @user)
+      create(:family_card, user: @user)
     end
   end
   @family_card = FamilyCard.last
