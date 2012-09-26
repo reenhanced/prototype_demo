@@ -57,7 +57,6 @@ Given /^I am logged in$/ do
 end
 
 Given /^I am logged in as "([^"]*)"$/ do |user_email|
-  puts "logging in as #{user_email}"
   create_user(user_email)
   sign_in
 end
