@@ -77,6 +77,10 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value,
   end
 end
 
+When /^(?:|I )select "([^\"]*)" as the "([^\"]*)" date$/ do |date, label|
+  select_date(date, {from: label})
+end
+
 When /^(?:|I )check "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   with_scope(selector) do
     check(field)

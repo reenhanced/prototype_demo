@@ -11,6 +11,7 @@ class FamilyCardsController < ApplicationController
   end
 
   def show
+    @student = @family_card.students.build
   end
 
   def new

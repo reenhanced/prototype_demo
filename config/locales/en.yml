@@ -7,7 +7,9 @@ en:
   family_card:
     address: "Address"
     address2: "Address2"
-    city: "City:"
+    add_new_student: "Add student"
+    create_student: "Create Student"
+    city: "City"
     default_student: "Default Student"
     email: "Email"
     email_placeholder: "Email Address"
@@ -24,6 +26,25 @@ en:
     phone: "Phone"
     phone_number: "Phone Number"
     street_address: "Street Address"
+    student:
+      address: "Address"
+      address2: "Address2"
+      birthday: "Birthday"
+      city: "City"
+      email: "Email"
+      email_placeholder: "Email Address"
+      gender: 'Gender'
+      graduation_year: 'Class of'
+      headings:
+        new: "New Student"
+      first_name: "First Name"
+      last_name: "Last Name"
+      first_name_placeholder: "First Name"
+      last_name_placeholder: "Last Name"
+      phone: "Phone"
+      phone_number: "Phone Number"
+      street_address: "Street Address"
+      zip_code: "Zip Code"
     student_info: "Student Info"
     student_name: "Student Name"
     zip_code: "Zip Code"

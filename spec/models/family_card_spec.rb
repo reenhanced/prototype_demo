@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe FamilyCard do
   it { should belong_to(:user) }
   it { should have_one(:default_parent).class_name('Parent') }
+  it { should have_many(:students) }
 
   context "validations" do
     let!(:family_card) { create(:family_card) }

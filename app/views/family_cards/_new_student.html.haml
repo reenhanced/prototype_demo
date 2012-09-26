@@ -1,0 +1,36 @@
+%h2= t("family_card.student.headings.new", default: 'New Student')
+= form_for [@family_card, @student], remote: true do |f|
+  = render 'shared/error_messages', record: @family_card
+
+  .span5
+    .controls
+      = f.select :relationship, Student::RELATIONSHIPS.collect {|relationship| [relationship, relationship]}
+    .controls.controls-row
+      = f.text_field :first_name, placeholder: t('family_card.student.first_name_placeholder', default: 'First Name'), class: 'small'
+      = f.text_field :last_name, placeholder: t('family_card.student.last_name_placeholder', default: 'Last Name'), class: 'small'
+    .control-group
+      = f.label :birthday, t('family_card.student.birthday', default: 'Birthday'), class: 'control-label'
+      .controls
+        = f.date_select :birthday, {start_year: (Date.today.year - Student::BIRTHDAY_YEAR_OFFSET), end_year: Date.today.year, order: [:month, :day, :year]}, {class: 'input-small'}
+    .control-group
+      = f.label :graduation_year, t('family_card.student.graduation_year', default: 'Class of')
+      .controls
+        = f.date_select :graduation_year, {start_year: Date.today.year, end_year: (Date.today.year + Student::GRADUATION_YEAR_OFFSET), discard_day: true, discard_month: true}, {class: 'input-small'}
+    .control-group
+      = f.label :gender, t('family_card.student.gender', default: 'Gender')
+      .controls
+        = f.select :gender, [['Male', 'm'], ['Female', 'f']], {}, class: 'input-small'
+
+  .span6
+    .controls.controls-row
+      = f.text_field :email, placeholder: t('family_card.student.email_placeholder', default: 'Email'), class: 'span3'
+      = f.text_field :phone, placeholder: t('family_card.student.phone_number', default: 'Phone Number'), class: 'span3'
+    .controls.controls-row
+      = f.text_field :address1, placeholder: t('family_card.student.street_address', default: 'Street Address'), class: 'span3'
+      = f.text_field :address2, placeholder: t('family_card.student.address2', default: 'Address 2'), class: 'span3'
+    .controls.controls-row
+      = f.text_field :city, placeholder: t('family_card.student.city', default: 'City'), class: 'span3'
+      = f.text_field :zip_code, placeholder: t('family_card.student.zip_code', default: 'Zip Code'), class: 'span2'
+
+  .form-actions.clearfix
+    = f.submit t('family_card.create_student', default: 'Create Student'), class: 'btn btn-primary'
