@@ -63,3 +63,8 @@ Then /^I should( not)? see the parent's name$/ do |negator|
     step %{I should see "#{@parent_name}"}
   end
 end
+
+Then /^I should own the family card$/ do
+  @family_card ||= FamilyCard.last
+  @family_card.user.should == @user
+end
