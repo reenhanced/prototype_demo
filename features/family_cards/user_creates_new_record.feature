@@ -22,3 +22,4 @@ Feature: User creates a new family card
     And I select "California" from "family_card_state"
     And I press "Create Family Card"
     Then I should see "Family of: Dolly Parton"
+    And I should own the family card
