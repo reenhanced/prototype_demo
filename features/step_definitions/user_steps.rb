@@ -1,8 +1,8 @@
 ### UTILITY METHODS ###
 # credit: https://github.com/RailsApps/rails3-devise-rspec-cucumber/blob/master/features/step_definitions/user_steps.rb
 
-def create_visitor
-  @visitor ||= { :name => "Testy McUserton", :email => Faker::Internet.email,
+def create_visitor(email=nil)
+  @visitor ||= { :name => "Testy McUserton", :email => (email || Faker::Internet.email),
     :password => "fodrizzle", :password_confirmation => "fodrizzle" }
 end
 
@@ -17,14 +17,14 @@ def create_unconfirmed_user
   visit '/logout'
 end
 
-def create_user
-  create_visitor
-  delete_user
+def create_user(email=nil)
+  create_visitor(email)
+  delete_user(email)
   @user = create(:user, email: @visitor[:email])
 end
 
-def delete_user
-  @user ||= User.where(:email => @visitor[:email]).first
+def delete_user(email=nil)
+  @user ||= User.where(:email => (email || @visitor[:email])).first
   @user.destroy unless @user.nil?
 end
 
@@ -53,6 +53,11 @@ end
 
 Given /^I am logged in$/ do
   create_user
+  sign_in
+end
+
+Given /^I am logged in as "([^"]*)"$/ do |user_email|
+  create_user(user_email)
   sign_in
 end
 

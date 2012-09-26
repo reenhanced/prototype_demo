@@ -18,7 +18,9 @@ class FamilyCardsController < ApplicationController
   end
 
   def create
-    @family_card = FamilyCard.new(params[:family_card])
+    @family_card      = FamilyCard.new(params[:family_card])
+    @family_card.user = current_user
+
     if @family_card.save
       redirect_to @family_card, :notice => "Successfully created family card."
     else
