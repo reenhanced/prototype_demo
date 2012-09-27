@@ -17,6 +17,7 @@ Feature: Search for card
     But I should not see "Add Student"
     When I follow the parent's name
     Then I should be on the family card's page
+    And I should see the detailed family card
 
   Scenario: User searches for a family card with empty optional data
     Given I have 1 incomplete family card

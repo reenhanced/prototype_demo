@@ -8,10 +8,11 @@ class StudentsController < ApplicationController
     @student = @family_card.students.build(params[:student])
 
     if @student.save
-      redirect_to @family_card, :notice => "Successfully added student."
+      flash[:notice] = "Successfully added student."
     else
-      respond_with @student
+      flash[:error] = "We were unable to save the student.  Please check the information you entered and try again."
     end
+    respond_with @student
   end
 
   def destroy

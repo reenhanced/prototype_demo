@@ -1,6 +1,6 @@
 %h2= t("family_card.student.headings.new", default: 'New Student')
 = form_for [@family_card, @student], remote: true do |f|
-  = render 'shared/error_messages', record: @family_card
+  #student-errors
 
   .span5
     .controls
@@ -15,7 +15,7 @@
     .control-group
       = f.label :graduation_year, t('family_card.student.graduation_year', default: 'Class of')
       .controls
-        = f.date_select :graduation_year, {start_year: Date.today.year, end_year: (Date.today.year + Student::GRADUATION_YEAR_OFFSET), discard_day: true, discard_month: true}, {class: 'input-small'}
+        = f.select :graduation_year, options_for_graduation_year, {class: 'input-small'}
     .control-group
       = f.label :gender, t('family_card.student.gender', default: 'Gender')
       .controls

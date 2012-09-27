@@ -14,7 +14,7 @@ Feature: User adds student to family card
     Then "#new-student" should be visible
     When I select "Prospective Student" from "student_relationship"
     And I select "1994-02-21" as the "Birthday" date
-    And I select "2012" from "student_graduation_year_1i"
+    And I select "2012" from "student_graduation_year"
     And I select "Male" from "student_gender"
     And I fill in the following:
       | student_first_name | Bobby                   |
@@ -26,6 +26,7 @@ Feature: User adds student to family card
       | student_city       | Los Angelos             |
       | student_zip_code   | 90210                   |
     And I press "Create Student"
-    Then I should be on the family card's page
+    And I wait for the ajax to finish
+    Then "#all-students" should be visible
     And the family card should have 1 student
     And I should see the student's information

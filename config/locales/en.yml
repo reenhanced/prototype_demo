@@ -8,6 +8,7 @@ en:
     address: "Address"
     address2: "Address2"
     add_new_student: "Add student"
+    all_students: "All students"
     create_student: "Create Student"
     city: "City"
     default_student: "Default Student"

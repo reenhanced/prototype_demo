@@ -109,6 +109,12 @@ When /^I wait for (\d+) seconds?$/ do |secs|
   sleep secs.to_i
 end
 
+When /^I wait for the ajax to finish$/ do
+  wait_until {
+    page.evaluate_script('jQuery.active') == 0
+  }
+end
+
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
