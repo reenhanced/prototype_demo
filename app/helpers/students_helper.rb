@@ -4,11 +4,6 @@ module StudentsHelper
     current_year = Date.today.year
     end_year     = current_year + Student::GRADUATION_YEAR_OFFSET
 
-    until current_year > end_year do
-      options << [current_year, current_year]
-      current_year += 1
-    end
-
-    options
+    options = (current_year .. end_year).map { |year| [year, year] }
   end
 end

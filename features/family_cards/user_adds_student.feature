@@ -10,7 +10,7 @@ Feature: User adds student to family card
   @javascript
   Scenario: User adds student to a family card they own
     Given today is "2012-09-26"
-    And I am on the family card's page
+    When I am on the family card's page
     Then "#new-student" should be hidden
     When I click "Add student"
     Then "#new-student" should be visible
@@ -36,6 +36,6 @@ Feature: User adds student to family card
   Scenario: User tries to add student to a family card they don't own
     Given I am logged in as "jimmy.buffet@example.com"
     And I have 1 family card
-    And I am on another user's family card page
+    When I am on another user's family card page
     Then I should not see "#new_student"
     And I should not see "Add student"
