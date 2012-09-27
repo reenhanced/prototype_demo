@@ -77,6 +77,10 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value,
   end
 end
 
+When /^(?:|I )select "([^\"]*)" as the "([^\"]*)" date$/ do |date, label|
+  select_date(date, {from: label})
+end
+
 When /^(?:|I )check "([^"]*)"(?: within "([^"]*)")?$/ do |field, selector|
   with_scope(selector) do
     check(field)
@@ -103,6 +107,12 @@ end
 
 When /^I wait for (\d+) seconds?$/ do |secs|
   sleep secs.to_i
+end
+
+When /^I wait for the ajax to finish$/ do
+  wait_until {
+    page.evaluate_script('jQuery.active') == 0
+  }
 end
 
 Then /^(?:|I )should see JSON:$/ do |expected_json|
