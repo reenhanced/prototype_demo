@@ -13,6 +13,23 @@ FactoryGirl.define do
     phone { Faker::PhoneNumber.phone_number }
   end
 
+  factory :student do
+    family_card
+    email { Faker::Internet.email }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    phone { Faker::PhoneNumber.phone_number }
+    address1 { Faker::Address.street_address }
+    address2 { Faker::Address.secondary_address }
+    city { Faker::Address.city }
+    state { Faker::Address.state_abbr }
+    zip_code { Faker::Address.zip_code }
+
+    trait :incomplete do
+      address2 ''
+    end
+  end
+
   factory :family_card do
     user
     address1 { Faker::Address.street_address }
