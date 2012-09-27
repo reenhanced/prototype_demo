@@ -3,11 +3,13 @@ Feature: User adds student to family card
   As a user
   I can follow a link from the family card page and fill out a new student form
 
-  @javascript
-  Scenario: User adds student
-    Given today is "2012-09-26"
-    And I am logged in
+  Background:
+    Given I am logged in
     And I have 1 family card
+
+  @javascript
+  Scenario: User adds student to a family card they own
+    Given today is "2012-09-26"
     And I am on the family card's page
     Then "#new-student" should be hidden
     When I click "Add student"
@@ -30,3 +32,10 @@ Feature: User adds student to family card
     Then "#all-students" should be visible
     And the family card should have 1 student
     And I should see the student's information
+
+  Scenario: User tries to add student to a family card they don't own
+    Given I am logged in as "jimmy.buffet@example.com"
+    And I have 1 family card
+    And I am on another user's family card page
+    Then I should not see "#new_student"
+    And I should not see "Add student"

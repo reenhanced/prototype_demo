@@ -30,10 +30,11 @@
         %a{ href: '#all-students', :'data-toggle' => 'tab'}
           %i.icon-list
           = t('family_card.all_students', default: 'All students')
-      %li
-        %a{ href: '#new-student', :'data-toggle' => 'tab'}
-          %i.icon-plus
-          = t('family_card.add_new_student', default: 'Add student')
+      - if current_user.owns?(family_card)
+        %li
+          %a{ href: '#new-student', :'data-toggle' => 'tab'}
+            %i.icon-plus
+            = t('family_card.add_new_student', default: 'Add student')
 
   .tab-content
     .tab-pane.active{ id: "default-student-#{family_card.id}" }
