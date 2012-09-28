@@ -71,7 +71,6 @@ Vagrant::Config.run do |config|
     chef.add_recipe('mysql::server')
     chef.add_recipe('rvm::system')
     chef.add_recipe('rvm::vagrant')
-    chef.add_recipe('git')
     chef.add_recipe('vim')
     chef.add_recipe('bridgeway_app')
 
