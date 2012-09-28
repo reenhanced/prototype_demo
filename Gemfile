@@ -18,6 +18,12 @@ gem 'devise'
 gem "haml-rails"
 gem 'jquery-rails'
 
+gem 'therubyracer', :require => 'v8'
+
+gem 'chef'
+gem 'vagrant', '~> 1.0.5'
+gem 'librarian'
+
 group :development, :test do
   gem 'capybara-webkit'
   gem 'debugger'
@@ -38,6 +44,7 @@ group :test do
 end
 
 group :cucumber do
+  gem 'headless'
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'database_cleaner'
