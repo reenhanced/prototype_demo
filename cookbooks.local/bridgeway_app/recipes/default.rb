@@ -12,6 +12,7 @@ bash "install dependencies" do
   apt-get update
   apt-get upgrade -y
   apt-get install -y libqt4-dev
+  apt-get install -y xvfb
   EOF
 end
 

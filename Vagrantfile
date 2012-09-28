@@ -10,11 +10,11 @@ Vagrant::Config.run do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "lucid32"
+  config.vm.box = "precise32"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
@@ -71,8 +71,8 @@ Vagrant::Config.run do |config|
     chef.add_recipe('mysql::server')
     chef.add_recipe('rvm::system')
     chef.add_recipe('rvm::vagrant')
-    # chef.add_recipe('git')
-    # chef.add_recipe('vim')
+    chef.add_recipe('git')
+    chef.add_recipe('vim')
     chef.add_recipe('bridgeway_app')
 
     chef.json = {

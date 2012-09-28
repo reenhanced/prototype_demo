@@ -44,6 +44,7 @@ group :test do
 end
 
 group :cucumber do
+  gem 'headless'
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'database_cleaner'
