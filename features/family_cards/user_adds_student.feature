@@ -43,6 +43,10 @@ Feature: User adds student to family card
     When I uncheck "Same as family card"
     Then the family card's contact fields should not be filled in
     And the family card's contact fields should not be disabled
+    When I check "Same as family card"
+    And I press "Create Student"
+    And I wait for the ajax to finish
+    Then I should see the student's information with the default parent's contact info
 
   Scenario: User tries to add student to a family card they don't own
     Given I am logged in as "jimmy.buffet@example.com"
