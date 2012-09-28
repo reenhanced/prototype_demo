@@ -35,7 +35,9 @@ Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
   step %{I should#{negator} see "#{@family_card.email}"}
   step %{I should#{negator} see "Address"}
   step %{I should#{negator} see "#{@family_card.address1}"}
-  step %{I should#{negator} see "#{@family_card.city}, #{@family_card.state} #{@family_card.zip_code}"}
+  step %{I should#{negator} see "#{@family_card.city}"}
+  step %{I should#{negator} see "#{@family_card.state}"}
+  step %{I should#{negator} see "#{@family_card.zip_code}"}
   step %{I should#{negator} see "Default Student"}
   step %{I should#{negator} see "#{@family_card.student_name}"}
 
@@ -56,4 +58,35 @@ end
 Then /^I should own the family card$/ do
   @family_card ||= FamilyCard.last
   @family_card.user.should == @user
+end
+
+Then /^the family card's contact fields should( not)? be filled in$/ do |negator|
+  @family_card ||= FamilyCard.last
+
+  if negator
+    step %{the "student_email" field should contain ""}
+    step %{the "student_phone" field should contain ""}
+    step %{the "student_address1" field should contain ""}
+    step %{the "student_address2" field should contain ""}
+    step %{the "student_city" field should contain ""}
+    step %{the "student_zip_code" field should contain ""}
+  else
+    step %{the "student_email" field should contain "#{@family_card.email}"}
+    step %{the "student_phone" field should contain "#{@family_card.phone}"}
+    step %{the "student_address1" field should contain "#{@family_card.address1}"}
+    step %{the "student_address2" field should contain "#{@family_card.address2}"}
+    step %{the "student_city" field should contain "#{@family_card.city}"}
+    step %{the "student_zip_code" field should contain "#{@family_card.zip_code}"}
+  end
+end
+
+Then /^the family card's contact fields should( not)? be disabled$/ do |negator|
+  @family_card ||= FamilyCard.last
+
+  step %{the "student_email" field should#{negator} be disabled}
+  step %{the "student_phone" field should#{negator} be disabled}
+  step %{the "student_address1" field should#{negator} be disabled}
+  step %{the "student_address2" field should#{negator} be disabled}
+  step %{the "student_city" field should#{negator} be disabled}
+  step %{the "student_zip_code" field should#{negator} be disabled}
 end

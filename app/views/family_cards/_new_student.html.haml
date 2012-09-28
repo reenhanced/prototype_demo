@@ -23,6 +23,10 @@
 
   .span6
     .controls.controls-row
+      = label_tag 'use_default_parent', class: 'checkbox' do
+        = check_box_tag 'use_default_parent'
+        = t('family_card.student.same_as_family_card', default: 'Same as family card')
+    .controls.controls-row
       = f.text_field :email, placeholder: t('family_card.student.email_placeholder', default: 'Email'), class: 'span3'
       = f.text_field :phone, placeholder: t('family_card.student.phone_number', default: 'Phone Number'), class: 'span3'
     .controls.controls-row

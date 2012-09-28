@@ -7,6 +7,16 @@ class StudentsController < ApplicationController
   def create
     @student = @family_card.students.build(params[:student])
 
+    if params[:use_default_parent]
+      @student.email = @family_card.email
+      @student.phone = @family_card.phone
+      @student.address1 = @family_card.address1
+      @student.address2 = @family_card.address2
+      @student.city = @family_card.city
+      @student.state = @family_card.state
+      @student.zip_code = @family_card.zip_code
+    end
+
     if @student.save
       flash[:notice] = "Successfully added student."
     else
