@@ -169,7 +169,7 @@ Then /^the "([^"]*)" field(?: within "([^"]*)")? should contain "([^"]*)"$/ do |
     field = find_field(field)
     field_value = (field.tag_name == 'textarea') ? field.text : field.value
     if field_value.respond_to? :should
-      field_value.should =~ /#{value}/
+      field_value.should =~ /#{Regexp.quote(value)}/
     else
       assert_match(/#{value}/, field_value)
     end
@@ -252,4 +252,12 @@ end
 
 Then /^"(.*)" should be visible$/ do |selector|
   find(selector).should be_visible
+end
+
+Then /^the "([^\"]+)" field should( not)? be disabled$/ do |field, negator|
+  if negator
+    find_field(field)['disabled'].should_not be_true
+  else
+    find_field(field)['disabled'].should be_true
+  end
 end

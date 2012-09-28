@@ -4,13 +4,13 @@ Feature: User adds student to family card
   I can follow a link from the family card page and fill out a new student form
 
   Background:
-    Given I am logged in
+    Given today is "2012-09-26"
+    And I am logged in
     And I have 1 family card
+    When I am on the family card's page
 
   @javascript
   Scenario: User adds student to a family card they own
-    Given today is "2012-09-26"
-    When I am on the family card's page
     Then "#new-student" should be hidden
     When I click "Add student"
     Then "#new-student" should be visible
@@ -32,6 +32,21 @@ Feature: User adds student to family card
     Then "#all-students" should be visible
     And the family card should have 1 student
     And I should see the student's information
+
+  @javascript
+  Scenario: User adds student to a family card and uses the default parent's address
+    When I click "Add student"
+    Then the family card's contact fields should not be disabled
+    When I check "Same as family card"
+    Then the family card's contact fields should be filled in
+    And the family card's contact fields should be disabled
+    When I uncheck "Same as family card"
+    Then the family card's contact fields should not be filled in
+    And the family card's contact fields should not be disabled
+    When I check "Same as family card"
+    And I press "Create Student"
+    And I wait for the ajax to finish
+    Then I should see the student's information with the default parent's contact info
 
   Scenario: User tries to add student to a family card they don't own
     Given I am logged in as "jimmy.buffet@example.com"
