@@ -7,19 +7,22 @@
     %dt= t('family_card.parent_name')
     %dd= link_to_unless_current family_card.parent_name, family_card_path(family_card)
     %dt= t('family_card.phone')
-    %dd= family_card.phone
+    %dd.phone= family_card.phone
     %dt= t('family_card.email')
-    %dd= family_card.email
+    %dd.email= family_card.email
   %dl.dl-horizontal.address.span6
     %dt= t('family_card.address')
     %dd
-      %address
-        = family_card.address1
+      %address.adr
+        %span.street-address= family_card.address1
         %br/
-        - if family_card.address2
-          = family_card.address2
+        - if family_card.address2.present?
+          %span.extended-address= family_card.address2
           %br/
-        = "#{family_card.city}, #{family_card.state}  #{family_card.zip_code}"
+        %span.locality= family_card.city
+        ,
+        %span.region= family_card.state
+        %span.postal-code= family_card.zip_code
 
   %ul.nav.nav-tabs.clearfix
     %li.active>

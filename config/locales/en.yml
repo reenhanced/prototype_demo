@@ -44,6 +44,7 @@ en:
       last_name_placeholder: "Last Name"
       phone: "Phone"
       phone_number: "Phone Number"
+      same_as_family_card: "Same as family card"
       street_address: "Street Address"
       zip_code: "Zip Code"
     student_info: "Student Info"
