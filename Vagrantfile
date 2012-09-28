@@ -77,7 +77,8 @@ Vagrant::Config.run do |config|
 
     chef.json = {
       :mysql => {
-        :server_root_password => ''
+        :server_root_password => '',
+        :use_upstart => true
       },
       :rvm => {
         :default_ruby => '1.9.3',
