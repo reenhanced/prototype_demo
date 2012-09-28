@@ -6,6 +6,7 @@
 
 require 'cucumber/rails'
 require 'factory_girl'
+require 'headless'
 require 'timecop'
 
 require File.join(File.dirname(__FILE__), '../../spec/support/factories.rb')
@@ -30,6 +31,8 @@ Capybara.javascript_driver = :webkit
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
+
+Headless.new.start
 
 begin
   DatabaseCleaner.strategy = :transaction
