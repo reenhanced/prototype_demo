@@ -3,6 +3,7 @@
 .sass-cache
 capybara-*.html
 .rspec
+.vagrant
 /.bundle
 /vendor/bundle
 /log/*
@@ -11,6 +12,7 @@ capybara-*.html
 /public/system/*
 /coverage/
 /spec/tmp/*
+/cookbooks
 **.orig
 rerun.txt
 pickle-email-*.html
