@@ -6,6 +6,7 @@
 
 require 'cucumber/rails'
 require 'factory_girl'
+require 'timecop'
 
 require File.join(File.dirname(__FILE__), '../../spec/support/factories.rb')
 Dir.glob(File.join(File.dirname(__FILE__), '../../spec/support/factories/*.rb')).each {|f| require f }

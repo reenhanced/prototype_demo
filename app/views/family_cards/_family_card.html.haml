@@ -25,9 +25,24 @@
     %li.active>
       %a{ href: "#default-student-#{family_card.id}", :'data-toggle' => "tab"}
         = t('family_card.default_student')
+    - unless family_card_search_made?
+      %li
+        %a{ href: '#all-students', :'data-toggle' => 'tab'}
+          %i.icon-list
+          = t('family_card.all_students', default: 'All students')
+      - if current_user.owns?(family_card)
+        %li
+          %a{ href: '#new-student', :'data-toggle' => 'tab'}
+            %i.icon-plus
+            = t('family_card.add_new_student', default: 'Add student')
 
   .tab-content
     .tab-pane.active{ id: "default-student-#{family_card.id}" }
       %dl.dl-horizontal.contact
         %dt= t('family_card.student_name')
         %dd= family_card.student_name
+    - unless family_card_search_made?
+      .tab-pane#all-students
+        = render 'all_students', family_card: family_card
+      .tab-pane#new-student
+        = render 'new_student', family_card: family_card, student: @student
