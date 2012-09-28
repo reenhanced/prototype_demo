@@ -23,11 +23,9 @@ end
 rvm_shell "bundle, then load default seed data" do
   cwd "/vagrant"
   user  'vagrant'
-  group 'vagrant'
+  group 'admin'
 
   # Because: https://github.com/fnichol/chef-rvm/issues/69
-  environment 'USER' => 'vagrant',
-              'HOME' => '/home/vagrant'
 
   code <<-EOF
     export HOME=/home/vagrant USER=vagrant
