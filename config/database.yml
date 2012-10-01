@@ -34,11 +34,5 @@ test: &test
 production:
 # Do not store in repository.
 
-staging:
-  adapter: sqlite3
-  database: db/staging.sqlite3
-  pool: 5
-  timeout: 5000
-
 cucumber:
   <<: *test
