@@ -2,6 +2,7 @@ class FamilyCard < ActiveRecord::Base
   belongs_to :user
   has_one    :default_parent, :class_name => 'Parent', :autosave => true, :dependent => :nullify
   has_many   :students, :autosave => true, :dependent => :nullify
+  has_many   :calls, :class_name => 'CallLog', :autosave => true, :dependent => :destroy
 
   before_save :sync_default_parent
 

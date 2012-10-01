@@ -33,6 +33,10 @@
         %a{ href: '#all-students', :'data-toggle' => 'tab'}
           %i.icon-list
           = t('family_card.all_students', default: 'All students')
+      %li
+        %a{ href: '#all-calls', :'data-toggle' => 'tab'}
+          %i.icon-bullhorn
+          = t('family_card.all_calls', default: 'All Calls')
       - if current_user.owns?(family_card)
         %li
           %a{ href: '#new-student', :'data-toggle' => 'tab'}
@@ -47,6 +51,7 @@
     - unless family_card_search_made?
       .tab-pane#all-students
         = render 'all_students', family_card: family_card
+      .tab-pane#all-calls
+        = render 'all_calls', family_card: family_card
       .tab-pane#new-student
         = render 'new_student', family_card: family_card, student: @student
-      .tab-pane#new-call-log

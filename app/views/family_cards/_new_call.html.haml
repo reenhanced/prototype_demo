@@ -1,0 +1,9 @@
+%h2= t("family_card.call.headings.new", default: 'New Call Log')
+= form_for [@family_card, @call], remote: true do |f|
+  #call-errors
+
+  .span12
+    .controls.controls-row
+      = f.text_area :message, rows: 10, placeholder: t('family_card.call.message_placeholder', default: 'Enter your message here...'), class: 'input-xxlarge'
+  .form-actions.clearfix
+    = f.submit t('family_card.create_call_log', default: 'Create Call Log'), class: 'btn btn-primary'

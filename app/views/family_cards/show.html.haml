@@ -10,8 +10,12 @@
         %ul.nav.pull-right
           - if current_user.owns?(@family_card)
             %li
-              %a{ href: "#" }
+              %a{ href: "#", :'data-toggle' => "collapse", :'data-target' =>"#new-call" }
                 %i.icon-plus
                 = t('family_card.add_call_log', default: 'Add call log')
+
+#new-call.collapse
+  .well= render 'new_call', family_card: @family_card, call: @call
+
 
 = render @family_card

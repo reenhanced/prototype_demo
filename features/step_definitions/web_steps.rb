@@ -254,6 +254,14 @@ Then /^"(.*)" should be visible$/ do |selector|
   find(selector).should be_visible
 end
 
+Then /"(.*)" should be collapsed$/ do |selector|
+  page.should have_css("#{selector}, [style~='height: 0px']")
+end
+
+Then /"(.*)" should be expanded/ do |selector|
+  page.should_not have_css("#{selector}, [style~='height: 0px']")
+end
+
 Then /^the "([^\"]+)" field should( not)? be disabled$/ do |field, negator|
   if negator
     find_field(field)['disabled'].should_not be_true
