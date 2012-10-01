@@ -11,6 +11,16 @@ Feature: User adds call log to family card
   Scenario: User adds a call log to one of their family cards
     When I am on the family card's page
     Then I should see "Add call log"
+    And I should see "All Calls"
+    And "#new-call" should be collapsed
+    And "#all-calls" should be hidden
+    When I click "Add call log"
+    Then "#new-call" should be visible
+    When I fill in "call_log_message" with "I am batman."
+    And I press "Create Call Log"
+    And I wait for the ajax to finish
+    Then "#all-calls" should be visible
+    And I should see the call's information
 
   Scenario: User tries to add student to a family card they don't own
     Given I am logged in as "jimmy.buffet@example.com"

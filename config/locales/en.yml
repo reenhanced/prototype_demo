@@ -10,6 +10,14 @@ en:
     address2: "Address2"
     add_new_student: "Add student"
     all_students: "All students"
+    call:
+      all_calls: "All Calls"
+      create_call_log: "Create Call Log"
+      date: "Date"
+      headings:
+        new: "New Call Log"
+      message: "Message"
+      message_placeholder: "Enter your message here..."
     create_student: "Create Student"
     city: "City"
     default_student: "Default Student"

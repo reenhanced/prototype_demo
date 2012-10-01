@@ -1,0 +1,8 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th= t('family_card.call.date', default: 'Date')
+      %th= t('family_card.call.message', default: 'Message')
+  %tbody
+    - family_card.calls.each do |call|
+      = render 'call_logs/call_row', call: call
