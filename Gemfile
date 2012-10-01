@@ -26,6 +26,7 @@ gem 'librarian'
 
 group :staging do
   gem 'pg'
+  gem 'factory_girl_rails'
 end
 
 group :development, :test do
