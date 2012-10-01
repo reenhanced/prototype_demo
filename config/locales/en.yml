@@ -5,6 +5,7 @@ en:
   create_family_card: "Create Family Card"
   create_new_record: "Create new record"
   family_card:
+    add_call_log: "Add call log"
     address: "Address"
     address2: "Address2"
     add_new_student: "Add student"

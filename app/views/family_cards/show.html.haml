@@ -1,3 +1,17 @@
-%h1.page-header= t('family_card.family_of', parent_name: @family_card.parent_name)
+.navbar
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{ :'data-toggle' => "collapse", :'data-target' => ".nav-collapse" }
+        .icon-bar
+        .icon-bar
+        .icon-bar
+      %a.brand{ href: "#"}= t('family_card.family_of', parent_name: @family_card.parent_name)
+      .nav-collapse
+        %ul.nav.pull-right
+          - if current_user.owns?(@family_card)
+            %li
+              %a{ href: "#" }
+                %i.icon-plus
+                = t('family_card.add_call_log', default: 'Add call log')
 
 = render @family_card
