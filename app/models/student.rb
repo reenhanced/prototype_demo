@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
   belongs_to :family_card, autosave: true
+  has_many   :calls, :class_name => 'CallLog', :as => :contact
 
   RELATIONSHIPS          = ['Prospective Student', 'Sibling', 'Mother', 'Father',
                             'Paternal Grandmother', 'Paternal Grandfather', 'Maternal Mother',

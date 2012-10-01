@@ -16,6 +16,7 @@ Feature: User adds call log to family card
     And "#all-calls" should be hidden
     When I click "Add call log"
     Then "#new-call" should be visible
+    And I should see "Spoke to"
     When I fill in "call_log_message" with "I am batman."
     And I press "Create Call Log"
     And I wait for the ajax to finish

@@ -2,8 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe FamilyCard do
   it { should belong_to(:user) }
-  it { should have_one(:default_parent).class_name('Parent') }
+  it { should belong_to(:default_parent).class_name('Parent') }
   it { should have_many(:students) }
+  it { should have_many(:parents) }
   it { should have_many(:calls).class_name('CallLog') }
 
   context "validations" do
