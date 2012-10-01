@@ -1,5 +1,7 @@
 - if record.errors.any?
-  .alert.fade.in{ "data-alert" => "alert", :class => "alert-error" }
+  .alert.alert-error.fade.in{ "data-alert" => "alert" }
     %button.close{ :type => "button", :'data-dismiss' => "alert"} &#215;
     - record.errors.full_messages.each do |message|
       %p=message
+- else
+  = render 'shared/flash_messages'

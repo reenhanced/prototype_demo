@@ -10,7 +10,7 @@ class CallLogsController < ApplicationController
     if @call.save
       flash[:notice] = "Successfully added call log."
     else
-      flash[:error] = "We were unable to save the student.  Please check the information you entered and try again."
+      flash[:error] = "We were unable to save the student. Please check the information you entered and try again."
     end
     respond_with @call
   end
