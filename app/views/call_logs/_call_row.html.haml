@@ -1,4 +1,5 @@
 - if call and call.id
   %tr
     %td= call.updated_at
+    %td= link_to call.contact.name, family_card_call_log_path(call.family_card, call)
     %td= call.message.html_safe

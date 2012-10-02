@@ -1,4 +1,10 @@
 $ ->
+  new_call_form = $('#new_call_log')
+  if(new_call_form)
+    $('#new_call_log #call_log_contact_id').change ->
+      selected_contact_type = $('#call_log_contact_id option:selected').attr('data-contact-type')
+      $('#call_log_contact_type').val(selected_contact_type)
+
   new_student_form = $('#new_student')
   if(new_student_form)
     # this maps the id of the parent's data to the input on the new student form
