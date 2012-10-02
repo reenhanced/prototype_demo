@@ -11,6 +11,7 @@
         = f.text_area :message, rows: 10, placeholder: t('family_card.call.message_placeholder', default: 'Enter your message here...'), class: 'input-xxlarge span5'
   .span5
     .controls.controls-row
+      = label_tag "qualifier_ids", t('family_card.call.qualifiers', default: 'Qualifiers')
       - Qualifier.available.each do |qualifier|
         = label_tag "qualifier_ids_#{qualifier.id}" do
           = check_box_tag "qualifier_ids[#{qualifier.id}]", qualifier.id, @family_card.has_qualifier?(qualifier.name), name: 'qualifier_ids[]'

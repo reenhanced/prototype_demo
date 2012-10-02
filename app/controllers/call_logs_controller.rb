@@ -10,7 +10,9 @@ class CallLogsController < ApplicationController
 
     if selected_qualifiers and selected_qualifiers.any?
       selected_qualifiers.each do |qualifier|
-        @call.qualifiers.create name: qualifier.name, category: qualifier.category, position: qualifier.position
+        unless @family_card.has_qualifier?(qualifier.name)
+          @call.qualifiers.create name: qualifier.name, category: qualifier.category, position: qualifier.position
+        end
       end
     end
 
