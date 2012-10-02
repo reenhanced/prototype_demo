@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001181416) do
+ActiveRecord::Schema.define(:version => 20121002174253) do
 
   create_table "call_logs", :force => true do |t|
     t.integer  "family_card_id"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(:version => 20121001181416) do
     t.string   "phone"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "qualifiers", :force => true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.integer  "position",       :default => 0
+    t.integer  "family_card_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "students", :force => true do |t|

@@ -6,11 +6,18 @@ class CallLogsController < ApplicationController
 
   def create
     @call = @family_card.calls.build(params[:call_log])
+    selected_qualifiers = Qualifier.available.find(params[:qualifier_ids]) if params[:qualifier_ids]
+
+    if selected_qualifiers and selected_qualifiers.any?
+      selected_qualifiers.each do |qualifier|
+        @call.qualifiers.create name: qualifier.name, category: qualifier.category, position: qualifier.position
+      end
+    end
 
     if @call.save
       flash[:notice] = "Successfully added call log."
     else
-      flash[:error] = "We were unable to save the student. Please check the information you entered and try again."
+      flash[:error] = "We were unable to create the call log. Please check the information you entered and try again."
     end
     respond_with @call
   end
@@ -26,6 +33,6 @@ class CallLogsController < ApplicationController
   end
 
   def find_call
-    @call = @family_card.students.find(params[:id])
+    @call = @family_card.calls.find(params[:id])
   end
 end

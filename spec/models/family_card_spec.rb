@@ -6,6 +6,7 @@ describe FamilyCard do
   it { should have_many(:students) }
   it { should have_many(:parents) }
   it { should have_many(:calls).class_name('CallLog') }
+  it { should have_many(:qualifiers) }
 
   context "validations" do
     let!(:family_card) { create(:family_card) }
@@ -114,6 +115,29 @@ describe FamilyCard do
         subject.contacts.should have(5).contacts
         subject.students.each {|student| subject.contacts.should include(student) }
         subject.parents.each {|parent| subject.contacts.should include(parent) }
+      end
+    end
+
+    describe "#has_qualifier?()" do
+      subject { create(:family_card, parent_first_name: "Willie", parent_last_name: "Nelson") }
+      let(:positive_qualifier) { create(:qualifier, :family_card => nil, category: 'positive') }
+      let(:negative_qualifier) { create(:qualifier, :family_card => nil, category: 'negative') }
+
+      it "returns true if the family card has a qualifier with the given name" do
+        subject.qualifiers.build positive_qualifier.attributes.reject {|k,v| ['id', 'created_at', 'updated_at'].include?(k) }
+        subject.save!
+
+        subject.reload
+        subject.has_qualifier?(positive_qualifier.name).should be_true
+      end
+
+      it "returns false if the familay card has no qualifiers matching the given name" do
+        subject.has_qualifier?(positive_qualifier.name).should be_false
+        subject.qualifiers.build negative_qualifier.attributes.reject {|k,v| ['id', 'created_at', 'updated_at'].include?(k) }
+        subject.save!
+
+        subject.reload
+        subject.has_qualifier?(positive_qualifier.name).should be_false
       end
     end
   end

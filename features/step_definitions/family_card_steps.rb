@@ -10,6 +10,14 @@ Given /^I have (\d+)( incomplete)? family card[s]?$/ do |card_quantity, incomple
   @family_card = FamilyCard.last
 end
 
+Given /^I have initial qualifiers$/ do
+  3.times do
+    create(:qualifier, :family_card => nil, category: 'positive')
+    create(:qualifier, :family_card => nil, category: 'neutral')
+    create(:qualifier, :family_card => nil, category: 'negative')
+  end
+end
+
 When /^I fill in the form with an existing parent's name$/ do
   @family_card = FamilyCard.last
   @parent_name = "#{@family_card.parent_first_name} #{@family_card.parent_last_name}"
