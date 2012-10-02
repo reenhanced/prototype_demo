@@ -33,6 +33,7 @@ describe FamilyCard do
 
         new_family_card.save!
         new_family_card.default_parent.should be
+        new_family_card.primary_parent_id.should == new_family_card.default_parent.id
       end
 
       it "syncs the default parent data" do
@@ -97,6 +98,22 @@ describe FamilyCard do
     describe "#parent_name" do
       it "returns the parent's first and last name" do
         subject.parent_name.should == "Willie Nelson"
+      end
+    end
+
+    describe "#contacts" do
+      before do
+        2.times do
+          create(:student, :family_card => subject)
+          create(:parent, :family_card => subject)
+        end
+        subject.reload
+      end
+
+      it "returns all students and parents associated with the family card" do
+        subject.contacts.should have(5).contacts
+        subject.students.each {|student| subject.contacts.should include(student) }
+        subject.parents.each {|parent| subject.contacts.should include(parent) }
       end
     end
   end

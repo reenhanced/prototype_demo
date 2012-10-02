@@ -18,6 +18,8 @@ Feature: User adds call log to family card
     Then "#new-call" should be visible
     And I should see "Spoke to"
     When I fill in "call_log_message" with "I am batman."
+    And I select the first contact from "#call_log_contact_id"
+    Then the "call_log_contact_type" hidden field should contain "Parent"
     And I press "Create Call Log"
     And I wait for the ajax to finish
     Then I should see "Successfully added call log."

@@ -18,6 +18,7 @@ en:
         new: "New Call Log"
       message: "Message"
       message_placeholder: "Enter your message here..."
+      spoke_to: "Spoke to"
     create_student: "Create Student"
     city: "City"
     default_student: "Default Student"
