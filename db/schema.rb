@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001134655) do
+ActiveRecord::Schema.define(:version => 20121001181416) do
 
   create_table "call_logs", :force => true do |t|
     t.integer  "family_card_id"
     t.text     "message"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "contact_id"
+    t.string   "contact_type"
   end
 
   create_table "family_cards", :force => true do |t|

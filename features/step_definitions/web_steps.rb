@@ -164,6 +164,10 @@ Then /^(?:|I )should not see \/([^\/]*)\/(?: within "([^"]*)")?$/ do |regexp, se
   end
 end
 
+Then /^the "([^"]*)" hidden field should contain "([^"]*)"$/ do |field, value|
+  find(:xpath, "//input[@id='#{field}']").value.should =~ /#{Regexp.quote(value)}/
+end
+
 Then /^the "([^"]*)" field(?: within "([^"]*)")? should contain "([^"]*)"$/ do |field, selector, value|
   with_scope(selector) do
     field = find_field(field)
