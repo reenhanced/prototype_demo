@@ -12,9 +12,9 @@ end
 
 Given /^I have initial qualifiers$/ do
   3.times do
-    create(:qualifier, :family_card => nil, category: 'positive')
-    create(:qualifier, :family_card => nil, category: 'neutral')
-    create(:qualifier, :family_card => nil, category: 'negative')
+    create(:qualifier, category: 'positive')
+    create(:qualifier, category: 'neutral')
+    create(:qualifier, category: 'negative')
   end
 end
 

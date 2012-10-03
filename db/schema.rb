@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002174253) do
+ActiveRecord::Schema.define(:version => 20121003135250) do
 
   create_table "call_logs", :force => true do |t|
     t.integer  "family_card_id"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(:version => 20121002174253) do
     t.integer  "contact_id"
     t.string   "contact_type"
   end
+
+  create_table "family_card_qualifiers", :force => true do |t|
+    t.integer  "family_card_id"
+    t.integer  "qualifier_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "family_card_qualifiers", ["family_card_id"], :name => "index_family_card_qualifiers_on_family_card_id"
+  add_index "family_card_qualifiers", ["qualifier_id"], :name => "index_family_card_qualifiers_on_qualifier_id"
 
   create_table "family_cards", :force => true do |t|
     t.string   "parent_first_name"
@@ -54,10 +64,9 @@ ActiveRecord::Schema.define(:version => 20121002174253) do
   create_table "qualifiers", :force => true do |t|
     t.string   "name"
     t.string   "category"
-    t.integer  "position",       :default => 0
-    t.integer  "family_card_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.integer  "position",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "students", :force => true do |t|

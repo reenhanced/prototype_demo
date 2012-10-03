@@ -4,13 +4,14 @@ class FamilyCard < ActiveRecord::Base
   has_many   :parents, :autosave => true, :dependent => :nullify
   has_many   :students, :autosave => true, :dependent => :nullify
   has_many   :calls, :class_name => 'CallLog', :autosave => true, :dependent => :destroy
-  has_many   :qualifiers, :autosave => true, :dependent => :destroy
+  has_many   :family_card_qualifiers
+  has_many   :qualifiers, :through => :family_card_qualifiers
 
   before_save :sync_default_parent, :except => [:create]
   before_create :create_default_parent
 
   attr_accessible :primary_parent_id, :parent_first_name, :parent_last_name, :student_name, :phone, :email, :address1, :address2, :city, :state, :zip_code
-  accepts_nested_attributes_for :default_parent, :qualifiers
+  accepts_nested_attributes_for :default_parent, :qualifiers, :family_card_qualifiers, :allow_destroy => true
 
   validates_uniqueness_of :email, :phone
 
@@ -38,10 +39,6 @@ class FamilyCard < ActiveRecord::Base
 
   def contacts
     self.parents(true) + self.students(true)
-  end
-
-  def has_qualifier?(qualifier_name)
-    self.qualifiers.any? {|q| q.name == qualifier_name}
   end
 
   private

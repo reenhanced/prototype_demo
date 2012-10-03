@@ -49,7 +49,6 @@ FactoryGirl.define do
   end
 
   factory :qualifier do
-    family_card
     name { Faker::Lorem.sentence(5) }
     category "positive"
     position 0

@@ -4,7 +4,6 @@ class CreateQualifiers < ActiveRecord::Migration
       t.string :name
       t.string :category
       t.integer :position, :default => 0
-      t.integer :family_card_id
       t.timestamps
     end
   end

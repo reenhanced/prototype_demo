@@ -8,7 +8,7 @@ end
 When /^I check the first qualifier$/ do
   @qualifier = Qualifier.first
 
-  check("qualifier_ids_#{@qualifier.id}")
+  check("call_log_qualifier_ids_#{@qualifier.id}")
 end
 
 Then /^I should( not)? see the call's information?$/ do |negator|
@@ -24,7 +24,7 @@ Then /^I should( not)? see the call's information?$/ do |negator|
 end
 
 Then /^the family card should have the selected qualifier$/ do
-  @qualifier = Qualifier.last
+  @qualifier ||= Qualifier.first
   @family_card ||= FamilyCard.last
 
   @family_card.qualifiers.should include(@qualifier)

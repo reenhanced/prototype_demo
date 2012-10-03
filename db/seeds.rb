@@ -28,18 +28,18 @@ end
 
 unless Qualifier.any?
   # Qualifiers without a family_id are used to populate check lists throughout the site
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Looking to enroll shortly", category: "positive", position: 0)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Student(s) have been withdrawn/expelled", category: "positive", position: 1)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Dissatisfied with current education", category: "positive", position: 2)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Referred by a friend", category: "positive", position: 3)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Previous Bridgeway Student", category: "positive", position: 4)
+  FactoryGirl.create(:qualifier, name: "Looking to enroll shortly", category: "positive", position: 0)
+  FactoryGirl.create(:qualifier, name: "Student(s) have been withdrawn/expelled", category: "positive", position: 1)
+  FactoryGirl.create(:qualifier, name: "Dissatisfied with current education", category: "positive", position: 2)
+  FactoryGirl.create(:qualifier, name: "Referred by a friend", category: "positive", position: 3)
+  FactoryGirl.create(:qualifier, name: "Previous Bridgeway Student", category: "positive", position: 4)
 
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Eligible for scholorship", category: "neutral", position: 0)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Looking for future school year", category: "neutral", position: 1)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Researching other program", category: "neutral", position: 2)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Seeking accredited diploma", category: "neutral", position: 3)
+  FactoryGirl.create(:qualifier, name: "Eligible for scholorship", category: "neutral", position: 0)
+  FactoryGirl.create(:qualifier, name: "Looking for future school year", category: "neutral", position: 1)
+  FactoryGirl.create(:qualifier, name: "Researching other program", category: "neutral", position: 2)
+  FactoryGirl.create(:qualifier, name: "Seeking accredited diploma", category: "neutral", position: 3)
 
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Limited income", category: "negative", position: 0)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Looking for free program/financial aid", category: "negative", position: 1)
-  FactoryGirl.create(:qualifier, :family_card => nil, name: "Opposed to any form of Christian content", category: "negative", position: 2)
+  FactoryGirl.create(:qualifier, name: "Limited income", category: "negative", position: 0)
+  FactoryGirl.create(:qualifier, name: "Looking for free program/financial aid", category: "negative", position: 1)
+  FactoryGirl.create(:qualifier, name: "Opposed to any form of Christian content", category: "negative", position: 2)
 end
