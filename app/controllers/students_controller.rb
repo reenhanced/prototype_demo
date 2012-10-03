@@ -8,13 +8,13 @@ class StudentsController < ApplicationController
     @student = @family_card.students.build(params[:student])
 
     if params[:use_default_parent]
-      @student.email = @family_card.email
-      @student.phone = @family_card.phone
-      @student.address1 = @family_card.address1
-      @student.address2 = @family_card.address2
-      @student.city = @family_card.city
-      @student.state = @family_card.state
-      @student.zip_code = @family_card.zip_code
+      @student.email = @family_card.parent_email
+      @student.phone = @family_card.parent_phone
+      @student.address1 = @family_card.parent_address1
+      @student.address2 = @family_card.parent_address2
+      @student.city = @family_card.parent_city
+      @student.state = @family_card.parent_state
+      @student.zip_code = @family_card.parent_zip_code
     end
 
     if @student.save

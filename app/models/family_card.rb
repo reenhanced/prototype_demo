@@ -50,4 +50,8 @@ class FamilyCard < ActiveRecord::Base
   def parent_name
     "#{default_parent.first_name} #{default_parent.last_name}"
   end
+
+  def student_name
+    default_student ? default_student.name : ""
+  end
 end

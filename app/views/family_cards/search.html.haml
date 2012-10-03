@@ -22,25 +22,25 @@
       .controls
         = form.text_field :student_name, placeholder: t('family_card.student_name')
     .control-group
-      = form.label :phone, t('family_card.phone'), class: 'control-label'
+      = form.label :parent_phone, t('family_card.phone'), class: 'control-label'
       .controls
-        = form.text_field :phone, placeholder: t('family_card.phone')
+        = form.text_field :parent_phone, placeholder: t('family_card.phone')
     .control-group
       = form.label :email, t('family_card.email'),  class: 'control-label'
       .controls
-        = form.text_field :email, placeholder: t('family_card.email')
+        = form.text_field :parent_email, placeholder: t('family_card.email')
     .control-group
-      = form.label :address1, t('family_card.street_address'),  class: 'control-label'
+      = form.label :parent_address1, t('family_card.street_address'),  class: 'control-label'
       .controls
-        = form.text_field :address1, placeholder: t('family_card.street_address')
+        = form.text_field :parent_address1, placeholder: t('family_card.street_address')
     .control-group
-      = form.label :address2, t('family_card.address2'), class: 'control-label'
+      = form.label :parent_address2, t('family_card.address2'), class: 'control-label'
       .controls
-        = form.text_field :address2, placeholder: t('family_card.address2')
+        = form.text_field :parent_address2, placeholder: t('family_card.address2')
     .control-group
-      = form.label :zip_code, t('family_card.zip_code'), class: 'control-label'
+      = form.label :parent_zip_code, t('family_card.zip_code'), class: 'control-label'
       .controls
-        = form.text_field :zip_code, placeholder: t('family_card.zip_code')
+        = form.text_field :parent_zip_code, placeholder: t('family_card.zip_code')
 
     .form-actions
       = form.submit t("search.search_prospect_records"), class: 'btn btn-primary'
