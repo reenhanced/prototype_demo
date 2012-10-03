@@ -2,7 +2,7 @@ class FamilyMember < ActiveRecord::Base
   belongs_to :family_card
   has_many   :calls, :class_name => 'CallLog', :as => :contact
 
-  attr_accessible :first_name, :last_name, :email, :phone
+  attr_accessible :first_name, :last_name, :email, :phone, :address1, :address2, :city, :state, :zip_code, :relationship
 
   RELATIONSHIPS = ['Prospective Student', 'Sibling', 'Mother', 'Father',
                    'Paternal Grandmother', 'Paternal Grandfather', 'Maternal Mother',
