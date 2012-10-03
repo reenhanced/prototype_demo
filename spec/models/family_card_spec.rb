@@ -16,38 +16,40 @@ describe FamilyCard do
     it { should validate_uniqueness_of(:phone) }
   end
 
-  context "callbacks" do
-    subject { create(:family_card) }
-    let(:new_family_card) { FamilyCard.new attributes_for(:family_card) }
-    let!(:new_family_card_attributes) { attributes_for(:family_card) }
-    let(:syncable_attributes) do
-      {
-        parent_first_name: :first_name,
-        parent_last_name:  :last_name,
-        email: :email,
-        phone: :phone
-      }
+  context "#default_parent" do
+    let(:family_card) { create(:family_card) }
+    subject           { family_card.default_parent }
+
+    context "syncing" do
+      it "syncs parent_first_name" do
+        family_card.parent_first_name = "John"
+        subject.first_name.should == "John"
+      end
+
+      it "syncs parent_last_name" do
+        family_card.parent_last_name = "Smitty"
+        subject.last_name.should == "Smitty"
+      end
+
+      it "syncs email" do
+        family_card.email = "test@example.com"
+        subject.email.should == "test@example.com"
+      end
+
+      it "syncs phone" do
+        family_card.phone = "ghostbusters"
+        subject.phone.should == "ghostbusters"
+      end
     end
 
-    describe "#before_save" do
-      it "builds a new parent for the family card" do
-        new_family_card.default_parent.should_not be
+    describe "created by default" do
+      let(:family_card) { FamilyCard.new }
 
-        new_family_card.save!
-        new_family_card.default_parent.should be
-        new_family_card.primary_parent_id.should == new_family_card.default_parent.id
-      end
+      it { should be_an_instance_of(Parent) }
+    end
 
-      it "syncs the default parent data" do
-        syncable_attributes.each do |family_card_attribute, parent_attribute|
-          subject.send(:"#{family_card_attribute.to_s}=", new_family_card_attributes[family_card_attribute])
-        end
-
-        subject.save!
-        syncable_attributes.each do |family_card_attribute, parent_attribute|
-          subject.default_parent.send(:"#{parent_attribute}").should == new_family_card_attributes[family_card_attribute]
-        end
-      end
+    describe "maintains relationships" do
+      its(:family_card) { should == family_card }
     end
   end
 
@@ -113,7 +115,7 @@ describe FamilyCard do
       end
 
       it "returns all students and parents associated with the family card" do
-        subject.contacts.should have(5).contacts
+        subject.contacts.should have(5).contacts # 4 created + default
         subject.students.each {|student| subject.contacts.should include(student) }
         subject.parents.each {|parent| subject.contacts.should include(parent) }
       end
