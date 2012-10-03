@@ -12,14 +12,6 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name  { Faker::Name.last_name }
 
-    trait :with_address do
-      address1   { Faker::Address.street_address }
-      address2   { Faker::Address.secondary_address }
-      city       { Faker::Address.city }
-      state      { Faker::Address.state_abbr }
-      zip_code   { Faker::Address.zip_code }
-    end
-
   end
 
   factory :student, parent: :family_member, class: Student do
@@ -30,6 +22,15 @@ FactoryGirl.define do
 
   factory :family_card do
     user
+
+    trait :with_address do
+      parent_address1   { Faker::Address.street_address }
+      parent_address2   { Faker::Address.secondary_address }
+      parent_city       { Faker::Address.city }
+      parent_state      { Faker::Address.state_abbr }
+      parent_zip_code   { Faker::Address.zip_code }
+    end
+
 
     after(:create) do |family_card|
       family_card.default_parent = create(:parent, :family_card => family_card)

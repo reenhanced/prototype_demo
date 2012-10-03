@@ -15,7 +15,7 @@ end
 unless FamilyCard.any?
   user ||= User.last
   # this will automatically create the default_parent as well
-  family_card = FactoryGirl.create(:family_card, user: user, parent_first_name: 'John', parent_last_name: 'Smith', student_name: 'Sally Student', phone: '215-804-9408', email: 'smiths@example.com', address1: '312 West Broad Street', address2: 'In the back', city: 'Quakertown', state: 'PA', zip_code: '18951')
+  family_card = FactoryGirl.create(:family_card, user: user, parent_first_name: 'John', parent_last_name: 'Smith', parent_phone: '215-804-9408', parent_email: 'smiths@example.com', parent_address1: '312 West Broad Street', parent_address2: 'In the back', parent_city: 'Quakertown', parent_state: 'PA', parent_zip_code: '18951')
 end
 
 family_card ||= FamilyCard.last
