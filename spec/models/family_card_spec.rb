@@ -45,6 +45,10 @@ describe FamilyCard do
 
       it { should be_an_instance_of(Parent) }
     end
+
+    describe "maintains relationships" do
+      its(:family_card) { should == family_card }
+    end
   end
 
   context "class methods" do
@@ -109,7 +113,7 @@ describe FamilyCard do
       end
 
       it "returns all students and parents associated with the family card" do
-        subject.contacts.should have(4).contacts
+        subject.contacts.should have(5).contacts # 4 created + default
         subject.students.each {|student| subject.contacts.should include(student) }
         subject.parents.each {|parent| subject.contacts.should include(parent) }
       end

@@ -10,13 +10,6 @@ class FamilyCard < ActiveRecord::Base
 
   validates_uniqueness_of :email, :phone
 
-  SYNCABLE_PARENT_ATTRIBUTES = {
-    parent_first_name: :first_name,
-    parent_last_name:  :last_name,
-    email:             :email,
-    phone:             :phone
-  }
-
   def self.find_all_from_search(params={})
     conditions = {}
     params ||= {}
@@ -28,10 +21,11 @@ class FamilyCard < ActiveRecord::Base
     FamilyCard.where(conditions)
   end
 
-  def default_parent_with_autobuild
-    parent = default_parent_without_autobuild
+  def default_parent_with_autobuild(*args)
+    parent = default_parent_without_autobuild(*args)
     if parent.blank?
       parent = build_default_parent
+      parent.family_card = self
     end
 
     parent
