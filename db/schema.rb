@@ -23,54 +23,37 @@ ActiveRecord::Schema.define(:version => 20121001181416) do
   end
 
   create_table "family_cards", :force => true do |t|
-    t.string   "parent_first_name"
-    t.string   "parent_last_name"
-    t.string   "student_name"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
     t.integer  "primary_parent_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.integer  "user_id"
+    t.integer  "creator_id"
   end
 
   add_index "family_cards", ["user_id"], :name => "index_family_cards_on_user_id"
 
-  create_table "parents", :force => true do |t|
+  create_table "family_members", :force => true do |t|
+    t.string   "type"
     t.integer  "family_card_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "phone"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+
+    t.date     "birthday"
+    t.integer  "graduation_year"
+    t.string   "gender",          :limit => 1
+    t.string   "relationship"
+
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
-  create_table "students", :force => true do |t|
-    t.string   "address1"
-    t.string   "address2"
-    t.date     "birthday"
-    t.string   "city"
-    t.string   "email"
-    t.integer  "family_card_id"
-    t.string   "first_name"
-    t.integer  "graduation_year"
-    t.string   "gender",          :limit => 1
-    t.string   "last_name"
-    t.string   "phone"
-    t.string   "relationship"
-    t.string   "state"
-    t.string   "zip_code"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-  end
-
-  add_index "students", ["family_card_id"], :name => "index_students_on_family_card_id"
+  add_index "family_members", ["family_card_id"], :name => "index_family_members_on_family_card_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
