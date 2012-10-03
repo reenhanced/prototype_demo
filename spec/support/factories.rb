@@ -47,4 +47,10 @@ FactoryGirl.define do
       address2 ''
     end
   end
+
+  factory :qualifier do
+    name { Faker::Lorem.sentence(5) }
+    category "positive"
+    position 0
+  end
 end

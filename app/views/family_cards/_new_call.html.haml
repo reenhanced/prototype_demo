@@ -2,13 +2,20 @@
 = form_for [@family_card, @call], remote: true do |f|
   #call-errors
 
-  .span12
+  .span6
     .controls.controls-row
       = f.label :contact_id, "#{t('family_card.call.spoke_to', default: 'Spoke to')}"
       = f.select :contact_id, @family_card.contacts.map{|c| [c.name, c.id, {'data-contact-type'=>c.class.to_s}] }, {:prompt => true}
       = f.hidden_field :contact_type
       .controls
         = f.text_area :message, rows: 10, placeholder: t('family_card.call.message_placeholder', default: 'Enter your message here...'), class: 'input-xxlarge span5'
+  .span5
+    .controls.controls-row
+      = label_tag "call_log_qualifier_ids", t('family_card.call.qualifiers', default: 'Qualifiers')
+      - Qualifier.all.each do |qualifier|
+        = label_tag "qualifier_ids_#{qualifier.id}" do
+          = check_box_tag "qualifier_ids[]", qualifier.id, @family_card.qualifier_ids.include?(qualifier.id), id: "qualifier_ids_#{qualifier.id}"
+          %span{ class: "#{twitterized_qualifier_class(qualifier.category)}" }= qualifier.name
 
   .form-actions.clearfix
     = f.submit t('family_card.create_call_log', default: 'Create Call Log'), class: 'btn btn-primary'

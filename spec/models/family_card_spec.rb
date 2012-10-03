@@ -6,6 +6,8 @@ describe FamilyCard do
   it { should have_many(:students) }
   it { should have_many(:parents) }
   it { should have_many(:calls).class_name('CallLog') }
+  it { should have_many(:family_card_qualifiers) }
+  it { should have_many(:qualifiers) }
 
   context "validations" do
     let!(:family_card) { create(:family_card) }
@@ -116,5 +118,6 @@ describe FamilyCard do
         subject.parents.each {|parent| subject.contacts.should include(parent) }
       end
     end
+
   end
 end
