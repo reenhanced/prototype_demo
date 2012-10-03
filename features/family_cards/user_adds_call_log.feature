@@ -29,6 +29,8 @@ Feature: User adds call log to family card
     And "#all-calls" should be visible
     And I should see the call's information
     And the family card should have the selected qualifier
+    When I am on the family card's page
+    Then the selected qualifier should be checked
 
   @javascript
   Scenario: User attempts to add a call log without a message to one of their family cards

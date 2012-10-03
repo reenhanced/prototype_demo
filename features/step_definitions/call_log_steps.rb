@@ -29,3 +29,9 @@ Then /^the family card should have the selected qualifier$/ do
 
   @family_card.qualifiers.should include(@qualifier)
 end
+
+Then /^the selected qualifier should be checked$/ do
+  @qualifier ||= Qualifier.first
+
+  step %{the "qualifier_ids_#{@qualifier.id}" checkbox should be checked}
+end
