@@ -8,7 +8,7 @@ end
 When /^I check the first qualifier$/ do
   @qualifier = Qualifier.first
 
-  check("call_log_qualifier_ids_#{@qualifier.id}")
+  check("qualifier_ids_#{@qualifier.id}")
 end
 
 Then /^I should( not)? see the call's information?$/ do |negator|

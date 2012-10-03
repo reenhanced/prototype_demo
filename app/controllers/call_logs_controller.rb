@@ -5,9 +5,8 @@ class CallLogsController < ApplicationController
   respond_to :js
 
   def create
-    qualifier_ids = params[:call_log].try(:delete, :qualifier_ids)
     @call = @family_card.calls.build(params[:call_log])
-    @call.qualifier_ids = qualifier_ids if qualifier_ids
+    @call.qualifier_ids = params[:qualifier_ids] if params[:qualifier_ids]
 
     if @call.save
       flash[:notice] = "Successfully added call log."

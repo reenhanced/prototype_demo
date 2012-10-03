@@ -11,7 +11,6 @@ class FamilyCard < ActiveRecord::Base
   before_create :create_default_parent
 
   attr_accessible :primary_parent_id, :parent_first_name, :parent_last_name, :student_name, :phone, :email, :address1, :address2, :city, :state, :zip_code
-  accepts_nested_attributes_for :default_parent, :qualifiers, :family_card_qualifiers, :allow_destroy => true
 
   validates_uniqueness_of :email, :phone
 

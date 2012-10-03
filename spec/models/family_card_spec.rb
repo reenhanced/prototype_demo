@@ -8,7 +8,6 @@ describe FamilyCard do
   it { should have_many(:calls).class_name('CallLog') }
   it { should have_many(:family_card_qualifiers) }
   it { should have_many(:qualifiers) }
-  it { should accept_nested_attributes_for(:family_card_qualifiers) }
 
   context "validations" do
     let!(:family_card) { create(:family_card) }
