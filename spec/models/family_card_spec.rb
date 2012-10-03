@@ -76,7 +76,19 @@ describe FamilyCard do
     end
 
     describe "#default_student" do
-      pending
+      it "returns the first student created for the family card" do
+        student = create(:student, family_card: subject)
+        other_student = create(:student, family_card: subject)
+
+        subject.default_student.should == student
+      end
+
+      it "builds a student if one doesn't exist" do
+        subject.students.clear
+
+        subject.default_student.should be_instance_of(Student)
+        subject.default_student.family_card.should == subject
+      end
     end
 
     describe "#family_members" do
