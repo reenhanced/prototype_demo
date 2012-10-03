@@ -43,6 +43,10 @@ class FamilyCard < ActiveRecord::Base
   end
   alias_method_chain :default_parent, :autobuild
 
+  def default_student
+    students.first || students.build
+  end
+
   def parent_name
     "#{default_parent.first_name} #{default_parent.last_name}"
   end

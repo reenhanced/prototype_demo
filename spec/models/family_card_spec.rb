@@ -75,6 +75,10 @@ describe FamilyCard do
       end
     end
 
+    describe "#default_student" do
+      pending
+    end
+
     describe "#family_members" do
       before do
         2.times do
