@@ -1,8 +1,10 @@
 Bridgeway::Application.routes.draw do
+
   resources :family_cards do
     get  'search', :on => :collection
     resources :students
     resources :call_logs
+    resources :qualifiers
   end
 
   match 'dashboard' => 'family_cards#index'
