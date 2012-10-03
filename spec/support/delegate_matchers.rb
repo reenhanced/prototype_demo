@@ -11,7 +11,7 @@
 
 RSpec::Matchers.define :delegate do |method|
   match do |delegator|
-    @method = @prefix ? :"#{@to}_#{method}" : method
+    @method = @prefix ? :"#{@prefix}_#{method}" : method
     @delegator = delegator
     begin
       @delegator.send(@to)
@@ -36,6 +36,6 @@ RSpec::Matchers.define :delegate do |method|
   end
 
   chain(:to) { |receiver| @to = receiver }
-  chain(:with_prefix) { @prefix = true }
+  chain(:with_prefix) { |prefix| @prefix = prefix || @to }
 
 end
