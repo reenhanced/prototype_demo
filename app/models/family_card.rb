@@ -1,12 +1,9 @@
 class FamilyCard < ActiveRecord::Base
   belongs_to :user
-  belongs_to :default_parent, :class_name => 'Parent', :foreign_key => :primary_parent_id#, :autosave => true
+  belongs_to :default_parent, :class_name => 'Parent', :foreign_key => :primary_parent_id, :autosave => true
   has_many   :parents, :autosave => true, :dependent => :nullify
   has_many   :students, :autosave => true, :dependent => :nullify
   has_many   :calls, :class_name => 'CallLog', :autosave => true, :dependent => :destroy
-
-  before_save :sync_default_parent, :except => [:create]
-  before_create :create_default_parent
 
   attr_accessible :primary_parent_id, :parent_first_name, :parent_last_name, :student_name, :phone, :email, :address1, :address2, :city, :state, :zip_code
   accepts_nested_attributes_for :default_parent
@@ -31,24 +28,41 @@ class FamilyCard < ActiveRecord::Base
     FamilyCard.where(conditions)
   end
 
+  def default_parent_with_autobuild
+    parent = default_parent_without_autobuild
+    if parent.blank?
+      parent = build_default_parent
+    end
+
+    parent
+  end
+  alias_method_chain :default_parent, :autobuild
+
+  def email=(address)
+    self.default_parent.email = address
+    write_attribute(:email, address)
+  end
+
+  def phone=(number)
+    self.default_parent.phone = number
+    write_attribute(:phone, number)
+  end
+
+  def parent_first_name=(name)
+    self.default_parent.first_name = name
+    write_attribute(:parent_first_name, name)
+  end
+
+  def parent_last_name=(name)
+    self.default_parent.last_name = name
+    write_attribute(:parent_last_name, name)
+  end
+
   def parent_name
     "#{parent_first_name} #{parent_last_name}"
   end
 
   def contacts
     self.parents(true) + self.students(true)
-  end
-
-  private
-  def create_default_parent
-    self.parents.first.save!
-    self.default_parent = self.parents.first
-  end
-
-  def sync_default_parent
-    self.default_parent = self.parents.first || self.parents.build unless self.default_parent
-    SYNCABLE_PARENT_ATTRIBUTES.each do |family_card_attribute, parent_attribute|
-      self.default_parent.send(:"#{parent_attribute}=", self.send(:"#{family_card_attribute}"))
-    end
   end
 end
