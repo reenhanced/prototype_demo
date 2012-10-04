@@ -7,6 +7,7 @@ Feature: User adds call log to family card
     Given I am logged in
     And I have 2 family cards
     And I have initial qualifiers
+    And today is "21 Feb 2013" at "1:00pm"
 
   @javascript
   Scenario: User adds a call log to one of their family cards
@@ -18,11 +19,13 @@ Feature: User adds call log to family card
     When I click "Add call log"
     Then "#new-call" should be visible
     And I should see "Spoke to"
+    And I should see the date and time today within "the new call log form"
+    And I should see "edit" within "the new call log form"
     When I fill in "call_log_message" with "I am batman."
     And I select the first member from "#call_log_contact_id"
     Then the "call_log_contact_type" hidden field should contain "Parent"
     When I check the first qualifier
-    And I press "Create Call Log"
+    And I press "Save Entry"
     And I wait for the ajax to finish
     Then I should see "Successfully added call log."
     And "#new-call" should be collapsed
@@ -36,7 +39,7 @@ Feature: User adds call log to family card
   Scenario: User attempts to add a call log without a message to one of their family cards
     When I am on the family card's page
     And I click "Add call log"
-    And I press "Create Call Log"
+    And I press "Save Entry"
     And I wait for the ajax to finish
     Then I should see "Message can't be blank"
 

@@ -12,7 +12,6 @@ en:
     all_students: "All students"
     call:
       all_calls: "All Calls"
-      create_call_log: "Create Call Log"
       date: "Date"
       headings:
         new: "New Call Log"
@@ -20,6 +19,7 @@ en:
       message_placeholder: "Enter your message here..."
       qualifiers: "Qualifiers"
       spoke_to: "Spoke to"
+    create_call_log: "Save Entry"
     create_student: "Create Student"
     city: "City"
     default_student: "Default Student"
