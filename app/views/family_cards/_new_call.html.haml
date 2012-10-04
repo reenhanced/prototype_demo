@@ -1,3 +1,6 @@
+.well.well-small.pull-right
+  = DateTime.now.to_s
+  = link_to "edit", "#"
 %h2= t("family_card.call.headings.new", default: 'New Call Log')
 = form_for [@family_card, @call], remote: true do |f|
   #call-errors
@@ -18,4 +21,4 @@
           %span{ class: "#{twitterized_qualifier_class(qualifier.category)}" }= qualifier.name
 
   .form-actions.clearfix
-    = f.submit t('family_card.create_call_log', default: 'Create Call Log'), class: 'btn btn-primary'
+    = f.submit t('family_card.create_call_log', default: 'Save Entry'), class: 'btn btn-primary'
