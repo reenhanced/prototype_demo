@@ -263,7 +263,8 @@ Then /^"(.*)" should be visible$/ do |selector|
 end
 
 Then /"(.*)" should be collapsed$/ do |selector|
-  page.should have_css("#{selector}, [style~='height: 0px']")
+  selector_name = selector_for(selector).gsub(/#|\./, '')
+  find(selector_for(selector)).should have_xpath("//div[@id='#{selector_name}',contains(@style,'height: 0px')]")
 end
 
 Then /"(.*)" should be expanded/ do |selector|
