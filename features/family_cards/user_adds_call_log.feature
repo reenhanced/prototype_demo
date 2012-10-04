@@ -21,7 +21,11 @@ Feature: User adds call log to family card
     And I should see "Spoke to"
     And I should see the date and time today within "the new call log form"
     And I should see "edit" within "the new call log form"
-    When I fill in "call_log_message" with "I am batman."
+    And "#new-call-datetime" should be collapsed
+    When I follow "edit" within "the new call log form"
+    Then "#new-call-datetime" should be visible
+    When I select "22nd Mar 2013 01:00:00 PM" as the "Call recorded at" date and time
+    And I fill in "call_log_message" with "I am batman."
     And I select the first member from "#call_log_contact_id"
     Then the "call_log_contact_type" hidden field should contain "Parent"
     When I check the first qualifier
