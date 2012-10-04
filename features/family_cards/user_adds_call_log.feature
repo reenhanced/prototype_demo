@@ -5,7 +5,7 @@ Feature: User adds call log to family card
 
   Background:
     Given I am logged in
-    And I have 1 family card
+    And I have 2 family cards
     And I have initial qualifiers
 
   @javascript
@@ -19,7 +19,7 @@ Feature: User adds call log to family card
     Then "#new-call" should be visible
     And I should see "Spoke to"
     When I fill in "call_log_message" with "I am batman."
-    And I select the first contact from "#call_log_contact_id"
+    And I select the first member from "#call_log_contact_id"
     Then the "call_log_contact_type" hidden field should contain "Parent"
     When I check the first qualifier
     And I press "Create Call Log"
