@@ -20,7 +20,7 @@ Feature: User adds call log to family card
     Then "#new-call" should be visible
     And I should see "Spoke to"
     And I should see the date and time today within "the new call log form"
-    And I should see "edit" within "#new-call"
+    And I should see "edit" within "the new call log form"
     When I fill in "call_log_message" with "I am batman."
     And I select the first member from "#call_log_contact_id"
     Then the "call_log_contact_type" hidden field should contain "Parent"
