@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   respond_to :js
 
   def create
-    @student = @family_card.students.build(params[:student])
+    @student = @family_card.students.build(student_params)
 
     if params[:use_default_parent]
       @student.email    = @family_card.parent_email
@@ -37,5 +37,14 @@ class StudentsController < ApplicationController
 
   def find_student
     @student = @family_card.students.find(params[:id])
+  end
+
+  def student_params
+    params.require(:student).permit :first_name, :last_name,
+                                    :email,      :phone,
+                                    :address1,   :address2,
+                                    :city,       :state,    :zip_code,
+                                    :gender,     :birthday,
+                                    :graduation_year
   end
 end

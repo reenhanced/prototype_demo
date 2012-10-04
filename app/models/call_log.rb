@@ -4,7 +4,7 @@ class CallLog < ActiveRecord::Base
 
   delegate :qualifier_ids, :qualifier_ids=, :to => :family_card
 
-  attr_accessible :family_card_id, :message, :contact_id, :contact_type, :qualifier_ids
+  attr_accessible :message, :contact_id, :contact_type
 
   validates :message, :presence => true
 end
