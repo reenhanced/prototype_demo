@@ -70,7 +70,7 @@ end
 
 Then /^the family card's student fields should( not)? be filled in$/ do |negator|
   @family_card ||= FamilyCard.last
-  student = @family_card.students.last
+  @student = @family_card.students.last || @family_card.students.build
 
   if negator
     step %{the "student_email" field should contain ""}
@@ -80,12 +80,12 @@ Then /^the family card's student fields should( not)? be filled in$/ do |negator
     step %{the "student_city" field should contain ""}
     step %{the "student_zip_code" field should contain ""}
   else
-    step %{the "student_email" field should contain "#{student.email}"}
-    step %{the "student_phone" field should contain "#{student.phone}"}
-    step %{the "student_address1" field should contain "#{student.address1}"}
-    step %{the "student_address2" field should contain "#{student.address2}"}
-    step %{the "student_city" field should contain "#{student.city}"}
-    step %{the "student_zip_code" field should contain "#{student.zip_code}"}
+    step %{the "student_email" field should contain "#{@student.email}"}
+    step %{the "student_phone" field should contain "#{@student.phone}"}
+    step %{the "student_address1" field should contain "#{@student.address1}"}
+    step %{the "student_address2" field should contain "#{@student.address2}"}
+    step %{the "student_city" field should contain "#{@student.city}"}
+    step %{the "student_zip_code" field should contain "#{@student.zip_code}"}
   end
 end
 

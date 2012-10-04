@@ -18,8 +18,8 @@ Then /^I should( not)? see the call's information?$/ do |negator|
 
   steps %{
     Then I should see the following table rows:
-      | Date               | Spoke to                   | Message         |
-      | #{call.updated_at} | #{call.family_member.name} | #{call.message} |
+      | Date               | Spoke to             | Message         |
+      | #{call.updated_at} | #{call.contact.name} | #{call.message} |
   }
 end
 

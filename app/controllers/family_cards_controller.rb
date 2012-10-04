@@ -13,6 +13,7 @@ class FamilyCardsController < ApplicationController
   def show
     @student = @family_card.students.build
     @call    = @family_card.calls.build
+    @family_members = @family_card.family_members.where("id IS NOT NULL")
   end
 
   def new

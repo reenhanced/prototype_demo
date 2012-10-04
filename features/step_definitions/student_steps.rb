@@ -15,7 +15,7 @@ Then /^I should( not)? see the student's information( with the default parent's 
     steps %{
       Then I should see the following table rows:
         | First Name            | Last Name            | Email                        | Phone                        | Address           |
-        | #{student.first_name} | #{student.last_name} | #{@family_card.parent_email} | #{@family_card.parent_phone} | #{family_address} |
+        | #{student.first_name} | #{student.last_name} | #{@family_card.parent_email} | #{@family_card.parent_phone} | #{parent_address} |
     }
   else
     steps %{

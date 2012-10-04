@@ -92,7 +92,18 @@ describe FamilyCard do
     end
 
     describe "#student_name" do
-      pending
+      it "returns the default student's name if one exists" do
+        student = create(:student, family_card: subject)
+        other_student = create(:student, family_card: subject)
+
+        subject.student_name.should == student.name
+      end
+
+      it "returns a blank string if the default student doesn't exist" do
+        subject.students.clear
+
+        subject.student_name.should =~ /^\s+$/
+      end
     end
 
     describe "#family_members" do

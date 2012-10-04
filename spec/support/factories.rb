@@ -11,7 +11,6 @@ FactoryGirl.define do
     phone      { Faker::PhoneNumber.phone_number }
     first_name { Faker::Name.first_name }
     last_name  { Faker::Name.last_name }
-
   end
 
   factory :student, parent: :family_member, class: Student do
@@ -22,6 +21,10 @@ FactoryGirl.define do
 
   factory :family_card do
     user
+    parent_first_name { Faker::Name.first_name }
+    parent_last_name  { Faker::Name.last_name }
+    parent_email      { Faker::Internet.email }
+    parent_phone      { Faker::PhoneNumber.phone_number }
 
     trait :with_address do
       parent_address1   { Faker::Address.street_address }
@@ -29,12 +32,6 @@ FactoryGirl.define do
       parent_city       { Faker::Address.city }
       parent_state      { Faker::Address.state_abbr }
       parent_zip_code   { Faker::Address.zip_code }
-    end
-
-
-    after(:create) do |family_card|
-      family_card.default_parent = create(:parent, :family_card => family_card)
-      family_card.save!
     end
   end
 

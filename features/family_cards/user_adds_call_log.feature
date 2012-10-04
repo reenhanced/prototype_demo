@@ -5,7 +5,7 @@ Feature: User adds call log to family card
 
   Background:
     Given I am logged in
-    And I have 1 family card
+    And I have 2 family cards
     And I have initial qualifiers
 
   @javascript
