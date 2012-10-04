@@ -21,7 +21,7 @@ class FamilyCardsController < ApplicationController
   end
 
   def create
-    @family_card      = FamilyCard.new(params[:family_card])
+    @family_card      = FamilyCard.new(family_card_params)
     @family_card.user = current_user
 
     if @family_card.save
@@ -35,7 +35,7 @@ class FamilyCardsController < ApplicationController
   end
 
   def update
-    if @family_card.update_attributes(params[:family_card])
+    if @family_card.update_attributes(family_card_params)
       redirect_to @family_card, :notice  => "Successfully updated family card."
     else
       render :action => 'edit'
@@ -50,5 +50,12 @@ class FamilyCardsController < ApplicationController
   private
   def find_family_card
     @family_card = FamilyCard.find(params[:id])
+  end
+
+  def family_card_params
+    params.require(:family_card).permit(:parent_first_name, :parent_last_name,
+                                        :parent_phone,      :parent_email,
+                                        :parent_address1,   :parent_address2,
+                                        :parent_city,       :parent_state,     :parent_zip_code)
   end
 end
