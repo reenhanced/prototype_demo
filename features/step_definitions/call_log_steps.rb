@@ -1,8 +1,8 @@
-When /^I select the first contact from "(.*)+"$/ do |contact_field|
+When /^I select the first member from "(.*)+"$/ do |member_field|
   @family_card ||= FamilyCard.last
-  first_contact = @family_card.contacts.first
+  first_member= @family_card.family_members.first
 
-  select(first_contact.name, :from => contact_field)
+  select(first_member.name, :from => member_field)
 end
 
 When /^I check the first qualifier$/ do

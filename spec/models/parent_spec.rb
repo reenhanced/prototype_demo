@@ -1,16 +1,15 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Parent do
-  it { should belong_to(:family_card) }
-  it { should have_many(:calls).class_name('CallLog') }
+  it { should be_kind_of(FamilyMember) }
 
-  context "instance methods" do
-    subject { create(:parent, :first_name => "Jimmy", :last_name => "Buffet") }
-
-    describe "#name" do
-      it "returns a string of the parent's first and last name" do
-        subject.name.should == "Jimmy Buffet"
-      end
-    end
-  end
+  it { should allow_mass_assignment_of(:first_name) }
+  it { should allow_mass_assignment_of(:last_name) }
+  it { should allow_mass_assignment_of(:email) }
+  it { should allow_mass_assignment_of(:phone) }
+  it { should allow_mass_assignment_of(:address1) }
+  it { should allow_mass_assignment_of(:address2) }
+  it { should allow_mass_assignment_of(:city) }
+  it { should allow_mass_assignment_of(:state) }
+  it { should allow_mass_assignment_of(:zip_code) }
 end
