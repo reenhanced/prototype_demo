@@ -24,5 +24,11 @@ describe FamilyMember do
         subject.name.should == "Jimmy Buffet"
       end
     end
+
+    describe "#to_s" do
+      it "returns a string of the family member's name" do
+        subject.to_s.should == "Jimmy Buffet"
+      end
+    end
   end
 end

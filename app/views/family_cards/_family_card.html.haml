@@ -5,7 +5,7 @@
     %h3= t('family_card.family_info')
   %dl.dl-horizontal.contact.span5
     %dt= t('family_card.parent_name')
-    %dd= link_to_unless_current family_card.parent_name, family_card_path(family_card)
+    %dd= link_to_unless_current family_card.default_parent, family_card_path(family_card)
     %dt= t('family_card.phone')
     %dd.phone= family_card.parent_phone
     %dt= t('family_card.email')

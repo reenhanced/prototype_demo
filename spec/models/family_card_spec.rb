@@ -68,13 +68,6 @@ describe FamilyCard do
   context "instance methods" do
     subject { create(:family_card) }
 
-    describe "#parent_name" do
-      it "returns the parent's first and last name" do
-        subject.default_parent = create(:parent, :first_name => "Willie", :last_name => "Nelson")
-        subject.parent_name.should == "Willie Nelson"
-      end
-    end
-
     describe "#default_student" do
       it "returns the first student created for the family card" do
         student = create(:student, family_card: subject)
@@ -88,21 +81,6 @@ describe FamilyCard do
 
         subject.default_student.should be_instance_of(Student)
         subject.default_student.family_card.should == subject
-      end
-    end
-
-    describe "#student_name" do
-      it "returns the default student's name if one exists" do
-        student = create(:student, family_card: subject)
-        other_student = create(:student, family_card: subject)
-
-        subject.student_name.should == student.name
-      end
-
-      it "returns a blank string if the default student doesn't exist" do
-        subject.students.clear
-
-        subject.student_name.should =~ /^\s+$/
       end
     end
 

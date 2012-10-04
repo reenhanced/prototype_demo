@@ -11,9 +11,9 @@ class FamilyCardsController < ApplicationController
   end
 
   def show
-    @student = @family_card.students.build
-    @call    = @family_card.calls.build
-    @family_members = @family_card.family_members.where("id IS NOT NULL")
+    @family_members = @family_card.family_members
+    @student        = @family_card.students.build
+    @call           = @family_card.calls.build
   end
 
   def new
