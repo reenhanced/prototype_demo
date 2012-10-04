@@ -7,6 +7,7 @@ Feature: User adds call log to family card
     Given I am logged in
     And I have 2 family cards
     And I have initial qualifiers
+    And today is "21 Feb 2013" at "1:00pm"
 
   @javascript
   Scenario: User adds a call log to one of their family cards

@@ -15,10 +15,12 @@ Then /^the current time zone should be "(.+)"$/ do |time_zone|
   Time.zone.name.should == time_zone
 end
 
-Then /^I should see the date( and time)? today$/ do |with_time, selector|
+Then /^I should see the date( and time)? today(?: within "([^"]*)")?$/ do |with_time, selector|
+  with_scope(selector) do
     if with_time
       step %{I should see "#{DateTime.now}"}
     else
       step %{I should see "#{Date.today}"}
     end
+  end
 end
