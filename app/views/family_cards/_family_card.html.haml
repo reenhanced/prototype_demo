@@ -47,7 +47,7 @@
     .tab-pane.active{ id: "default-student-#{family_card.id}" }
       %dl.dl-horizontal.contact
         %dt= t('family_card.student_name')
-        %dd= family_card.student_name
+        %dd= family_card.default_student
     - unless family_card_search_made?
       .tab-pane#all-students
         = render 'all_students', family_card: family_card

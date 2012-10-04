@@ -20,7 +20,7 @@ end
 
 When /^I fill in the form with an existing parent's name$/ do
   @family_card = FamilyCard.last
-  @parent_name = "#{@family_card.parent_first_name} #{@family_card.parent_last_name}"
+  @parent_name = @family_card.default_parent.name
 
   step "I fill in \"Parent/Guardian First Name\" with \"#{@family_card.parent_first_name}\""
   step "I fill in \"Parent/Guardian Last Name\" with \"#{@family_card.parent_last_name}\""
@@ -32,7 +32,7 @@ end
 
 Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
   @family_card ||= FamilyCard.last
-  @parent_name = "#{FamilyCard.last.parent_first_name} #{FamilyCard.last.parent_last_name}"
+  @parent_name = @family_card.default_parent.name
 
   step %{I should#{negator} see "Family Info"}
   step %{I should#{negator} see "Parent/Guardian Name"}
@@ -55,7 +55,7 @@ Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
 end
 
 Then /^I should( not)? see the parent's name$/ do |negator|
-  @parent_name = FamilyCard.last.parent_name
+  @parent_name = FamilyCard.last.default_parent.name
   if negator
     step %{I should not see "#{@parent_name}"}
   else
