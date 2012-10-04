@@ -5,7 +5,7 @@
         .icon-bar
         .icon-bar
         .icon-bar
-      %a.brand{ href: "#"}= t('family_card.family_of', parent_name: @family_card.parent_name)
+      %a.brand{ href: "#"}= t('family_card.family_of', parent_name: @family_card.default_parent)
       .nav-collapse
         %ul.nav.pull-right
           - if current_user.owns?(@family_card)

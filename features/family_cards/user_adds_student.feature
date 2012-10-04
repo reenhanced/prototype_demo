@@ -36,13 +36,13 @@ Feature: User adds student to family card
   @javascript
   Scenario: User adds student to a family card and uses the default parent's address
     When I click "Add student"
-    Then the family card's contact fields should not be disabled
+    Then the family card's student fields should not be disabled
     When I check "Same as family card"
-    Then the family card's contact fields should be filled in
-    And the family card's contact fields should be disabled
+    Then the family card's student fields should be filled in
+    And the family card's student fields should be disabled
     When I uncheck "Same as family card"
-    Then the family card's contact fields should not be filled in
-    And the family card's contact fields should not be disabled
+    Then the family card's student fields should not be filled in
+    And the family card's student fields should not be disabled
     When I check "Same as family card"
     And I press "Create Student"
     And I wait for the ajax to finish
