@@ -1,4 +1,4 @@
-When /^I select the first member from "(.*)+"$/ do |member_field|
+When /^I select the first member from (.*)+$/ do |member_field|
   @family_card ||= FamilyCard.last
   first_member= @family_card.family_members.first
 
@@ -19,7 +19,7 @@ Then /^I should( not)? see the call's information?$/ do |negator|
   steps %{
     Then I should see the following table rows:
       | Date               | Spoke to             | Message         |
-      | #{call.updated_at} | #{call.contact.name} | #{call.message} |
+      | #{call.recorded_at} | #{call.contact.name} | #{call.message} |
   }
 end
 

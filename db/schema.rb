@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121003185825) do
+ActiveRecord::Schema.define(:version => 20121004175033) do
 
   create_table "call_logs", :force => true do |t|
     t.integer  "family_card_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121003185825) do
     t.datetime "updated_at",     :null => false
     t.integer  "contact_id"
     t.string   "contact_type"
+    t.datetime "recorded_at"
   end
 
   create_table "family_card_qualifiers", :force => true do |t|
