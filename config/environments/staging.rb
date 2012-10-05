@@ -1,10 +1,7 @@
 Bridgeway::Application.configure do
   config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Staging") do |u, p|
-    [u, p] == ['username', 'password']
+    [u, p] == ['nick', 'test']
   end
-
-  # Enable the asset pipeline
-  config.assets.enabled = true
 
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -16,8 +13,6 @@ Bridgeway::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
-  config.assets.initialize_on_precompile = false
-
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
@@ -26,6 +21,8 @@ Bridgeway::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  config.assets.initialize_on_precompile = false
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
