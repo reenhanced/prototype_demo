@@ -11,9 +11,9 @@ Feature: User adds student to family card
 
   @javascript
   Scenario: User adds student to a family card they own
-    Then "#new-student" should be hidden
+    Then the new student form should be hidden
     When I click "Add student"
-    Then "#new-student" should be visible
+    Then the new student form should be visible
     When I select "Prospective Student" from "student_relationship"
     And I select "1994-02-21" as the "Birthday" date
     And I select "2012" from "student_graduation_year"
@@ -29,20 +29,20 @@ Feature: User adds student to family card
       | student_zip_code   | 90210                   |
     And I press "Create Student"
     And I wait for the ajax to finish
-    Then "#all-students" should be visible
+    Then the student listing should be visible
     And the family card should have 1 student
     And I should see the student's information
 
   @javascript
   Scenario: User adds student to a family card and uses the default parent's address
     When I click "Add student"
-    Then the family card's contact fields should not be disabled
+    Then the family card's student fields should not be disabled
     When I check "Same as family card"
-    Then the family card's contact fields should be filled in
-    And the family card's contact fields should be disabled
+    Then the family card's student fields should be filled in
+    And the family card's student fields should be disabled
     When I uncheck "Same as family card"
-    Then the family card's contact fields should not be filled in
-    And the family card's contact fields should not be disabled
+    Then the family card's student fields should not be filled in
+    And the family card's student fields should not be disabled
     When I check "Same as family card"
     And I press "Create Student"
     And I wait for the ajax to finish

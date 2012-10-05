@@ -17,14 +17,14 @@
     %tr
       %td= family_card.parent_first_name
       %td= family_card.parent_last_name
-      %td= family_card.student_name
-      %td= family_card.phone
-      %td= family_card.email
-      %td= family_card.address1
-      %td= family_card.address2
-      %td= family_card.city
-      %td= family_card.state
-      %td= family_card.zipcode
+      %td= family_card.default_student
+      %td= family_card.parent_phone
+      %td= family_card.parent_email
+      %td= family_card.parent_address1
+      %td= family_card.parent_address2
+      %td= family_card.parent_city
+      %td= family_card.parent_state
+      %td= family_card.parent_zipcode
       %td= family_card.primary_parent_id
       %td= link_to 'Show', family_card
       %td= link_to 'Edit', edit_family_card_path(family_card)

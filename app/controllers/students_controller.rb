@@ -5,16 +5,16 @@ class StudentsController < ApplicationController
   respond_to :js
 
   def create
-    @student = @family_card.students.build(params[:student])
+    @student = @family_card.students.build(student_params)
 
     if params[:use_default_parent]
-      @student.email = @family_card.email
-      @student.phone = @family_card.phone
-      @student.address1 = @family_card.address1
-      @student.address2 = @family_card.address2
-      @student.city = @family_card.city
-      @student.state = @family_card.state
-      @student.zip_code = @family_card.zip_code
+      @student.email    = @family_card.parent_email
+      @student.phone    = @family_card.parent_phone
+      @student.address1 = @family_card.parent_address1
+      @student.address2 = @family_card.parent_address2
+      @student.city     = @family_card.parent_city
+      @student.state    = @family_card.parent_state
+      @student.zip_code = @family_card.parent_zip_code
     end
 
     if @student.save
@@ -37,5 +37,14 @@ class StudentsController < ApplicationController
 
   def find_student
     @student = @family_card.students.find(params[:id])
+  end
+
+  def student_params
+    params.require(:student).permit :first_name, :last_name,
+                                    :email,      :phone,
+                                    :address1,   :address2,
+                                    :city,       :state,    :zip_code,
+                                    :gender,     :birthday,
+                                    :graduation_year
   end
 end

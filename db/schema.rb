@@ -11,26 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001134655) do
+ActiveRecord::Schema.define(:version => 20121004175033) do
 
   create_table "call_logs", :force => true do |t|
     t.integer  "family_card_id"
     t.text     "message"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "contact_id"
+    t.string   "contact_type"
+    t.datetime "recorded_at"
   end
 
+  create_table "family_card_qualifiers", :force => true do |t|
+    t.integer  "family_card_id"
+    t.integer  "qualifier_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "family_card_qualifiers", ["family_card_id"], :name => "index_family_card_qualifiers_on_family_card_id"
+  add_index "family_card_qualifiers", ["qualifier_id"], :name => "index_family_card_qualifiers_on_qualifier_id"
+
   create_table "family_cards", :force => true do |t|
-    t.string   "parent_first_name"
-    t.string   "parent_last_name"
-    t.string   "student_name"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
     t.integer  "primary_parent_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -39,36 +42,35 @@ ActiveRecord::Schema.define(:version => 20121001134655) do
 
   add_index "family_cards", ["user_id"], :name => "index_family_cards_on_user_id"
 
-  create_table "parents", :force => true do |t|
+  create_table "family_members", :force => true do |t|
+    t.string   "type"
     t.integer  "family_card_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  create_table "students", :force => true do |t|
     t.string   "address1"
     t.string   "address2"
-    t.date     "birthday"
     t.string   "city"
-    t.string   "email"
-    t.integer  "family_card_id"
-    t.string   "first_name"
-    t.integer  "graduation_year"
-    t.string   "gender",          :limit => 1
-    t.string   "last_name"
-    t.string   "phone"
-    t.string   "relationship"
     t.string   "state"
     t.string   "zip_code"
+    t.string   "gender",          :limit => 1
+    t.string   "phone"
+    t.string   "email"
+    t.date     "birthday"
+    t.integer  "graduation_year"
+    t.string   "relationship"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
 
-  add_index "students", ["family_card_id"], :name => "index_students_on_family_card_id"
+  add_index "family_members", ["family_card_id"], :name => "index_family_members_on_family_card_id"
+
+  create_table "qualifiers", :force => true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.integer  "position",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

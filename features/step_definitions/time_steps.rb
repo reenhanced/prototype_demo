@@ -1,5 +1,10 @@
-Given /^today is "(.+)"$/ do |day|
-  Timecop.travel(Date.parse(day))
+Given /^today is "(.+)"( at ".+")?$/ do |date, time|
+  if time
+    time = time.split('"').last
+    Timecop.travel(DateTime.parse("#{date} #{time}"))
+  else
+    Timecop.travel(Date.parse(date))
+  end
 end
 
 Given /^the time is "(.+)"$/ do |time|
@@ -8,4 +13,14 @@ end
 
 Then /^the current time zone should be "(.+)"$/ do |time_zone|
   Time.zone.name.should == time_zone
+end
+
+Then /^I should see the date( and time)? today(?: within (.*))?$/ do |with_time, selector|
+  with_scope(selector) do
+    if with_time
+      step %{I should see "#{DateTime.now}"}
+    else
+      step %{I should see "#{Date.today}"}
+    end
+  end
 end

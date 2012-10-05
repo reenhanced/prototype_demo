@@ -5,30 +5,45 @@ Feature: User adds call log to family card
 
   Background:
     Given I am logged in
-    And I have 1 family card
+    And I have 2 family cards
+    And I have initial qualifiers
+    And today is "21 Feb 2013" at "1:00pm"
 
   @javascript
   Scenario: User adds a call log to one of their family cards
     When I am on the family card's page
     Then I should see "Add call log"
     And I should see "All Calls"
-    And "#new-call" should be collapsed
-    And "#all-calls" should be hidden
+    And the new call log form should be collapsed
+    And the call log listing should be hidden
     When I click "Add call log"
-    Then "#new-call" should be visible
-    When I fill in "call_log_message" with "I am batman."
-    And I press "Create Call Log"
+    Then the new call log form should be visible
+    And I should see "Spoke to"
+    And I should see the date and time today within the new call log form
+    And I should see "edit" within the new call log form
+    And the new call log recorded at fields should be collapsed
+    When I follow "edit" within the new call log form
+    Then the new call log recorded at fields should be expanded
+    When I select "22nd Mar 2013 01:00:00 PM" as the "Call recorded at" date and time
+    And I fill in "call_log_message" with "I am batman."
+    And I select the first member from the new call log contacts
+    Then the "call_log_contact_type" hidden field should contain "Parent"
+    When I check the first qualifier
+    And I press "Save Entry"
     And I wait for the ajax to finish
     Then I should see "Successfully added call log."
-    And "#new-call" should be collapsed
-    And "#all-calls" should be visible
+    And the new call log form should be collapsed
+    And the call log listing should be visible
     And I should see the call's information
+    And the family card should have the selected qualifier
+    When I am on the family card's page
+    Then the selected qualifier should be checked
 
   @javascript
   Scenario: User attempts to add a call log without a message to one of their family cards
     When I am on the family card's page
     And I click "Add call log"
-    And I press "Create Call Log"
+    And I press "Save Entry"
     And I wait for the ajax to finish
     Then I should see "Message can't be blank"
 

@@ -1,4 +1,5 @@
 - if call and call.id
   %tr
-    %td= call.updated_at
+    %td= call.recorded_at
+    %td= call.contact.name
     %td= call.message.html_safe

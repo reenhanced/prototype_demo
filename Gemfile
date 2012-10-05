@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
 
 gem 'mysql2'
 
@@ -13,13 +13,17 @@ group :assets, :staging do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'carmen-rails'#, '~> 1.0.0.beta3'
+gem 'carmen-rails'
 gem 'devise'
 gem "haml-rails"
 gem 'jquery-rails'
 
 gem 'therubyracer', :require => 'v8'
 
+# Rails 4 preview stuff
+gem 'strong_parameters', :git => 'git://github.com/rails/strong_parameters.git'
+
+# Vagrant VM gems
 gem 'chef'
 gem 'vagrant', '~> 1.0.5'
 gem 'librarian'
