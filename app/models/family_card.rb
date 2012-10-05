@@ -23,6 +23,9 @@ class FamilyCard < ActiveRecord::Base
   attr_accessible :parent_first_name, :parent_last_name, :parent_phone, :parent_email,
                   :parent_address1, :parent_address2, :parent_city, :parent_state, :parent_zip_code
 
+  audited
+  has_associated_audits
+
   def self.find_all_from_search(params={})
     conditions = {}
     params ||= {}

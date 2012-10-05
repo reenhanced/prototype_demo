@@ -55,6 +55,16 @@ GIT
       activemodel (>= 3.2.0)
       railties (>= 3.2.0)
 
+GIT
+  remote: git@github.com:reenhanced/audited.git
+  revision: fd051fc428da7dd65e95f5bb9c229e653e8234ec
+  branch: nh-rspec-matchers
+  specs:
+    audited (3.0.0)
+    audited-activerecord (3.0.0)
+      activerecord (~> 3.0)
+      audited (= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -285,6 +295,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  audited-activerecord!
   bootstrap-sass-rails
   capybara-webkit
   carmen-rails
