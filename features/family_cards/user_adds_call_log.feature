@@ -5,9 +5,9 @@ Feature: User adds call log to family card
 
   Background:
     Given I am logged in
-    And I have 2 family cards
-    And I have initial qualifiers
     And today is "21 Feb 2013" at "1:00pm"
+    And I have 1 call log
+    And I have initial qualifiers
 
   @javascript
   Scenario: User adds a call log to one of their family cards
@@ -34,7 +34,8 @@ Feature: User adds call log to family card
     Then I should see "Successfully added call log."
     And the new call log form should be collapsed
     And the call log listing should be visible
-    And I should see the call's information
+    Then I should see the call's information
+    And the call should have recorded the date and time
     And the family card should have the selected qualifier
     When I am on the family card's page
     Then the selected qualifier should be checked
