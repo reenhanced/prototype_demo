@@ -35,6 +35,12 @@ FactoryGirl.define do
     end
   end
 
+  factory :call_log do
+    family_card
+    message     { Faker::Lorem.sentence(10) }
+    recorded_at { DateTime.now }
+  end
+
   factory :qualifier do
     name { Faker::Lorem.sentence(5) }
     category "positive"

@@ -4,6 +4,8 @@ class CallLog < ActiveRecord::Base
 
   delegate :qualifier_ids, :qualifier_ids=, :to => :family_card
 
+  default_scope order('recorded_at DESC')
+
   attr_accessible :message, :contact_id, :contact_type, :recorded_at
 
   validates :message, :presence => true
