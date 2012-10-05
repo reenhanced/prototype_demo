@@ -264,14 +264,13 @@ Then /^"(.*)" should be visible$/ do |selector|
   find(selector).should be_visible
 end
 
-Then /"(.*)" should be collapsed$/ do |selector|
-  selector_name = selector_for(selector).gsub(/#|\./, '')
+Then /"(.*)" should be (collapsed|expanded)$/ do |selector, element_state|
   selector = selector_for(selector)
-  find(selector).should have_css("#{selector}, [contains(@style,'height: 0px')]")
-end
-
-Then /"(.*)" should be expanded/ do |selector|
-  page.should_not have_css("#{selector}, [style~='height: 0px']")
+  if element_state == 'collapsed'
+    page.has_css?("#{selector}, [contains(@style,'height: 0px')]")
+  else
+    page.has_no_css?("#{selector}, [contains(@style,'height: 0px')]")
+  end
 end
 
 Then /^the "([^\"]+)" field should( not)? be disabled$/ do |field, negator|
