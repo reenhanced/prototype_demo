@@ -3,6 +3,9 @@ Bridgeway::Application.configure do
     [u, p] == ['username', 'password']
   end
 
+  # Enable the asset pipeline
+  config.assets.enabled = true
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
