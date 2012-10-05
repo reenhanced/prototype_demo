@@ -17,7 +17,6 @@ Then /^I should( not)? see the call's information?$/ do |negator|
   calls = @family_card.calls.last(2)
   first_call = calls.first
   second_call = calls.last
-  calls.last.recorded_at.should_not be_nil
 
   steps %{
     Then I should see the following table rows:
@@ -38,4 +37,9 @@ Then /^the selected qualifier should be checked$/ do
   @qualifier ||= Qualifier.first
 
   step %{the "qualifier_ids_#{@qualifier.id}" checkbox should be checked}
+end
+
+Then /^the call should have recorded the date and time$/ do
+  call = CallLog.last
+  call.recorded_at.should_not be_nil
 end

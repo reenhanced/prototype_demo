@@ -1,6 +1,6 @@
-Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |card_quantity, incomplete, factory_type|
+Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_type|
   @user = @user || create(:user)
-  card_quantity.to_i.times do
+  quantity.to_i.times do
     case factory_type
     when /family card/i
       if incomplete
