@@ -6,7 +6,7 @@ gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
+group :assets, :staging do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'bootstrap-sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
@@ -27,6 +27,12 @@ gem 'strong_parameters', :git => 'git://github.com/rails/strong_parameters.git'
 gem 'chef'
 gem 'vagrant', '~> 1.0.5'
 gem 'librarian'
+
+group :staging do
+  gem 'pg'
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
 
 group :development, :test do
   gem 'capybara-webkit'
