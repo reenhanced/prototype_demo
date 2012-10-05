@@ -5,7 +5,7 @@ class CallLogsController < ApplicationController
   respond_to :js
 
   def create
-    @call = @family_card.calls.build(params[:call_log])
+    @call = @family_card.calls.build(call_log_params)
     @call.qualifier_ids = params[:qualifier_ids] if params[:qualifier_ids]
 
     if @call.save
@@ -28,5 +28,9 @@ class CallLogsController < ApplicationController
 
   def find_call
     @call = @family_card.calls.find(params[:id])
+  end
+
+  def call_log_params
+    params.require(:call_log).permit(:message, :contact_id, :contact_type)
   end
 end
