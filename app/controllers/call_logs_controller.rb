@@ -31,6 +31,6 @@ class CallLogsController < ApplicationController
   end
 
   def call_log_params
-    params.require(:call_log).permit(:message, :contact_id, :contact_type)
+    params.require(:call_log).permit(:message, :contact_id, :contact_type, :'recorded_at(1i)', :'recorded_at(2i)', :'recorded_at(3i)', :'recorded_at(4i)', :'recorded_at(5i)')
   end
 end

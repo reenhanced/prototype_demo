@@ -1,10 +1,16 @@
-Given /^I have (\d+)( incomplete)? family card[s]?$/ do |card_quantity, incomplete|
+Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |card_quantity, incomplete, factory_type|
   @user = @user || create(:user)
   card_quantity.to_i.times do
-    if incomplete
-      create(:family_card, user: @user)
-    else
-      create(:family_card, :with_address, user: @user)
+    case factory_type
+    when /family card/i
+      if incomplete
+        create(:family_card, user: @user)
+      else
+        create(:family_card, :with_address, user: @user)
+      end
+    when /call log/i
+      @family_card = FamilyCard.last || create(:family_card, user: @user)
+      create(:call_log, family_card: @family_card, contact: create(:parent, family_card: @family_card))
     end
   end
   @family_card = FamilyCard.last
