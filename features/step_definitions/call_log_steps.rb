@@ -1,4 +1,4 @@
-When /^I select the first member from "(.*)+"$/ do |member_field|
+When /^I select the first member from (.*)+$/ do |member_field|
   @family_card ||= FamilyCard.last
   first_member= @family_card.family_members.first
 
