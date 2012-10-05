@@ -23,7 +23,7 @@ Feature: User adds call log to family card
     And I should see "edit" within "the new call log form"
     And "the new call log recorded at fields" should be collapsed
     When I follow "edit" within "the new call log form"
-    Then "the new call log recorded at fields" should be visible
+    Then "the new call log recorded at fields" should be expanded
     When I select "22nd Mar 2013 01:00:00 PM" as the "Call recorded at" date and time
     And I fill in "call_log_message" with "I am batman."
     And I select the first member from "the new call log contacts"

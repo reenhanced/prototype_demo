@@ -255,16 +255,19 @@ Then /^I should see the (.* )?image "(.+)"$/ do |style, image|
 end
 
 Then /^"(.*)" should be hidden$/ do |selector|
+  selector = selector_for(selector)
   find(selector).should_not be_visible
 end
 
 Then /^"(.*)" should be visible$/ do |selector|
+  selector = selector_for(selector)
   find(selector).should be_visible
 end
 
 Then /"(.*)" should be collapsed$/ do |selector|
   selector_name = selector_for(selector).gsub(/#|\./, '')
-  find(selector_for(selector)).should have_xpath("//div[@id='#{selector_name}',contains(@style,'height: 0px')]")
+  selector = selector_for(selector)
+  find(selector).should have_css("#{selector}, [contains(@style,'height: 0px')]")
 end
 
 Then /"(.*)" should be expanded/ do |selector|
