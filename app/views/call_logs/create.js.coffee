@@ -8,6 +8,6 @@ $('<%= escape_javascript( render("call_logs/call_row", call: @call)) %>')
   .hide()
   .fadeIn()
 
-FamilyCard.update_call_logs()
+FamilyCard.callLogsUpdated()
 
 <% end %>

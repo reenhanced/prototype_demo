@@ -1,9 +1,7 @@
 class @FamilyCard
   @_initializeCallLog: ->
     if(@newCallLog)
-      @newCallLog.find('#call_log_contact_id').change ->
-        selectedContactType = $('#call_log_contact_id option:selected').attr('data-contact-type')
-        $('#call_log_contact_type').val(selectedContactType)
+      @newCallLog.find('#call_log_contact_id').change(@syncContactIdandContactType)
 
   @_initializeStudentForm: ->
     if(@newStudent)
@@ -34,13 +32,18 @@ class @FamilyCard
         'dl.address dd address.adr .postal-code':       '#student_zip_code'
       }
 
+  @syncContactIdandContactType: ->
+    selectedContactType = $('#call_log_contact_id option:selected').attr('data-contact-type')
+    $('#call_log_contact_type').val(selectedContactType)
+
+
   @init: ->
     this.newStudent  = $('#new_student')
     this.newCallLog = $('#new_call_log')
     this._initializeCallLog()
     this._initializeStudentForm()
 
-  @update_call_logs: ->
+  @callLogsUpdated: ->
     $('ul.nav.nav-tabs li a[href=#all-calls]').click()
     @newCallLog.modal('hide')
     @newCallLog.find('input[type=submit]').button('reset')
