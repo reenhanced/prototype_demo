@@ -17,12 +17,12 @@ Feature: User adds call log to family card
     And the new call log form should be collapsed
     And the call log listing should be hidden
     When I click "Add call log"
-    Then the new call log form should be visible
+    Then the new call log form should be visible within the popup modal
     And I should see "Spoke to"
     And I should see the date and time today within the new call log form
-    And I should see "edit" within the new call log form
+    And I should see "Edit" within the new call log form
     And the new call log recorded at fields should be collapsed
-    When I follow "edit" within the new call log form
+    When I press "Edit" within the new call log form
     Then the new call log recorded at fields should be expanded
     When I select "22nd Mar 2013 01:00:00 PM" as the "Call recorded at" date and time
     And I fill in "call_log_message" with "I am batman."
@@ -32,7 +32,7 @@ Feature: User adds call log to family card
     And I press "Save Entry"
     And I wait for the ajax to finish
     Then I should see "Successfully added call log."
-    And the new call log form should be collapsed
+    And the new call log form should be hidden
     And the call log listing should be visible
     Then I should see the call's information
     And the call should have recorded the date and time
