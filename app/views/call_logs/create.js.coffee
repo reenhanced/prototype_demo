@@ -7,6 +7,7 @@ $('<%= escape_javascript( render("call_logs/call_row", call: @call)) %>')
   .prependTo('#all-calls table tbody')
   .hide()
   .fadeIn()
+$('#new_call_log').modal('hide')
 $('#new_call_log input[type=submit]').button('reset')
 $('#new_call_log')[0].reset()
 <% end %>
