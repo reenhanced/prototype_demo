@@ -1,0 +1,14 @@
+.modal.hide{ :id => "call_log_#{call.id}_details" }
+  .modal-header
+    .label.label-info.pull-right
+      %i.icon-time.icon-white
+      = call.recorded_at
+    %h2<
+      = "#{t('family_card.call.spoke_to', default: 'Spoke to: ')}: "
+      %i.muted= call.contact.name
+  .modal-body
+    = call.message.html_safe
+    - call.qualifiers.each do |qualifier|
+      .label{ class: "#{twitterized_qualifier_class(qualifier.category).gsub(/text/, 'label')}" }= qualifier.name
+  .modal-footer
+    = link_to t('close', default: 'Close'), '#', class: 'btn btn-primary', :'data-dismiss' => 'modal'

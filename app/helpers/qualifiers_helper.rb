@@ -1,5 +1,5 @@
 module QualifiersHelper
-  def twitterized_qualifier_class(type)
+  def twitterized_qualifier_class(type, options = {})
     case type
       when 'positive'
         "text-success"

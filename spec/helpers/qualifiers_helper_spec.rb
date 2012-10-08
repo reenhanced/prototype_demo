@@ -11,9 +11,15 @@ describe QualifiersHelper do
         }
       end
 
-      it "returns the twitter-bootstrap version for each flash type" do
+      it "returns the twitter-bootstrap version for each qualifier type" do
         twitter_classes.each do |qualifier_type, twitter_class|
           helper.twitterized_qualifier_class(qualifier_type).should == twitter_class
+        end
+      end
+
+      it "returns the twitter-bootstrap label version for each qualifier type when specified" do
+        twitter_classes.each do |qualifier_type, twitter_class|
+          helper.twitterized_qualifier_class(qualifier_type, for: :label).should == twitter_class
         end
       end
     end

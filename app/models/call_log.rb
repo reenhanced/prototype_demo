@@ -11,4 +11,8 @@ class CallLog < ActiveRecord::Base
   validates :message, :presence => true
 
   audited :associated_with => :family_card
+
+  def qualifiers
+    family_card.qualifiers
+  end
 end

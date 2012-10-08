@@ -19,6 +19,7 @@ en:
         new: "New Call Log"
       message: "Message"
       message_placeholder: "Enter your message here..."
+      more_details: 'more details'
       recorded_at: "Call recorded at"
       qualifiers: "Qualifiers"
       spoke_to: "Spoke to"

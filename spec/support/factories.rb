@@ -39,6 +39,12 @@ FactoryGirl.define do
     family_card
     message     { Faker::Lorem.sentence(10) }
     recorded_at { DateTime.now }
+
+    trait :with_qualifiers do
+      after(:build) do |call_log|
+        call_log.qualifier_ids = [FactoryGirl.create(:qualifier).id]
+      end
+    end
   end
 
   factory :qualifier do

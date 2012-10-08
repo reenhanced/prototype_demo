@@ -24,4 +24,14 @@ describe CallLog do
       end
     end
   end
+
+  context "instance methods" do
+    describe "#qualifiers" do
+      let(:call_log) { create(:call_log, :with_qualifiers) }
+
+      it "returns an array of qualifiers for the associated family_card" do
+        call_log.qualifiers.should have(1).qualifier
+      end
+    end
+  end
 end
