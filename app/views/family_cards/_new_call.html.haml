@@ -2,7 +2,7 @@
   .modal-header
     .well.well-small.close
       = DateTime.now.to_s
-      %button.btn.btn-mini{ :type => 'button', 'data-toggle' => 'collapse', :'data-target' =>"#new-call-datetime"} edit
+      %button.btn.btn-mini{ :type => 'button', 'data-toggle' => 'collapse', :'data-target' =>"#new-call-datetime"}= t('edit', default: 'edit')
     %h2= t("family_card.call.headings.new", default: 'New Call Log')
   .modal-body
     #call-errors
