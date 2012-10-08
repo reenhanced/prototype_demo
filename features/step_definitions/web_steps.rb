@@ -259,9 +259,11 @@ Then /^(.*) should be hidden$/ do |selector|
   find(selector).should_not be_visible
 end
 
-Then /^(.*) should be visible$/ do |selector|
-  selector = selector_for(selector)
-  find(selector).should be_visible
+Then /^(.*) should be visible(?: within ([^"]*))?$/ do |selector, within_selector|
+  with_scope(within_selector) do
+    selector = selector_for(selector)
+    find(selector).should be_visible
+  end
 end
 
 Then /(.*) should be (collapsed|expanded)$/ do |selector, element_state|

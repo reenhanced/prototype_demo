@@ -1,6 +1,7 @@
 module Selectors
   def selector_for(scope)
     case scope
+      when /the popup modal/i                     then "body.modal-open"
       when /the new student form/i                then "#new-student"
       when /the student listing/i                 then "#all-students"
       when /the new call log form/i               then "#new_call_log"

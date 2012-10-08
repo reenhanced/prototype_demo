@@ -17,7 +17,7 @@ Feature: User adds call log to family card
     And the new call log form should be collapsed
     And the call log listing should be hidden
     When I click "Add call log"
-    Then the new call log form should be visible
+    Then the new call log form should be visible within the popup modal
     And I should see "Spoke to"
     And I should see the date and time today within the new call log form
     And I should see "Edit" within the new call log form
