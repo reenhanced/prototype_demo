@@ -1,27 +1,33 @@
-.well.well-small.pull-right
-  = DateTime.now.to_s
-  = link_to "edit", "#", :'data-toggle' => "collapse", :'data-target' =>"#new-call-datetime"
-%h2= t("family_card.call.headings.new", default: 'New Call Log')
-= form_for [@family_card, @call], remote: true do |f|
-  #call-errors
+= form_for [@family_card, @call], remote: true, html: { class: 'modal hide row' } do |f|
+  .modal-header
+    .well.well-small.close
+      = DateTime.now.to_s
+      %button.btn.btn-mini{ :type => 'button', 'data-toggle' => 'collapse', :'data-target' =>"#new-call-datetime"}= t('edit', default: 'edit')
+    %h2= t("family_card.call.headings.new", default: 'New Call Log')
+  .modal-body
+    #call-errors
 
-  .span6
-    .controls.controls-row
-      = f.label :contact_id, "#{t('family_card.call.spoke_to', default: 'Spoke to')}"
-      = f.select :contact_id, @family_members.map{|m| [m.name, m.id, {'data-contact-type'=>m.class.to_s}] }, {:prompt => true}
-      = f.hidden_field :contact_type
-      .controls
-        = f.text_area :message, rows: 10, placeholder: t('family_card.call.message_placeholder', default: 'Enter your message here...'), class: 'input-xxlarge span5'
-  .span5
     #new-call-datetime.collapse.controls.controls-row
-      = f.label :recorded_at, t('family_card.call.recorded_at', default: 'Call recorded at')
-      = datetime_select "call_log", "recorded_at", {start_year: Date.today.year}, {class: 'input-small'}
-    .controls.controls-row
-      = label_tag "call_log_qualifier_ids", t('family_card.call.qualifiers', default: 'Qualifiers')
-      - Qualifier.all.each do |qualifier|
-        = label_tag "qualifier_ids_#{qualifier.id}" do
-          = check_box_tag "qualifier_ids[]", qualifier.id, @family_card.qualifier_ids.include?(qualifier.id), id: "qualifier_ids_#{qualifier.id}"
-          %span{ class: "#{twitterized_qualifier_class(qualifier.category)}" }= qualifier.name
+      .well.well-small
+        = f.label :recorded_at, t('family_card.call.recorded_at', default: 'Call recorded at')
+        = datetime_select "call_log", "recorded_at", {start_year: Date.today.year}, {class: 'input-small'}
 
-  .form-actions.clearfix
+    .row
+      .span6
+        .controls.controls-row
+          = f.label :contact_id, "#{t('family_card.call.spoke_to', default: 'Spoke to')}"
+          = f.select :contact_id, @family_members.map{|m| [m.name, m.id, {'data-contact-type'=>m.class.to_s}] }, {:prompt => true}
+          = f.hidden_field :contact_type
+          .controls
+            = f.text_area :message, rows: 10, placeholder: t('family_card.call.message_placeholder', default: 'Enter your message here...'), class: 'input-xxlarge span5'
+      .span5
+        .controls.controls-row
+          = label_tag "call_log_qualifier_ids", t('family_card.call.qualifiers', default: 'Qualifiers')
+          - Qualifier.all.each do |qualifier|
+            = label_tag "qualifier_ids_#{qualifier.id}" do
+              = check_box_tag "qualifier_ids[]", qualifier.id, @family_card.qualifier_ids.include?(qualifier.id), id: "qualifier_ids_#{qualifier.id}"
+              %span{ class: "#{twitterized_qualifier_class(qualifier.category)}" }= qualifier.name
+
+  .modal-footer.clearfix
+    = link_to t('close', default: 'Close'), '#', class: 'btn', :'data-dismiss' => 'modal'
     = f.submit t('family_card.create_call_log', default: 'Save Entry'), class: 'btn btn-primary'
