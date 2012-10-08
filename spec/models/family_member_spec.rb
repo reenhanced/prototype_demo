@@ -16,6 +16,8 @@ describe FamilyMember do
 
   it { should_not allow_mass_assignment_of(:family_card_id) }
 
+  it { should be_audited.associated_with(:family_card) }
+
   context "instance methods" do
     subject { create(:family_member, :first_name => "Jimmy", :last_name => "Buffet") }
 
