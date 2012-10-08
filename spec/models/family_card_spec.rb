@@ -10,6 +10,9 @@ describe FamilyCard do
   it { should have_many(:family_card_qualifiers) }
   it { should have_many(:qualifiers) }
 
+  it { should be_audited }
+  it { should have_associated_audits }
+
   delegated_fields = [ :first_name, :last_name,
                        :address1,   :address2,
                        :city,       :state,    :zip_code,
