@@ -17,7 +17,7 @@ gem 'carmen-rails'
 gem 'devise'
 gem "haml-rails"
 gem 'jquery-rails'
-gem 'audited-activerecord', :git => 'git@github.com:reenhanced/audited.git', :branch => 'nh-rspec-matchers'
+gem 'audited-activerecord', :git => 'git://github.com/reenhanced/audited.git'
 
 gem 'therubyracer', :require => 'v8'
 

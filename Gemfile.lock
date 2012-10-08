@@ -56,9 +56,8 @@ GIT
       railties (>= 3.2.0)
 
 GIT
-  remote: git@github.com:reenhanced/audited.git
-  revision: fd051fc428da7dd65e95f5bb9c229e653e8234ec
-  branch: nh-rspec-matchers
+  remote: git://github.com/reenhanced/audited.git
+  revision: feb85ff28bee12df7cf764baac88a956d45405d3
   specs:
     audited (3.0.0)
     audited-activerecord (3.0.0)
