@@ -27,10 +27,16 @@ describe CallLog do
 
   context "instance methods" do
     describe "#qualifiers" do
-      let(:call_log) { create(:call_log, :with_qualifiers) }
+      let!(:call_log) { create(:call_log, :with_qualifiers) }
 
-      it "returns an array of qualifiers for the associated family_card" do
-        call_log.qualifiers.should have(1).qualifier
+      it "returns an array of qualifiers descending by category for the associated family_card" do
+        call_log.qualifier_ids |= [create(:qualifier, category: 'neutral').id]
+        call_log.save!
+
+        call_log.reload
+        call_log.qualifiers.should have(4).qualifiers
+        call_log.qualifiers.first.category.should == 'positive'
+        call_log.qualifiers.last.category.should == 'negative'
       end
     end
   end

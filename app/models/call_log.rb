@@ -13,6 +13,6 @@ class CallLog < ActiveRecord::Base
   audited :associated_with => :family_card
 
   def qualifiers
-    family_card.qualifiers
+    family_card.qualifiers.order('category DESC')
   end
 end

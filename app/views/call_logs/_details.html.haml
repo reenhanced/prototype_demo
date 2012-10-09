@@ -7,8 +7,8 @@
       = "#{t('family_card.call.spoke_to', default: 'Spoke to: ')}: "
       %i.muted= call.contact.name
   .modal-body
-    = call.message.html_safe
+    %p= call.message.html_safe
     - call.qualifiers.each do |qualifier|
-      .label{ class: "#{twitterized_qualifier_class(qualifier.category).gsub(/text/, 'label')}" }= qualifier.name
+      %span.label{ class: "#{twitterized_qualifier_class(qualifier.category, element_type: 'label')}" }= qualifier.name
   .modal-footer
     = link_to t('close', default: 'Close'), '#', class: 'btn btn-primary', :'data-dismiss' => 'modal'

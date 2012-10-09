@@ -42,7 +42,11 @@ FactoryGirl.define do
 
     trait :with_qualifiers do
       after(:build) do |call_log|
-        call_log.qualifier_ids = [FactoryGirl.create(:qualifier).id]
+        call_log.qualifier_ids = [
+          FactoryGirl.create(:qualifier, category: 'positive').id,
+          FactoryGirl.create(:qualifier, category: 'neutral').id,
+          FactoryGirl.create(:qualifier, category: 'negative').id
+        ]
       end
     end
   end
