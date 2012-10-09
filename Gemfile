@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
 
-gem 'mysql2'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -30,7 +30,6 @@ gem 'vagrant', '~> 1.0.5'
 gem 'librarian'
 
 group :staging do
-  gem 'pg'
   gem 'factory_girl_rails'
   gem 'faker'
 end

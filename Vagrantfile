@@ -68,23 +68,27 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks", "cookbooks.local"]
-    chef.add_recipe('mysql::server')
-    chef.add_recipe('rvm::system')
+    chef.add_recipe('apt')
+    chef.add_recipe('rvm::user')
     chef.add_recipe('rvm::vagrant')
     chef.add_recipe('vim')
     chef.add_recipe('bridgeway_app')
 
     chef.json = {
-      :mysql => {
-        :server_root_password => '',
-        :use_upstart => true
+      :postgresql => {
+        'password' => {
+          'postgres' => 'postgres'
+        }
       },
       :rvm => {
-        :default_ruby => '1.9.3',
         :rvmrc => {
           'rvm_project_rvmrc' => 1,
           'rvm_trust_rvmrcs_flag' => 1
-        }
+        },
+        :user_installs => [{
+          'user' => 'vagrant',
+          'default_ruby' => '1.9.3'
+        }]
       }
     }
   end
