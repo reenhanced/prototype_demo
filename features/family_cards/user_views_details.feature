@@ -11,6 +11,5 @@ Feature: User views call log details
     When I am on the family card's page
     And I click "All Calls"
     And I click "more details"
-    And I wait for the ajax to finish
     Then I should see the call log details within the popup modal
 

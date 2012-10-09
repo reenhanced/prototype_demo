@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  call_logs:
+    view_more_deails: 'more details'
   close: "Close"
   create_family_card: "Create Family Card"
   create_new_record: "Create new record"
@@ -19,7 +21,6 @@ en:
         new: "New Call Log"
       message: "Message"
       message_placeholder: "Enter your message here..."
-      more_details: 'more details'
       recorded_at: "Call recorded at"
       qualifiers: "Qualifiers"
       spoke_to: "Spoke to"

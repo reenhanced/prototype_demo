@@ -4,11 +4,11 @@
       %i.icon-time.icon-white
       = call.recorded_at
     %h2<
-      = "#{t('family_card.call.spoke_to', default: 'Spoke to: ')}: "
+      = CallLog.human_attribute_name('contact', :default => 'Spoke to:')
       %i.muted= call.contact.name
   .modal-body
     %p= call.message.html_safe
     - call.qualifiers.each do |qualifier|
-      %span.label{ class: "#{twitterized_qualifier_class(qualifier.category, element_type: 'label')}" }= qualifier.name
+      %span.label{ class: "#{bootstrap_class_for_qualifier_type(qualifier.category, element_type: 'label')}" }= qualifier.name
   .modal-footer
     = link_to t('close', default: 'Close'), '#', class: 'btn btn-primary', :'data-dismiss' => 'modal'

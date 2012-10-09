@@ -26,7 +26,7 @@
           - Qualifier.all.each do |qualifier|
             = label_tag "qualifier_ids_#{qualifier.id}" do
               = check_box_tag "qualifier_ids[]", qualifier.id, @family_card.qualifier_ids.include?(qualifier.id), id: "qualifier_ids_#{qualifier.id}"
-              %span{ class: "#{twitterized_qualifier_class(qualifier.category)}" }= qualifier.name
+              %span{ class: "#{bootstrap_class_for_qualifier_type(qualifier.category)}" }= qualifier.name
 
   .modal-footer.clearfix
     = link_to t('close', default: 'Close'), '#', class: 'btn', :'data-dismiss' => 'modal'

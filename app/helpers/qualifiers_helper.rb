@@ -1,5 +1,5 @@
 module QualifiersHelper
-  def twitterized_qualifier_class(type, options = {})
+  def bootstrap_class_for_qualifier_type(type, options = {})
     prefix       = 'text'
     element_type = options.delete(:element_type)
 
