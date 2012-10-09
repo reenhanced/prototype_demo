@@ -14,6 +14,7 @@ group :assets, :staging do
 end
 
 gem 'carmen-rails'
+gem 'cancan'
 gem 'devise'
 gem "haml-rails"
 gem 'jquery-rails'
