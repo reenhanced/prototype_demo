@@ -76,7 +76,7 @@ describe FamilyCard do
         student = create(:student, family_card: subject)
         other_student = create(:student, family_card: subject)
 
-        subject.default_student.should == student
+        subject.default_student.should == subject.students.first
       end
 
       it "builds a student if one doesn't exist" do
