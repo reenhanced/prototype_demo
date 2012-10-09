@@ -7,16 +7,15 @@
     = csrf_meta_tags
 
   %body
-
-  .container
-    = render "shared/flash_messages", :flash => flash
-    = render "shared/user_links"
-  - if content_for? :sidebar
-    .container-fluid
-      .row-fluid
-        .span2
-          = yield :sidebar
-        .span10
-          = yield
-  - else
-    .container= yield
+    .container
+      = render "shared/flash_messages", :flash => flash
+      = render "shared/user_links"
+    - if content_for? :sidebar
+      .container-fluid
+        .row-fluid
+          .span2
+            = yield :sidebar
+          .span10
+            = yield
+    - else
+      .container= yield

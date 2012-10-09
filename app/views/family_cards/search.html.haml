@@ -8,35 +8,35 @@
   %h2= "#{t('search.found')}:"
   = render @family_cards
 - else
-  = form_for :family_card, method: :get, url: search_family_cards_path, html: {class: 'form-horizontal'} do |form|
+  = form_for :family_member, method: :get, url: search_family_cards_path, html: {class: 'form-horizontal'} do |form|
     .control-group
-      = form.label :first_name, t('family_card.parent_first_name'), class: 'control-label'
+      = form.label :first_name, class: 'control-label'
       .controls
-        = form.text_field :first_name, placeholder: t('family_card.parent_first_name_placeholder')
+        = form.text_field :first_name, placeholder: t('family_member.placeholders.first_name')
     .control-group
-      = form.label :last_name, t('family_card.parent_last_name'),  class: 'control-label'
+      = form.label :last_name, class: 'control-label'
       .controls
-        = form.text_field :last_name, placeholder: t('family_card.parent_last_name_placeholder')
+        = form.text_field :last_name, placeholder: t('family_member.placeholders.last_name')
     .control-group
-      = form.label :phone, t('family_card.phone'), class: 'control-label'
+      = form.label :phone, class: 'control-label'
       .controls
-        = form.text_field :phone, placeholder: t('family_card.phone')
+        = form.text_field :phone, placeholder: t('family_member.placeholders.phone')
     .control-group
-      = form.label :email, t('family_card.email'),  class: 'control-label'
+      = form.label :email, class: 'control-label'
       .controls
-        = form.text_field :email, placeholder: t('family_card.email')
+        = form.text_field :email, placeholder: t('family_member.placeholders.email')
     .control-group
-      = form.label :address1, t('family_card.street_address'),  class: 'control-label'
+      = form.label :address1, class: 'control-label'
       .controls
-        = form.text_field :address1, placeholder: t('family_card.street_address')
+        = form.text_field :address1, placeholder: t('family_member.placeholders.address1')
     .control-group
-      = form.label :address2, t('family_card.address2'), class: 'control-label'
+      = form.label :address2, class: 'control-label'
       .controls
-        = form.text_field :address2, placeholder: t('family_card.address2')
+        = form.text_field :address2, placeholder: t('family_member.placeholders.address2')
     .control-group
-      = form.label :zip_code, t('family_card.zip_code'), class: 'control-label'
+      = form.label :zip_code, class: 'control-label'
       .controls
-        = form.text_field :zip_code, placeholder: t('family_card.zip_code')
+        = form.text_field :zip_code, placeholder: t('family_member.placeholders.zip_code')
 
     .form-actions
       = form.submit t("search.search_prospect_records"), class: 'btn btn-primary'

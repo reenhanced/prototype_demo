@@ -1,13 +1,9 @@
 class FamilyCardsController < ApplicationController
   before_filter :find_family_card, :except => [:index, :new, :create, :search]
 
-  def index
-    @family_cards = FamilyCard.all
-  end
-
   def search
-    @family_cards = FamilyCard.find_all_from_search(params[:family_card])
-    flash[:error] = render_to_string(:partial => "no_results_message").html_safe if params[:family_card].present? and @family_cards.empty?
+    @family_cards = FamilyCard.find_all_from_search(params[:family_member])
+    flash[:error] = render_to_string(:partial => "no_results_message").html_safe if params[:family_member].present? and @family_cards.empty?
   end
 
   def show
@@ -40,11 +36,6 @@ class FamilyCardsController < ApplicationController
     else
       render :action => 'edit'
     end
-  end
-
-  def destroy
-    @family_card.destroy
-    redirect_to family_cards_url, :notice => "Successfully destroyed family card."
   end
 
   private

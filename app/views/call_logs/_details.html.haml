@@ -4,7 +4,7 @@
       %i.icon-time.icon-white
       = call.recorded_at
     %h2<
-      = CallLog.human_attribute_name('contact', :default => 'Spoke to:')
+      = CallLog.human_attribute_name('contact_id', :default => 'Spoke to:')
       %i.muted= call.contact.name
   .modal-body
     %p= call.message.html_safe
