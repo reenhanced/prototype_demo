@@ -1,0 +1,10 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th= CallLog.human_attribute_name('recorded_at')
+      %th= CallLog.human_attribute_name('contact_id')
+      %th= CallLog.human_attribute_name('message')
+      %th &nbsp;
+  %tbody
+    - family_card.calls.each do |call|
+      = render 'call_logs/call_row', call: call
