@@ -2,32 +2,32 @@
   = render 'shared/error_messages', record: @family_card
 
   .control-group
-    = f.label :parent_first_name, "#{t('family_card.parent_first_name')}:", class: 'control-label'
+    = f.label :parent_first_name, class: 'control-label'
     .controls
-      = f.text_field :parent_first_name, placeholder: t('family_card.parent_first_name_placeholder')
+      = f.text_field :parent_first_name, placeholder: t('family_card.placeholders.parent_first_name')
   .control-group
-    = f.label :parent_last_name, "#{t('family_card.parent_last_name')}:", class: 'control-label'
+    = f.label :parent_last_name, class: 'control-label'
     .controls
-      = f.text_field :parent_last_name, placeholder: t('family_card.parent_last_name_placeholder')
+      = f.text_field :parent_last_name, placeholder: t('family_card.placeholders.parent_last_name')
   .control-group
-    = f.label :parent_phone, "#{t('family_card.phone')}:", class: 'control-label'
+    = f.label :parent_phone, class: 'control-label'
     .controls
-      = f.text_field :parent_phone, placeholder: t('family_card.phone_number')
+      = f.text_field :parent_phone, placeholder: t('family_card.placeholders.parent_phone')
   .control-group
-    = f.label :email, "#{t('family_card.email')}:", class: 'control-label'
+    = f.label :parent_email, class: 'control-label'
     .controls
-      = f.text_field :parent_email, placeholder: t('family_card.email_placeholder')
+      = f.text_field :parent_email, placeholder: t('family_card.placeholders.parent_email')
   .control-group
-    = f.label :parent_address1, "#{t('family_card.address')}:", class: 'control-label'
+    = f.label :parent_address1, class: 'control-label'
     .controls
       %p
-        = f.text_field :parent_address1, placeholder: t('family_card.street_address')
+        = f.text_field :parent_address1, placeholder: t('family_card.placeholders.parent_address1')
       %p
-        = f.text_field :parent_address2, placeholder: t('family_card.address2')
+        = f.text_field :parent_address2, placeholder: t('family_card.placeholders.parent_address2')
       %p
-        = f.text_field :parent_city, placeholder: t('family_card.city'), class: 'inline input-medium'
+        = f.text_field :parent_city, placeholder: t('family_card.placeholders.parent_city'), class: 'inline input-medium'
         = subregion_select :family_card, :parent_state, 'US', class: 'inline input-medium'
-        = f.text_field :parent_zip_code, placeholder: t('family_card.zip_code'), class: 'inline input-small'
+        = f.text_field :parent_zip_code, placeholder: t('family_card.placeholders.parent_zip_code'), class: 'inline input-small'
 
   .form-actions.clearfix
-    = f.submit t('create_family_card'), class: 'btn btn-primary'
+    = f.submit t('family_card.actions.create'), class: 'btn btn-primary'

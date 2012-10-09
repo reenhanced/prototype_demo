@@ -13,7 +13,7 @@ Feature: Search for card
     When I fill in the form with an existing parent's name
     And I press "Search Prospect Records"
     Then I should see the family card
-    And I should see "Edit file"
+    And I should see "Edit Family Card"
     But I should not see "Add Student"
     When I follow the parent's name
     Then I should be on the family card's page
@@ -31,7 +31,7 @@ Feature: Search for card
     When I fill in the form with an existing parent's name
     And I press "Search Prospect Records"
     Then I should see the family card
-    But I should not see "Edit file"
+    But I should not see "Edit Family Card"
 
   Scenario: No family cards are found
     When I press "Search Prospect Records"

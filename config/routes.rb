@@ -1,6 +1,6 @@
 Bridgeway::Application.routes.draw do
 
-  resources :family_cards do
+  resources :family_cards, :except => [:index, :destroy] do
     get  'search', :on => :collection
     resources :students
     resources :call_logs

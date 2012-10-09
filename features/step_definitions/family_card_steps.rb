@@ -20,8 +20,8 @@ When /^I fill in the form with an existing parent's name$/ do
   @family_card = FamilyCard.last
   @parent_name = @family_card.default_parent.name
 
-  step "I fill in \"Parent/Guardian First Name\" with \"#{@family_card.parent_first_name}\""
-  step "I fill in \"Parent/Guardian Last Name\" with \"#{@family_card.parent_last_name}\""
+  step "I fill in \"family_member_first_name\" with \"#{@family_card.parent_first_name}\""
+  step "I fill in \"family_member_last_name\" with \"#{@family_card.parent_last_name}\""
 end
 
 When /^I follow the parent's name$/ do
@@ -35,11 +35,8 @@ Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
   step %{I should#{negator} see "Family Info"}
   step %{I should#{negator} see "Parent/Guardian Name"}
   step %{I should#{negator} see "#{@parent_name}"}
-  step %{I should#{negator} see "Phone"}
   step %{I should#{negator} see "#{@family_card.parent_phone}"}
-  step %{I should#{negator} see "Email"}
   step %{I should#{negator} see "#{@family_card.parent_email}"}
-  step %{I should#{negator} see "Address"}
   step %{I should#{negator} see "#{@family_card.parent_address1}"}
   step %{I should#{negator} see "#{@family_card.parent_city}"}
   step %{I should#{negator} see "#{@family_card.parent_state}"}
