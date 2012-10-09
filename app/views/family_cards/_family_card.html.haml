@@ -1,17 +1,17 @@
 .well.prospect-card
   .navbar
     - if current_user.owns?(family_card)
-      = link_to_unless_current t('family_card.edit_file', default: "Edit file"), edit_family_card_path(family_card), class: 'btn btn-small pull-right'
+      = link_to_unless_current t('family_card.edit'), edit_family_card_path(family_card), class: 'btn btn-small pull-right'
     %h3= t('family_card.family_info')
   %dl.dl-horizontal.contact.span5
-    %dt= t('family_card.parent_name')
+    %dt= t('family_member.parent_name')
     %dd= link_to_unless_current family_card.default_parent, family_card_path(family_card)
-    %dt= t('family_card.phone')
+    %dt= FamilyCard.human_attribute_name('parent_phone')
     %dd.phone= family_card.parent_phone
-    %dt= t('family_card.email')
+    %dt= FamilyCard.human_attribute_name('parent_email')
     %dd.email= family_card.parent_email
   %dl.dl-horizontal.address.span6
-    %dt= t('family_card.address')
+    %dt= FamilyCard.human_attribute_name('parent_address')
     %dd
       %address.adr
         %span.street-address= family_card.parent_address1
@@ -27,7 +27,7 @@
   %ul.nav.nav-tabs.clearfix
     %li.active>
       %a{ href: "#default-student-#{family_card.id}", :'data-toggle' => "tab"}
-        = t('family_card.default_student')
+        = FamilyCard.human_attribute_name('default_student')
     - unless family_card_search_made?
       %li
         %a{ href: '#all-students', :'data-toggle' => 'tab'}
@@ -36,7 +36,7 @@
       %li
         %a{ href: '#all-calls', :'data-toggle' => 'tab'}
           %i.icon-bullhorn
-          = t('family_card.all_calls', default: 'All Calls')
+          = t('call_log.all_calls', default: 'All Calls')
       - if current_user.owns?(family_card)
         %li
           %a{ href: '#new-student', :'data-toggle' => 'tab'}
@@ -46,12 +46,12 @@
   .tab-content
     .tab-pane.active{ id: "default-student-#{family_card.id}" }
       %dl.dl-horizontal.contact
-        %dt= t('family_card.student_name')
+        %dt= t('family_member.student_name')
         %dd= family_card.default_student
     - unless family_card_search_made?
       .tab-pane#all-students
-        = render 'all_students', family_card: family_card
+        = render 'students/students_table', family_card: family_card
       .tab-pane#all-calls
-        = render 'all_calls', family_card: family_card
+        = render 'call_logs/call_logs_table', family_card: family_card
       .tab-pane#new-student
-        = render 'new_student', family_card: family_card, student: @student
+        = render 'students/form', family_card: family_card, student: @student
