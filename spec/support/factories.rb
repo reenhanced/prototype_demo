@@ -39,6 +39,16 @@ FactoryGirl.define do
     family_card
     message     { Faker::Lorem.sentence(10) }
     recorded_at { DateTime.now }
+
+    trait :with_qualifiers do
+      after(:build) do |call_log|
+        call_log.qualifier_ids = [
+          FactoryGirl.create(:qualifier, category: 'positive').id,
+          FactoryGirl.create(:qualifier, category: 'neutral').id,
+          FactoryGirl.create(:qualifier, category: 'negative').id
+        ]
+      end
+    end
   end
 
   factory :qualifier do

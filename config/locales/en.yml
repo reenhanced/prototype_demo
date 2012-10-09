@@ -38,7 +38,6 @@ en:
         qualifiers:   "Qualifiers"
         message:      "Message"
         contact_id:   "Spoke to"
-
   close: "Close"
   create_new_record: "Create new record"
   edit: "Edit"
@@ -50,6 +49,7 @@ en:
     all_calls:        "All Calls"
     add_call_log:     "Add call log"
     create_call_log:  "Save Entry"
+    view_more_deails: 'more details'
 
   family_card:
     headings:

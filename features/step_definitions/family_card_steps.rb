@@ -16,14 +16,6 @@ Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_
   @family_card = FamilyCard.last
 end
 
-Given /^I have initial qualifiers$/ do
-  3.times do
-    create(:qualifier, category: 'positive')
-    create(:qualifier, category: 'neutral')
-    create(:qualifier, category: 'negative')
-  end
-end
-
 When /^I fill in the form with an existing parent's name$/ do
   @family_card = FamilyCard.last
   @parent_name = @family_card.default_parent.name
