@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  call_logs:
+    view_more_deails: 'more details'
   close: "Close"
   create_family_card: "Create Family Card"
   create_new_record: "Create new record"
