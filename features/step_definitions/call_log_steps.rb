@@ -35,7 +35,7 @@ Then /^I should( not)? see the call's information?$/ do |negator|
 
   steps %{
     Then I should see the following table rows:
-      | Date                       | Spoke to                    | Message                |
+      | Call recorded at           | Spoke to                    | Message                |
       | #{first_call.recorded_at}  | #{first_call.contact.name}  | #{first_call.message}  |
       | #{second_call.recorded_at} | #{second_call.contact.name} | #{second_call.message} |
   }
@@ -66,7 +66,7 @@ Then /^I should see the call log details?$/ do
   find(selector_for(call_details_selector)).should be_visible
 
   steps %{
-    Then I should see "Spoke to: #{call.contact.name}" within #{call_details_selector}
+    Then I should see "Spoke to #{call.contact.name}" within #{call_details_selector}
     And I should see "#{call.recorded_at}" within #{call_details_selector}
     And I should see "#{qualifier.name}" within #{call_details_selector}
   }

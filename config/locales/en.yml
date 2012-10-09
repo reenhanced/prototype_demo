@@ -56,6 +56,9 @@ en:
   create_new_record: "Create new record"
   edit: "Edit"
   family_card:
+    actions:
+      create: "Create Family Card"
+      edit: "Edit Family Card"
     headings:
       edit:  "Edit Family Card"
       new:   "New Family Card"
@@ -74,7 +77,6 @@ en:
     all_students:     "All students"
     create_student:   "Create Student"
     default_student:  "Default Student"
-    edit:             "Edit file"
     family_info:      "Family Info"
     family_of:        "Family of: %{parent_name}"
     student_info:     "Student Info"
@@ -102,6 +104,11 @@ en:
     prospect_not_found:       "No prospects were found."
     search_prospect_records:  "Search Prospect Records"
     try_another_search:       "Try another search?"
+  student:
+    actions:
+      create: "Create Student"
+    headings:
+      new: "New Student"
   user:
     logout:                            "Logout"
     forgot_your_password:              "Forgot your password?"
