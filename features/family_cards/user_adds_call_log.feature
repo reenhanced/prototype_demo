@@ -30,7 +30,6 @@ Feature: User adds call log to family card
     Then the "call_log_contact_type" hidden field should contain "Parent"
     When I check the first qualifier
     And I press "Save Entry"
-    And I wait for the ajax to finish
     Then I should see "Successfully added call log."
     And the new call log form should be hidden
     And the call log listing should be visible
@@ -45,7 +44,6 @@ Feature: User adds call log to family card
     When I am on the family card's page
     And I click "Add call log"
     And I press "Save Entry"
-    And I wait for the ajax to finish
     Then I should see "Message can't be blank"
 
   @javascript

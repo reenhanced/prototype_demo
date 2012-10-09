@@ -28,7 +28,6 @@ Feature: User adds student to family card
       | student_city       | Los Angelos             |
       | student_zip_code   | 90210                   |
     And I press "Create Student"
-    And I wait for the ajax to finish
     Then the student listing should be visible
     And the family card should have 1 student
     And I should see the student's information
@@ -45,7 +44,6 @@ Feature: User adds student to family card
     And the family card's student fields should not be disabled
     When I check "Same as family card"
     And I press "Create Student"
-    And I wait for the ajax to finish
     Then I should see the student's information with the default parent's contact info
 
   Scenario: User tries to add student to a family card they don't own

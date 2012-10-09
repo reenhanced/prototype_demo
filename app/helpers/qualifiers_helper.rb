@@ -1,12 +1,19 @@
 module QualifiersHelper
-  def twitterized_qualifier_class(type)
+  def bootstrap_class_for_qualifier_type(type, options = {})
+    prefix       = 'text'
+    element_type = options.delete(:element_type)
+
+    if element_type and element_type.to_s == 'label'
+      prefix = 'label'
+    end
+
     case type
       when 'positive'
-        "text-success"
+        "#{prefix}-success"
       when 'neutral'
-        "text-warning"
+        "#{prefix}-warning"
       when 'negative'
-        "text-error"
+        (prefix == 'label') ? "label-important" : "text-error"
       else
         type.to_s
     end
