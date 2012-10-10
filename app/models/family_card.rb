@@ -27,14 +27,22 @@ class FamilyCard < ActiveRecord::Base
   has_associated_audits
 
   def self.find_all_from_search(params={})
-    conditions = {}
+    query    = nil
     params ||= {}
+
+    # this chains where clauses using AND to match the combined search terms
     params.each do |key, value|
-      conditions[key] = value if FamilyMember.attribute_names.include?(key.to_s) and value.present?
+      if FamilyMember.attribute_names.include?(key.to_s) and value.present?
+        if query.present?
+          query = query.where(FamilyMember.arel_table[key].matches("%#{value}%"))
+        else
+          query = FamilyMember.select(:family_card_id).where(FamilyMember.arel_table[key].matches("%#{value}%"))
+        end
+      end
     end
 
-    return [] if conditions.blank?
-    card_ids = FamilyMember.select(:family_card_id).where(conditions).group('family_card_id').map(&:family_card_id)
+    return [] if query.blank?
+    card_ids = query.group('family_card_id').map(&:family_card_id)
     self.find(card_ids)
   end
 
