@@ -1,0 +1,14 @@
+- if parent and parent.id
+  %tr
+    %td= parent.first_name
+    %td= parent.last_name
+    %td= parent.email
+    %td= parent.phone
+    %td
+      %address
+        = parent.address1
+        %br/
+        - if parent.address2
+          = parent.address2
+          %br/
+        = "#{parent.city}, #{parent.state}  #{parent.zip_code}"

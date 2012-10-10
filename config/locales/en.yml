@@ -73,6 +73,7 @@ en:
       parent_phone:       "Parent/Guardian Phone"
       parent_state:       "State"
       parent_zip_code:    "Zip Code"
+    add_new_family_member:  "Add family member"
     add_new_student:  "Add student"
     all_students:     "All students"
     create_student:   "Create Student"
