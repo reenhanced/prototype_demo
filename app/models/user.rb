@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin sales]
 
+  # roles are stored in a single column using a bitmask as described here:
+  # https://github.com/ryanb/cancan/wiki/Role-Based-Authorization
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
