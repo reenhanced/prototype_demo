@@ -3,6 +3,12 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password 'fodrizzle'
     password_confirmation 'fodrizzle'
+
+    trait :admin do
+      after(:build) do |user|
+        user.roles = ['admin']
+      end
+    end
   end
 
   factory :family_member do
