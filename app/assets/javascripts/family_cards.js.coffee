@@ -2,6 +2,7 @@ class @FamilyCard
   @_initializeCallLog: ->
     if(@newCallLog)
       @newCallLog.find('#call_log_contact_id').change(@syncContactIdandContactType)
+      @newCallLog.find('[id*=call_log_recorded_at_]').change(@updateCallLogDateAndTime)
 
   @_initializeStudentForm: ->
     if(@newStudent)
@@ -36,6 +37,23 @@ class @FamilyCard
     selectedContactType = $('#call_log_contact_id option:selected').attr('data-contact-type')
     $('#call_log_contact_type').val(selectedContactType)
 
+  @updateCallLogDateAndTime: ->
+    year   = $('#call_log_recorded_at_1i').val()
+    month  = $('#call_log_recorded_at_2i').val()
+    day    = $('#call_log_recorded_at_3i').val()
+    hour   = $('#call_log_recorded_at_4i').val()
+    minute = $('#call_log_recorded_at_5i').val()
+    am_pm  = ''
+
+    if hour < 12
+      am_pm = 'AM'
+    else
+      am_pm = 'PM'
+      hour = hour - 12 if hour > 12
+
+    datetime = "#{hour}:#{minute}#{am_pm} on #{month}/#{day}/#{year}"
+
+    $('#new_call_log #selected-datetime').html(datetime)
 
   @init: ->
     this.newStudent  = $('#new_student')
