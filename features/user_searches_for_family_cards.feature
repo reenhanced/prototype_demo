@@ -25,6 +25,19 @@ Feature: Search for card
     And I press "Search Prospect Records"
     Then I should see the parent's name
 
+  Scenario: User searches for a family card with loose matching terms
+    When I fill in the form with an existing parent's name lowercased
+    And I press "Search Prospect Records"
+    Then I should see the parent's name
+    Given I am on the search family cards page
+    When I fill in the form with the start of an existing parent's name
+    And I press "Search Prospect Records"
+    Then I should see the parent's name
+    Given I am on the search family cards page
+    When I fill in the form with the start of an existing parent's name lowercased
+    And I press "Search Prospect Records"
+    Then I should see the parent's name
+
   Scenario: User searches for and finds a family card they don't own
     Given I am logged in as "jimmy.buffet@example.com"
     And I am on the search family cards page
