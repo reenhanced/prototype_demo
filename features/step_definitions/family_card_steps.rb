@@ -16,24 +16,15 @@ Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_
   @family_card = FamilyCard.last
 end
 
-When /^I fill in the form with( the start of)? an existing parent's name( lowercased)?$/ do |partial, lowercased|
-  @family_card = FamilyCard.last
-  @parent_name = @family_card.default_parent.name
-  parent_first_name = @family_card.parent_first_name
-  parent_last_name = @family_card.parent_last_name
+Given /^I have a family card with parent "(.*)"$/ do |parent_name|
+  parent_name = parent_name.split(' ')
+  @user       = @user || create(:user)
+  @family_card = create(:family_card, user: @user, parent_first_name: parent_name[0], parent_last_name: parent_name[1])
+end
 
-  if partial
-    parent_first_name = parent_first_name[0..3]
-    parent_last_name = parent_last_name[0..3]
-  end
-
-  if lowercased
-    parent_first_name = parent_first_name.downcase
-    parent_last_name = parent_last_name.downcase
-  end
-
-  step "I fill in \"family_member_first_name\" with \"#{parent_first_name}\""
-  step "I fill in \"family_member_last_name\" with \"#{parent_last_name}\""
+When /^I fill in the form with an existing parent's name$/ do
+  step "I fill in \"family_member_first_name\" with \"#{@family_card.parent_first_name}\""
+  step "I fill in \"family_member_last_name\" with \"#{@family_card.parent_last_name}\""
 end
 
 When /^I follow the parent's name$/ do

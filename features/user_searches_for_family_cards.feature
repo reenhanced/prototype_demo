@@ -5,7 +5,8 @@ Feature: Search for card
 
   Background:
     Given I am logged in
-    And I have 3 family cards
+    And I have 2 family cards
+    And I have a family card with parent "Thor Hammerstein"
     And I am on the search family cards page
     Then I should see "Prospect Search"
 
@@ -26,15 +27,18 @@ Feature: Search for card
     Then I should see the parent's name
 
   Scenario: User searches for a family card with loose matching terms
-    When I fill in the form with an existing parent's name lowercased
+    When I fill in "family_member_first_name" with "thor"
+    And I fill in "family_member_last_name" with "hammerstein"
     And I press "Search Prospect Records"
     Then I should see the parent's name
     Given I am on the search family cards page
-    When I fill in the form with the start of an existing parent's name
+    When I fill in "family_member_first_name" with "Tho"
+    And I fill in "family_member_last_name" with "Ham"
     And I press "Search Prospect Records"
     Then I should see the parent's name
     Given I am on the search family cards page
-    When I fill in the form with the start of an existing parent's name lowercased
+    When I fill in "family_member_first_name" with "tho"
+    And I fill in "family_member_last_name" with "ham"
     And I press "Search Prospect Records"
     Then I should see the parent's name
 
