@@ -16,8 +16,8 @@ Feature: User adds family member to family card
     Then the new family member form should be visible
     When I select "Mother" from "family_member_relationship"
     And I fill in the following:
-      | family_member_first_name | Judy    |
-      | family_member_last_name  | Garland |
+      | family_member_first_name | Judy                    |
+      | family_member_last_name  | Garland                 |
       | family_member_phone      | (911) 555-1212          |
       | family_member_email      | bobby.jones@example.com |
       | family_member_address1   | 123 Easy St             |
@@ -47,5 +47,5 @@ Feature: User adds family member to family card
     Given I am logged in as "jimmy.buffet@example.com"
     And I have 1 family card
     When I am on another user's family card page
-    Then I should not see "#new_family member"
+    Then I should not see the new family member form element
     And I should not see "Add Family Member"

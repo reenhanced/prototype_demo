@@ -7,6 +7,7 @@ class @FamilyCard
   @_initializeForms: ->
     if(@newStudent)
       @newStudent.find('#use_default_parent').on('click', {modelType: 'student'}, @_copyParentAddressFor)
+
     if(@newFamilyMember)
       @newFamilyMember.find('#use_default_family_member').on('click', {modelType: 'family_member'}, @_copyParentAddressFor)
 

@@ -4,7 +4,7 @@
 
   .span5
     .controls
-      = f.select :relationship, FamilyMember::RELATIONSHIPS.collect {|relationship| [relationship, relationship]}
+      = f.select :relationship, FamilyMember::RELATIONSHIPS
     .controls.controls-row
       = f.text_field :first_name, placeholder: FamilyMember.human_attribute_name('first_name'), class: 'small'
       = f.text_field :last_name, placeholder: FamilyMember.human_attribute_name('last_name'), class: 'small'

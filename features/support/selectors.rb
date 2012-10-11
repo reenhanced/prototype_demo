@@ -4,7 +4,7 @@ module Selectors
       when /the popup modal/i                     then "body.modal-open"
       when /the new student form/i                then "#new-student"
       when /the student listing/i                 then "#all-students"
-      when /the new family member form/i          then "#new-family-member"
+      when /the new family member form/i          then "#new_family_member"
       when /the family member listing/i           then "#all-family-members"
       when /the new call log form/i               then "#new_call_log"
       when /the new call log contacts/i           then "#call_log_contact_id"
