@@ -6,7 +6,9 @@ ENV['LANGUAGE'] = ENV['LANG'] = ENV['LC_ALL'] = "en_US.UTF-8"
 include_recipe "postgresql::server"
 
 include_recipe "apt"
-include_recipe "rvm"
+include_recipe "rvm::user"
+include_recipe "rvm::vagrant"
+include_recipe "vim"
 
 bash "install dependencies" do
   user 'root'

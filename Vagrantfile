@@ -68,10 +68,6 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks", "cookbooks.local"]
-    chef.add_recipe('apt')
-    chef.add_recipe('rvm::user')
-    chef.add_recipe('rvm::vagrant')
-    chef.add_recipe('vim')
     chef.add_recipe('bridgeway_app')
 
     chef.json = {
