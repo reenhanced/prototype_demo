@@ -10,6 +10,7 @@ describe Ability do
     it { should_not be_able_to(:destroy, User.new) }
 
     it { should_not be_able_to(:create, Qualifier.new) }
+    it { should_not be_able_to(:update, Qualifier.new) }
     it { should_not be_able_to(:destroy, Qualifier.new) }
   end
 
@@ -61,6 +62,10 @@ describe Ability do
       it { should be_able_to(:manage, my_family_member) }
 
       it { should_not be_able_to(:manage, your_family_member) }
+    end
+
+    context "Qualifier" do
+      it { should be_able_to(:read, Qualifier.new) }
     end
 
   end

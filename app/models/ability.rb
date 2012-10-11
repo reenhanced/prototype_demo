@@ -20,7 +20,11 @@ class Ability
   end
 
   def sales_abilities
-    
+    can :manage, FamilyCard, :user_id => @user.id
+    can :manage, FamilyMember, :family_card => { :user_id => @user.id }
+
+    can :read, FamilyCard
+    can :read, Qualifier
   end
 
   def guest_abilities
