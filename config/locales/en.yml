@@ -75,6 +75,7 @@ en:
       parent_zip_code:    "Zip Code"
     add_new_family_member:  "Add family member"
     add_new_student:  "Add student"
+    all_parents:     "All family members"
     all_students:     "All students"
     create_student:   "Create Student"
     default_student:  "Default Student"
@@ -105,6 +106,11 @@ en:
     prospect_not_found:       "No prospects were found."
     search_prospect_records:  "Search Prospect Records"
     try_another_search:       "Try another search?"
+  parent:
+    actions:
+      create: "Create Family Member"
+    headings:
+      new: "New Family Member"
   student:
     actions:
       create: "Create Student"

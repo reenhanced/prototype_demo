@@ -18,9 +18,15 @@ Feature: User adds parent to family card
     And I fill in the following:
       | parent_first_name | Judy    |
       | parent_last_name  | Garland |
-    And I press "Add Family Member"
+      | parent_phone      | (911) 555-1212          |
+      | parent_email      | bobby.jones@example.com |
+      | parent_address1   | 123 Easy St             |
+      | parent_address2   | Apt. 2                  |
+      | parent_city       | Los Angelos             |
+      | parent_zip_code   | 90210                   |
+    And I press "Create Family Member"
     Then the parent listing should be visible
-    And the family card should have 1 parent
+    And the family card should have 2 parents
     And I should see the parent's information
 
   @javascript
@@ -34,7 +40,7 @@ Feature: User adds parent to family card
     Then the family card's parent fields should not be filled in
     And the family card's parent fields should not be disabled
     When I check "Same as family card"
-    And I press "Add Family Member"
+    And I press "Create Family Member"
     Then I should see the parent's information with the default parent's contact info
 
   Scenario: User tries to add a parent to a family card they don't own

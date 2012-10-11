@@ -7,8 +7,9 @@ end
 Then /^I should( not)? see the parent's information( with the default parent's contact info)?$/ do |negator, matches_default_parent|
   @family_card ||= FamilyCard.last
   @family_card.reload
-  parent         = @family_card.parents.last
-  new_parent_address = "*#{parent.address1}*#{parent.address2}*#{parent.city}, #{parent.state} #{parent.zip_code}*"
+
+  parent                 = @family_card.parents.last
+  parent_address         = "*#{parent.address1}*#{parent.address2}*#{parent.city}, #{parent.state} #{parent.zip_code}*"
   default_parent_address = "*#{@family_card.parent_address1}*#{@family_card.parent_address2}*#{@family_card.parent_city}, #{@family_card.parent_state} #{@family_card.parent_zip_code}*"
 
   if matches_default_parent
@@ -21,7 +22,7 @@ Then /^I should( not)? see the parent's information( with the default parent's c
     steps %{
       Then I should see the following table rows:
         | First Name           | Last Name           | Email           | Phone           | Address           |
-        | #{parent.first_name} | #{parent.last_name} | #{parent.email} | #{parent.phone} | #{new_parent_address} |
+        | #{parent.first_name} | #{parent.last_name} | #{parent.email} | #{parent.phone} | #{parent_address} |
     }
   end
 end

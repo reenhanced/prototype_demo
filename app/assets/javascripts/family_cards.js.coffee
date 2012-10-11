@@ -4,33 +4,36 @@ class @FamilyCard
       @newCallLog.find('#call_log_contact_id').change(@syncContactIdandContactType)
       @newCallLog.find('[id*=call_log_recorded_at_]').change(@updateCallLogDateAndTime)
 
-  @_initializeStudentForm: ->
+  @_initializeStudentAndParentForms: ->
     if(@newStudent)
-      @newStudent.find('#use_default_parent').click(@_copyParentAddressToStudent)
+      @newStudent.find('#use_default_parent').on('click', {modelType: 'student'}, @_copyParentAddressFor)
+    if(@newParent)
+      @newParent.find('#use_default_parent').on('click', {modelType: 'parent'}, @_copyParentAddressFor)
 
-  @_copyParentAddressToStudent: ->
+  @_copyParentAddressFor: (event) ->
     checkbox = this
-    $.each FamilyCard.parentStudentFieldMap(), (parent_data_id, student_field_id) ->
+    modelType = event.data.modelType
+    $.each FamilyCard.parentFieldMapFor(modelType), (parent_data_id, model_field_id) ->
       parent_data_element = $(parent_data_id)
-      student_field       = $(student_field_id)
+      model_field       = $(model_field_id)
       if (checkbox.checked)
         if (parent_data_element)
-          student_field.val(parent_data_element.html())
-          student_field.prop('disabled', 'disabled')
+          model_field.val(parent_data_element.html())
+          model_field.prop('disabled', 'disabled')
       else
         if (parent_data_element)
-          student_field.val('')
-          student_field.prop('disabled', '')
+          model_field.val('')
+          model_field.prop('disabled', '')
 
-  @parentStudentFieldMap: ->
+  @parentFieldMapFor: (modelType) ->
       # this maps the id of the parent's data to the input on the new student form
       return {
-        'dl.contact dd.email':                          '#student_email',
-        'dl.contact dd.phone':                          '#student_phone',
-        'dl.address dd address.adr .street-address':    '#student_address1',
-        'dl.address dd address.adr .extended-address':  '#student_address2',
-        'dl.address dd address.adr .locality':          '#student_city',
-        'dl.address dd address.adr .postal-code':       '#student_zip_code'
+        'dl.contact dd.email':                          "##{modelType}_email",
+        'dl.contact dd.phone':                          "##{modelType}_phone",
+        'dl.address dd address.adr .street-address':    "##{modelType}_address1",
+        'dl.address dd address.adr .extended-address':  "##{modelType}_address2",
+        'dl.address dd address.adr .locality':          "##{modelType}_city",
+        'dl.address dd address.adr .postal-code':       "##{modelType}_zip_code"
       }
 
   @syncContactIdandContactType: ->
@@ -57,9 +60,10 @@ class @FamilyCard
 
   @init: ->
     this.newStudent  = $('#new_student')
+    this.newParent   = $('#new_parent')
     this.newCallLog = $('#new_call_log')
     this._initializeCallLog()
-    this._initializeStudentForm()
+    this._initializeStudentAndParentForms()
 
   @callLogsUpdated: ->
     $('ul.nav.nav-tabs li a[href=#all-calls]').click()

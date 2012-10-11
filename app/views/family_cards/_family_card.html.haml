@@ -34,6 +34,10 @@
           %i.icon-list
           = t('family_card.all_students', default: 'All students')
       %li
+        %a{ href: '#all-parents', :'data-toggle' => 'tab'}
+          %i.icon-list
+          = t('family_card.all_parents', default: 'All parents')
+      %li
         %a{ href: '#all-calls', :'data-toggle' => 'tab'}
           %i.icon-bullhorn
           = t('call_log.all_calls', default: 'All Calls')
@@ -56,6 +60,8 @@
     - unless family_card_search_made?
       .tab-pane#all-students
         = render 'students/students_table', family_card: family_card
+      .tab-pane#all-parents
+        = render 'parents/parents_table', family_card: family_card
       .tab-pane#all-calls
         = render 'call_logs/call_logs_table', family_card: family_card
       .tab-pane#new-student
