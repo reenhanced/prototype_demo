@@ -17,6 +17,8 @@ module NavigationHelpers
     when /the sign in page/
       '/login'
 
+    when /the search screen/ then search_family_cards_path
+
     when /the family card's page/
       @family_card ||= FamliyCard.last
       raise "No @family_card exists, please reference features/step_definitions/family_card_steps.rb" unless @family_card
