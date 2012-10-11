@@ -17,10 +17,10 @@ def create_unconfirmed_user
   visit '/logout'
 end
 
-def create_user(email=nil)
-  create_visitor(email)
-  delete_user(email)
-  @user = create(:user, email: @visitor[:email])
+def create_user(options = {})
+  create_visitor(options[:email])
+  delete_user(options[:email])
+  @user = create(:user, options[:role], email: @visitor[:email])
 end
 
 def delete_user(email=nil)
@@ -57,12 +57,16 @@ Given /^I am logged in$/ do
 end
 
 Given /^I am logged in as "([^"]*)"$/ do |user_email|
-  create_user(user_email)
+  create_user(:email => user_email)
   sign_in
 end
 
 Given /^I exist as a user$/ do
   create_user
+end
+
+Given /^I exist as an admin$/ do
+  create_user(:role => :admin)
 end
 
 Given /^I do not exist as a user$/ do
