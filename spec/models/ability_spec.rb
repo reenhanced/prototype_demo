@@ -13,7 +13,7 @@ describe Ability do
     it { should_not be_able_to(:destroy, Qualifier.new) }
   end
 
-  context "guest user" do
+  context "for guest users" do
     let(:user) { User.new }
 
     context "FamilyCard" do
@@ -33,7 +33,7 @@ describe Ability do
     it_behaves_like "cannot perform admin abilities"
   end
   
-  context "sales user" do
+  context "for sales users" do
     let(:user) { build(:user, :sales) }
 
     it_behaves_like "cannot perform admin abilities"
@@ -65,7 +65,7 @@ describe Ability do
 
   end
 
-  context "admin user" do
+  context "for admin users" do
     let(:user) { build(:user, :admin) }
 
     it { should be_able_to(:manage, :all) }
