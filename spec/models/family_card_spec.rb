@@ -96,7 +96,7 @@ describe FamilyCard do
       end
 
       it "returns all family members that aren't students that are associated with the family card" do
-        subject.family_members.should have(3).family_members
+        subject.family_members.should have(5).family_members
         subject.students.each {|student| subject.family_members.should_not include(student) }
       end
     end
