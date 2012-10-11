@@ -4,11 +4,11 @@ class @FamilyCard
       @newCallLog.find('#call_log_contact_id').change(@syncContactIdandContactType)
       @newCallLog.find('[id*=call_log_recorded_at_]').change(@updateCallLogDateAndTime)
 
-  @_initializeStudentAndParentForms: ->
+  @_initializeForms: ->
     if(@newStudent)
       @newStudent.find('#use_default_parent').on('click', {modelType: 'student'}, @_copyParentAddressFor)
-    if(@newParent)
-      @newParent.find('#use_default_parent').on('click', {modelType: 'parent'}, @_copyParentAddressFor)
+    if(@newFamilyMember)
+      @newFamilyMember.find('#use_default_family_member').on('click', {modelType: 'family_member'}, @_copyParentAddressFor)
 
   @_copyParentAddressFor: (event) ->
     checkbox = this
@@ -60,10 +60,10 @@ class @FamilyCard
 
   @init: ->
     this.newStudent  = $('#new_student')
-    this.newParent   = $('#new_parent')
+    this.newFamilyMember = $('#new_family_member')
     this.newCallLog = $('#new_call_log')
     this._initializeCallLog()
-    this._initializeStudentAndParentForms()
+    this._initializeForms()
 
   @callLogsUpdated: ->
     $('ul.nav.nav-tabs li a[href=#all-calls]').click()

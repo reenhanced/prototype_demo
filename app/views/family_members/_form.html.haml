@@ -1,0 +1,28 @@
+%h2= t("family_member.headings.new", default: 'New Family Member')
+= form_for [@family_card, @family_member], remote: true do |f|
+  #family_member-errors
+
+  .span5
+    .controls
+      = f.select :relationship, FamilyMember::RELATIONSHIPS.collect {|relationship| [relationship, relationship]}
+    .controls.controls-row
+      = f.text_field :first_name, placeholder: FamilyMember.human_attribute_name('first_name'), class: 'small'
+      = f.text_field :last_name, placeholder: FamilyMember.human_attribute_name('last_name'), class: 'small'
+
+  .span6
+    .controls.controls-row
+      = label_tag 'use_default_family_member', class: 'checkbox' do
+        = check_box_tag 'use_default_family_member'
+        = t('family_member.same_as_family_card', default: 'Same as family card')
+    .controls.controls-row
+      = f.text_field :email, placeholder: FamilyMember.human_attribute_name('email'), class: 'span3'
+      = f.text_field :phone, placeholder: FamilyMember.human_attribute_name('phone'), class: 'span3'
+    .controls.controls-row
+      = f.text_field :address1, placeholder: FamilyMember.human_attribute_name('address1'), class: 'span3'
+      = f.text_field :address2, placeholder: FamilyMember.human_attribute_name('address2'), class: 'span3'
+    .controls.controls-row
+      = f.text_field :city, placeholder: FamilyMember.human_attribute_name('city'), class: 'span3'
+      = f.text_field :zip_code, placeholder: FamilyMember.human_attribute_name('zip_code'), class: 'span2'
+
+  .form-actions.clearfix
+    = f.submit t('family_member.actions.create'), class: 'btn btn-primary'

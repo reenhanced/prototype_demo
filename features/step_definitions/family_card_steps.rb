@@ -66,9 +66,10 @@ Then /^I should own the family card$/ do
   @family_card.user.should == @user
 end
 
-Then /^the family card's (student|parent) fields should( not)? be filled in$/ do |model_type, negator|
+Then /^the family card's (student|family member) fields should( not)? be filled in$/ do |model_type, negator|
   @family_card ||= FamilyCard.last
   @student = @family_card.students.last || @family_card.students.build
+  model_type = model_type.parameterize('_')
 
   if negator
     step %{the "#{model_type}_email" field should contain ""}
@@ -87,7 +88,8 @@ Then /^the family card's (student|parent) fields should( not)? be filled in$/ do
   end
 end
 
-Then /^the family card's (student|parent) fields should( not)? be disabled$/ do |model_type, negator|
+Then /^the family card's (student|family member) fields should( not)? be disabled$/ do |model_type, negator|
+  model_type = model_type.parameterize('_')
   step %{the "#{model_type}_email" field should#{negator} be disabled}
   step %{the "#{model_type}_phone" field should#{negator} be disabled}
   step %{the "#{model_type}_address1" field should#{negator} be disabled}
