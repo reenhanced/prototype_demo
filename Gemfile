@@ -36,6 +36,7 @@ group :staging do
 end
 
 group :development, :test do
+  gem 'heroku'
   gem 'capybara-webkit'
   gem 'debugger'
   gem 'factory_girl_rails'
