@@ -26,8 +26,4 @@ class User < ActiveRecord::Base
   def is?(role)
     roles.include?(role.to_s)
   end
-
-  def owns?(object)
-    object.respond_to?(:user) and object.user == self
-  end
 end
