@@ -1,6 +1,6 @@
 .well.prospect-card
   .navbar
-    - if current_user.owns?(family_card)
+    - if current_user.owns?(family_card) or current_user.is?(:admin)
       = link_to_unless_current t('family_card.actions.edit'), edit_family_card_path(family_card), class: 'btn btn-small pull-right'
     %h3= t('family_card.family_info')
   %dl.dl-horizontal.contact.span5

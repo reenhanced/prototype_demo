@@ -8,11 +8,17 @@
       %a.brand{ href: "#"}= t('family_card.family_of', parent_name: @family_card.default_parent)
       .nav-collapse
         %ul.nav.pull-right
-          - if current_user.owns?(@family_card)
+          - if current_user.owns?(@family_card) or current_user.is?(:admin)
             %li
               %a{ href: "#", :'data-toggle' => "modal", :'data-target' =>"#new_call_log" }
                 %i.icon-plus
                 = t('family_card.add_call_log', default: 'Add call log')
+          - if current_user.is?(:admin)
+            %li.divider-vertical
+            %li
+              = link_to family_card_audits_path do
+                %i.icon-road
+                = t('family_card.show_audit_trail')
 
 = render 'call_logs/form', family_card: @family_card, call: @call
 = render @family_card

@@ -1,12 +1,14 @@
 Bridgeway::Application.routes.draw do
 
   resources :family_cards, :except => [:index, :destroy] do
-    get  'search', :on => :collection
+    get 'search', :on => :collection
     resources :students
     resources :family_members
     resources :call_logs
     resources :qualifiers
   end
+
+  match 'family_cards/:id/audits' => 'family_cards/audits#show', :as => :family_card_audits
 
   match 'dashboard' => 'family_cards#index'
 

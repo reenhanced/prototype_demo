@@ -43,6 +43,7 @@ en:
       user:
         email:     "Email"
         password:  "Password"
+  back_to: "Back to %{location}"
   call_log:
     all_calls:        "All Calls"
     add_call_log:     "Add call log"
@@ -59,6 +60,7 @@ en:
     actions:
       create: "Create Family Card"
       edit: "Edit Family Card"
+      update: "Update Family Card"
     add_new_family_member:  "Add family member"
     add_new_student:        "Add student"
     all_family_members:     "All family members"
@@ -81,6 +83,7 @@ en:
       parent_phone:       "Parent/Guardian Phone"
       parent_state:       "State"
       parent_zip_code:    "Zip Code"
+    show_audit_trail:     "Show audit trail"
     student_info:           "Student Info"
   family_member:
     actions:

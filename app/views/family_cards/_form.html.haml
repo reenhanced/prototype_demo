@@ -30,4 +30,7 @@
         = f.text_field :parent_zip_code, placeholder: t('family_card.placeholders.parent_zip_code'), class: 'inline input-small'
 
   .form-actions.clearfix
-    = f.submit t('family_card.actions.create'), class: 'btn btn-primary'
+    - if @family_card.new_record?
+      = f.submit t('family_card.actions.create'), class: 'btn btn-primary'
+    - else
+      = f.submit t('family_card.actions.update'), class: 'btn btn-primary'
