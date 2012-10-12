@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :family_member do
+  factory :family_member, aliases: [:default_parent] do
     family_card
     email      { Faker::Internet.email }
     phone      { Faker::PhoneNumber.phone_number }
@@ -22,7 +22,9 @@ FactoryGirl.define do
   factory :student, parent: :family_member, class: Student do
   end
 
-  factory :parent, parent: :family_member, class: Parent, aliases: [:default_parent] do
+  factory :parent, parent: :family_member do
+    relationship "Mother"
+    type "FamilyMember"
   end
 
   factory :family_card do

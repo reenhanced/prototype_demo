@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009192129) do
+ActiveRecord::Schema.define(:version => 20121011173052) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20121009192129) do
   add_index "family_card_qualifiers", ["qualifier_id"], :name => "index_family_card_qualifiers_on_qualifier_id"
 
   create_table "family_cards", :force => true do |t|
-    t.integer  "primary_parent_id"
+    t.integer  "default_parent_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "user_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20121009192129) do
   add_index "family_cards", ["user_id"], :name => "index_family_cards_on_user_id"
 
   create_table "family_members", :force => true do |t|
-    t.string   "type"
+    t.string   "type",                         :default => "FamilyMember"
     t.integer  "family_card_id"
     t.string   "first_name"
     t.string   "last_name"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20121009192129) do
     t.date     "birthday"
     t.integer  "graduation_year"
     t.string   "relationship"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
   end
 
   add_index "family_members", ["family_card_id"], :name => "index_family_members_on_family_card_id"
