@@ -6,5 +6,5 @@
       %th= CallLog.human_attribute_name('message')
       %th &nbsp;
   %tbody
-    - family_card.calls.each do |call|
-      = render 'call_logs/call_row', call: call
+    - family_card.call_logs.each do |call_log|
+      = render 'call_logs/call_row', call_log: call_log

@@ -4,10 +4,10 @@ Feature: User adds call log to family card
   I can follow a link from the family card page and fill out a call log form
 
   Background:
-    Given I am logged in
+    Given I have initial qualifiers
+    And I am logged in
     And today is "21 Feb 2013" at "1:00pm"
     And I have 1 call log
-    And I have initial qualifiers
 
   @javascript
   Scenario: User adds a call log to one of their family cards

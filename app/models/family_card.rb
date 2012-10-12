@@ -3,7 +3,7 @@ class FamilyCard < ActiveRecord::Base
   belongs_to :default_parent, :class_name => 'FamilyMember', :foreign_key => :default_parent_id, :autosave => true
   has_many   :family_members, :autosave => true, :dependent => :nullify
   has_many   :students, :autosave => true, :dependent => :nullify
-  has_many   :calls, :class_name => 'CallLog', :autosave => true, :dependent => :destroy
+  has_many   :call_logs, :dependent => :destroy
   has_many   :family_card_qualifiers
   has_many   :qualifiers, :through => :family_card_qualifiers
 

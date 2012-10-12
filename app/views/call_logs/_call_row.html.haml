@@ -1,8 +1,8 @@
-- if call and call.id
+- unless call_log.new_record?
   %tr
-    %td= call.recorded_at
-    %td= call.contact.name
-    %td= call.message.html_safe
+    %td= call_log.recorded_at
+    %td= call_log.contact.name
+    %td= call_log.message.html_safe
     %td
-      = link_to t('call_log.view_more_details', default: 'more details'), '#', class: 'btn btn-mini btn-info', :'data-toggle' => "modal", :'data-target' => "#call_log_#{call.id}_details"
-      = render 'call_logs/details', call: call
+      = link_to t('call_log.view_more_details', default: 'more details'), '#', class: 'btn btn-mini btn-info', :'data-toggle' => "modal", :'data-target' => "#call_log_#{call_log.id}_details"
+      = render 'call_logs/details', call_log: call_log
