@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_filter :find_family_card
   before_filter :find_student, except: [:create]
+  authorize_resource
 
   respond_to :js
 

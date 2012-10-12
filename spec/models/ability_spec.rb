@@ -14,8 +14,8 @@ describe Ability do
     it { should_not be_able_to(:destroy, Qualifier.new) }
   end
 
-  context "for guest users" do
-    let(:user) { User.new }
+  context "for visitors" do
+    let(:user) { nil }
 
     context "FamilyCard" do
       it { should_not be_able_to(:read, FamilyCard.new) }
@@ -31,18 +31,24 @@ describe Ability do
       it { should_not be_able_to(:destroy, FamilyMember.new) }
     end
 
+    context "CallLog" do
+      it { should_not be_able_to(:create, CallLog) }
+      it { should_not be_able_to(:read, CallLog) }
+      it { should_not be_able_to(:update, CallLog) }
+      it { should_not be_able_to(:destroy, CallLog) }
+    end 
+
     it_behaves_like "cannot perform admin abilities"
   end
   
-  context "for sales users" do
-    let(:user) { build(:user, :sales) }
+  context "for users without role" do
+    let(:user) { build(:user) }
+    let(:my_family_card)     { create(:family_card, user: user) }
+    let(:your_family_card)   { create(:family_card, user: create(:user)) }
 
     it_behaves_like "cannot perform admin abilities"
 
     context "FamilyCard" do
-      let(:my_family_card)   { create(:family_card, user: user) }
-      let(:your_family_card) { create(:family_card, user: create(:user, :sales)) }
-
       it { should be_able_to(:manage, FamilyCard.new) }
 
       it { should be_able_to(:manage, my_family_card) }
@@ -54,14 +60,24 @@ describe Ability do
     end
 
     context "FamilyMember" do
-      let(:my_family_card)     { create(:family_card, user: user) }
       let(:my_family_member)   { my_family_card.family_members.first }
-      let(:your_family_card)   { create(:family_card, user: create(:user, :sales)) }
       let(:your_family_member) { your_family_card.family_members.first }
 
       it { should be_able_to(:manage, my_family_member) }
 
       it { should_not be_able_to(:manage, your_family_member) }
+    end
+
+    context "CallLog" do
+      let(:my_call_log)   { create(:call_log, family_card: my_family_card) }
+      let(:your_call_log) { create(:call_log, family_card: your_family_card) }
+
+      it { should be_able_to(:manage, my_call_log) }
+
+      it { should_not be_able_to(:read, your_call_log) }
+      it { should_not be_able_to(:create, your_call_log) }
+      it { should_not be_able_to(:update, your_call_log) }
+      it { should_not be_able_to(:destroy, your_call_log) }
     end
 
     context "Qualifier" do

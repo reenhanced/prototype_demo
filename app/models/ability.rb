@@ -2,31 +2,39 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    @user = user || User.new
+    @user = user
 
-    guest_abilities
-    @user.roles.each { |role| abilities_for(role) }
+    visitor_abilities
+
+    if @user.present?
+      any_user_abilities
+      @user.roles.each { |role| abilities_for(role) }
+    end
   end
 
-  protected
+  private
 
   def abilities_for(role)
     case role.to_sym
     when :admin
-      can :manage, :all
-    when :sales
-      sales_abilities
+      admin_abilities
     end
   end
 
-  def sales_abilities
-    can :manage, FamilyCard, :user_id => @user.id
+  def admin_abilities
+    can :manage, :all
+  end
+
+  def any_user_abilities
+    can :manage, FamilyCard,   :user_id => @user.id
     can :manage, FamilyMember, :family_card => { :user_id => @user.id }
+    can :manage, CallLog,      :family_card => { :user_id => @user.id }
 
     can :read, FamilyCard
     can :read, Qualifier
   end
 
-  def guest_abilities
+  def visitor_abilities
+    can :read, User
   end
 end

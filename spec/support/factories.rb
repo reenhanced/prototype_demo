@@ -4,12 +4,6 @@ FactoryGirl.define do
     password 'fodrizzle'
     password_confirmation 'fodrizzle'
 
-    trait :sales do
-      after(:build) do |user|
-        user.roles = ['sales']
-      end
-    end
-
     trait :admin do
       after(:build) do |user|
         user.roles = ['admin']

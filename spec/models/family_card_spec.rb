@@ -6,7 +6,7 @@ describe FamilyCard do
   it { should have_many(:family_members) }
   it { should have_many(:students) }
   it { should have_many(:parents) }
-  it { should have_many(:calls).class_name('CallLog') }
+  it { should have_many(:call_logs) }
   it { should have_many(:family_card_qualifiers) }
   it { should have_many(:qualifiers) }
 

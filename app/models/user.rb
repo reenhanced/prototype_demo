@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :roles
 
-  ROLES = %w[admin sales]
+  ROLES = %w[admin]
 
   # roles are stored in a single column using a bitmask as described here:
   # https://github.com/ryanb/cancan/wiki/Role-Based-Authorization

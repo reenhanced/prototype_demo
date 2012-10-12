@@ -1,5 +1,5 @@
 class FamilyCardsController < ApplicationController
-  before_filter :find_family_card, :except => [:index, :new, :create, :search]
+  load_and_authorize_resource :except => :create
 
   def search
     @family_cards = FamilyCard.find_all_from_search(params[:family_member])
@@ -9,16 +9,17 @@ class FamilyCardsController < ApplicationController
   def show
     @family_members = @family_card.family_members
     @student        = @family_card.students.build
-    @call           = @family_card.calls.build
+    @call_log       = @family_card.call_logs.build
   end
 
   def new
-    @family_card = FamilyCard.new
   end
 
   def create
-    @family_card      = FamilyCard.new(family_card_params)
+    @family_card = FamilyCard.new(family_card_params)
     @family_card.user = current_user
+
+    authorize! :create, @family_card
 
     if @family_card.save
       redirect_to @family_card, :notice => "Successfully created family card."
@@ -39,10 +40,6 @@ class FamilyCardsController < ApplicationController
   end
 
   private
-  def find_family_card
-    @family_card = FamilyCard.find(params[:id])
-  end
-
   def family_card_params
     params.require(:family_card).permit(:parent_first_name, :parent_last_name,
                                         :parent_phone,      :parent_email,
