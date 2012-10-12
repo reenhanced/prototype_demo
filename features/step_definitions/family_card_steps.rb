@@ -66,32 +66,34 @@ Then /^I should own the family card$/ do
   @family_card.user.should == @user
 end
 
-Then /^the family card's student fields should( not)? be filled in$/ do |negator|
+Then /^the family card's (student|family member) fields should( not)? be filled in$/ do |model_type, negator|
   @family_card ||= FamilyCard.last
   @student = @family_card.students.last || @family_card.students.build
+  model_type = model_type.parameterize('_')
 
   if negator
-    step %{the "student_email" field should contain ""}
-    step %{the "student_phone" field should contain ""}
-    step %{the "student_address1" field should contain ""}
-    step %{the "student_address2" field should contain ""}
-    step %{the "student_city" field should contain ""}
-    step %{the "student_zip_code" field should contain ""}
+    step %{the "#{model_type}_email" field should contain ""}
+    step %{the "#{model_type}_phone" field should contain ""}
+    step %{the "#{model_type}_address1" field should contain ""}
+    step %{the "#{model_type}_address2" field should contain ""}
+    step %{the "#{model_type}_city" field should contain ""}
+    step %{the "#{model_type}_zip_code" field should contain ""}
   else
-    step %{the "student_email" field should contain "#{@student.email}"}
-    step %{the "student_phone" field should contain "#{@student.phone}"}
-    step %{the "student_address1" field should contain "#{@student.address1}"}
-    step %{the "student_address2" field should contain "#{@student.address2}"}
-    step %{the "student_city" field should contain "#{@student.city}"}
-    step %{the "student_zip_code" field should contain "#{@student.zip_code}"}
+    step %{the "#{model_type}_email" field should contain "#{@student.email}"}
+    step %{the "#{model_type}_phone" field should contain "#{@student.phone}"}
+    step %{the "#{model_type}_address1" field should contain "#{@student.address1}"}
+    step %{the "#{model_type}_address2" field should contain "#{@student.address2}"}
+    step %{the "#{model_type}_city" field should contain "#{@student.city}"}
+    step %{the "#{model_type}_zip_code" field should contain "#{@student.zip_code}"}
   end
 end
 
-Then /^the family card's student fields should( not)? be disabled$/ do |negator|
-  step %{the "student_email" field should#{negator} be disabled}
-  step %{the "student_phone" field should#{negator} be disabled}
-  step %{the "student_address1" field should#{negator} be disabled}
-  step %{the "student_address2" field should#{negator} be disabled}
-  step %{the "student_city" field should#{negator} be disabled}
-  step %{the "student_zip_code" field should#{negator} be disabled}
+Then /^the family card's (student|family member) fields should( not)? be disabled$/ do |model_type, negator|
+  model_type = model_type.parameterize('_')
+  step %{the "#{model_type}_email" field should#{negator} be disabled}
+  step %{the "#{model_type}_phone" field should#{negator} be disabled}
+  step %{the "#{model_type}_address1" field should#{negator} be disabled}
+  step %{the "#{model_type}_address2" field should#{negator} be disabled}
+  step %{the "#{model_type}_city" field should#{negator} be disabled}
+  step %{the "#{model_type}_zip_code" field should#{negator} be disabled}
 end
