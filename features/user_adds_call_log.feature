@@ -20,7 +20,7 @@ Feature: User adds call log to family card
     Then the new call log form should be visible within the popup modal
     And I should see "Spoke to"
     When I select the first member from the new call log contacts
-    Then the "call_log_contact_type" hidden field should contain "Parent"
+    Then the "call_log_contact_type" hidden field should contain "FamilyMember"
     When I check the first qualifier
     And I fill in "call_log_message" with "I am batman."
     And I press "Save Entry"

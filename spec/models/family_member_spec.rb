@@ -18,6 +18,21 @@ describe FamilyMember do
 
   it { should be_audited.associated_with(:family_card) }
 
+  context "class methods" do
+    let(:family_card) { create(:family_card) }
+    let(:student)     { create(:student, family_card: family_card) }
+
+    describe ".non_students" do
+      it "returns an array of family member's excluding students" do
+        student = create(:student, family_card: family_card)
+        mother  = create(:parent, relationship: 'Mother', family_card: family_card)
+        father  = create(:parent, relationship: 'Father', family_card: family_card)
+
+        FamilyMember.non_students.should have(3).family_members
+        FamilyMember.non_students.should_not include(student)
+      end
+    end
+  end
   context "instance methods" do
     subject { create(:family_member, :first_name => "Jimmy", :last_name => "Buffet") }
 

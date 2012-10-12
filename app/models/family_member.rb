@@ -10,6 +10,11 @@ class FamilyMember < ActiveRecord::Base
                    'Paternal Grandmother', 'Paternal Grandfather', 'Maternal Mother',
                    'Maternal Father', 'Step Mother', 'Step Father', 'Foster Mother',
                    'Foster Father', 'Staff']
+
+  def self.non_students
+    where "type != 'Student'"
+  end
+
   def to_s
     name
   end

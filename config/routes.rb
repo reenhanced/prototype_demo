@@ -3,6 +3,7 @@ Bridgeway::Application.routes.draw do
   resources :family_cards, :except => [:index, :destroy] do
     get  'search', :on => :collection
     resources :students
+    resources :family_members
     resources :call_logs
     resources :qualifiers
   end
@@ -16,5 +17,5 @@ Bridgeway::Application.routes.draw do
     get  'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  root :to => 'family_cards#search'
+  root :to => redirect('/family_cards/search')
 end

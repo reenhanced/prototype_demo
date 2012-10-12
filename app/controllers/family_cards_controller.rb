@@ -9,6 +9,7 @@ class FamilyCardsController < ApplicationController
   def show
     @family_members = @family_card.family_members
     @student        = @family_card.students.build
+    @family_member  = @family_card.family_members.build
     @call_log       = @family_card.call_logs.build
   end
 

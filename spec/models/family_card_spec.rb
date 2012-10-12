@@ -2,10 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe FamilyCard do
   it { should belong_to(:user) }
-  it { should belong_to(:default_parent).class_name('Parent') }
+  it { should belong_to(:default_parent).class_name('FamilyMember') }
   it { should have_many(:family_members) }
   it { should have_many(:students) }
-  it { should have_many(:parents) }
   it { should have_many(:call_logs) }
   it { should have_many(:family_card_qualifiers) }
   it { should have_many(:qualifiers) }
@@ -96,10 +95,8 @@ describe FamilyCard do
         subject.reload
       end
 
-      it "returns all students and parents associated with the family card" do
+      it "returns all family members that are associated with the family card" do
         subject.family_members.should have(5).family_members
-        subject.students.each {|student| subject.family_members.should include(student) }
-        subject.parents.each {|parent| subject.family_members.should include(parent) }
       end
     end
 
@@ -110,7 +107,7 @@ describe FamilyCard do
       describe "created by default" do
         let(:family_card) { FamilyCard.new }
 
-        it { should be_an_instance_of(Parent) }
+        it { should be_an_instance_of(FamilyMember) }
       end
 
       describe "maintains relationships" do
