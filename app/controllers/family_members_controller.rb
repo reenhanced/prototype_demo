@@ -2,6 +2,8 @@ class FamilyMembersController < ApplicationController
   before_filter :find_family_card
   before_filter :find_family_member, except: [:create]
 
+  authorize_resource
+
   respond_to :js
 
   def create
@@ -41,8 +43,8 @@ class FamilyMembersController < ApplicationController
 
   def family_member_params
     params.require(:family_member).permit :first_name, :last_name,
-                                    :email,      :phone,
-                                    :address1,   :address2,
-                                    :city,       :state,    :zip_code
+                                          :email,      :phone,
+                                          :address1,   :address2,
+                                          :city,       :state,    :zip_code
   end
 end
