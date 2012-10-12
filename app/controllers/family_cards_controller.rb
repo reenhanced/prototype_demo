@@ -17,7 +17,7 @@ class FamilyCardsController < ApplicationController
   end
 
   def create
-    @family_card = FamilyCard.new(family_card_params)
+    @family_card      = FamilyCard.new(family_card_params)
     @family_card.user = current_user
 
     authorize! :create, @family_card

@@ -6,7 +6,7 @@ class CallLogsController < ApplicationController
   respond_to :js
 
   def create
-    @call_log = @family_card.call_logs.build(call_log_params)
+    @call_log               = @family_card.call_logs.build(call_log_params)
     @call_log.qualifier_ids = params[:qualifier_ids] if params[:qualifier_ids]
 
     if @call_log.save
