@@ -11,4 +11,12 @@ class Audit < Audited::Adapters::ActiveRecord::Audit
       )
     )
   end
+
+  # :nodoc:
+  def inspect
+    association = ''
+    association = " (associated with #{associated_type}[#{associated_id}])" if associated_type.present?
+
+    "\"[id:#{id}] #{action} #{auditable_type}[#{auditable_id}]#{association} by user_id:#{user_id} @ #{created_at} => #{audited_changes.inspect}\""
+  end
 end

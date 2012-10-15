@@ -4,9 +4,10 @@
 en:
   activerecord:
     models:
-      call_log:      "Call Log"
-      family_card:   "Family Card"
-      family_member: "Family Member"
+      call_log:               "Call Log"
+      family_card:            "Family Card"
+      family_member:          "Family Member"
+      family_card_qualifier:  "Qualifier"
     attributes:
       family_member:
         address1:         "Address"
@@ -44,15 +45,16 @@ en:
         email:     "Email"
         password:  "Password"
   audit:
-    action: "Action"
-    associated_changes: "Associated Changes"
-    changed_attribute: "Attribute Changed"
-    changed_attribute_to: "Value"
-    changed_attribute_value_new: "From"
-    changed_attribute_value_old: "To"
-    changed_by: "Changed by: %{user}"
-    changes: "Changes"
-    created_at: "Recorded @ %{datetime}"
+    actions:
+      create: "Created"
+      update: "Updated"
+      destroy: "Deleted"
+    changes:
+      attribute:  "Changed"
+      from:       "From"
+      to:         "To"
+    family_card_qualifier:
+      create: "Added"
   back_to: "Back to %{location}"
   call_log:
     all_calls:        "All Calls"

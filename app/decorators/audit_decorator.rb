@@ -1,12 +1,27 @@
-class FamilyCardDecorator < Draper::Base
-  decorates :"Audited::Adapters::ActiveRecord::Audit"
+class AuditDecorator < Draper::Base
+  decorates :audit
 
-  def audits
-    # start by displaying when the family card was created and the default parent
-
-    #
-
+  def action
+    # "Created Family Card"
+    # "Created Family Card Qualifier" => "Added Qualifer"
+    # "Created Call Log"
+    # Created Family Member
+    presenter.action
   end
+
+  def changes
+    presenter.changes
+  end
+
+  def author
+    audit.user.name || audit.username
+  end
+
+  private
+  def presenter
+    @presenter ||= "AuditPresenter::#{audit.auditable_type}".classify.new(audit)
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #
