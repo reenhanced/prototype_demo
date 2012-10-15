@@ -5,7 +5,7 @@ Feature: User creates a new family card
 
   Scenario: User creates a new family card record
     Given I am logged in
-    And I am on the search family cards page
+    And I am on the search screen
     Then I should not see "Create new record"
     When I press "Search Prospect Records"
     Then I should see "Create new record"

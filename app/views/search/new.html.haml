@@ -1,0 +1,38 @@
+.navbar
+  - if family_card_search_made?
+    = link_to t("create_new_record"), new_family_card_path, class: 'btn pull-right'
+  %h1.page-header= t('search.heading')
+.clearfix
+
+= form_for :family_member, url: search_index_path, html: { id: 'card-search-form', class: 'form-horizontal' } do |form|
+  .control-group
+    = form.label :first_name, class: 'control-label'
+    .controls
+      = form.text_field :first_name, placeholder: t('family_card.placeholders.parent_first_name')
+  .control-group
+    = form.label :last_name, class: 'control-label'
+    .controls
+      = form.text_field :last_name, placeholder: t('family_card.placeholders.parent_last_name')
+  .control-group
+    = form.label :phone, class: 'control-label'
+    .controls
+      = form.text_field :phone, placeholder: t('family_card.placeholders.parent_phone')
+  .control-group
+    = form.label :email, class: 'control-label'
+    .controls
+      = form.text_field :email, placeholder: t('family_card.placeholders.parent_email')
+  .control-group
+    = form.label :address1, class: 'control-label'
+    .controls
+      = form.text_field :address1, placeholder: t('family_card.placeholders.parent_address1')
+  .control-group
+    = form.label :address2, class: 'control-label'
+    .controls
+      = form.text_field :address2, placeholder: t('family_card.placeholders.parent_address2')
+  .control-group
+    = form.label :zip_code, class: 'control-label'
+    .controls
+      = form.text_field :zip_code, placeholder: t('family_card.placeholders.parent_zip_code')
+
+%h2.page-header Search Results
+#results(style="min-height: 200px")
