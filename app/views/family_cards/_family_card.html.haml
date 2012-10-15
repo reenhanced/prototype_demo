@@ -1,4 +1,4 @@
-.well.prospect-card
+= div_for family_card, :class => 'well prospect-card' do
   .navbar
     - if can? :update, family_card
       = link_to_unless_current t('family_card.actions.edit'), edit_family_card_path(family_card), class: 'btn btn-small pull-right'

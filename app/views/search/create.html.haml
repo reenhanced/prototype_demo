@@ -2,3 +2,4 @@
   = render @family_cards
 - else
   %h3= t('search.prospect_not_found')
+  = link_to t("create_new_record"), new_family_card_path, class: 'btn btn-success'

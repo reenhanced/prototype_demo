@@ -11,8 +11,6 @@ class SearchController < ApplicationController
                       FamilyCard.find_all_from_search(params[:family_member])
                     end
 
-    sleep 0.25 #temporary - to actually seet the loading image
-
     respond_to do |format|
       format.js { render :layout => false }
     end

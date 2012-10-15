@@ -1,3 +1,4 @@
+@javascript
 Feature: Search for card
   To view a family's detailed information
   A signed in user
@@ -50,9 +51,17 @@ Feature: Search for card
     Then I should see the family card
     But I should not see "Edit Family Card"
 
-  Scenario: No family cards are found
+  Scenario: Search results are automatically populated via ajax
+    When I fill in the form with an existing parent's name
+    Then I should see the family card
+
+  Scenario: No results when search fields are left blank
     When I press "Search Prospect Records"
-    Then I should see "No prospects were found."
-    When I follow "Try another search?"
-    Then I should see "Prospect Search"
-    And I should not see the parent's name
+    Then I should see "No prospects were found"
+
+  #Scenario: No family cards are found
+    #When I press "Search Prospect Records"
+    #Then I should see "No prospects were found."
+    #When I follow "Try another search?"
+    #Then I should see "Prospect Search"
+    #And I should not see the parent's name

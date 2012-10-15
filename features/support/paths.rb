@@ -18,6 +18,7 @@ module NavigationHelpers
       '/login'
 
     when /the search screen/ then new_search_path
+    when /the search family cards page/ then new_search_path
 
     when /the family card's page/
       @family_card ||= FamliyCard.last

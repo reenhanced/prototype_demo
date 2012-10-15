@@ -97,3 +97,9 @@ Then /^the family card's (student|family member) fields should( not)? be disable
   step %{the "#{model_type}_city" field should#{negator} be disabled}
   step %{the "#{model_type}_zip_code" field should#{negator} be disabled}
 end
+
+Then /I should see all the family cards/ do
+  FamilyCard.all.each do |card|
+    page.should have_selector("#family_card_#{card.id}")
+  end
+end

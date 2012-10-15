@@ -3,9 +3,10 @@ Feature: User creates a new family card
   As a user
   I can follow a link from the search results and fill out a new record form
 
+  @javascript
   Scenario: User creates a new family card record
     Given I am logged in
-    And I am on the search screen
+    And I am on the search family cards page
     Then I should not see "Create new record"
     When I press "Search Prospect Records"
     Then I should see "Create new record"

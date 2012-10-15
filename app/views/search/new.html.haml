@@ -1,6 +1,4 @@
 .navbar
-  - if family_card_search_made?
-    = link_to t("create_new_record"), new_family_card_path, class: 'btn pull-right'
   %h1.page-header= t('search.heading')
 .clearfix
 
@@ -33,6 +31,9 @@
     = form.label :zip_code, class: 'control-label'
     .controls
       = form.text_field :zip_code, placeholder: t('family_card.placeholders.parent_zip_code')
+
+  .form-actions
+    = form.submit t("search.search_prospect_records"), class: 'btn btn-primary'
 
 %h2.page-header Search Results
 #results(style="min-height: 200px")
