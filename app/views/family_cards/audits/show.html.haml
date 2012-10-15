@@ -14,4 +14,19 @@
               %i.icon-chevron-left
               = t('back_to', location: 'family card')
 
-.content
+.container
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        %th= t('audit.action')
+        %th= t('audit.changes')
+        %th= t('audit.changed_by')
+    %tbody
+      - @audits.all.each do |audit|
+        %td
+          %label.label-info= audit.action
+          = t('audit.created_at', datetime: audit.created_at)
+        %td
+          = render "audits/audited_#{audit.action}", audit: audit
+        %td
+          = audit.user.name

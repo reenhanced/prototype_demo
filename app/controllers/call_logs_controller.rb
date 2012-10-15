@@ -1,23 +1,24 @@
 class CallLogsController < ApplicationController
   before_filter :find_family_card
   before_filter :find_call, except: [:create]
+  authorize_resource
 
   respond_to :js
 
   def create
-    @call = @family_card.calls.build(call_log_params)
-    @call.qualifier_ids = params[:qualifier_ids] if params[:qualifier_ids]
+    @call_log               = @family_card.call_logs.build(call_log_params)
+    @call_log.qualifier_ids = params[:qualifier_ids] if params[:qualifier_ids]
 
-    if @call.save
+    if @call_log.save
       flash[:notice] = "Successfully added call log."
     else
       flash[:error] = "We were unable to create the call log. Please check the information you entered and try again."
     end
-    respond_with @call
+    respond_with @call_log
   end
 
   def destroy
-    @call.destroy
+    @call_log.destroy
     redirect_to @family_card, :notice => "Successfully destroyed call log."
   end
 
@@ -27,7 +28,7 @@ class CallLogsController < ApplicationController
   end
 
   def find_call
-    @call = @family_card.calls.find(params[:id])
+    @call_log = @family_card.call_logs.find(params[:id])
   end
 
   def call_log_params

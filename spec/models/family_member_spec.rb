@@ -17,6 +17,7 @@ describe FamilyMember do
   it { should_not allow_mass_assignment_of(:family_card_id) }
 
   it { should be_audited.associated_with(:family_card) }
+  it { should have_associated_audits }
 
   context "class methods" do
     let(:family_card) { create(:family_card) }

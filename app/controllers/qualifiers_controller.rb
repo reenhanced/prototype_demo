@@ -1,6 +1,7 @@
 class QualifiersController < ApplicationController
   before_filter :find_family_card
   before_filter :find_qualifier, except: [:create]
+  authorize_resource
 
   respond_to :js
 

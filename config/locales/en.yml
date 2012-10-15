@@ -43,6 +43,16 @@ en:
       user:
         email:     "Email"
         password:  "Password"
+  audit:
+    action: "Action"
+    associated_changes: "Associated Changes"
+    changed_attribute: "Attribute Changed"
+    changed_attribute_to: "Value"
+    changed_attribute_value_new: "From"
+    changed_attribute_value_old: "To"
+    changed_by: "Changed by: %{user}"
+    changes: "Changes"
+    created_at: "Recorded @ %{datetime}"
   back_to: "Back to %{location}"
   call_log:
     all_calls:        "All Calls"

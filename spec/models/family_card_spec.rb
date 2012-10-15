@@ -5,11 +5,11 @@ describe FamilyCard do
   it { should belong_to(:default_parent).class_name('FamilyMember') }
   it { should have_many(:family_members) }
   it { should have_many(:students) }
-  it { should have_many(:calls).class_name('CallLog') }
+  it { should have_many(:call_logs) }
   it { should have_many(:family_card_qualifiers) }
   it { should have_many(:qualifiers) }
 
-  it { should be_audited }
+  it { should be_audited.associated_with(:default_parent) }
   it { should have_associated_audits }
 
   delegated_fields = [ :first_name, :last_name,
@@ -68,7 +68,7 @@ describe FamilyCard do
   end
 
   context "instance methods" do
-    subject { create(:family_card) }
+    subject { create(:family_card, parent_first_name: "Jonny", parent_last_name: "Cash") }
 
     describe "#default_student" do
       it "returns the first student created for the family card" do
@@ -112,6 +112,12 @@ describe FamilyCard do
 
       describe "maintains relationships" do
         its(:family_card) { should == family_card }
+      end
+    end
+
+    describe "#name" do
+      it "returns the name for the default parent" do
+        subject.name.should == subject.default_parent.name
       end
     end
   end

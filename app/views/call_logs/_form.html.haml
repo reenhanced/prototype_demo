@@ -1,4 +1,4 @@
-= form_for [@family_card, @call], remote: true, html: { class: 'modal hide row' } do |f|
+= form_for [@family_card, @call_log], remote: true, html: { class: 'modal hide row' } do |f|
   .modal-header
     .well.well-small.close
       %span#selected-datetime= DateTime.now.to_s

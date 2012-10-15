@@ -16,6 +16,7 @@ end
 gem 'carmen-rails'
 gem 'cancan'
 gem 'devise'
+gem "draper"
 gem "haml-rails"
 gem 'jquery-rails'
 gem 'audited-activerecord', :git => 'git://github.com/reenhanced/audited.git'
@@ -36,6 +37,7 @@ group :staging do
 end
 
 group :development, :test do
+  gem 'heroku'
   gem 'capybara-webkit'
   gem 'debugger'
   gem 'factory_girl_rails'

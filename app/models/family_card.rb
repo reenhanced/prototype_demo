@@ -3,7 +3,7 @@ class FamilyCard < ActiveRecord::Base
   belongs_to :default_parent, :class_name => 'FamilyMember', :foreign_key => :default_parent_id, :autosave => true
   has_many   :family_members, :autosave => true, :dependent => :nullify
   has_many   :students, :autosave => true, :dependent => :nullify
-  has_many   :calls, :class_name => 'CallLog', :autosave => true, :dependent => :destroy
+  has_many   :call_logs, :dependent => :destroy
   has_many   :family_card_qualifiers
   has_many   :qualifiers, :through => :family_card_qualifiers
 
@@ -22,7 +22,7 @@ class FamilyCard < ActiveRecord::Base
   attr_accessible :parent_first_name, :parent_last_name, :parent_phone, :parent_email,
                   :parent_address1, :parent_address2, :parent_city, :parent_state, :parent_zip_code
 
-  audited
+  audited :associated_with => :default_parent
   has_associated_audits
 
   def self.find_all_from_search(params={})
@@ -43,6 +43,10 @@ class FamilyCard < ActiveRecord::Base
     return [] if query.blank?
     card_ids = query.group('family_card_id').map(&:family_card_id)
     self.find(card_ids)
+  end
+
+  def name
+    default_parent.name
   end
 
   def default_parent_with_autobuild(*args)
