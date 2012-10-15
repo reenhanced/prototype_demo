@@ -86,6 +86,17 @@ describe FamilyCard do
       end
     end
 
+    describe "#audits_with_associated" do
+      before do
+        Audit.stub(:with_associated_for).and_return("foo")
+      end
+
+      it "calls Audit.with_associated_for" do
+        Audit.should_receive(:with_associated_for).with(subject)
+        subject.audits_with_associated.should == 'foo'
+      end
+    end
+
     describe "#family_members" do
       before do
         2.times do

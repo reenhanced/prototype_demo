@@ -63,4 +63,8 @@ class FamilyCard < ActiveRecord::Base
   def default_student
     students.first || students.build
   end
+
+  def audits_with_associated
+    Audit.with_associated_for(self)
+  end
 end
