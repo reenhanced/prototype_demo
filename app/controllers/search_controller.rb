@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-
   def new
     authorize! :read, FamilyCard
   end
@@ -12,8 +11,6 @@ class SearchController < ApplicationController
                     end
 
     authorize! :read, FamilyCard
-
-    sleep 1
 
     respond_to do |format|
       format.js { render :layout => false }

@@ -2,7 +2,7 @@
   %h1.page-header= t('search.heading')
 .clearfix
 
-= form_for :family_member, url: search_index_path, html: { id: 'card-search-form', class: 'form-horizontal' } do |form|
+= form_for :family_member, url: search_index_path, :remote => true, html: { id: 'card-search-form', class: 'form-horizontal', 'data-type' => 'html' } do |form|
   .control-group
     = form.label :first_name, class: 'control-label'
     .controls
@@ -36,4 +36,6 @@
     = form.submit t("search.search_prospect_records"), class: 'btn btn-primary', 'data-loading-text' => 'Searching...'
 
 %h2.page-header Search Results
+#ajax-search-error.alert.alert-error.hide
+  There was an error while retrieving the search results. Please try again.
 #results(style="min-height: 200px")
