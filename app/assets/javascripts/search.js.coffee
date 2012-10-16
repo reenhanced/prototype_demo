@@ -1,22 +1,24 @@
 $ ->
-  spin_options = { length: 20, radius: 20, shadow: true }
+  search_results = $('#results')
+  search_form    = $('#card-search-form')
+  search_button  = $('#card-search-form input[type=submit]')
+  spin_options   = { length: 20, radius: 20, shadow: true } # from spin.js
+  search_timeout = null
 
-  cancelSearch = ->
-    clearTimeout(performSearch) if performSearch
-    return
+  clear_search_timeout = -> clearTimeout(search_timeout)
 
-  $('#card-search-form').ajaxForm
+  search_form.ajaxForm
     beforeSubmit: ->
-      $('#results').empty().spin(spin_options)
+      search_results.empty().spin(spin_options)
+      search_button.button('loading')
     dataType: 'html'
     success: (result_html) ->
-      $('#results').spin(false).html(result_html)
+      search_button.button('reset')
+      search_results.spin(false).html(result_html)
 
-  performSearch = null
-  $('#card-search-form input').keyup (e) ->
+  search_form.find('input').keyup (e) ->
     unless e.keyCode is 13
-      cancelSearch()
-      performSearch = setTimeout (-> $('#card-search-form').submit()), 500
+      clear_search_timeout()
+      search_timeout = setTimeout (-> search_form.submit()), 500
 
-  $('#card-search-form input[type=submit]').click(cancelSearch)
-
+  search_button.click(clear_search_timeout)

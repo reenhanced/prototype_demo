@@ -33,7 +33,7 @@
       = form.text_field :zip_code, placeholder: t('family_card.placeholders.parent_zip_code')
 
   .form-actions
-    = form.submit t("search.search_prospect_records"), class: 'btn btn-primary'
+    = form.submit t("search.search_prospect_records"), class: 'btn btn-primary', 'data-loading-text' => 'Searching...'
 
 %h2.page-header Search Results
 #results(style="min-height: 200px")

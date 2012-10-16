@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
-  skip_authorization_check :only => :new
 
   def new
+    authorize! :read, FamilyCard
   end
 
   def create
@@ -11,7 +11,9 @@ class SearchController < ApplicationController
                       FamilyCard.find_all_from_search(params[:family_member])
                     end
 
-    authorize! :show, @family_cards
+    authorize! :read, FamilyCard
+
+    sleep 1
 
     respond_to do |format|
       format.js { render :layout => false }

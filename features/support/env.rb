@@ -62,8 +62,7 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 AfterStep('@javascript') do
   wait_until {
-    #page.evaluate_script('$.active') == 0
-    page.evaluate_script('if(typeof(jQuery) != "undefined") { jQuery.active; } else { 0; }') == 0
+    page.evaluate_script("typeof($) === 'undefined' || $.active === 0")
   }
 end
 

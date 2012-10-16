@@ -58,10 +58,3 @@ Feature: Search for card
   Scenario: No results when search fields are left blank
     When I press "Search Prospect Records"
     Then I should see "No prospects were found"
-
-  #Scenario: No family cards are found
-    #When I press "Search Prospect Records"
-    #Then I should see "No prospects were found."
-    #When I follow "Try another search?"
-    #Then I should see "Prospect Search"
-    #And I should not see the parent's name
