@@ -227,14 +227,10 @@ Then /^I should see the (.* )?image "(.+)"$/ do |style, image|
   page.should have_xpath("//img[contains(@src, \"#{style.strip}/#{image}\")]")
 end
 
-Then /^(.*) should be hidden$/ do |selector|
-  selector = selector_for(selector)
-  find(selector).should_not be_visible
-end
-
-Then /^(.*) should be visible$/ do |selector|
-  selector = selector_for(selector)
-  find(selector).should be_visible
+Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|
+  should_or_should_not = if visible == 'visible' then :should else :should_not end
+  selector = begin selector_for(descriptor) rescue descriptor end
+  find(selector).send should_or_should_not, be_visible
 end
 
 Then /(.*) should be (collapsed|expanded)$/ do |selector, element_state|

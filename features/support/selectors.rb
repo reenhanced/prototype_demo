@@ -11,6 +11,7 @@ module Selectors
       when /the call log listing/i                then "#all-calls"
       when /the call log details for #(\d+)/i     then "#call_log_#{$1}_details"
       when /the new call log recorded at fields/i then "#new-call-datetime"
+      when /the search error alert/i              then "#ajax-search-error"
       when /^"([#.]+[a-z0-9\-_]*)"$/i               then $1
       else raise "Can't find mapping from \"#{scope}\" to a selector.\n" +
                  "Now, go and add a mapping in #{__FILE__}"

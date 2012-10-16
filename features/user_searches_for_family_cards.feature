@@ -55,6 +55,13 @@ Feature: Search for card
     When I fill in the form with an existing parent's name
     Then I should see the family card
 
+  Scenario: An error is shown if the ajax request does not return
+    Given AJAX requests do not respond
+    Then "the search error alert" should be hidden
+    When I fill in the form with an existing parent's name
+    And I press "Search Prospect Records"
+    Then the search error alert should be visible
+
   Scenario: No results when search fields are left blank
     When I press "Search Prospect Records"
     Then I should see "No prospects were found"

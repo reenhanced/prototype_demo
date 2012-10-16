@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require spin.min
 //= require utils
-//= require_tree .
+//= require_tree ./app
 //= require twitter/bootstrap

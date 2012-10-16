@@ -13,7 +13,7 @@ $ ->
       search_results.html(result_html)
     'ajax:error': ->
       inactive_mode()
-      search_error.fadeIn()
+      search_error.show()
 
   active_mode = ->
     search_error.hide()
