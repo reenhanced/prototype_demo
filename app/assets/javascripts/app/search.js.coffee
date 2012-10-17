@@ -9,11 +9,11 @@ $ ->
     'ajax:beforeSend': ->
       search_error.hide()
       search_results.empty().spin(spin_options)
-    'ajax:success': (xhr, result_html) ->
+    'ajax:complete': ->
       search_results.spin(false)
+    'ajax:success': (xhr, result_html) ->
       search_results.html(result_html)
     'ajax:error': ->
-      search_results.spin(false)
       search_error.show()
 
   # Automatically perform ajax searches as the user types

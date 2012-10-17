@@ -119,10 +119,6 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   end
 end
 
-Then /^(?:|I )should( not)? see (.*) element$/ do |negator, selector|
-  step %{I should#{negator} see "#{selector_for(selector)}"}
-end
-
 Then /^(.*) should( not)? have been rendered$/ do |selector, negator|
   unless negator
     page.should have_selector(selector_for selector)
@@ -236,11 +232,10 @@ Then /^I should see the (.* )?image "(.+)"$/ do |style, image|
 end
 
 Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|
-  selector = begin selector_for(descriptor) rescue descriptor end
   if visible == 'visible'
-    find(selector).should be_visible
+    find(selector_for descriptor).should be_visible
   else
-    find(selector).should_not be_visible
+    find(selector_for descriptor).should_not be_visible
   end
 end
 
