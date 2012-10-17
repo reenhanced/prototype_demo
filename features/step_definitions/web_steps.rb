@@ -200,7 +200,7 @@ Then /^I should see a checkbox labeled "([^"]*)"$/ do |label_text|
     page.should have_selector("input##{label['for']}[type=checkbox]")
 end
 
-Then /^(?:|I )should be on (.+)$/ do |page_name|
+Then /^(?:|I )should be (?:on|redirected to) (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
     current_path.should == path_to(page_name)

@@ -51,8 +51,8 @@ Given /^I am not logged in$/ do
   visit '/logout'
 end
 
-Given /^I am logged in$/ do
-  create_user
+Given /^I am logged in(?: as an? (.*))?$/ do |role|
+  create_user :role => (role.to_sym if role)
   sign_in
 end
 

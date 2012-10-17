@@ -7,4 +7,4 @@ Feature: Admin signs in
   Scenario: Admin is redirected to the search screen upon login
     Given I exist as an admin
     When I sign in with valid credentials
-    Then I should be on the search screen
+    Then I should see "Prospect Search"

@@ -12,6 +12,7 @@ module Selectors
       when /the call log details for #(\d+)/i     then "#call_log_#{$1}_details"
       when /the new call log recorded at fields/i then "#new-call-datetime"
       when /the search error alert/i              then "#ajax-search-error"
+      when /the alert box/i                       then ".alert-error"
       when /the prospect search button/i          then "#card-search-form input[name=commit]"
       when /the view all button/i                 then "#card-search-form input[name=view_all]"
       when /^"([#.]+[a-z0-9\-_]*)"$/i               then $1

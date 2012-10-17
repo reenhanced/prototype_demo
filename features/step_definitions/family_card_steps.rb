@@ -1,4 +1,4 @@
-Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_type|
+Given /^(?:I have|there is|there are) (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_type|
   @user = @user || create(:user)
   quantity.to_i.times do
     case factory_type
@@ -101,5 +101,13 @@ end
 Then /I should see all the family cards/ do
   FamilyCard.all.each do |card|
     page.should have_selector("#family_card_#{card.id}")
+  end
+end
+
+Then /the parent's name should( not)? be a link/ do |negator|
+  unless negator
+    page.should have_link(@family_card.default_parent.name)
+  else
+    page.should_not have_link(@family_card.default_parent.name)
   end
 end
