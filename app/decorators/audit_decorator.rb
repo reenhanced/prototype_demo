@@ -14,7 +14,11 @@ class AuditDecorator < Draper::Base
   end
 
   def author
-    audit.user.try(:name) || audit.username
+    presenter.author
+  end
+
+  def name
+    presenter.name
   end
 
   def visible?

@@ -30,29 +30,22 @@ Given /^all possible audits exist(?: for a family card)$/ do
   student.destroy
 end
 
-Then /^I should see the family card audit trail$/ do
+Then /^I should see the audit trail details for the created family card$/ do
+  @family_card   ||= FamilyCard.last
+  default_parent   = @family_card.default_parent
   steps %{
     Then I should see the following table rows:
-      | *@*03:00PM on 03/22/2013* | *Updated Call Log*Spoke to: Amadeus Cornerstone* | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Qualifier*Can eat whole watermelon*     | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Family Member*Amadeus Cornerstone*      | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Family Member*Ramsy Cornerstone*        | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Family Card*Gordon Ramsy*               | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Call Log*Spoke to: Amadeus Cornerstone* | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Qualifier*Can eat whole watermelon*     | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Family Member*Amadeus Cornerstone*      | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Family Member*Ramsy Cornerstone*        | *more details* |
-      | *@*03:00PM on 03/22/2013* | *Updated Family Card*Gordon Ramsy*               | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Call Log*Spoke to: Amadeus Cornerstone* | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Qualifier*Can eat whole watermelon*     | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Family Member*Amadeus Cornerstone*      | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Family Member*Ramsy Cornerstone*        | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Family Card*Gordon Ramsy*               | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Call Log*Spoke to: Amadeus Cornerstone* | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Qualifier*Can eat whole watermelon*     | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Family Member*Amadeus Cornerstone*      | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Family Member*Ramsy Cornerstone*        | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Family Card*Gordon Ramsy*               | *more details* |
-      | *@*02:00PM on 02/21/2013* | *Created Family Member*Gordon Ramsy*             | *more details* |
+      | Changed        | From | To                           |
+      | user_id        |      | #{@family_card.user.id}      |
+      | family_card_id |      | #{@family_card.id}           |
+      | first_name     |      | #{default_parent.first_name} |
+      | last_name      |      | #{default_parent.last_name} |
+      | address1       |      | #{default_parent.address1}   |
+      | address2       |      | #{default_parent.address2}   |
+      | city           |      | #{default_parent.city}       |
+      | state          |      | #{default_parent.state}      |
+      | zip_code       |      | #{default_parent.zip_code}   |
+      | phone          |      | #{default_parent.phone}      |
+      | email          |      | #{default_parent.email}      |
   }
 end

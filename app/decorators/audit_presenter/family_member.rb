@@ -1,5 +1,11 @@
 class AuditPresenter::FamilyMember < AuditPresenter::Base
   def visible?
-    return false if audit.auditable == audit.associated.default_parent and audit.action == 'create'
+    case audit.action
+    when 'create'
+      return false if audit.auditable == audit.associated.default_parent
+    when 'update'
+      return false if audit.audited_changes.keys == ['family_card_id']
+    end
+    return true
   end
 end

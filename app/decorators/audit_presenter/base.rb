@@ -9,7 +9,15 @@ class AuditPresenter::Base
   end
 
   def author
-    (audit.user.try(:name) || audit.username)
+    (audit.user.try(:username) || I18n.translate("audit.system_username"))
+  end
+
+  def name
+    if audit.action == 'create'
+      audit.auditable.to_s
+    else
+      audit.revision.to_s
+    end
   end
 
   def changes(table_html_options = {})

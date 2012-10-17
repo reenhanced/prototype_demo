@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def is?(role)
     roles.include?(role.to_s)
   end
+
+  def username
+    self.email
+  end
 end

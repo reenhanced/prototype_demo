@@ -26,12 +26,13 @@
         %tr{ id: "audit-row-#{audit.id}"}
           %td.created-at
             %strong.text-info
+              %span.muted= audit.author
+              %br
               %em= Audit.human_attribute_name(:created_at, datetime: audit.created_at)
           %td
             .lead
-              = audit.author
               %span.label.label-info= audit.action
-              = audit.revision.to_s
+              = audit.name
             = div_for audit, class: 'collapse' do
               = audit.changes class: 'table table-striped table-bordered'
           %td

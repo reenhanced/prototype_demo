@@ -60,6 +60,7 @@ en:
     changes_made: "Changes Made"
     family_card_qualifier:
       create: "Added"
+    system_username: "System"
     view_more_details: 'more details'
   back_to: "Back to %{location}"
   call_log:

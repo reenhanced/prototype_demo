@@ -45,5 +45,11 @@ describe User do
         admin_user.is?('peakock').should be_false
       end
     end
+
+    describe "#username" do
+      let!(:email) { subject.email }
+
+      its(:username) { should == email }
+    end
   end
 end

@@ -1,3 +1,4 @@
+require 'cucumber/rails'
 module NavigationHelpers
   # Maps a name to a path. Used by the
   #
@@ -18,6 +19,8 @@ module NavigationHelpers
       '/login'
 
     when /the search screen/ then search_family_cards_path
+
+    when /the new family card page/ then new_family_card_path
 
     when /the family card's page/
       @family_card ||= FamliyCard.last
