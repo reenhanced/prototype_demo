@@ -1,5 +1,5 @@
 $ ->
-  search_results = $('#results')
+  search_results = $('#card-search-results')
   search_form    = $('#card-search-form')
   search_button  = $('#card-search-form input[type=submit]')
   search_error   = $('#ajax-search-error')
