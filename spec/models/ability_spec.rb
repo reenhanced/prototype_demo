@@ -90,5 +90,6 @@ describe Ability do
     let(:user) { build(:user, :admin) }
 
     it { should be_able_to(:manage, :all) }
+    it { should be_able_to(:browse, :all_family_cards) }
   end
 end

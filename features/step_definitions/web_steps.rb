@@ -119,8 +119,12 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   end
 end
 
-Then /^(?:|I )should( not)? see (.*) element$/ do |negator, selector|
-  step %{I should#{negator} see "#{selector_for(selector)}"}
+Then /^(.*) should( not)? have rendered$/ do |selector, negator|
+  unless negator
+    page.should have_selector(selector_for selector)
+  else
+    page.should_not have_selector(selector_for selector)
+  end
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
@@ -227,14 +231,12 @@ Then /^I should see the (.* )?image "(.+)"$/ do |style, image|
   page.should have_xpath("//img[contains(@src, \"#{style.strip}/#{image}\")]")
 end
 
-Then /^(.*) should be hidden$/ do |selector|
-  selector = selector_for(selector)
-  find(selector).should_not be_visible
-end
-
-Then /^(.*) should be visible$/ do |selector|
-  selector = selector_for(selector)
-  find(selector).should be_visible
+Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|
+  if visible == 'visible'
+    find(selector_for descriptor).should be_visible
+  else
+    find(selector_for descriptor).should_not be_visible
+  end
 end
 
 Then /(.*) should be (collapsed|expanded)$/ do |selector, element_state|

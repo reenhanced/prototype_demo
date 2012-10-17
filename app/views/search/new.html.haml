@@ -1,0 +1,43 @@
+.navbar
+  %h1.page-header= t('search.heading')
+.clearfix
+
+= form_for :family_member, url: search_index_path, :remote => true, html: { id: 'card-search-form', class: 'form-horizontal', 'data-type' => 'html' } do |form|
+  .control-group
+    = form.label :first_name, class: 'control-label'
+    .controls
+      = form.text_field :first_name, placeholder: t('family_card.placeholders.parent_first_name')
+  .control-group
+    = form.label :last_name, class: 'control-label'
+    .controls
+      = form.text_field :last_name, placeholder: t('family_card.placeholders.parent_last_name')
+  .control-group
+    = form.label :phone, class: 'control-label'
+    .controls
+      = form.text_field :phone, placeholder: t('family_card.placeholders.parent_phone')
+  .control-group
+    = form.label :email, class: 'control-label'
+    .controls
+      = form.text_field :email, placeholder: t('family_card.placeholders.parent_email')
+  .control-group
+    = form.label :address1, class: 'control-label'
+    .controls
+      = form.text_field :address1, placeholder: t('family_card.placeholders.parent_address1')
+  .control-group
+    = form.label :address2, class: 'control-label'
+    .controls
+      = form.text_field :address2, placeholder: t('family_card.placeholders.parent_address2')
+  .control-group
+    = form.label :zip_code, class: 'control-label'
+    .controls
+      = form.text_field :zip_code, placeholder: t('family_card.placeholders.parent_zip_code')
+
+  .form-actions
+    = form.submit t("search.search_prospect_records"), class: 'btn btn-primary', :disable_with => "Searching..."
+    - if can? :browse, :all_family_cards
+      = form.submit t("search.view_all_records"), :name => 'view_all', class: 'btn btn-primary', :disable_with => "Loading..."
+
+%h2.page-header Search Results
+#ajax-search-error.alert.hide
+  There was an error while retrieving the search results. Please try again.
+#card-search-results
