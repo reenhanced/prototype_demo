@@ -11,8 +11,8 @@ Feature: Search for card
     And I am on the search family cards page
 
   Scenario: Users see a search button but not the "all records" button
-    Then the prospect search button should have been rendered
-    But the view all button should not have been rendered
+    Then the prospect search button should have rendered
+    But the view all button should not have rendered
 
   Scenario: User searches for a family card
     When I fill in the form with an existing parent's name

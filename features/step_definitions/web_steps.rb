@@ -119,7 +119,7 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   end
 end
 
-Then /^(.*) should( not)? have been rendered$/ do |selector, negator|
+Then /^(.*) should( not)? have rendered$/ do |selector, negator|
   unless negator
     page.should have_selector(selector_for selector)
   else
