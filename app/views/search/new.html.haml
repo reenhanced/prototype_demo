@@ -33,7 +33,9 @@
       = form.text_field :zip_code, placeholder: t('family_card.placeholders.parent_zip_code')
 
   .form-actions
-    = form.submit t("search.search_prospect_records"), class: 'btn btn-primary', 'data-loading-text' => 'Searching...'
+    = form.submit t("search.search_prospect_records"), class: 'btn btn-primary', :disable_with => "Searching..."
+    - if can? :browse, :all_family_cards
+      = form.submit t("search.view_all_records"), :name => 'view_all', class: 'btn btn-primary', :disable_with => "Loading..."
 
 %h2.page-header Search Results
 #ajax-search-error.alert.hide

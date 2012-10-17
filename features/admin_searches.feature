@@ -9,6 +9,10 @@ Feature: Admin searches
     And I have 2 family cards
     And I sign in with valid credentials
 
-  Scenario: All cards shown when search fields are left blank
+  Scenario: No cards are returned when all search fields are blank
     When I press "Search Prospect Records"
+    Then I should see "No prospects were found"
+
+  Scenario: "View all Cards" button
+    When I press "View All Records"
     Then I should see all the family cards

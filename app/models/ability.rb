@@ -23,6 +23,7 @@ class Ability
 
   def admin_abilities
     can :manage, :all
+    can :browse, :all_family_cards
   end
 
   def any_user_abilities

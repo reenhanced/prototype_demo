@@ -9,7 +9,10 @@ Feature: Search for card
     And I have 2 family cards
     And I have a family card with parent "Thor Hammerstein"
     And I am on the search family cards page
-    Then I should see "Prospect Search"
+
+  Scenario: Users see a search button but not the "all records" button
+    Then the prospect search button should have been rendered
+    But the view all button should not have been rendered
 
   Scenario: User searches for a family card
     When I fill in the form with an existing parent's name

@@ -7,22 +7,14 @@ $ ->
 
   search_form.bind
     'ajax:beforeSend': ->
-      active_mode()
+      search_error.hide()
+      search_results.empty().spin(spin_options)
     'ajax:success': (xhr, result_html) ->
-      inactive_mode()
+      search_results.spin(false)
       search_results.html(result_html)
     'ajax:error': ->
-      inactive_mode()
+      search_results.spin(false)
       search_error.show()
-
-  active_mode = ->
-    search_error.hide()
-    search_results.empty().spin(spin_options)
-    search_button.button('loading')
-
-  inactive_mode = ->
-    search_button.button('reset')
-    search_results.spin(false)
 
   # Automatically perform ajax searches as the user types
   search_timeout       = null

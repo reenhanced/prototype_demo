@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   end
 
   def create
-    @family_cards = if params[:family_member].values.all?(&:blank?) and current_user.is?(:admin)
+    @family_cards = if params[:view_all] and can?(:browse, :all_family_cards)
                       FamilyCard.all
                     else
                       FamilyCard.find_all_from_search(params[:family_member])

@@ -123,6 +123,14 @@ Then /^(?:|I )should( not)? see (.*) element$/ do |negator, selector|
   step %{I should#{negator} see "#{selector_for(selector)}"}
 end
 
+Then /^(.*) should( not)? have been rendered$/ do |selector, negator|
+  unless negator
+    page.should have_selector(selector_for selector)
+  else
+    page.should_not have_selector(selector_for selector)
+  end
+end
+
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
   if page.respond_to? :should
@@ -228,9 +236,12 @@ Then /^I should see the (.* )?image "(.+)"$/ do |style, image|
 end
 
 Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|
-  should_or_should_not = if visible == 'visible' then :should else :should_not end
   selector = begin selector_for(descriptor) rescue descriptor end
-  find(selector).send should_or_should_not, be_visible
+  if visible == 'visible'
+    find(selector).should be_visible
+  else
+    find(selector).should_not be_visible
+  end
 end
 
 Then /(.*) should be (collapsed|expanded)$/ do |selector, element_state|
