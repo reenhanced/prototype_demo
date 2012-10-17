@@ -21,6 +21,10 @@ describe Audit do
 
         it { should include(*associated_audits) }
         it { should include(*audits) }
+        it "orders by created_at and version descending" do
+          subject.first.auditable.should == student
+          subject.last.auditable.should == auditor.default_parent
+        end
       end
 
       context "if no auditor is provided" do

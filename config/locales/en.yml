@@ -9,6 +9,8 @@ en:
       family_member:          "Family Member"
       family_card_qualifier:  "Qualifier"
     attributes:
+      audit:
+        created_at: "@ %{datetime}"
       family_member:
         address1:         "Address"
         address2:         "Address 2"
@@ -45,16 +47,20 @@ en:
         email:     "Email"
         password:  "Password"
   audit:
+    action: "Action"
     actions:
       create: "Created"
       update: "Updated"
       destroy: "Deleted"
+    author: "Changed by"
     changes:
       attribute:  "Changed"
       from:       "From"
       to:         "To"
+    changes_made: "Changes Made"
     family_card_qualifier:
       create: "Added"
+    view_more_details: 'more details'
   back_to: "Back to %{location}"
   call_log:
     all_calls:        "All Calls"

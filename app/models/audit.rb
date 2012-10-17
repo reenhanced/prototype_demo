@@ -1,4 +1,5 @@
 class Audit < Audited::Adapters::ActiveRecord::Audit
+  default_scope order(:created_at, :version)
   def self.with_associated_for(auditor = nil)
     return [] unless auditor
     where(
@@ -9,7 +10,7 @@ class Audit < Audited::Adapters::ActiveRecord::Audit
           arel_table[:associated_type].eq(auditor.class.to_s)
         )
       )
-    )
+    ).reorder('created_at DESC, version DESC')
   end
 
   # :nodoc:

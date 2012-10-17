@@ -15,4 +15,25 @@
               = t('back_to', location: 'family card')
 
 .container
-  = @audits.to_html
+  %table.table.table-striped
+    %thead
+      %th Date
+      %th Change
+      %th
+    %tbody
+      - @audits.each do |audit|
+        - next unless audit.visible?
+        %tr{ id: "audit-row-#{audit.id}"}
+          %td.created-at
+            %strong.text-info
+              %em= Audit.human_attribute_name(:created_at, datetime: audit.created_at)
+          %td
+            .lead
+              = audit.author
+              %span.label.label-info= audit.action
+              = audit.revision.to_s
+            = div_for audit, class: 'collapse' do
+              = audit.changes class: 'table table-striped table-bordered'
+          %td
+            %button.btn.btn-small.btn-info.right{ :type => "button", :'data-toggle' => "collapse", :'data-target' => "#audit_#{audit.id}"}
+              = t('audit.view_more_details')

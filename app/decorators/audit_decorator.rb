@@ -9,17 +9,21 @@ class AuditDecorator < Draper::Base
     presenter.action
   end
 
-  def changes
-    presenter.changes
+  def changes(options ={})
+    presenter.changes options
   end
 
   def author
-    audit.user.name || audit.username
+    audit.user.try(:name) || audit.username
+  end
+
+  def visible?
+    presenter.visible?
   end
 
   private
   def presenter
-    @presenter ||= "AuditPresenter::#{audit.auditable_type}".classify.new(audit)
+    @presenter ||= "AuditPresenter::#{audit.auditable_type}".constantize.new(audit, self)
   end
 
   # Accessing Helpers

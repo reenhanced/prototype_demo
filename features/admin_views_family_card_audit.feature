@@ -5,7 +5,7 @@ Feature: Admin views an audit trail for a family card
 
   Scenario: Admin views a family card's audit trail
     Given I am logged in as an admin
-    And I have 1 family card
+    And all possible audits exist for a family card
     When I am on the family card's page
     And I follow "Edit Family Card"
     And I fill in the following:
@@ -21,6 +21,7 @@ Feature: Admin views an audit trail for a family card
     And I follow "Show audit trail"
     Then I should see "Family of: George Masterson"
     And I should see "Back to family card"
+    And show me the page
     And I should see the family card audit trail
 
   Scenario: A non-admin user tries to view a family card's audit trail

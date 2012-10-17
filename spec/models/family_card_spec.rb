@@ -131,5 +131,11 @@ describe FamilyCard do
         subject.name.should == subject.default_parent.name
       end
     end
+
+    describe "#to_s" do
+      it "returns the name for the family card" do
+        subject.to_s.should == subject.name
+      end
+    end
   end
 end

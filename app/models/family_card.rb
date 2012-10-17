@@ -48,6 +48,7 @@ class FamilyCard < ActiveRecord::Base
   def name
     default_parent.name
   end
+  alias_method :to_s, :name
 
   def default_parent_with_autobuild(*args)
     parent = self.default_parent_without_autobuild(*args)

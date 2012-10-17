@@ -5,4 +5,13 @@ describe FamilyCardQualifier do
   it { should belong_to(:qualifier) }
 
   it { should be_audited.associated_with(:family_card) }
+
+  context "instance methods" do
+    describe "#to_s" do
+      it "returns the qualifier and family name" do
+        subject = create(:family_card_qualifier, family_card: family_card, qualifier: qualifier)
+        subject.to_s.should == "#{qualifier.name} for #{family_card.name}"
+      end
+    end
+  end
 end
