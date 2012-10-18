@@ -1,15 +1,16 @@
 - if user_signed_in?
-  - if current_user.is?(:admin)
-    %ul.nav.pull-right
-      %a.dropdown-toggle{:href => "#", :'data-toggle' => "dropdown"}
-        Admin
-        %b.caret
-      %ul.dropdown-menu
-        %li= link_to "Qualifiers", "#"
-  %ul.nav.pull-right
+  %ul#user_menu.nav.pull-right
     %li.dropdown
       %a.dropdown-toggle{:href => "#", :'data-toggle' => "dropdown"}
         = current_user.email
         %b.caret
       %ul.dropdown-menu
-        %li= link_to t('user.logout'), destroy_user_session_path
+        %li= link_to "<i class='icon-exclamation-sign'></i> #{t('user.logout')}".html_safe, destroy_user_session_path
+  - if current_user.is?(:admin)
+    %ul#admin_menu.nav.pull-right
+      %li.dropdown
+        %a.dropdown-toggle{:href => "#", :'data-toggle' => "dropdown"}
+          Admin
+          %b.caret
+        %ul.dropdown-menu
+          %li= link_to "Qualifiers", "#"
