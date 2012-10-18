@@ -7,6 +7,8 @@ module Selectors
       when /the new call log contacts/i           then "#call_log_contact_id"
       when /the new call log form/i               then "#new_call_log"
       when /the new call log recorded at fields/i then "#new-call-datetime"
+      when /the search error alert/i              then "#ajax-search-error"
+      when /the alert box/i                       then ".alert-error"
       when /the new family member form/i          then "#new_family_member"
       when /the new student form/i                then "#new-student"
       when /the popup modal/i                     then "body.modal-open"
