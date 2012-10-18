@@ -56,11 +56,6 @@ Given /^I am logged in(?: as an? (.*))?$/ do |role|
   sign_in
 end
 
-Given /^I am logged in as a[n]? (.*)$/ do |role|
-  create_user(:role => role.to_sym)
-  sign_in
-end
-
 Given /^I am logged in as (the .*)?"([^"]*)"$/ do |role, user_email|
   if role
     role = role.gsub(/^the\ /, '').strip.to_sym
