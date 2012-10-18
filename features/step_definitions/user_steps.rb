@@ -52,11 +52,7 @@ Given /^I am not logged in$/ do
 end
 
 Given /^I am logged in(?: as an? (.*))?$/ do |role|
-  if role
-    create_user(:role => role.to_sym)
-  else
-    create_user
-  end
+  create_user :role => (role.to_sym if role)
   sign_in
 end
 

@@ -22,5 +22,5 @@ Bridgeway::Application.routes.draw do
     resources :qualifiers, :except => :show
   end
 
-  root :to => redirect('/search/new')
+  root :to => "search#new"
 end
