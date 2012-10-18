@@ -8,6 +8,13 @@ Feature: Admin manages qualifiers
     And I am logged in as an admin
     And I am on the admin qualifiers page
 
+  Scenario: Users are unauthorized
+    When I sign out
+    And I sign in with valid credentials
+    And I go to the admin qualifiers page
+    Then I should be on the homepage
+    And I will see "Unauthorized"
+
   Scenario: Admin should see link to admin qualifiers in nav bar
     Then I should see a link to the admin qualifiers page with text "Qualifiers" within the top navigation bar
 
