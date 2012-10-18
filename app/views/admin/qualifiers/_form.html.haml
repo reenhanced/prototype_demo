@@ -1,0 +1,14 @@
+= form_for [:admin, @qualifier] do |f|
+  - if @qualifier.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@qualifier.errors.count, "error")} prohibited this qualifier from being saved:"
+      %ul
+        - @qualifier.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    =f.label :name
+    =f.text_field :name
+
+  .actions
+    = f.submit 'Save'

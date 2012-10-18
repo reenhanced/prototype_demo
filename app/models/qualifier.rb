@@ -4,5 +4,9 @@ class Qualifier < ActiveRecord::Base
 
   audited
 
-  attr_accessible :name, :category, :position, :family_card_id
+  attr_accessible :name, :category, :position
+
+  def to_s
+    name
+  end
 end
