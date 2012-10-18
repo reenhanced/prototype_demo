@@ -18,7 +18,7 @@ module NavigationHelpers
     when /the sign in page/
       '/login'
 
-    when /the search screen/ then search_family_cards_path
+    when /the search (screen|family cards page)/ then new_search_path
 
     when /the new family card page/ then new_family_card_path
 

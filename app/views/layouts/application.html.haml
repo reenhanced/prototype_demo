@@ -4,18 +4,27 @@
     %title Bridgeway
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    - if Rails.env.test?
+      = javascript_include_tag "test"
     = csrf_meta_tags
 
   %body
     .container
-      = render "shared/flash_messages", :flash => flash
-      = render "shared/user_links"
+      #top_nav_bar.navbar
+        .navbar-inner
+          =link_to "Bridgeway Academy Desktop", root_path, :class => 'brand'
+          %ul.nav
+            %li.active= link_to t('pages.search'), new_search_path
+          = render "shared/user_links"
     - if content_for? :sidebar
       .container-fluid
         .row-fluid
           .span2
             = yield :sidebar
           .span10
+            = render "shared/flash_messages", :flash => flash
             = yield
     - else
-      .container= yield
+      .container
+        = render "shared/flash_messages", :flash => flash
+        = yield

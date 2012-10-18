@@ -119,8 +119,12 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
   end
 end
 
-Then /^(?:|I )should( not)? see (.*) element$/ do |negator, selector|
-  step %{I should#{negator} see "#{selector_for(selector)}"}
+Then /^(.*) should( not)? have rendered$/ do |selector, negator|
+  unless negator
+    page.should have_selector(selector_for selector)
+  else
+    page.should_not have_selector(selector_for selector)
+  end
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
@@ -147,6 +151,17 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   else
     assert page.has_no_xpath?('//*', :text => regexp)
   end
+end
+
+Then /^I should (not )?see a link to (.+) with text "([^"]+)"$/ do |negator, path, label|
+  url = path_to(path)
+  if negator
+    assertion = :should_not
+  else
+    assertion = :should
+  end
+
+  page.send assertion, have_css("a[href='#{url}']", :text => label)
 end
 
 Then /^the "([^"]*)" hidden field should contain "([^"]*)"$/ do |field, value|
@@ -196,7 +211,7 @@ Then /^I should see a checkbox labeled "([^"]*)"$/ do |label_text|
     page.should have_selector("input##{label['for']}[type=checkbox]")
 end
 
-Then /^(?:|I )should be on (.+)$/ do |page_name|
+Then /^(?:|I )should be (?:on|redirected to) (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
     current_path.should == path_to(page_name)
@@ -227,14 +242,12 @@ Then /^I should see the (.* )?image "(.+)"$/ do |style, image|
   page.should have_xpath("//img[contains(@src, \"#{style.strip}/#{image}\")]")
 end
 
-Then /^(.*) should be hidden$/ do |selector|
-  selector = selector_for(selector)
-  find(selector).should_not be_visible
-end
-
-Then /^(.*) should be visible$/ do |selector|
-  selector = selector_for(selector)
-  find(selector).should be_visible
+Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|
+  if visible == 'visible'
+    find(selector_for descriptor).should be_visible
+  else
+    find(selector_for descriptor).should_not be_visible
+  end
 end
 
 Then /(.*) should be (collapsed|expanded)$/ do |selector, element_state|

@@ -23,6 +23,7 @@ class Ability
 
   def admin_abilities
     can :manage, :all
+    can :browse, :all_family_cards
   end
 
   def any_user_abilities
@@ -30,7 +31,7 @@ class Ability
     can :manage, FamilyMember, :family_card => { :user_id => @user.id }
     can :manage, CallLog,      :family_card => { :user_id => @user.id }
 
-    can :read, FamilyCard
+    can :index, FamilyCard
     can :read, Qualifier
   end
 

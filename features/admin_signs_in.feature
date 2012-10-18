@@ -3,7 +3,11 @@ Feature: Admin signs in
   I want to sign in
   So I can use the site
 
+  Background:
+    Given I am logged in as an admin
+
   Scenario: Admin is redirected to the search screen upon login
-    Given I exist as an admin
-    When I sign in with valid credentials
-    Then I should be on the search screen
+    Then I should see "Prospect Search"
+
+  Scenario: Admin sees admin dropdown
+    Then I should see "Admin" within the top navigation bar

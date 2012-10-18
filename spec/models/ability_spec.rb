@@ -55,7 +55,8 @@ describe Ability do
 
       it { should be_able_to(:manage, my_family_card) }
 
-      it { should be_able_to(:read, your_family_card) }
+      it { should be_able_to(:index, your_family_card) }
+      it { should_not be_able_to(:show, your_family_card) }
       it { should_not be_able_to(:create, your_family_card) }
       it { should_not be_able_to(:update, your_family_card) }
       it { should_not be_able_to(:destroy, your_family_card) }
@@ -92,5 +93,6 @@ describe Ability do
     let(:user) { build(:user, :admin) }
 
     it { should be_able_to(:manage, :all) }
+    it { should be_able_to(:browse, :all_family_cards) }
   end
 end

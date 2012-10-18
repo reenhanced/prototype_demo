@@ -1,3 +1,4 @@
+@javascript
 Feature: Search for card
   To view a family's detailed information
   A signed in user
@@ -8,7 +9,10 @@ Feature: Search for card
     And I have 2 family cards
     And I have a family card with parent "Thor Hammerstein"
     And I am on the search family cards page
-    Then I should see "Prospect Search"
+
+  Scenario: Users see a search button but not the "all records" button
+    Then the prospect search button should have rendered
+    But the view all button should not have rendered
 
   Scenario: User searches for a family card
     When I fill in the form with an existing parent's name
@@ -49,10 +53,19 @@ Feature: Search for card
     And I press "Search Prospect Records"
     Then I should see the family card
     But I should not see "Edit Family Card"
+    And I should not see a link to the family card's page with text "Thor Hammerstein"
 
-  Scenario: No family cards are found
+  Scenario: Search results are automatically populated via ajax
+    When I fill in the form with an existing parent's name
+    Then I should see the family card
+
+  Scenario: An error is shown if the ajax request does not return
+    Given AJAX requests do not respond
+    Then "the search error alert" should be hidden
+    When I fill in the form with an existing parent's name
+    And I press "Search Prospect Records"
+    Then the search error alert should be visible
+
+  Scenario: No results when search fields are left blank
     When I press "Search Prospect Records"
-    Then I should see "No prospects were found."
-    When I follow "Try another search?"
-    Then I should see "Prospect Search"
-    And I should not see the parent's name
+    Then I should see "No prospects were found"

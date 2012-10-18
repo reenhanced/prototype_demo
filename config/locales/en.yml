@@ -124,11 +124,14 @@ en:
     street_address: "Street Address"
     student_name: "Student Name"
     zip_code: "Zip Code"
+  pages:
+    search: "Search"
   search:
     found:                    "Found"
     heading:                  "Prospect Search"
     prospect_not_found:       "No prospects were found."
     search_prospect_records:  "Search Prospect Records"
+    view_all_records:         "View All Records"
     try_another_search:       "Try another search?"
   student:
     actions:

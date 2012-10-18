@@ -47,5 +47,5 @@ Feature: User adds family member to family card
     Given I am logged in as "jimmy.buffet@example.com"
     And I have 1 family card
     When I am on another user's family card page
-    Then I should not see the new family member form element
+    Then the new family member form element should not have rendered
     And I should not see "Add Family Member"

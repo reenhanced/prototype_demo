@@ -19,5 +19,5 @@ Bridgeway::Application.routes.draw do
     get  'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  root :to => redirect('/family_cards/search')
+  root :to => 'search#new'
 end

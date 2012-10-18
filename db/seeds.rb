@@ -10,6 +10,7 @@ require "#{Rails.root}/spec/support/factories.rb"
 
 unless User.any?
   user = FactoryGirl.create(:user, email: 'test@example.com', password: 'password', password_confirmation: 'password')
+  admin = FactoryGirl.create(:user, :admin, email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 end
 
 unless FamilyCard.any?
