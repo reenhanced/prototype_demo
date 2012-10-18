@@ -16,7 +16,7 @@ Given /^(?:I have|there is|there are) (\d+)( incomplete)? (.*)[s]?$/ do |quantit
   @family_card = FamilyCard.last
 end
 
-Given /^I have a family card with parent "(.*)"$/ do |parent_name|
+Given /^(?:I have|there is) a family card with parent "(.*)"$/ do |parent_name|
   parent_name = parent_name.split(' ')
   @user       = @user || create(:user)
   @family_card = create(:family_card, user: @user, parent_first_name: parent_name[0], parent_last_name: parent_name[1])
@@ -66,6 +66,11 @@ Then /^I should own the family card$/ do
   @family_card.user.should == @user
 end
 
+Given /^I do not own the family card$/ do
+  @family_card ||= FamilyCard.last
+  @family_card.user == create(:user)
+end
+
 Then /^the family card's (student|family member) fields should( not)? be filled in$/ do |model_type, negator|
   @family_card ||= FamilyCard.last
   @student = @family_card.students.last || @family_card.students.build
@@ -101,13 +106,5 @@ end
 Then /I should see all the family cards/ do
   FamilyCard.all.each do |card|
     page.should have_selector("#family_card_#{card.id}")
-  end
-end
-
-Then /the parent's name should( not)? be a link/ do |negator|
-  unless negator
-    page.should have_link(@family_card.default_parent.name)
-  else
-    page.should_not have_link(@family_card.default_parent.name)
   end
 end

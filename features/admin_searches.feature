@@ -6,6 +6,7 @@ Feature: Admin searches
 
   Background:
     Given there are 2 family cards
+    And there is a family card with parent "Todd Blankenship"
     And I am logged in as an admin
 
   Scenario: No cards are returned when all search fields are blank
@@ -14,7 +15,7 @@ Feature: Admin searches
 
   Scenario: Search results contain 'show' links
     When I press "View All Records"
-    Then the parent's name should be a link
+    Then I should see a link to the family card's page with text "Todd Blankenship"
     When I follow the parent's name
     Then I should see the family card
 

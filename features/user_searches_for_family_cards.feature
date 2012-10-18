@@ -53,7 +53,7 @@ Feature: Search for card
     And I press "Search Prospect Records"
     Then I should see the family card
     But I should not see "Edit Family Card"
-    And the parent's name should not be a link
+    And I should not see a link to the family card's page with text "Thor Hammerstein"
 
   Scenario: Search results are automatically populated via ajax
     When I fill in the form with an existing parent's name
