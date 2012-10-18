@@ -5,4 +5,7 @@ describe Qualifier do
   it { should have_many(:family_cards) }
 
   it { should be_audited }
+
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
 end

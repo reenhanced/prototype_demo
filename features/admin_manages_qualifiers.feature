@@ -26,6 +26,11 @@ Feature: Admin manages qualifiers
     Then I should be on the admin qualifiers page
     And I should see "Writes tests first"
 
+  Scenario: See errors when invalid
+    When I click "New Qualifier"
+    And I press "Save"
+    Then I should see "Name can't be blank"
+
   Scenario: See list of qualifiers
     Then I should see "Uses Pull Requests"
     And I should see "Doesn't repeat code"

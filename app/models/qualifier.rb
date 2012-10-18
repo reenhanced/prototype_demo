@@ -4,6 +4,8 @@ class Qualifier < ActiveRecord::Base
 
   audited
 
+  validates :name, :presence => true, :uniqueness => true
+
   attr_accessible :name, :category, :position
 
   def to_s
