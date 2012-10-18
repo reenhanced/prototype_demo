@@ -153,6 +153,17 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   end
 end
 
+Then /^I should (not )?see a link to (.+) with text "([^"]+)"$/ do |negator, path, label|
+  url = path_to(path)
+  if negator
+    assertion = :should_not
+  else
+    assertion = :should
+  end
+
+  page.send assertion, have_css("a[href='#{url}']", :text => label)
+end
+
 Then /^the "([^"]*)" hidden field should contain "([^"]*)"$/ do |field, value|
   find(:xpath, "//input[@id='#{field}']").value.should =~ /#{Regexp.quote(value)}/
 end
