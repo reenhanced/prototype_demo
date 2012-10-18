@@ -1,4 +1,4 @@
-Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_type|
+Given /^(?:I have|there is|there are) (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_type|
   @user = @user || create(:user)
   quantity.to_i.times do
     case factory_type
@@ -16,7 +16,7 @@ Given /^I have (\d+)( incomplete)? (.*)[s]?$/ do |quantity, incomplete, factory_
   @family_card = FamilyCard.last
 end
 
-Given /^I have a family card with parent "(.*)"$/ do |parent_name|
+Given /^(?:I have|there is) a family card with parent "(.*)"$/ do |parent_name|
   parent_name = parent_name.split(' ')
   @user       = @user || create(:user)
   @family_card = create(:family_card, user: @user, parent_first_name: parent_name[0], parent_last_name: parent_name[1])
@@ -28,7 +28,7 @@ When /^I fill in the form with an existing parent's name$/ do
 end
 
 When /^I follow the parent's name$/ do
-  step "I follow \"#{@parent_name}\""
+  step "I follow \"#{@family_card.default_parent.name}\""
 end
 
 Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
@@ -64,6 +64,11 @@ end
 Then /^I should own the family card$/ do
   @family_card ||= FamilyCard.last
   @family_card.user.should == @user
+end
+
+Given /^I do not own the family card$/ do
+  @family_card ||= FamilyCard.last
+  @family_card.user == create(:user)
 end
 
 Then /^the family card's (student|family member) fields should( not)? be filled in$/ do |model_type, negator|

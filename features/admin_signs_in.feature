@@ -4,13 +4,10 @@ Feature: Admin signs in
   So I can use the site
 
   Background:
-    Given I exist as an admin
-    When I sign in with valid credentials
+    Given I am logged in as an admin
 
-  @javascript
   Scenario: Admin is redirected to the search screen upon login
-    Then I should be on the search screen
+    Then I should see "Prospect Search"
 
   Scenario: Admin sees admin dropdown
     Then I should see "Admin" within the top navigation bar
-
