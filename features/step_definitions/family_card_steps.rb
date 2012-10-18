@@ -28,7 +28,7 @@ When /^I fill in the form with an existing parent's name$/ do
 end
 
 When /^I follow the parent's name$/ do
-  step "I follow \"#{@parent_name}\""
+  step "I follow \"#{@family_card.default_parent.name}\""
 end
 
 Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
