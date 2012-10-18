@@ -102,6 +102,8 @@ en:
     street_address: "Street Address"
     student_name: "Student Name"
     zip_code: "Zip Code"
+  pages:
+    search: "Search"
   search:
     found:                    "Found"
     heading:                  "Prospect Search"
