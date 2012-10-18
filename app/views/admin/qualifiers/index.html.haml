@@ -1,10 +1,9 @@
 %h1 Listing qualifiers
 
-%table
+%table.table.table-striped
   %tr
-    %th
-    %th
-    %th
+    %th Qualifier
+    %th{:colspan => 2} Actions
 
   - @qualifiers.each do |qualifier|
     %tr{:id => "qualifier_#{qualifier.id}"}
