@@ -14,7 +14,7 @@
         .navbar-inner
           =link_to "Bridgeway Academy Desktop", root_path, :class => 'brand'
           %ul.nav
-            %li.active= link_to "Search", new_search_path
+            %li.active= link_to t('pages.search'), new_search_path
           = render "shared/user_links"
     - if content_for? :sidebar
       .container-fluid

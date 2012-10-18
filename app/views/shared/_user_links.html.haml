@@ -5,7 +5,11 @@
         = current_user.email
         %b.caret
       %ul.dropdown-menu
-        %li= link_to "<i class='icon-exclamation-sign'></i> #{t('user.logout')}".html_safe, destroy_user_session_path
+        %li
+          = link_to destroy_user_session_path do
+            %i.icon-exclamation-sign
+            = t('user.logout')
+
   - if current_user.is?(:admin)
     %ul#admin_menu.nav.pull-right
       %li.dropdown
