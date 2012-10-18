@@ -8,4 +8,14 @@ class AuditPresenter::FamilyMember < AuditPresenter::Base
     end
     return true
   end
+
+  private
+  def humanized_class_name
+    if audit.auditable.present?
+      audit.auditable.type.titleize
+    else
+      audit.auditable_type.titleize
+    end
+  end
+
 end

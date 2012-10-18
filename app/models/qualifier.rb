@@ -5,4 +5,8 @@ class Qualifier < ActiveRecord::Base
   audited
 
   attr_accessible :name, :category, :position, :family_card_id
+
+  def to_s
+    "[#{self.category}] #{self.name}"
+  end
 end

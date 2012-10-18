@@ -30,4 +30,5 @@ class User < ActiveRecord::Base
   def username
     self.email
   end
+  alias_method :to_s, :username
 end

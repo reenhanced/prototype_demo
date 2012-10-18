@@ -42,7 +42,7 @@ class AuditPresenter::Base
     tbody = h.content_tag :tbody do
       audited_changes.collect do |field, change|
         h.content_tag :tr do
-          h.content_tag(:td, field) +
+          h.content_tag(:td, (audit.revision || audit.auditable).class.human_attribute_name(field).downcase) +
           h.content_tag(:td, change[:from]) +
           h.content_tag(:td, change[:to])
         end
@@ -64,9 +64,14 @@ class AuditPresenter::Base
       send("#{field}_change", change)
     else
       if change.is_a?(Array)
-        [change[0], change[1]]
+        field = field.gsub(/_id$/, '') if field =~ /_id$/
+        from  = audit.auditable.try(field.to_sym) || change[0]
+        to    = audit.revision.try(field.to_sym) || change[1]
+        [from.to_s, to.to_s]
       else
-        [nil, change]
+        field = field.gsub(/_id$/, '').strip if field =~ /_id$/
+        to    = audit.auditable.try(field.to_sym) || change
+        [nil, to]
       end
     end
   end
@@ -79,7 +84,7 @@ class AuditPresenter::Base
   end
 
   def humanized_class_name
-    audit.auditable_type.constantize.model_name.human
+    audit.auditable_type.constantize.table_name.singularize.titleize
   end
 
   def audit

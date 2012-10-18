@@ -6,6 +6,8 @@ describe User do
   context "instance methods" do
     subject          { create(:user) }
     let(:admin_user) { create(:user, :admin) }
+    let!(:email)     { subject.email }
+
 
     describe "#roles" do
       it "returns all roles for the given user" do
@@ -47,9 +49,11 @@ describe User do
     end
 
     describe "#username" do
-      let!(:email) { subject.email }
-
       its(:username) { should == email }
+    end
+
+    describe "#to_s" do
+      its(:to_s) { should == email }
     end
   end
 end

@@ -30,22 +30,44 @@ Given /^all possible audits exist(?: for a family card)$/ do
   student.destroy
 end
 
-Then /^I should see the audit trail details for the created family card$/ do
-  @family_card   ||= FamilyCard.last
-  default_parent   = @family_card.default_parent
+Then /^I should see the audit changes for (.+)$/ do |audit_type, attributes_changed_from|
+  # just ensure we have this set in case the audit lookup needs it
+  @family_card       ||= FamilyCard.last
+  audits = audits_for(audit_type)
+  changed_attributes   = {}
+
+  attributes_changed_from.rows_hash.each do |name, value|
+    latest_audit = audits.first
+
+    if !latest_audit.audited_changes.keys.include?(name)
+      puts "Audit: #{latest_audit.inspect}"
+      raise "The latest audit for #{audit_type} does not contain changes for '#{name}'"
+    end
+
+    changed_to = latest_audit.audited_changes[name].try(:[], 1) || latest_audit.audited_changes[name]
+    if changed_to != value
+      raise "The value for #{audit_type} #{name} changed to '#{changed_to}', but expected '#{value}'"
+    end
+
+    if name =~ /_id$/
+      model_name = name.gsub(/_id/, '')
+      attribute_name = model_name.gsub(/_/, ' ')
+      changed_attributes[attribute_name] = latest_audit.audited_changes[name]
+    else
+      changed_attributes[name.gsub(/_/, ' ')] = latest_audit.audited_changes[name]
+    end
+  end
+
+  changes = ""
+  changed_attributes.each do |attribute, changes|
+    changed_from = changes.try(:[], 0) || ''
+    changed_to   = changes.try(:[], 1) || changes
+    changes << "| #{attribute} | #{changed_from} | #{changed_to} |"
+  end
+
   steps %{
     Then I should see the following table rows:
-      | Changed        | From | To                           |
-      | user_id        |      | #{@family_card.user.id}      |
-      | family_card_id |      | #{@family_card.id}           |
-      | first_name     |      | #{default_parent.first_name} |
-      | last_name      |      | #{default_parent.last_name} |
-      | address1       |      | #{default_parent.address1}   |
-      | address2       |      | #{default_parent.address2}   |
-      | city           |      | #{default_parent.city}       |
-      | state          |      | #{default_parent.state}      |
-      | zip_code       |      | #{default_parent.zip_code}   |
-      | phone          |      | #{default_parent.phone}      |
-      | email          |      | #{default_parent.email}      |
+      | Changed | From | To |
+      #{ changes }
   }
 end

@@ -64,4 +64,9 @@ FactoryGirl.define do
     category "positive"
     position 0
   end
+
+  factory :family_card_qualifier do
+    family_card
+    qualifier
+  end
 end

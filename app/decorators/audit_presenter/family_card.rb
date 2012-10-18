@@ -12,9 +12,10 @@ class AuditPresenter::FamilyCard < AuditPresenter::Base
 
     if audit.action == 'create'
       FamilyMember.audited_columns.collect do |column|
-        value = audit.auditable.default_parent.send(column.name.to_sym)
+        column_name = column.name.gsub(/_id$/, '')
+        value = audit.auditable.default_parent.send(column_name)
         next unless value.present?
-        audited_changes[column.name.to_sym] = {from: nil, to: value}
+        audited_changes[column.name] = {from: nil, to: value}
       end
     end
 
@@ -29,7 +30,7 @@ class AuditPresenter::FamilyCard < AuditPresenter::Base
     tbody = h.content_tag :tbody do
       audited_changes.collect do |field, change|
         h.content_tag :tr do
-          h.content_tag(:td, field) +
+          h.content_tag(:td, (audit.revision || audit.auditable).class.human_attribute_name(field).downcase) +
           h.content_tag(:td, change[:from]) +
           h.content_tag(:td, change[:to])
         end
@@ -42,5 +43,4 @@ class AuditPresenter::FamilyCard < AuditPresenter::Base
 
     h.content_tag(:strong, FamilyCard.human_attribute_name(:default_parent)) + table
   end
-
 end
