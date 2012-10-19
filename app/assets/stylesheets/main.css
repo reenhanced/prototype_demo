@@ -80,12 +80,13 @@ body {
 	font-family: 'AsapRegular' !important;
 }
 
-.head {
-	
-}
-
-.head a {
-	float: right;
+.brand {
+	display: block;
+	text-indent: -9999px;
+	background: url(/assets/logo.png) 0 0 no-repeat;
+	width: 189px;
+	height: 50px;
+	margin: 10px 0 0 -8px !important;
 }
 
 dt {
@@ -106,6 +107,7 @@ dt {
 
 .page-header {
 	margin-top: 5px !important;
+	letter-spacing: -1px;
 }
 
 .form-horizontal .form-actions {
@@ -114,4 +116,36 @@ dt {
 
 .form-horizontal .form-actions .btn {
 	float: right;
+	margin-left: 10px;
+}
+
+.navbar .nav {
+	margin: 19px 10px 0 0 !important;
+}
+
+.navbar .nav li a {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.navbar .pull-right {
+	margin-top: 40px !important;
+}
+
+.form-horizontal .control-group {
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #F7F7F7;
+	padding-bottom: 10px;
+}
+
+.form-horizontal .control-label {
+	width: 180px !important;
+	text-align: left !important;
+	margin-left: 10px;	
+}
+
+.form-horizontal .controls {
+	margin-left: 200px !important;
 }
