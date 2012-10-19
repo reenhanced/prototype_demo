@@ -1,0 +1,16 @@
+%h1 Listing qualifiers
+
+%table.table.table-striped
+  %tr
+    %th Qualifier
+    %th{:colspan => 2} Actions
+
+  - @qualifiers.each do |qualifier|
+    %tr{:id => "qualifier_#{qualifier.id}"}
+      %td= qualifier
+      %td.edit= link_to 'Edit', edit_admin_qualifier_path(qualifier)
+      %td.delete= link_to 'Delete', [:admin, qualifier], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Qualifier', new_admin_qualifier_path

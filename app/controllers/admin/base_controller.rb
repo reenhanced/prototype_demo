@@ -4,6 +4,6 @@ class Admin::BaseController < ApplicationController
 
   protected
   def admin_required
-    raise CanCan::Unauthorized unless user_signed_in? and current_user.is?(:admin)
+    raise CanCan::AccessDenied, "Unauthorized Access" unless user_signed_in? and current_user.is?(:admin)
   end
 end
