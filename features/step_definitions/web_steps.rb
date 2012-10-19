@@ -94,16 +94,6 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, path)
 end
 
-When /^I wait for (\d+) seconds?$/ do |secs|
-  sleep secs.to_i
-end
-
-When /^I wait for the ajax to finish$/ do
-  wait_until {
-    page.evaluate_script('jQuery.active') == 0
-  }
-end
-
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
@@ -235,11 +225,6 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
-end
-
-Then /^I should see the (.* )?image "(.+)"$/ do |style, image|
-  style ||= "medium"
-  page.should have_xpath("//img[contains(@src, \"#{style.strip}/#{image}\")]")
 end
 
 Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|

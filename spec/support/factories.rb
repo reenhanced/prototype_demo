@@ -60,7 +60,7 @@ FactoryGirl.define do
   end
 
   factory :qualifier do
-    name { Faker::Lorem.sentence(5) }
+    name     { Faker::Lorem.sentence(5) }
     category "positive"
     position 0
   end
