@@ -20,5 +20,9 @@ Bridgeway::Application.routes.draw do
     get  'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  root :to => 'search#new'
+  namespace :admin do
+    resources :qualifiers, :except => :show
+  end
+
+  root :to => "search#new"
 end
