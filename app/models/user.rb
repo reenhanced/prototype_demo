@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def username
-    self.email
+    "#{name} <#{email}>"
   end
   alias_method :to_s, :username
 end

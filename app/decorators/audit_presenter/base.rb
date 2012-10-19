@@ -13,7 +13,7 @@ class AuditPresenter::Base
   end
 
   def name
-    if audit.action == 'create'
+    if audit.auditable.present?
       audit.auditable.to_s
     else
       audit.revision.to_s
@@ -24,16 +24,8 @@ class AuditPresenter::Base
     true
   end
 
-  def changes(table_html_options = {})
-    audited_changes = {}
-    audit.audited_changes.each do |field, change|
-      from, to = changeset_for(field, change)
-      if from.present? or to.present?
-        audited_changes[:"#{field}"] = {from: from, to: to}
-      end
-    end
-
-    return unless audited_changes.any?
+  def changes_table(table_html_options = {})
+    return unless visible? and audited_changes.any?
 
     thead = h.content_tag :thead do
       h.content_tag :tr do
@@ -46,7 +38,7 @@ class AuditPresenter::Base
     tbody = h.content_tag :tbody do
       audited_changes.collect do |field, change|
         h.content_tag :tr do
-          h.content_tag(:td, (audit.revision || audit.auditable).class.human_attribute_name(field).downcase) +
+          h.content_tag(:td, field_name(field)) +
           h.content_tag(:td, change[:from]) +
           h.content_tag(:td, change[:to])
         end
@@ -59,22 +51,46 @@ class AuditPresenter::Base
   end
 
   protected
+  def audited_changes
+    # keep a cached version
+    return @audited_changes if @audited_changes.present?
+
+    @audited_changes = {}
+    audit.audited_changes.each do |field, change|
+      from, to = changeset_for(field, change)
+      if from.present? or to.present?
+        @audited_changes[field.to_sym] = {from: from, to: to}
+      end
+    end
+    @audited_changes
+  end
+
+  def field_name(field)
+    (audit.revision || audit.auditable).class.human_attribute_name(field).downcase
+  end
+
   def changeset_for(field, change)
     if respond_to?(:"#{field}_change")
       send("#{field}_change", change)
     else
-      field = field.to_s.gsub(/_id$/, '').strip if field.to_s =~ /_id$/
       if change.is_a?(Array)
-        from, to = change
-        from     = audit.auditable.try(field.to_sym) if audit.auditable.present? and audit.auditable.respond_to?(field.to_sym)
-        to       = audit.revision.try(field.to_sym) if audit.revision.respond_to?(field.to_sym)
-        [from.to_s, to.to_s]
+        [changed_field_from(field, change[0]), changed_field_to(field, change[1])]
       else
-        to = change
-        to = audit.auditable.try(field.to_sym) if audit.auditable.respond_to?(field.to_sym)
-        [nil, to]
+        [nil, changed_field_to(field, change)]
       end
     end
+  end
+
+  def changed_field_from(field, value)
+    field = field.to_s.gsub(/_id$/, '').strip.to_sym if field.to_s =~ /_id$/
+    from  = value
+    from  = audit.revision.try(field) if audit.revision.present? and audit.revision.respond_to?(field)
+  end
+
+  def changed_field_to(field, value)
+    field = field.to_s.gsub(/_id$/, '').strip.to_sym if field.to_s =~ /_id$/
+    to    = value
+    to    = audit.revision.try(field) if audit.revision.respond_to?(field)
   end
 
   private

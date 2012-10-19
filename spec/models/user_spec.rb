@@ -7,7 +7,7 @@ describe User do
     subject          { create(:user) }
     let(:admin_user) { create(:user, :admin) }
     let!(:email)     { subject.email }
-
+    let!(:name)      { subject.name }
 
     describe "#roles" do
       it "returns all roles for the given user" do
@@ -49,11 +49,11 @@ describe User do
     end
 
     describe "#username" do
-      its(:username) { should == email }
+      its(:username) { should == "#{name} <#{email}>" }
     end
 
     describe "#to_s" do
-      its(:to_s) { should == email }
+      its(:to_s) { should == "#{name} <#{email}>" }
     end
   end
 end

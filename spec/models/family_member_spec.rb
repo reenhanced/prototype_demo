@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe FamilyMember do
   it { should belong_to(:family_card) }
-  it { should have_many(:calls).class_name('CallLog') }
+  it { should have_many(:call_logs) }
 
   it { should allow_mass_assignment_of(:first_name) }
   it { should allow_mass_assignment_of(:last_name) }

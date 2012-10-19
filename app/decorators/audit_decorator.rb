@@ -6,7 +6,7 @@ class AuditDecorator < Draper::Base
   end
 
   def changes(options ={})
-    presenter.changes options
+    presenter.changes_table options
   end
 
   def author

@@ -1,6 +1,7 @@
 %table.table.table-striped.table-hover
   %thead
     %tr
+      %th= FamilyMember.human_attribute_name('relationship')
       %th= FamilyMember.human_attribute_name('first_name')
       %th= FamilyMember.human_attribute_name('last_name')
       %th= FamilyMember.human_attribute_name('email')

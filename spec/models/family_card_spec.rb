@@ -9,7 +9,6 @@ describe FamilyCard do
   it { should have_many(:family_card_qualifiers).dependent(:destroy) }
   it { should have_many(:qualifiers) }
 
-  it { should be_audited.associated_with(:default_parent) }
   it { should have_associated_audits }
 
   delegated_fields = [ :first_name, :last_name,
@@ -128,7 +127,7 @@ describe FamilyCard do
 
     describe "#name" do
       it "returns the name for the default parent" do
-        subject.name.should == subject.default_parent.name
+        subject.name.should == FamilyCard.human_attribute_name(:name, family_name: subject.default_parent.last_name)
       end
     end
 

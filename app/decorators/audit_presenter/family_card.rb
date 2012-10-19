@@ -1,46 +1,25 @@
 class AuditPresenter::FamilyCard < AuditPresenter::Base
-  def changes(table_html_options = {})
-    audited_changes = {}
+  protected
+  def audited_changes
+    # keep a cached version
+    return @audited_changes if @audited_changes.present?
+
+    @audited_changes = {}
     audit.audited_changes.each do |field, change|
       from, to = changeset_for(field, change)
       if from.present? or to.present?
-        audited_changes[:"#{field}"] = {from: from, to: to}
+        @audited_changes[field.to_sym] = {from: from, to: to}
       end
     end
-
-    return unless audited_changes.any? or audit.action == 'create'
 
     if audit.action == 'create'
       FamilyMember.audited_columns.collect do |column|
         column_name = column.name.gsub(/_id$/, '')
-        value = audit.auditable.default_parent.send(column_name)
+        value = audit.auditable.default_parent.send(column_name).to_s
         next unless value.present?
-        audited_changes[column.name] = {from: nil, to: value}
+        @audited_changes[column.name] = {from: nil, to: value}
       end
     end
-
-    thead = h.content_tag :thead do
-      h.content_tag :tr do
-        h.content_tag(:th, I18n.translate("audit.changes.attribute")) +
-        h.content_tag(:th, I18n.translate("audit.changes.from")) +
-        h.content_tag(:th, I18n.translate("audit.changes.to"))
-      end
-    end
-
-    tbody = h.content_tag :tbody do
-      audited_changes.collect do |field, change|
-        h.content_tag :tr do
-          h.content_tag(:td, (audit.revision || audit.auditable).class.human_attribute_name(field).downcase) +
-          h.content_tag(:td, change[:from]) +
-          h.content_tag(:td, change[:to])
-        end
-      end.join("").html_safe
-    end
-
-    table = h.content_tag :table, table_html_options do
-      thead + tbody
-    end
-
-    h.content_tag(:strong, FamilyCard.human_attribute_name(:default_parent)) + table
+    @audited_changes
   end
 end

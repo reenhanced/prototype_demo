@@ -6,7 +6,7 @@ Given /^(?:I have|there is) an?(.*)? (.*)? audit(.*)$/ do |action, auditable_typ
 
   if action.present?
     action = (action =~ /yed$/) ? action.gsub(/ed$/, '') : action.gsub(/d$/, '')
-    create(:audit, audit_trait, action: action.strip, auditable: create(auditable_type), associated: @family_card, user: nil)
+    create(:audit, audit_trait, action: action.strip, auditable: create(auditable_type, family_card: @family_card), associated: @family_card, user: nil)
   else
     create(:audit, audit_trait, associated: @family_card, user: nil)
   end

@@ -28,6 +28,7 @@ en:
       family_card:
         default_parent:     "Default Parent"
         default_student:    "Default Student"
+        name:               "The %{family_name} Family"
         parent_address1:    "Address"
         parent_address2:    "Address 2"
         parent_city:        "City"

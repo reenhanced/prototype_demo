@@ -5,6 +5,6 @@ class FamilyCardQualifier < ActiveRecord::Base
   audited :associated_with => :family_card
 
   def to_s
-    "\"#{qualifier.name}\" for #{family_card.name}"
+    "\"#{qualifier.name}\" to #{family_card.name}"
   end
 end

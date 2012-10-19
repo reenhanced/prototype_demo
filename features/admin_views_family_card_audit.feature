@@ -24,12 +24,12 @@ Feature: Admin views an audit trail for a family card
     Then I should see "Family of: Gordon Ramsy"
     And I should see "Back to family card"
     And I should see the following table rows:
-      | admin@example.com*@*02:00PM on 02/21/2013* | *Updated Family Card*Gordon Ramsy* | *more details* |
-      | admin@example.com*@*02:00PM on 02/21/2013* | *Created Family Card*Gordon Ramsy* | *more details* |
+      | *admin@example.com*@*02:00PM on 02/21/2013* | *Updated Family Card*The Ramsy Family* | *more details* |
+      | *admin@example.com*@*02:00PM on 02/21/2013* | *Created Family Card*The Ramsy Family* | *more details* |
     And I should see the following table rows:
       | Changed     | From | To                       |
-      | user        |      | admin@example.com        |
-      | family card |      | Gordon Ramsy             |
+      | user        |      | *admin@example.com*      |
+      | family card |      | The Ramsy Family         |
       | first name  |      | Gordon                   |
       | last name   |      | Ramsy                    |
       | address1    |      | 1234 Easy St.            |
@@ -55,7 +55,7 @@ Feature: Admin views an audit trail for a family card
     And I press "Update Family Card"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | admin@example.com*@*03:00PM on 03/22/2013* | *Updated Family Member*Ramsy Cornerstone* | *more details* |
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Family Member*Ramsy Cornerstone* | *more details* |
     And I should see the audit changes for the updated family card's default parent:
       | first_name | Ramsy                         |
       | last_name  | Cornerstone                   |
@@ -86,17 +86,17 @@ Feature: Admin views an audit trail for a family card
     And I press "Create Student"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | admin@example.com*@*03:00PM on 03/22/2013* | *Created Student*Bobby Jones* | *more details* |
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Created Student*Bobby Jones* | *more details* |
     And I should see the following table rows:
-      | Changed    | From | To                      |
-      | first name |      | Bobby                   |
-      | last name  |      | Jones                   |
-      | address    |      | 123 Easy St             |
-      | address 2  |      | Apt. 2                  |
-      | city       |      | Los Angelos             |
-      | zip code   |      | 90210                   |
-      | phone      |      | (911) 555-1212          |
-      | email      |      | bobby.jones@example.com |
+      | Changed      | From | To                      |
+      | first name   |      | Bobby                   |
+      | last name    |      | Jones                   |
+      | address      |      | 123 Easy St             |
+      | address 2    |      | Apt. 2                  |
+      | city         |      | Los Angelos             |
+      | zip code     |      | 90210                   |
+      | phone        |      | (911) 555-1212          |
+      | email        |      | bobby.jones@example.com |
 
   @javascript
   Scenario: Admin views the audit trail for a new family member
@@ -116,23 +116,25 @@ Feature: Admin views an audit trail for a family card
     And I press "Create Family Member"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | admin@example.com*@*03:00PM on 03/22/2013* | *Created Family Member*Judy Garland* | *more details* |
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Created Family Member*Judy Garland* | *more details* |
     And I should see the following table rows:
-      | Changed     | From | To                      |
-      | family card |      | Gordon Ramsy            |
-      | first name  |      | Judy                    |
-      | last name   |      | Garland                 |
-      | address     |      | 123 Easy St             |
-      | address 2   |      | Apt. 2                  |
-      | city        |      | Los Angelos             |
-      | zip code    |      | 90210                   |
-      | phone       |      | (911) 555-1212          |
-      | email       |      | bobby.jones@example.com |
+      | Changed      | From | To                      |
+      | family card  |      | The Ramsy Family        |
+      | first name   |      | Judy                    |
+      | last name    |      | Garland                 |
+      | address      |      | 123 Easy St             |
+      | address 2    |      | Apt. 2                  |
+      | city         |      | Los Angelos             |
+      | zip code     |      | 90210                   |
+      | phone        |      | (911) 555-1212          |
+      | email        |      | bobby.jones@example.com |
+      | relationship |      | Mother                  |
 
   Scenario: Admin views the audit trail with migrated data
     Given I have a created parent audit with migrated data
     When I am on the family card's page
     And I follow "Show audit trail"
+    And show me the page
     Then I should see the following table rows:
       | System*@*03:00PM on 03/22/2013* | *Created Family Member* | *more details* |
     And I should see the following table rows:
@@ -145,6 +147,7 @@ Feature: Admin views an audit trail for a family card
     And I follow "Show audit trail"
     Then I should see the following table rows:
       | System*@*03:00PM on 03/22/2013* | *Created Student* | *more details* |
+    And show me the page
     And I should see the following table rows:
       | Changed     | From | To |
       | family card |      | 1  |
@@ -161,15 +164,15 @@ Feature: Admin views an audit trail for a family card
     And I press "Save Entry"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | admin@example.com*@*03:00PM on 03/22/2013* | *Created Call Log*Spoke to: Gordon Ramsy* | *more details* |
-      | admin@example.com*@*03:00PM on 03/22/2013* | *Added Family Card Qualifier*"Eats bugers." for Gordon Ramsy* | *more details* |
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Created Call Log*Spoke to: Gordon Ramsy* | *more details* |
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Added Family Card Qualifier*"Eats bugers." to The Ramsy Family* | *more details* |
     And I should see the following table rows:
       | Changed     | From | To                     |
-      | family card |      | Gordon Ramsy           |
+      | family card |      | The Ramsy Family       |
       | qualifier   |      | [positive] Eats bugers. |
     And I should see the following table rows:
       | Changed          | From | To                    |
-      | family card      |      | Gordon Ramsy          |
+      | family card      |      | The Ramsy Family      |
       | message          |      | I am batman.          |
       | spoke to         |      | Gordon Ramsy          |
       | contact type     |      | FamilyMember          |

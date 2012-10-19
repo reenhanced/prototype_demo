@@ -13,7 +13,7 @@ describe FamilyCardQualifier do
     describe "#to_s" do
       it "returns the qualifier and family name" do
         subject = create(:family_card_qualifier, family_card: family_card, qualifier: qualifier)
-        subject.to_s.should == "\"#{qualifier.name}\" for #{family_card.name}"
+        subject.to_s.should == "\"#{qualifier.name}\" to #{family_card.name}"
       end
     end
   end
