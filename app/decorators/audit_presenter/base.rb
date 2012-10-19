@@ -20,6 +20,10 @@ class AuditPresenter::Base
     end
   end
 
+  def visible?
+    true
+  end
+
   def changes(table_html_options = {})
     audited_changes = {}
     audit.audited_changes.each do |field, change|
@@ -54,23 +58,20 @@ class AuditPresenter::Base
     end
   end
 
-  def visible?
-    true
-  end
-
   protected
   def changeset_for(field, change)
     if respond_to?(:"#{field}_change")
       send("#{field}_change", change)
     else
+      field = field.to_s.gsub(/_id$/, '').strip if field.to_s =~ /_id$/
       if change.is_a?(Array)
-        field = field.gsub(/_id$/, '') if field =~ /_id$/
-        from  = audit.auditable.try(field.to_sym) || change[0]
-        to    = audit.revision.try(field.to_sym) || change[1]
+        from, to = change
+        from     = audit.auditable.try(field.to_sym) if audit.auditable.present? and audit.auditable.respond_to?(field.to_sym)
+        to       = audit.revision.try(field.to_sym) if audit.revision.respond_to?(field.to_sym)
         [from.to_s, to.to_s]
       else
-        field = field.gsub(/_id$/, '').strip if field =~ /_id$/
-        to    = audit.auditable.try(field.to_sym) || change
+        to = change
+        to = audit.auditable.try(field.to_sym) if audit.auditable.respond_to?(field.to_sym)
         [nil, to]
       end
     end
@@ -84,7 +85,7 @@ class AuditPresenter::Base
   end
 
   def humanized_class_name
-    audit.auditable_type.constantize.table_name.singularize.titleize
+    audit.auditable_type.titleize
   end
 
   def audit

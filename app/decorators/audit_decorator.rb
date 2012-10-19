@@ -23,6 +23,10 @@ class AuditDecorator < Draper::Base
 
   private
   def presenter
-    @presenter ||= "AuditPresenter::#{audit.auditable_type}".constantize.new(audit, self)
+    begin
+      @presenter ||= "AuditPresenter::#{audit.auditable_type}".constantize.new(audit, self)
+    rescue NameError => e
+      @presenter = AuditPresenter::Base.new(audit, self)
+    end
   end
 end

@@ -129,6 +129,26 @@ Feature: Admin views an audit trail for a family card
       | phone       |      | (911) 555-1212          |
       | email       |      | bobby.jones@example.com |
 
+  Scenario: Admin views the audit trail with migrated data
+    Given I have a created parent audit with migrated data
+    When I am on the family card's page
+    And I follow "Show audit trail"
+    Then I should see the following table rows:
+      | System*@*03:00PM on 03/22/2013* | *Created Family Member* | *more details* |
+    And I should see the following table rows:
+      | Changed        | From | To |
+      | primary parent |      | 1  |
+
+  Scenario: Admin views the audit trail with old audits that have references to old models
+    Given I have a created parent audit with old model references
+    When I am on the family card's page
+    And I follow "Show audit trail"
+    Then I should see the following table rows:
+      | System*@*03:00PM on 03/22/2013* | *Created Student* | *more details* |
+    And I should see the following table rows:
+      | Changed     | From | To |
+      | family card |      | 1  |
+
   @javascript
   Scenario: Admin views the audit trail for a new call log
     Given I have a family card with parent "Gordon Ramsy"

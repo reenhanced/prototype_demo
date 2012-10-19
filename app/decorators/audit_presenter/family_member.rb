@@ -11,7 +11,7 @@ class AuditPresenter::FamilyMember < AuditPresenter::Base
 
   private
   def humanized_class_name
-    if audit.auditable.present?
+    if audit.auditable.try(:type).present?
       audit.auditable.type.titleize
     else
       audit.auditable_type.titleize

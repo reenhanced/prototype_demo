@@ -1,33 +1,15 @@
-Given /^all possible audits exist(?: for a family card)$/ do
-  # Creates
-  steps %{
-    Given the time is "21 Feb 2013 01:00PM"
-  }
-  @family_card ||= create(:family_card, parent_first_name: "Gordon", parent_last_name: "Ramsy")
-  student = create(:student, family_card: @family_card, first_name: "Ramsy", last_name: "Cornerstone")
-  parent = create(:parent, family_card: @family_card, first_name: "Amadeus", last_name: "Cornerstone")
-  qualifier = create(:qualifier, name: "Can eat own bugers", category: "negative")
-  call_log = create(:call_log, family_card: @family_card, contact_id: parent.id, contact_type: parent.class)
-  call_log.qualifier_ids = [qualifier.id]
-  call_log.save!
+Given /^(?:I have|there is) an?(.*)? (.*)? audit(.*)$/ do |action, auditable_type, audit_trait|
+  @family_card = create(:family_card)
 
-  # Updates
-  steps %{
-    Given the time is "22 Mar 2013 02:00PM"
-  }
-  @family_card.update_attributes!(parent_first_name: "Carson", parent_last_name: "Daily")
-  student.update_attributes!(first_name: "Dawson", last_name: "Lawson")
-  parent.update_attributes!(first_name: "Larry", last_name: "Lawson")
-  qualifier.update_attributes!(name: "Can eat whole watermelon", category: "positive")
-  call_log.update_attributes!(contact_id: student.id, contact_type: student.class)
-  call_log.qualifier_ids = []
-  call_log.save!
+  audit_trait = audit_trait.parameterize('_').to_sym
+  auditable_type = auditable_type.parameterize('_').to_sym
 
-  # Destroys
-  call_log.destroy
-  qualifier.destroy
-  parent.destroy
-  student.destroy
+  if action.present?
+    action = (action =~ /yed$/) ? action.gsub(/ed$/, '') : action.gsub(/d$/, '')
+    create(:audit, audit_trait, action: action.strip, auditable: create(auditable_type), associated: @family_card, user: nil)
+  else
+    create(:audit, audit_trait, associated: @family_card, user: nil)
+  end
 end
 
 Then /^I should see the audit changes for (.+)$/ do |audit_type, attributes_changed_from|
