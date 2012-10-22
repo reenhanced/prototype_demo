@@ -1,5 +1,4 @@
 class AuditPresenter::FamilyCard < AuditPresenter::Base
-  protected
   def audited_changes
     # keep a cached version
     if @audited_changes.nil?

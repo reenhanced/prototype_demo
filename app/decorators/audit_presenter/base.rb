@@ -8,14 +8,6 @@ class AuditPresenter::Base
     "#{I18n.translate("audit.actions.#{audit.action}")} #{humanized_class_name}"
   end
 
-  def author
-    h.content_tag :strong, class: 'text-info' do
-      h.content_tag(:span, author_name, class: 'muted') +
-      h.content_tag(:br) +
-      h.content_tag(:em, Audit.human_attribute_name(:created_at, datetime: audit.created_at))
-    end
-  end
-
   def author_name
     if audit.user.present? and audit.user.username.present?
       audit.user.username
@@ -33,49 +25,9 @@ class AuditPresenter::Base
   end
 
   def visible?
-    audit.audited_changes.any?
+    audited_changes.any?
   end
 
-  def changes(options = {})
-    leading_content = h.content_tag :div, class: 'lead' do
-      h.content_tag(:span, action, class: 'label label-info') +
-      name
-    end
-
-    audited_content = h.div_for audit, class: 'collapse' do
-      changes_table class: 'table table-striped table-bordered'
-    end
-
-    leading_content + audited_content
-  end
-
-  def changes_table(table_html_options = {})
-    return unless visible?
-
-    thead = h.content_tag :thead do
-      h.content_tag :tr do
-        h.content_tag(:th, I18n.translate("audit.changes.attribute")) +
-        h.content_tag(:th, I18n.translate("audit.changes.from")) +
-        h.content_tag(:th, I18n.translate("audit.changes.to"))
-      end
-    end
-
-    tbody = h.content_tag :tbody do
-      audited_changes.collect do |field, change|
-        h.content_tag :tr do
-          h.content_tag(:td, field_name(field)) +
-          h.content_tag(:td, change[:from]) +
-          h.content_tag(:td, change[:to])
-        end
-      end.join("").html_safe
-    end
-
-    h.content_tag :table, table_html_options do
-      thead + tbody
-    end
-  end
-
-  protected
   def audited_changes
     # keep a cached version
     return @audited_changes if @audited_changes.present?
@@ -90,10 +42,7 @@ class AuditPresenter::Base
     @audited_changes
   end
 
-  def field_name(field)
-    (audit.revision || audit.auditable).class.human_attribute_name(field).downcase
-  end
-
+  protected
   def changeset_for(field, change)
     if respond_to?(:"#{field}_change")
       send("#{field}_change", change)
