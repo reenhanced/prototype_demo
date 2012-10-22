@@ -27,6 +27,11 @@ module NavigationHelpers
       raise "No @family_card exists, please reference features/step_definitions/family_card_steps.rb" unless @family_card
       "/family_cards/#{@family_card.id}"
 
+    when /the family card's audit page/
+      @family_card ||= FamliyCard.last
+      raise "No @family_card exists, please reference features/step_definitions/family_card_steps.rb" unless @family_card
+      "/family_cards/#{@family_card.id}/audits"
+
     when /another user's family card page/
       raise "No @user exists, please reference features/step_definitions/family_card_steps.rb" unless @user
       @family_card = FamilyCard.where("user_id != #{@user.id}").first

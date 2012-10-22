@@ -181,3 +181,6 @@ Feature: Admin views an audit trail for a family card
     And I have 1 family card
     When I am on the family card's page
     Then I should not see "Show audit trail"
+    When I am on the family card's audit page
+    Then show me the page
+    Then I should see "You are not authorized to access this page"
