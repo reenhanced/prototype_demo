@@ -6,6 +6,8 @@ describe User do
   context "instance methods" do
     subject          { create(:user) }
     let(:admin_user) { create(:user, :admin) }
+    let!(:email)     { subject.email }
+    let!(:name)      { subject.name }
 
     describe "#roles" do
       it "returns all roles for the given user" do
@@ -44,6 +46,14 @@ describe User do
       it "returns false if the user doesn't have the given role" do
         admin_user.is?('peakock').should be_false
       end
+    end
+
+    describe "#username" do
+      its(:username) { should == "#{name} <#{email}>" }
+    end
+
+    describe "#to_s" do
+      its(:to_s) { should == "#{name} <#{email}>" }
     end
   end
 end

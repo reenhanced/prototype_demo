@@ -9,7 +9,6 @@ describe FamilyCard do
   it { should have_many(:family_card_qualifiers).dependent(:destroy) }
   it { should have_many(:qualifiers) }
 
-  it { should be_audited }
   it { should have_associated_audits }
 
   delegated_fields = [ :first_name, :last_name,
@@ -68,7 +67,7 @@ describe FamilyCard do
   end
 
   context "instance methods" do
-    subject { create(:family_card) }
+    subject { create(:family_card, parent_first_name: "Jonny", parent_last_name: "Cash") }
 
     describe "#default_student" do
       it "returns the first student created for the family card" do
@@ -83,6 +82,17 @@ describe FamilyCard do
 
         subject.default_student.should be_instance_of(Student)
         subject.default_student.family_card.should == subject
+      end
+    end
+
+    describe "#audits_with_associated" do
+      before do
+        Audit.stub(:with_associated_for).and_return("foo")
+      end
+
+      it "calls Audit.with_associated_for" do
+        Audit.should_receive(:with_associated_for).with(subject)
+        subject.audits_with_associated.should == 'foo'
       end
     end
 
@@ -112,6 +122,18 @@ describe FamilyCard do
 
       describe "maintains relationships" do
         its(:family_card) { should == family_card }
+      end
+    end
+
+    describe "#name" do
+      it "returns the name for the default parent" do
+        subject.name.should == FamilyCard.human_attribute_name(:name, family_name: subject.default_parent.last_name)
+      end
+    end
+
+    describe "#to_s" do
+      it "returns the name for the family card" do
+        subject.to_s.should == subject.name
       end
     end
   end

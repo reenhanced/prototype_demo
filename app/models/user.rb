@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles, :name
 
   ROLES = %w[admin]
 
@@ -26,4 +26,9 @@ class User < ActiveRecord::Base
   def is?(role)
     roles.include?(role.to_s)
   end
+
+  def username
+    "#{name} <#{email}>"
+  end
+  alias_method :to_s, :username
 end

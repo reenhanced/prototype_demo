@@ -1,0 +1,32 @@
+.navbar
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{ :'data-toggle' => "collapse", :'data-target' => ".nav-collapse" }
+        .icon-bar
+        .icon-bar
+        .icon-bar
+      = link_to t('family_card.family_of', parent_name: @family_card.default_parent), family_card_path(@family_card), class: 'brand'
+      .nav-collapse
+        %ul.nav.pull-right
+          %li.divider-vertical
+          %li
+            = link_to family_card_path(@family_card) do
+              %i.icon-chevron-left
+              = t('back_to', location: 'family card')
+
+.container
+  %table.table.table-striped
+    %thead
+      %th Date
+      %th Change
+      %th
+    %tbody
+      - @audits.each do |audit|
+        %tr{ id: "audit-row-#{audit.id}"}
+          %td.created-at
+            = audit.author
+          %td
+            = audit.changes
+          %td
+            %button.btn.btn-small.btn-info.right{ :type => "button", :'data-toggle' => "collapse", :'data-target' => "#audit_#{audit.id}"}
+              = t('audit.view_more_details')
