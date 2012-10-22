@@ -23,7 +23,7 @@ describe Audit do
         it { should include(*audits) }
         it "orders by created_at and version descending" do
           subject.first.auditable.should == student
-          subject.last.auditable.should == auditor.default_parent
+          subject.last.auditable.should == auditor
         end
       end
 

@@ -4,6 +4,8 @@ class FamilyCards::AuditsController < ApplicationController
 
   def show
     @family_card = FamilyCard.find(params[:id])
-    @audits = AuditDecorator.decorate(Audit.with_associated_for(@family_card))
+    @audits = AuditDecorator.decorate(Audit.with_associated_for(@family_card)).select do |audit_presenter|
+      audit_presenter.visible?
+    end
   end
 end

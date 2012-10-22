@@ -9,7 +9,12 @@ class AuditPresenter::Base
   end
 
   def author
-    (audit.user.try(:username) || I18n.translate("audit.system_username"))
+    author_name = (audit.user.try(:username) || I18n.translate("audit.system_username"))
+    h.content_tag :strong, class: 'text-info' do
+      h.content_tag(:span, author_name, class: 'muted') +
+      h.content_tag(:br) +
+      h.content_tag(:em, Audit.human_attribute_name(:created_at, datetime: audit.created_at))
+    end
   end
 
   def name
@@ -21,11 +26,24 @@ class AuditPresenter::Base
   end
 
   def visible?
-    true
+    audit.audited_changes.any?
+  end
+
+  def changes(options = {})
+    leading_content = h.content_tag :div, class: 'lead' do
+      h.content_tag(:span, action, class: 'label label-info') +
+      name
+    end
+
+    audited_content = h.div_for audit, class: 'collapse' do
+      changes_table class: 'table table-striped table-bordered'
+    end
+
+    leading_content + audited_content
   end
 
   def changes_table(table_html_options = {})
-    return unless visible? and audited_changes.any?
+    return unless visible?
 
     thead = h.content_tag :thead do
       h.content_tag :tr do
@@ -83,14 +101,20 @@ class AuditPresenter::Base
 
   def changed_field_from(field, value)
     field = field.to_s.gsub(/_id$/, '').strip.to_sym if field.to_s =~ /_id$/
-    from  = value
-    from  = audit.revision.try(field) if audit.revision.present? and audit.revision.respond_to?(field)
+    if audit.revision.present? and audit.revision.respond_to?(field)
+      audit.revision.try(field) || value
+    else
+      value
+    end
   end
 
   def changed_field_to(field, value)
     field = field.to_s.gsub(/_id$/, '').strip.to_sym if field.to_s =~ /_id$/
-    to    = value
-    to    = audit.revision.try(field) if audit.revision.respond_to?(field)
+    if audit.revision.respond_to?(field)
+      audit.revision.try(field) || value
+    else
+      value
+    end
   end
 
   private

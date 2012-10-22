@@ -131,12 +131,11 @@ Feature: Admin views an audit trail for a family card
       | relationship |      | Mother                  |
 
   Scenario: Admin views the audit trail with migrated data
-    Given I have a created parent audit with migrated data
+    Given I have a created family card audit with migrated data
     When I am on the family card's page
     And I follow "Show audit trail"
-    And show me the page
     Then I should see the following table rows:
-      | System*@*03:00PM on 03/22/2013* | *Created Family Member* | *more details* |
+      | System*@*03:00PM on 03/22/2013* | *Created Family Card* | *more details* |
     And I should see the following table rows:
       | Changed        | From | To |
       | primary parent |      | 1  |
@@ -147,10 +146,9 @@ Feature: Admin views an audit trail for a family card
     And I follow "Show audit trail"
     Then I should see the following table rows:
       | System*@*03:00PM on 03/22/2013* | *Created Student* | *more details* |
-    And show me the page
     And I should see the following table rows:
-      | Changed     | From | To |
-      | family card |      | 1  |
+      | Changed     | From | To           |
+      | family card |      | The * Family |
 
   @javascript
   Scenario: Admin views the audit trail for a new call log

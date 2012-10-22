@@ -5,7 +5,11 @@ class AuditDecorator < Draper::Base
     presenter.action
   end
 
-  def changes(options ={})
+  def changes
+    presenter.changes
+  end
+
+  def changes_table(options ={})
     presenter.changes_table options
   end
 

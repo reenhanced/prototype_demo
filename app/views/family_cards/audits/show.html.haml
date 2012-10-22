@@ -22,19 +22,11 @@
       %th
     %tbody
       - @audits.each do |audit|
-        - next unless audit.visible?
         %tr{ id: "audit-row-#{audit.id}"}
           %td.created-at
-            %strong.text-info
-              %span.muted= audit.author
-              %br
-              %em= Audit.human_attribute_name(:created_at, datetime: audit.created_at)
+            = audit.author
           %td
-            .lead
-              %span.label.label-info= audit.action
-              = audit.name
-            = div_for audit, class: 'collapse' do
-              = audit.changes class: 'table table-striped table-bordered'
+            = audit.changes
           %td
             %button.btn.btn-small.btn-info.right{ :type => "button", :'data-toggle' => "collapse", :'data-target' => "#audit_#{audit.id}"}
               = t('audit.view_more_details')

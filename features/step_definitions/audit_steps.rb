@@ -1,12 +1,26 @@
-Given /^(?:I have|there is) an?(.*)? (.*)? audit(.*)$/ do |action, auditable_type, audit_trait|
-  @family_card = create(:family_card)
+Given /^(?:I have|there is) an?( created| updated| destroyed)? (.*)? audit(.*)$/ do |action, auditable_type, audit_trait|
+  @family_card ||= create(:family_card, user: @user)
 
   audit_trait = audit_trait.parameterize('_').to_sym
   auditable_type = auditable_type.parameterize('_').to_sym
 
+  if auditable_type == :family_card
+    associated = nil
+    auditable = @family_card
+  else
+    associated = @family_card
+    auditable = create(auditable_type, family_card: @family_card)
+  end
+
   if action.present?
-    action = (action =~ /yed$/) ? action.gsub(/ed$/, '') : action.gsub(/d$/, '')
-    create(:audit, audit_trait, action: action.strip, auditable: create(auditable_type, family_card: @family_card), associated: @family_card, user: nil)
+    case action
+    when /created/
+      create(:audit, audit_trait, action: 'create', auditable: auditable, associated: associated, user: nil)
+    when /updated/
+      create(:audit, audit_trait, action: 'update', auditable: auditable, associated: associated, user: nil)
+    when /destroyed/
+      create(:audit, audit_trait, action: 'destroy', auditable: auditable, associated: associated, user: nil)
+    end
   else
     create(:audit, audit_trait, associated: @family_card, user: nil)
   end
