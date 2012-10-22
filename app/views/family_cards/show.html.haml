@@ -16,7 +16,7 @@
           - if current_user.is?(:admin)
             %li.divider-vertical
             %li
-              = link_to family_card_audits_path do
+              = link_to family_card_audits_path(@family_card) do
                 %i.icon-road
                 = t('family_card.show_audit_trail')
 

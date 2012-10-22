@@ -1,5 +1,5 @@
 class Audit < Audited::Adapters::ActiveRecord::Audit
-  default_scope order(:created_at, :version)
+
   def self.with_associated_for(auditor = nil)
     return [] unless auditor
     where(

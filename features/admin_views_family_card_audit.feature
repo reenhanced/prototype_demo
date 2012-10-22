@@ -153,7 +153,7 @@ Feature: Admin views an audit trail for a family card
   @javascript
   Scenario: Admin views the audit trail for a new call log
     Given I have a family card with parent "Gordon Ramsy"
-    And I have 1 qualifier with "Eats bugers."
+    And I have a positive qualifier with "Eats boogers."
     When I am on the family card's page
     And I click "Add call log"
     And I select the first member from the new call log contacts
@@ -163,11 +163,11 @@ Feature: Admin views an audit trail for a family card
     And I follow "Show audit trail"
     Then I should see the following table rows:
       | *admin@example.com*@*03:00PM on 03/22/2013* | *Created Call Log*Spoke to: Gordon Ramsy* | *more details* |
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Added Family Card Qualifier*"Eats bugers." to The Ramsy Family* | *more details* |
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Added Family Card Qualifier*"Eats boogers." to The Ramsy Family* | *more details* |
     And I should see the following table rows:
       | Changed     | From | To                     |
       | family card |      | The Ramsy Family       |
-      | qualifier   |      | [positive] Eats bugers. |
+      | qualifier   |      | [positive] Eats boogers. |
     And I should see the following table rows:
       | Changed          | From | To                    |
       | family card      |      | The Ramsy Family      |

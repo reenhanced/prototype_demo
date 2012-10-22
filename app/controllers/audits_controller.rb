@@ -1,9 +1,8 @@
-class FamilyCards::AuditsController < ApplicationController
-  authorize_resource :family_card
+class AuditsController < ApplicationController
+  load_and_authorize_resource :family_card
   authorize_resource :audited, :through => :family_card
 
-  def show
-    @family_card = FamilyCard.find(params[:id])
+  def index
     @audits = AuditDecorator.decorate(Audit.with_associated_for(@family_card)).select do |audit_presenter|
       audit_presenter.visible?
     end

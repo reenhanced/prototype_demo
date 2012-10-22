@@ -9,11 +9,18 @@ class AuditPresenter::Base
   end
 
   def author
-    author_name = (audit.user.try(:username) || I18n.translate("audit.system_username"))
     h.content_tag :strong, class: 'text-info' do
       h.content_tag(:span, author_name, class: 'muted') +
       h.content_tag(:br) +
       h.content_tag(:em, Audit.human_attribute_name(:created_at, datetime: audit.created_at))
+    end
+  end
+
+  def author_name
+    if audit.user.present? and audit.user.username.present?
+      audit.user.username
+    else
+      I18n.translate("audit.system_username")
     end
   end
 
