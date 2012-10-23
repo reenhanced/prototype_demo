@@ -33,6 +33,8 @@ class FamilyMembersController < ApplicationController
     else
       flash[:error] = "We were unable to update the family member.  Please check the information you entered and try again."
     end
+
+    respond_with @family_member
   end
 
   def destroy
