@@ -1,6 +1,7 @@
 Bridgeway::Application.routes.draw do
 
   resources :family_cards, :except => [:index, :destroy] do
+    resources :audits, :only => [:index]
     resources :students
     resources :family_members
     resources :call_logs

@@ -12,6 +12,8 @@ describe Ability do
     it { should_not be_able_to(:create, Qualifier.new) }
     it { should_not be_able_to(:update, Qualifier.new) }
     it { should_not be_able_to(:destroy, Qualifier.new) }
+
+    it { should_not be_able_to(:read, Audited) }
   end
 
   context "for visitors" do
@@ -36,11 +38,11 @@ describe Ability do
       it { should_not be_able_to(:read, CallLog) }
       it { should_not be_able_to(:update, CallLog) }
       it { should_not be_able_to(:destroy, CallLog) }
-    end 
+    end
 
     it_behaves_like "cannot perform admin abilities"
   end
-  
+
   context "for users without role" do
     let(:user) { build(:user) }
     let(:my_family_card)     { create(:family_card, user: user) }

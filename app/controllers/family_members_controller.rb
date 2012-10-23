@@ -45,6 +45,7 @@ class FamilyMembersController < ApplicationController
     params.require(:family_member).permit :first_name, :last_name,
                                           :email,      :phone,
                                           :address1,   :address2,
-                                          :city,       :state,    :zip_code
+                                          :city,       :state,
+                                          :zip_code,   :relationship
   end
 end

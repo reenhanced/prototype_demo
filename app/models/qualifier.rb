@@ -9,6 +9,6 @@ class Qualifier < ActiveRecord::Base
   attr_accessible :name, :category, :position
 
   def to_s
-    name
+    "[#{self.category}] #{self.name}"
   end
 end

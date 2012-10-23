@@ -26,17 +26,22 @@ describe CallLog do
   end
 
   context "instance methods" do
+    let(:family_card) { create(:family_card) }
+    subject           { create(:call_log, :with_qualifiers, family_card: family_card, contact_id: family_card.default_parent.id, contact_type: family_card.default_parent.class.to_s) }
+
+    describe "#to_s" do
+      its(:to_s) { should == "Spoke to: #{family_card.default_parent}" }
+    end
+
     describe "#qualifiers" do
-      let!(:call_log) { create(:call_log, :with_qualifiers) }
-
       it "returns an array of qualifiers descending by category for the associated family_card" do
-        call_log.qualifier_ids |= [create(:qualifier, category: 'neutral').id]
-        call_log.save!
+        subject.qualifier_ids |= [create(:qualifier, category: 'neutral').id]
+        subject.save!
 
-        call_log.reload
-        call_log.qualifiers.should have(4).qualifiers
-        call_log.qualifiers.first.category.should == 'positive'
-        call_log.qualifiers.last.category.should == 'negative'
+        subject.reload
+        subject.qualifiers.should have(4).qualifiers
+        subject.qualifiers.first.category.should == 'positive'
+        subject.qualifiers.last.category.should == 'negative'
       end
     end
   end

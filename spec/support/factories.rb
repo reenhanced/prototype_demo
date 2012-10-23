@@ -64,4 +64,47 @@ FactoryGirl.define do
     category "positive"
     position 0
   end
+
+  factory :family_card_qualifier do
+    family_card
+    qualifier
+  end
+
+  factory :audit do
+    user
+    association :auditable, factory: :student
+    association :associated, factory: :family_card
+    action "create"
+
+    after(:build) do |audit|
+      if audit.auditable_type == "FamilyCard"
+        audit.associated_id = audit.associated_type = nil
+      end
+
+      audit.audited_changes = {}
+      if audit.action =~ /create|destroy/
+        audit.audited_changes[audit.auditable.audited_attributes.first[0]] = 1
+      else
+        audit.audited_changes[audit.auditable.audited_attributes.first[0]] = [1,2]
+      end
+    end
+
+    trait :with_migrated_data do
+      after(:build) do |audit|
+        if audit.action =~ /create|destroy/
+          audit.audited_changes = {primary_parent_id: 1}
+        else
+          audit.audited_changes = {primary_parent_id: [1,2]}
+        end
+      end
+    end
+
+    trait :with_old_model_references do
+      after(:create) do |audit|
+        audit.auditable_type = "Student"
+        audit.auditable_id = 1
+        audit.save!
+      end
+    end
+  end
 end

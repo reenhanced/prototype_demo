@@ -12,6 +12,10 @@ class CallLog < ActiveRecord::Base
 
   audited :associated_with => :family_card
 
+  def to_s
+    "#{CallLog.human_attribute_name(:contact_id)}: #{contact.to_s}"
+  end
+
   def qualifiers
     family_card.qualifiers.order('category DESC')
   end

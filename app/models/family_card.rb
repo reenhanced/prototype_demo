@@ -45,6 +45,11 @@ class FamilyCard < ActiveRecord::Base
     self.find(card_ids)
   end
 
+  def name
+    FamilyCard.human_attribute_name(:name, family_name: parent_last_name)
+  end
+  alias_method :to_s, :name
+
   def default_parent_with_autobuild(*args)
     parent = self.default_parent_without_autobuild(*args)
     if parent.nil?
@@ -58,5 +63,9 @@ class FamilyCard < ActiveRecord::Base
 
   def default_student
     students.first || students.build
+  end
+
+  def audits_with_associated
+    Audit.with_associated_for(self)
   end
 end

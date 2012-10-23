@@ -1,4 +1,5 @@
 Given /^today is "(.+)"( at ".+")?$/ do |date, time|
+  Timecop.return
   if time
     time = time.split('"').last
     Timecop.travel(DateTime.parse("#{date} #{time}"))
@@ -8,7 +9,8 @@ Given /^today is "(.+)"( at ".+")?$/ do |date, time|
 end
 
 Given /^the time is "(.+)"$/ do |time|
-  Timecop.travel(Time.parse(time))
+  Timecop.return
+  Timecop.travel(DateTime.parse(time))
 end
 
 Then /^the current time zone should be "(.+)"$/ do |time_zone|

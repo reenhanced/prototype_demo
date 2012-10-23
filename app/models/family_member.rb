@@ -1,6 +1,6 @@
 class FamilyMember < ActiveRecord::Base
   belongs_to :family_card
-  has_many   :calls, :class_name => 'CallLog', :as => :contact
+  has_many   :call_logs, :as => :contact
 
   attr_accessible :first_name, :last_name, :email, :phone, :address1, :address2, :city, :state, :zip_code, :relationship
 

@@ -16,6 +16,7 @@ end
 gem 'carmen-rails'
 gem 'cancan'
 gem 'devise'
+gem "draper"
 gem "haml-rails"
 gem 'jquery-rails'
 gem 'audited-activerecord', :git => 'git://github.com/reenhanced/audited.git'
@@ -43,6 +44,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'timecop'
+  gem 'zeus'
 end
 
 group :development do

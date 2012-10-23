@@ -4,10 +4,13 @@
 en:
   activerecord:
     models:
-      call_log:      "Call Log"
-      family_card:   "Family Card"
-      family_member: "Family Member"
+      call_log:               "Call Log"
+      family_card:            "Family Card"
+      family_member:          "Family Member"
+      family_card_qualifier:  "Qualifier"
     attributes:
+      audit:
+        created_at: "@ %{datetime}"
       family_member:
         address1:         "Address"
         address2:         "Address 2"
@@ -25,6 +28,7 @@ en:
       family_card:
         default_parent:     "Default Parent"
         default_student:    "Default Student"
+        name:               "The %{family_name} Family"
         parent_address1:    "Address"
         parent_address2:    "Address 2"
         parent_city:        "City"
@@ -43,6 +47,23 @@ en:
       user:
         email:     "Email"
         password:  "Password"
+  audit:
+    action: "Action"
+    actions:
+      create: "Created"
+      update: "Updated"
+      destroy: "Deleted"
+    author: "Changed by"
+    changes:
+      attribute:  "Changed"
+      from:       "From"
+      to:         "To"
+    changes_made: "Changes Made"
+    family_card_qualifier:
+      create: "Added"
+    system_username: "System"
+    view_more_details: 'more details'
+  back_to: "Back to %{location}"
   call_log:
     all_calls:        "All Calls"
     add_call_log:     "Add call log"
@@ -59,6 +80,7 @@ en:
     actions:
       create: "Create Family Card"
       edit: "Edit Family Card"
+      update: "Update Family Card"
     add_new_family_member:  "Add family member"
     add_new_student:        "Add student"
     all_family_members:     "All family members"
@@ -81,6 +103,7 @@ en:
       parent_phone:       "Parent/Guardian Phone"
       parent_state:       "State"
       parent_zip_code:    "Zip Code"
+    show_audit_trail:     "Show audit trail"
     student_info:           "Student Info"
   family_member:
     actions:

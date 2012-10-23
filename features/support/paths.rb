@@ -1,3 +1,4 @@
+require 'cucumber/rails'
 module NavigationHelpers
   # Maps a name to a path. Used by the
   #
@@ -19,10 +20,17 @@ module NavigationHelpers
 
     when /the search (screen|family cards page)/ then new_search_path
 
+    when /the new family card page/ then new_family_card_path
+
     when /the family card's page/
       @family_card ||= FamliyCard.last
       raise "No @family_card exists, please reference features/step_definitions/family_card_steps.rb" unless @family_card
       "/family_cards/#{@family_card.id}"
+
+    when /the family card's audit page/
+      @family_card ||= FamliyCard.last
+      raise "No @family_card exists, please reference features/step_definitions/family_card_steps.rb" unless @family_card
+      "/family_cards/#{@family_card.id}/audits"
 
     when /another user's family card page/
       raise "No @user exists, please reference features/step_definitions/family_card_steps.rb" unless @user

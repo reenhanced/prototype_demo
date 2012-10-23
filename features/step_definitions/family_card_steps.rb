@@ -11,6 +11,12 @@ Given /^(?:I have|there is|there are) (\d+)( incomplete)? (.*)[s]?$/ do |quantit
     when /call log/i
       @family_card = FamilyCard.last || create(:family_card, user: @user)
       create(:call_log, family_card: @family_card, contact: create(:parent, family_card: @family_card))
+    when /qualifier(?: with)(.*)?/i
+      if $1.present?
+        create(:qualifier, name: $1.strip.gsub(/"/, ''))
+      else
+        create(:qualifier)
+      end
     end
   end
   @family_card = FamilyCard.last
