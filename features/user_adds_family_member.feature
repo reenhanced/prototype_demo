@@ -35,6 +35,7 @@ Feature: User adds family member to family card
     Then the family card's family member fields should not be disabled
     When I check "Same as family card"
     Then the family card's family member fields should be filled in
+    And the "Same as family card" checkbox should be checked
     And the family card's family member fields should be disabled
     When I uncheck "Same as family card"
     Then the family card's family member fields should not be filled in

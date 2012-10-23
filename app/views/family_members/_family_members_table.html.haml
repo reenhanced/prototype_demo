@@ -7,6 +7,8 @@
       %th= FamilyMember.human_attribute_name('email')
       %th= FamilyMember.human_attribute_name('phone')
       %th= FamilyMember.human_attribute_name('address1')
+      - if can? :update, FamilyMember
+        %th
   %tbody
     - family_card.family_members.non_students.each do |family_member|
       = render 'family_members/family_member_row', family_member: family_member

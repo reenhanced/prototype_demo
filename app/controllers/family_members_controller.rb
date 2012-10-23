@@ -27,6 +27,16 @@ class FamilyMembersController < ApplicationController
     respond_with @family_member
   end
 
+  def update
+    if @family_member.update_attributes(family_member_params)
+      flash[:notice] = "Successfully updated family member."
+    else
+      flash[:error] = "We were unable to update the family member.  Please check the information you entered and try again."
+    end
+
+    respond_with @family_member
+  end
+
   def destroy
     @family_member.destroy
     redirect_to @family_card, :notice => "Successfully removed the family member."

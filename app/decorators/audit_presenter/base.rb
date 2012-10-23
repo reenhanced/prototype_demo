@@ -56,15 +56,19 @@ class AuditPresenter::Base
   end
 
   def changed_field_from(field, value)
-    field = field.to_s.gsub(/_id$/, '').strip.to_sym if field.to_s =~ /_id$/
-    if audit.revision.present? and audit.revision.respond_to?(field)
-      audit.revision.try(field) || value
-    else
-      value
+    # first we check for associated objects and try to print the associated value from the revision if it still exists
+    if field =~ /_id$/
+      field = field.to_s.gsub(/_id$/, '').strip.to_sym
+      if audit.revision.present? and audit.revision.respond_to?(field)
+        return audit.revision.try(field) || value
+      end
     end
+
+    value
   end
 
   def changed_field_to(field, value)
+    # if the field is an association, we'll try to print the associated value
     field = field.to_s.gsub(/_id$/, '').strip.to_sym if field.to_s =~ /_id$/
     if audit.revision.respond_to?(field)
       audit.revision.try(field) || value

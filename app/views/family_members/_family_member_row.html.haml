@@ -1,5 +1,5 @@
 - unless family_member.new_record?
-  %tr
+  %tr{ id: "family-member-#{family_member.id}-row" }
     %td= family_member.relationship
     %td= family_member.first_name
     %td= family_member.last_name
@@ -13,3 +13,55 @@
           = family_member.address2
           %br/
         = "#{family_member.city}, #{family_member.state}  #{family_member.zip_code}"
+    - if can? :update, family_member
+      %td
+        = link_to t('family_member.actions.edit', default: 'edit family member'), '#', class: 'btn btn-mini btn-info', :'data-toggle' => "modal", :'data-target' => "#family_member_#{family_member.id}_modal"
+        .modal.hide{ :id => "family_member_#{family_member.id}_modal" }
+          = form_for [@family_card, family_member], remote: true, html: {class: 'form-horizontal'} do |f|
+            .modal-header
+              %h3<
+                %i.icon-edit
+                = "#{t('edit')}: #{family_member.name}"
+            .modal-body
+              %div{ id: "family-member-#{family_member.id}-errors" }
+
+              .control-group
+                = f.label :relationship, class: 'control-label'
+                .controls
+                  = f.select :relationship, FamilyMember::RELATIONSHIPS, value: family_member.relationship
+              .control-group
+                = f.label :first_name, class: 'control-label'
+                .controls
+                  = f.text_field :first_name, placeholder: FamilyMember.human_attribute_name('first_name'), class: 'small', value: family_member.first_name
+              .control-group
+                = f.label :last_name, class: 'control-label'
+                .controls
+                  = f.text_field :last_name, placeholder: FamilyMember.human_attribute_name('last_name'), class: 'small', value: family_member.last_name
+              .control-group
+                = f.label :email, class: 'control-label'
+                .controls
+                  = f.text_field :email, placeholder: FamilyMember.human_attribute_name('email'), class: 'span3', value: family_member.email
+              .control-group
+                = f.label :phone, class: 'control-label'
+                .controls
+                  = f.text_field :phone, placeholder: FamilyMember.human_attribute_name('phone'), class: 'span3', value: family_member.phone
+              .control-group
+                = f.label :address1, class: 'control-label'
+                .controls
+                  = f.text_field :address1, placeholder: FamilyMember.human_attribute_name('address1'), class: 'span3', value: family_member.address1
+              .control-group
+                = f.label :address2, class: 'control-label'
+                .controls
+                  = f.text_field :address2, placeholder: FamilyMember.human_attribute_name('address2'), class: 'span3', value: family_member.address2
+              .control-group
+                = f.label :city, class: 'control-label'
+                .controls
+                  = f.text_field :city, placeholder: FamilyMember.human_attribute_name('city'), class: 'span3', value: family_member.city
+              .control-group
+                = f.label :zip_code, class: 'control-label'
+                .controls
+                  = f.text_field :zip_code, placeholder: FamilyMember.human_attribute_name('zip_code'), class: 'span2', value: family_member.zip_code
+
+            .modal-footer
+              = link_to t('close', default: 'Close'), '#', class: 'btn btn-primary', :'data-dismiss' => 'modal'
+              = f.submit t('family_member.actions.update'), class: 'btn btn-primary'

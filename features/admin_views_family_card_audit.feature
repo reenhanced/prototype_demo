@@ -130,6 +130,49 @@ Feature: Admin views an audit trail for a family card
       | email        |      | bobby.jones@example.com |
       | relationship |      | Mother                  |
 
+  @javascript
+  Scenario: Admin views the audit trail for an updated family member
+    Given I have a family card with parent "Gordon Ramsy"
+    When I am on the family card's page
+    And I click "Add family member"
+    And I select "Mother" from "family_member_relationship"
+    And I fill in the following:
+      | family_member_first_name | Judy                     |
+      | family_member_last_name  | Garland                  |
+      | family_member_phone      | (911) 555-1212           |
+      | family_member_email      | judy.garland@example.com |
+      | family_member_address1   | 123 Easy St              |
+      | family_member_address2   | Apt. 2                   |
+      | family_member_city       | Los Angelos              |
+      | family_member_zip_code   | 90210                    |
+    And I press "Create Family Member"
+    And I click "edit family member"
+    And I select "Father" from "family_member_relationship"
+    And I fill in the following:
+      | family_member_first_name | Bobby                     |
+      | family_member_last_name  | Fischer                   |
+      | family_member_phone      | (900) 911-1212            |
+      | family_member_email      | bobby.fischer@example.com |
+      | family_member_address1   | 456 Easy St               |
+      | family_member_address2   |                           |
+      | family_member_city       | Las Vegas                 |
+      | family_member_zip_code   | 89165                     |
+    And I press "Update Family Member"
+    And I follow "Show audit trail"
+    Then I should see the following table rows:
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Family Member*Bobby Fischer* | *more details* |
+    And I should see the following table rows:
+      | Changed      | From                     | To                        |
+      | first name   | Judy                     | Bobby                     |
+      | last name    | Garland                  | Fischer                   |
+      | email        | judy.garland@example.com | bobby.fischer@example.com |
+      | phone        | (911) 555-1212           | (900) 911-1212            |
+      | address      | 123 Easy St              | 456 Easy St               |
+      | address 2    | Apt. 2                   |                           |
+      | city         | Los Angelos              | Las Vegas                 |
+      | zip code     | 90210                    | 89165                     |
+      | relationship | Mother                   | Father                    |
+
   Scenario: Admin views the audit trail with migrated data
     Given I have a created family card audit with migrated data
     When I am on the family card's page
