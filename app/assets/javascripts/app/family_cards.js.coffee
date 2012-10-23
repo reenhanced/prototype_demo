@@ -6,17 +6,18 @@ class @FamilyCard
 
   @_initializeForms: ->
     if(@newStudent)
-      @newStudent.find('#use_default_parent').on('click', {modelType: 'student'}, @_copyParentAddressFor)
+      @newStudent.find('#use_default_parent').on('click', {modelType: 'student', form: @newStudent}, @_copyParentAddressFor)
 
     if(@newFamilyMember)
-      @newFamilyMember.find('#use_default_family_member').on('click', {modelType: 'family_member'}, @_copyParentAddressFor)
+      @newFamilyMember.find('#use_default_family_member').on('click', {modelType: 'family_member', form: @newFamilyMember}, @_copyParentAddressFor)
 
   @_copyParentAddressFor: (event) ->
-    checkbox = this
+    checkbox  = this
     modelType = event.data.modelType
+    form      = event.data.form
     $.each FamilyCard.parentFieldMapFor(modelType), (parent_data_id, model_field_id) ->
       parent_data_element = $(parent_data_id)
-      model_field       = $(model_field_id)
+      model_field         = form.find(model_field_id)
       if (checkbox.checked)
         if (parent_data_element)
           model_field.val(parent_data_element.html())
