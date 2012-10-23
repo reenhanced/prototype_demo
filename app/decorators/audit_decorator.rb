@@ -8,8 +8,8 @@ class AuditDecorator < Draper::Base
   def changes
     return unless visible?
 
-    leading_content = h.content_tag :div, class: 'lead' do
-      h.content_tag(:span, action, class: 'label label-info') +
+    leading_content = h.content_tag :div, class: 'lead audit-change' do
+      h.content_tag(:span, action, class: "label #{h.bootstrap_class(audit.action, type: 'label')}") +
       name
     end
 

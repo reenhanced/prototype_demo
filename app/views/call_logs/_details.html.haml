@@ -9,6 +9,6 @@
   .modal-body
     %p= call_log.message.html_safe
     - call_log.qualifiers.each do |qualifier|
-      %span.label{ class: "#{bootstrap_class_for_qualifier_type(qualifier.category, element_type: 'label')}" }= qualifier.name
+      %span.label{ class: "#{bootstrap_class(qualifier.category, type: 'label')}" }= qualifier.name
   .modal-footer
     = link_to t('close', default: 'Close'), '#', class: 'btn btn-primary', :'data-dismiss' => 'modal'
