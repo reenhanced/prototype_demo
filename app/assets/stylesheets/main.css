@@ -80,7 +80,7 @@ body {
 	font-family: 'AsapRegular' !important;
 }
 
-.brand {
+#top_nav_bar .brand {
 	display: block;
 	text-indent: -9999px;
 	background: url(/assets/logo.png) 0 0 no-repeat;
@@ -104,6 +104,12 @@ dt {
 .container {
 	padding-top: 10px;
 }
+  .navbar .container {
+    padding-top: inherited;
+  }
+  #top_nav_bar .navbar .container {
+    padding-top: 10px;
+  }
 
 .page-header {
 	margin-top: 5px !important;
@@ -119,18 +125,18 @@ dt {
 	margin-left: 10px;
 }
 
-.navbar .nav {
+#top_nav_bar.navbar .nav {
 	margin: 19px 10px 0 0 !important;
 }
 
-.navbar .nav li a {
+#top_nav_bar.navbar .nav li a {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
 }
 
-.navbar .pull-right {
+#top_nav_bar.navbar .pull-right {
 	margin-top: 40px !important;
 }
 
@@ -148,4 +154,8 @@ dt {
 
 .form-horizontal .controls {
 	margin-left: 200px !important;
+}
+
+tr[id^="audit"] td.created-at {
+  width: 200px;
 }
