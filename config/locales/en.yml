@@ -108,6 +108,8 @@ en:
   family_member:
     actions:
       create: "Create Family Member"
+      edit: "edit family member"
+      update: "Update Family Member"
     placeholders:
       address1:    "Street Address"
       address2:    "Street Address 2"

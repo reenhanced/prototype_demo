@@ -1,0 +1,43 @@
+= form_for [@family_card, family_member], remote: true, html: {class: 'form-horizontal'} do |f|
+  #family_member-errors
+
+  .control-group
+    = f.label :relationship, class: 'control-label'
+    .controls
+      = f.select :relationship, FamilyMember::RELATIONSHIPS, value: family_member.relationship
+  .control-group
+    = f.label :first_name, class: 'control-label'
+    .controls
+      = f.text_field :first_name, placeholder: FamilyMember.human_attribute_name('first_name'), class: 'small', value: family_member.first_name
+  .control-group
+    = f.label :last_name, class: 'control-label'
+    .controls
+      = f.text_field :last_name, placeholder: FamilyMember.human_attribute_name('last_name'), class: 'small', value: family_member.last_name
+
+  .control-group
+    = f.label :email, class: 'control-label'
+    .controls
+      = f.text_field :email, placeholder: FamilyMember.human_attribute_name('email'), class: 'span3', value: family_member.email
+  .control-group
+    = f.label :phone, class: 'control-label'
+    .controls
+      = f.text_field :phone, placeholder: FamilyMember.human_attribute_name('phone'), class: 'span3', value: family_member.phone
+  .control-group
+    = f.label :address1, class: 'control-label'
+    .controls
+      = f.text_field :address1, placeholder: FamilyMember.human_attribute_name('address1'), class: 'span3', value: family_member.address1
+  .control-group
+    = f.label :address2, class: 'control-label'
+    .controls
+      = f.text_field :address2, placeholder: FamilyMember.human_attribute_name('address2'), class: 'span3', value: family_member.address2
+  .control-group
+    = f.label :city, class: 'control-label'
+    .controls
+      = f.text_field :city, placeholder: FamilyMember.human_attribute_name('city'), class: 'span3', value: family_member.city
+  .control-group
+    = f.label :zip_code, class: 'control-label'
+    .controls
+      = f.text_field :zip_code, placeholder: FamilyMember.human_attribute_name('zip_code'), class: 'span2', value: family_member.zip_code
+
+  .form-actions.clearfix
+    = f.submit t('family_member.actions.update'), class: 'btn btn-primary'
