@@ -9,10 +9,11 @@
       = f.text_field :last_name, placeholder: FamilyMember.human_attribute_name('last_name'), class: 'small'
 
   %div{ class: family_member.new_record? ? 'span6' : 'span7' }
-    .controls.controls-row
-      = label_tag 'use_default_family_member', class: 'checkbox' do
-        = check_box_tag 'use_default_family_member'
-        = t('family_member.same_as_family_card', default: 'Same as family card')
+    - if family_member.new_record?
+      .controls.controls-row
+        = label_tag 'use_default_family_member', class: 'checkbox' do
+          = check_box_tag 'use_default_family_member'
+          = t('family_member.same_as_family_card', default: 'Same as family card')
     .controls.controls-row
       = f.text_field :email, placeholder: FamilyMember.human_attribute_name('email'), class: 'span3'
       = f.text_field :phone, placeholder: FamilyMember.human_attribute_name('phone'), class: 'span3'
