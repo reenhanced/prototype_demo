@@ -1,5 +1,5 @@
-= form_for [@family_card, @family_member], remote: true do |f|
-  #family_member-errors
+= form_for [@family_card, family_member], remote: true do |f|
+  %div{ id: "family-member-#{family_member.new_record? ? '' : "#{family_member.id}-"}errors" }
 
   .span5
     .controls
@@ -8,7 +8,7 @@
       = f.text_field :first_name, placeholder: FamilyMember.human_attribute_name('first_name'), class: 'small'
       = f.text_field :last_name, placeholder: FamilyMember.human_attribute_name('last_name'), class: 'small'
 
-  .span6
+  %div{ class: family_member.new_record? ? 'span6' : 'span7' }
     .controls.controls-row
       = label_tag 'use_default_family_member', class: 'checkbox' do
         = check_box_tag 'use_default_family_member'
@@ -24,4 +24,4 @@
       = f.text_field :zip_code, placeholder: FamilyMember.human_attribute_name('zip_code'), class: 'span2'
 
   .form-actions.clearfix
-    = f.submit t('family_member.actions.create'), class: 'btn btn-primary'
+    = f.submit t("family_member.actions.#{family_member.new_record? ? 'create' : 'update'}"), class: 'btn btn-primary'

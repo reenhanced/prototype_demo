@@ -1,6 +1,5 @@
-%h2= t("student.headings.new", default: 'New Student')
-= form_for [@family_card, @student], remote: true do |f|
-  #student-errors
+= form_for [@family_card, student], remote: true do |f|
+  %div{ id: "student-#{student.new_record? ? '' : "#{student.id}-"}errors" }
 
   .span5
     .controls
@@ -21,7 +20,7 @@
       .controls
         = f.select :gender, [['Male', 'm'], ['Female', 'f']], {}, class: 'input-small'
 
-  .span6
+  %div{ class: student.new_record? ? 'span6' : 'span7' }
     .controls.controls-row
       = label_tag 'use_default_parent', class: 'checkbox' do
         = check_box_tag 'use_default_parent'
@@ -37,4 +36,4 @@
       = f.text_field :zip_code, placeholder: Student.human_attribute_name('zip_code'), class: 'span2'
 
   .form-actions.clearfix
-    = f.submit t('student.actions.create'), class: 'btn btn-primary'
+    = f.submit t("student.actions.#{student.new_record? ? 'create' : 'update'}"), class: 'btn btn-primary'

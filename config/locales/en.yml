@@ -139,6 +139,8 @@ en:
   student:
     actions:
       create: "Create Student"
+      edit: "edit student"
+      update: "Update Student"
     headings:
       new: "New Student"
   user:

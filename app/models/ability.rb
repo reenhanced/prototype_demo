@@ -29,6 +29,7 @@ class Ability
   def any_user_abilities
     can :manage, FamilyCard,   :user_id => @user.id
     can :manage, FamilyMember, :family_card => { :user_id => @user.id }
+    can :manage, Student,      :family_card => { :user_id => @user.id }
     can :manage, CallLog,      :family_card => { :user_id => @user.id }
 
     can :index, FamilyCard

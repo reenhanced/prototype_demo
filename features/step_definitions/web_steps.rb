@@ -41,6 +41,16 @@ When /^(.*) within (.*[^:])$/ do |substep, parent|
   with_scope(parent) { step substep }
 end
 
+When /^(.*) within (.*):$/ do |substep, parent, table|
+  with_scope(parent) do
+    table = table.rows_hash.collect {|name, value| "| #{name} | #{value} |" }.join("\n")
+    steps %{
+      When #{substep}:
+        #{table}
+    }
+  end
+end
+
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end

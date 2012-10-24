@@ -22,7 +22,7 @@ Feature: User edits family member
       | family_member_city       | Los Angelos               |
       | family_member_zip_code   | 90210                     |
     And I press "Create Family Member"
-    And I click "edit family member"
+    And I press "edit family member"
     And I select "Father" from "family_member_relationship"
     And I fill in the following:
       | family_member_first_name | Jeff |

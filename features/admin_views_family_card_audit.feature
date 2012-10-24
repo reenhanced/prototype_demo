@@ -146,7 +146,7 @@ Feature: Admin views an audit trail for a family card
       | family_member_city       | Los Angelos              |
       | family_member_zip_code   | 90210                    |
     And I press "Create Family Member"
-    And I click "edit family member"
+    And I press "edit family member"
     And I select "Father" from "family_member_relationship"
     And I fill in the following:
       | family_member_first_name | Bobby                     |
@@ -172,6 +172,52 @@ Feature: Admin views an audit trail for a family card
       | city         | Los Angelos              | Las Vegas                 |
       | zip code     | 90210                    | 89165                     |
       | relationship | Mother                   | Father                    |
+
+  @javascript
+  Scenario: Admin views the audit trail for an updated student
+    Given I have a family card with parent "Gordon Ramsy"
+    When I am on the family card's page
+    And I click "Add student"
+    And I select "Sibling" from "student_relationship"
+    And I select "1995-03-22" as the "Birthday" date
+    And I select "2013" from "student_graduation_year"
+    And I select "Female" from "student_gender"
+    And I fill in the following:
+      | student_first_name | Judy                     |
+      | student_last_name  | Garland                  |
+      | student_phone      | (911) 555-1212           |
+      | student_email      | judy.garland@example.com |
+      | student_address1   | 123 Easy St              |
+      | student_address2   | Apt. 2                   |
+      | student_city       | Los Angelos              |
+      | student_zip_code   | 90210                    |
+    And I press "Create Student"
+    And I press "edit student"
+    And I select "Prospective Student" from "student_relationship"
+    And I fill in the following:
+      | student_first_name | Bob                       |
+      | student_last_name  | Fish                      |
+      | student_phone      | (900) 911-1212            |
+      | student_email      | bobby.fischer@example.com |
+      | student_address1   | 456 Easy St               |
+      | student_address2   |                           |
+      | student_city       | Las Vegas                 |
+      | student_zip_code   | 89165                     |
+    And I press "Update Student"
+    And I follow "Show audit trail"
+    Then I should see the following table rows:
+      | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Student*Bob Fish* | *more details* |
+    And I should see the following table rows:
+      | Changed      | From                     | To                        |
+      | first name   | Judy                     | Bob                       |
+      | last name    | Garland                  | Fish                      |
+      | email        | judy.garland@example.com | bobby.fischer@example.com |
+      | phone        | (911) 555-1212           | (900) 911-1212            |
+      | address      | 123 Easy St              | 456 Easy St               |
+      | address 2    | Apt. 2                   |                           |
+      | city         | Los Angelos              | Las Vegas                 |
+      | zip code     | 90210                    | 89165                     |
+      | relationship | Sibling                  | Prospective Student       |
 
   Scenario: Admin views the audit trail with migrated data
     Given I have a created family card audit with migrated data
