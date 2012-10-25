@@ -2,7 +2,7 @@ class Admin::QualifiersController < Admin::BaseController
   respond_to :html
 
   def index
-    @qualifiers = Qualifier.all
+    @qualifiers = Qualifier.ordered
 
     respond_with @qualifiers
   end
@@ -39,6 +39,13 @@ class Admin::QualifiersController < Admin::BaseController
         format.html { render action: "edit" }
       end
     end
+  end
+
+  def order
+    qualifier_ids = params[:qualifier]
+
+    Qualifier.update_positions(qualifier_ids)
+    head :status => :ok
   end
 
   def destroy
