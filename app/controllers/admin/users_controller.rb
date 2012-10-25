@@ -34,7 +34,6 @@ class Admin::UsersController < Admin::BaseController
 
     respond_with(@user) do |format|
       if @user.update_attributes(user_params)
-        Rails.logger.debug "\nCurrent: #{current_user}, Updated: #{@user}\n"
         sign_in(:user, @user, :bypass => true) if current_user == @user
         format.html { redirect_to admin_users_path, notice: 'User was successfully updated.' }
       else

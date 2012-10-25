@@ -44,7 +44,7 @@ Feature: Admin manages users
       | Paul Revere | paul.revere@example.com |       | *       | *edit*delete* |
 
   Scenario: Edit user
-    When I click "edit" within the first user row
+    When I click "edit" within the user row
     And I fill in "Name" with "Mr. Goodcat"
     And I fill in "Email" with "mr.goodcat@example.com"
     And I fill in "Password" with "123456"
