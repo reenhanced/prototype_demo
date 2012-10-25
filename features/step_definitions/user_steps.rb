@@ -75,6 +75,12 @@ Given /^I do not exist as a user$/ do
   delete_user
 end
 
+Given /the following users exist:/ do |table|
+  table.rows.each do |name, email|
+    create(:user, :name => name, :email => email)
+  end
+end
+
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor

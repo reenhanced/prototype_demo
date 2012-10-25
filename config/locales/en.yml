@@ -45,8 +45,12 @@ en:
         qualifiers:   "Qualifiers"
         recorded_at:  "Call recorded at"
       user:
+        created_at: "Created"
         email:     "Email"
+        name:      "Name"
         password:  "Password"
+        roles:     "Roles"
+  actions: "Actions"
   audit:
     action: "Action"
     actions:
@@ -149,6 +153,8 @@ en:
   user:
     change_password_button:            "Change my password"
     forgot_your_password:              "Forgot your password?"
+    headings:
+      index: "User List"
     logout:                            "Logout"
     resend_confirmation:               "Resend confirmation instructions"
     send_password_reset_instructions:  "Send me reset password instructions"

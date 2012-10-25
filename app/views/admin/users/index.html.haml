@@ -1,0 +1,17 @@
+%h1= t('user.headings.index')
+
+%table.table.table-striped
+  %tr
+    %th= User.human_attribute_name(:name)
+    %th= User.human_attribute_name(:email)
+    %th= User.human_attribute_name(:roles)
+    %th= User.human_attribute_name(:created_at)
+    %th{:colspan => 2}= t('actions')
+
+  - @users.each do |user|
+    %tr{:id => "user_#{user.id}"}
+      %td= user.name
+      %td= user.email
+      %td= user.roles.join(", ")
+      %td= user.created_at
+      %td
