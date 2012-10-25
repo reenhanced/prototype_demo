@@ -8,7 +8,7 @@
 
   %tbody.live-sort{:data => { :'update-path' => order_admin_qualifiers_path} }
     - @qualifiers.each do |qualifier|
-      %tr{:id => "qualifier_#{qualifier.id}"}
+      %tr{:id => dom_id(qualifier)}
         %td{class: bootstrap_class(qualifier.category) }
           %i.icon-resize-vertical.handle
           = qualifier.name
