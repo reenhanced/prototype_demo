@@ -11,6 +11,16 @@ class Qualifier < ActiveRecord::Base
 
   attr_accessible :name, :category, :position
 
+  def self.ordered
+    order(:position)
+  end
+
+  def self.set_positions(ids_array)
+    ids_array.each_with_index do |qualifier_id, position|
+      Qualifier.update_all({:position => position}, :id => qualifier_id)
+    end
+  end
+
   def to_s
     "[#{self.category}] #{self.name}"
   end

@@ -41,6 +41,13 @@ class Admin::QualifiersController < Admin::BaseController
     end
   end
 
+  def order
+    qualifier_ids = params[:qualifier]
+
+    Qualifier.set_positions(qualifier_ids)
+    head :status => :ok
+  end
+
   def destroy
     @qualifier = Qualifier.find(params[:id])
     @qualifier.destroy

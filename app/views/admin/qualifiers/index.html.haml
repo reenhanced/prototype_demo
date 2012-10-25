@@ -1,16 +1,33 @@
 %h1 Listing qualifiers
 
-%table.table.table-striped
-  %tr
-    %th Qualifier
-    %th{:colspan => 2} Actions
+%table#qualifier_list.table.table-striped
+  %thead
+    %tr
+      %th Qualifier
+      %th{:colspan => 2} Actions
 
-  - @qualifiers.each do |qualifier|
-    %tr{:id => "qualifier_#{qualifier.id}"}
-      %td{class: bootstrap_class(qualifier.category) }= qualifier.name
-      %td.edit= link_to 'Edit', edit_admin_qualifier_path(qualifier)
-      %td.delete= link_to 'Delete', [:admin, qualifier], method: :delete, data: { confirm: 'Are you sure?' }
+  %tbody
+    - @qualifiers.each do |qualifier|
+      %tr{:id => "qualifier_#{qualifier.id}"}
+        %td{class: bootstrap_class(qualifier.category) }
+          %i.icon-resize-vertical
+          = qualifier.name
+        %td.edit= link_to 'Edit', edit_admin_qualifier_path(qualifier)
+        %td.delete= link_to 'Delete', [:admin, qualifier], method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
 = link_to 'New Qualifier', new_admin_qualifier_path
+
+- content_for :javascript do
+  :javascript
+    $(function() {
+      $('#qualifier_list tbody').sortable({
+        axis: 'y',
+        handle: 'i',
+        update: function() {
+          $.post("#{order_admin_qualifiers_path}", $(this).sortable('serialize'));
+        }
+      });
+    });
+

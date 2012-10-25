@@ -24,6 +24,10 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+When /^I reload the page$/ do
+  visit current_url
+end
+
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
@@ -41,14 +45,8 @@ When /^(.*) within (.*[^:])$/ do |substep, parent|
   with_scope(parent) { step substep }
 end
 
-When /^(.*) within (.*):$/ do |substep, parent, table|
-  with_scope(parent) do
-    table = table.rows_hash.collect {|name, value| "| #{name} | #{value} |" }.join("\n")
-    steps %{
-      When #{substep}:
-        #{table}
-    }
-  end
+When /^(.*) within (.*):$/ do |substep, parent, table_or_string|
+  with_scope(parent) { step "#{substep}:", table_or_string }
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
