@@ -33,6 +33,17 @@ Feature: User edits student
       | First Name | Last Name | Email                    | Phone          | Address                        |
       | Donny      | Brasco    | donny.brasco@example.com | (900) 911-1212 | *321 Easy St*Apt. 3*L.A.*90211 |
 
+  @javascript
+  Scenario: User cancels editting of a student
+    Given I have 1 student
+    When I am on the family card's page
+    And I click "All students"
+    Then the edit student row should be collapsed
+    When I press "edit student"
+    Then the edit student row should be expanded
+    And I follow "Cancel" within the edit student row
+    Then the edit student row should be collapsed
+
   Scenario: User tries to edit a family card's student they don't own
     Given I am logged in as "jimmy.buffet@example.com"
     And I have 1 family card

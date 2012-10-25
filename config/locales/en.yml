@@ -78,6 +78,7 @@ en:
   edit: "Edit"
   family_card:
     actions:
+      cancel: "Cancel"
       create: "Create Family Card"
       edit: "Edit Family Card"
       update: "Update Family Card"
@@ -107,6 +108,7 @@ en:
     student_info:           "Student Info"
   family_member:
     actions:
+      cancel: "Cancel"
       create: "Create Family Member"
       edit: "edit family member"
       update: "Update Family Member"
@@ -138,6 +140,7 @@ en:
     try_another_search:       "Try another search?"
   student:
     actions:
+      cancel: "Cancel"
       create: "Create Student"
       edit: "edit student"
       update: "Update Student"

@@ -36,3 +36,5 @@
 
   .form-actions.clearfix
     = f.submit t("student.actions.#{student.new_record? ? 'create' : 'update'}"), class: 'btn btn-primary'
+    - unless student.new_record?
+      = link_to t('student.actions.cancel'), "#", class: 'btn btn-warning cancel-and-collapse'

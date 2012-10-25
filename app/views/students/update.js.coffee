@@ -10,4 +10,6 @@ $("#student-<%= @student.id %>-row")
 $("#student-<%= @student.id %>-row")
   .hide()
   .fadeIn('slow')
+# ensure the cancel button collapses the new form
+FamilyCard._initializeCancelCollapse()
 <% end %>
