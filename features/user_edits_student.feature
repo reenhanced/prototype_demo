@@ -27,7 +27,7 @@ Feature: User edits student
       | student_address2   | Apt. 3                   |
       | student_city       | L.A.                     |
       | student_zip_code   | 90211                    |
-    And I press "Update Student" within the edit student row
+    And I press "Save Student" within the edit student row
     Then the edit student row should be collapsed
     And I should see the following table rows:
       | First Name | Last Name | Email                    | Phone          | Address                        |

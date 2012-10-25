@@ -156,7 +156,7 @@ Feature: Admin views an audit trail for a family card
       | family_member_address2   |                           |
       | family_member_city       | Las Vegas                 |
       | family_member_zip_code   | 89165                     |
-    And I press "Update Family Member"
+    And I press "Save Family Member"
     And I follow "Show audit trail"
     Then I should see the following table rows:
       | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Family Member*Bobby Fischer* | *more details* |
@@ -200,7 +200,7 @@ Feature: Admin views an audit trail for a family card
       | student_address2   |                           |
       | student_city       | Las Vegas                 |
       | student_zip_code   | 89165                     |
-    And I press "Update Student"
+    And I press "Save Student"
     And I follow "Show audit trail"
     Then I should see the following table rows:
       | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Student*Bob Fish* | *more details* |
