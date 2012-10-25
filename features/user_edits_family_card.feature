@@ -23,6 +23,12 @@ Feature: User edits a family card
     Then I should see "Family of: George Masterson"
     And I should see the detailed family card
 
+  Scenario: User cancels the editing of a family card
+    When I am on the family card's page
+    And I follow "Edit Family Card"
+    And I follow "Cancel"
+    Then I should be on the family card's page
+
   Scenario: User tries to edit a family card they don't own
     Given I am logged in as "jimmy.buffet@example.com"
     And I have 1 family card
