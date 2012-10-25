@@ -17,6 +17,8 @@ module Selectors
       when /the student listing/i                 then "#all-students"
       when "the top navigation bar"               then "#top_nav_bar"
       when /the view all button/i                 then "#card-search-form input[name=view_all]"
+      when /the student row/i                     then "#student-#{Student.last.id}-row"
+      when /the edit student row/i                then "#edit_student_#{Student.last.id}"
       when /^"([#.]+[a-z0-9\-_]*)"$/i             then $1
       else raise "Can't find mapping from \"#{scope}\" to a selector.\n" +
                  "Now, go and add a mapping in #{__FILE__}"

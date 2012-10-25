@@ -54,7 +54,6 @@ end
 group :test do
   gem "email_spec", ">= 1.2.1"
   gem "shoulda-matchers"
-  gem 'spork'
 end
 
 group :cucumber do
