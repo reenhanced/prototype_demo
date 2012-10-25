@@ -56,6 +56,17 @@ Feature: Admin manages users
       | Name        | Email                  | Roles | Created | Actions       |
       | Mr. Goodcat | mr.goodcat@example.com | *     | *       | *edit*delete* |
 
+  Scenario: Edit user without updating password
+    When I click "edit" within the first user row
+    And I fill in "Name" with "Mr. Goodcat"
+    And I fill in "Email" with "mr.goodcat@example.com"
+    And I press "Save User"
+    Then I should see "User was successfully updated"
+    And I should be on the admin users page
+    And I should see the following table rows in any order:
+      | Name        | Email                  | Roles | Created | Actions       |
+      | Mr. Goodcat | mr.goodcat@example.com | *     | *       | *edit*delete* |
+
   Scenario: Delete user
     When I click "delete" within the first user row
     Then I should be on the admin users page

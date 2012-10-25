@@ -31,9 +31,16 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     @user = User.find(params[:id])
+    password_changed = user_params[:password].present?
+
+    successfully_updated = if password_changed
+                             @user.update_attributes(user_params)
+                           else
+                             @user.update_without_password(user_params)
+                           end
 
     respond_with(@user) do |format|
-      if @user.update_attributes(user_params)
+      if successfully_updated
         sign_in(:user, @user, :bypass => true) if current_user == @user
         format.html { redirect_to admin_users_path, notice: 'User was successfully updated.' }
       else
