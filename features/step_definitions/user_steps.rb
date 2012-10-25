@@ -76,8 +76,8 @@ Given /^I do not exist as a user$/ do
 end
 
 Given /the following users exist:/ do |table|
-  table.rows.each do |name, email|
-    create(:user, :name => name, :email => email)
+  table.hashes.each do |user_attributes|
+    create(:user, user_attributes)
   end
 end
 
