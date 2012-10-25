@@ -2,9 +2,11 @@ Feature: Admin manages qualifiers
 
   Background:
     Given the following qualifiers exist:
-      | name                |
-      | Uses Pull Requests  |
-      | Doesn't repeat code |
+      | name                  | position |
+      | Uses Pull Requests    | 1        |
+      | Doesn't repeat code   | 2        |
+      | Writes tests first    | 3        |
+      | Tracks completed work | 4        |
     And I am logged in as an admin
     And I am on the admin qualifiers page
 
@@ -21,11 +23,11 @@ Feature: Admin manages qualifiers
 
   Scenario: Create new qualifier
     When I click "New Qualifier"
-    And I fill in "Name" with "Writes tests first"
-    And I select "Positive" from "Category"
+    And I fill in "Name" with "Cowboy coding"
+    And I select "Negative" from "Category"
     And I press "Save"
     Then I should be on the admin qualifiers page
-    And I should see "Writes tests first"
+    And I should see "Cowboy coding"
 
   Scenario: See errors when invalid
     When I click "New Qualifier"
@@ -34,8 +36,21 @@ Feature: Admin manages qualifiers
     And I should see "Category is not included in the list"
 
   Scenario: See list of qualifiers
-    Then I should see "Uses Pull Requests"
-    And I should see "Doesn't repeat code"
+    Then I should see the qualifiers in the following order:
+      | Uses Pull Requests    |
+      | Doesn't repeat code   |
+      | Writes tests first    |
+      | Tracks completed work |
+
+  @javascript
+  Scenario: Drag and drop to reorder
+    When I drag qualifier "Tracks completed work" to the top of the list
+    And I reload the page
+    Then I should see the qualifiers in the following order:
+      | Tracks completed work |
+      | Uses Pull Requests    |
+      | Doesn't repeat code   |
+      | Writes tests first    |
 
   Scenario: Edit qualifier
     When I click the edit link for the "Uses Pull Requests" qualifier
