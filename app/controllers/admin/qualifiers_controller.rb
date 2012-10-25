@@ -2,7 +2,7 @@ class Admin::QualifiersController < Admin::BaseController
   respond_to :html
 
   def index
-    @qualifiers = Qualifier.all
+    @qualifiers = Qualifier.ordered
 
     respond_with @qualifiers
   end
