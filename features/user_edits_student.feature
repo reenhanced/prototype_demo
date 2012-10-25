@@ -32,7 +32,7 @@ Feature: User edits student
     Then the edit student row should be collapsed
     And I should see the following table rows:
       | Relationship | First Name | Last Name | Email                    | Phone          | Address                        |
-      | Sibling      | Donny     | Brasco    | donny.brasco@example.com | (900) 911-1212 | *321 Easy St*Apt. 3*L.A.*90211 |
+      | Sibling      | Donny      | Brasco    | donny.brasco@example.com | (900) 911-1212 | *321 Easy St*Apt. 3*L.A.*90211 |
 
   Scenario: User tries to edit a family card's student they don't own
     Given I am logged in as "jimmy.buffet@example.com"
