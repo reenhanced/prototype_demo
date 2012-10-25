@@ -25,6 +25,7 @@ Bridgeway::Application.routes.draw do
         post :order
       end
     end
+    resources :users, :except => :show
   end
 
   root :to => "search#new"

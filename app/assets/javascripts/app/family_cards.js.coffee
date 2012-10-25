@@ -11,6 +11,12 @@ class @FamilyCard
     if(@newFamilyMember)
       @newFamilyMember.find('#use_default_family_member').on('click', {modelType: 'family_member', form: @newFamilyMember}, @_copyParentAddressFor)
 
+  @_initializeCancelCollapse: ->
+    cancelButtons = $('.btn.cancel-and-collapse')
+    if cancelButtons
+      cancelButtons.live 'click', ->
+        $(this).parents('div.collapse').collapse('hide')
+
   @_copyParentAddressFor: (event) ->
     checkbox  = this
     modelType = event.data.modelType
@@ -66,6 +72,7 @@ class @FamilyCard
     this.newCallLog = $('#new_call_log')
     this._initializeCallLog()
     this._initializeForms()
+    this._initializeCancelCollapse()
 
   @callLogsUpdated: ->
     $('ul.nav.nav-tabs li a[href=#all-calls]').click()

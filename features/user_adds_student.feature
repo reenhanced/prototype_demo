@@ -14,7 +14,6 @@ Feature: User adds student to family card
     Then the new student form should be hidden
     When I click "Add student"
     Then the new student form should be visible
-    When I select "Prospective Student" from "student_relationship"
     And I select "1994-02-21" as the "Birthday" date
     And I select "2012" from "student_graduation_year"
     And I select "Male" from "student_gender"

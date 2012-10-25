@@ -45,8 +45,12 @@ en:
         qualifiers:   "Qualifiers"
         recorded_at:  "Call recorded at"
       user:
+        created_at: "Created"
         email:     "Email"
+        name:      "Name"
         password:  "Password"
+        roles:     "Roles"
+  actions: "Actions"
   audit:
     action: "Action"
     actions:
@@ -78,6 +82,7 @@ en:
   edit: "Edit"
   family_card:
     actions:
+      cancel: "Cancel"
       create: "Create Family Card"
       edit: "Edit Family Card"
       update: "Update Family Card"
@@ -107,6 +112,7 @@ en:
     student_info:           "Student Info"
   family_member:
     actions:
+      cancel: "Cancel"
       create: "Create Family Member"
       edit: "edit family member"
       update: "Update Family Member"
@@ -138,6 +144,7 @@ en:
     try_another_search:       "Try another search?"
   student:
     actions:
+      cancel: "Cancel"
       create: "Create Student"
       edit: "edit student"
       update: "Update Student"
@@ -146,6 +153,8 @@ en:
   user:
     change_password_button:            "Change my password"
     forgot_your_password:              "Forgot your password?"
+    headings:
+      index: "User List"
     logout:                            "Logout"
     resend_confirmation:               "Resend confirmation instructions"
     send_password_reset_instructions:  "Send me reset password instructions"

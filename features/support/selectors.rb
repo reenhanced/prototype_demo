@@ -10,6 +10,7 @@ module Selectors
       when /the search error alert/i              then "#ajax-search-error"
       when /the alert box/i                       then ".alert-error"
       when /the new family member form/i          then "#new_family_member"
+      when /the edit family member row/i          then "#edit_family_member_#{FamilyMember.last.id}"
       when /the new student form/i                then "#new-student"
       when /the popup modal/i                     then "body.modal-open"
       when /the prospect search button/i          then "#card-search-form input[name=commit]"

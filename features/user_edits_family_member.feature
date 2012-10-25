@@ -38,6 +38,17 @@ Feature: User edits family member
       | Relationship | First Name | Last Name | Email                    | Phone          | Address                         |
       | Father       | Jeff       | Bridges   | jeff.bridges@example.com | (912) 555-1212 | *1234 Easy St*Apt. 3*L.A.*90211 |
 
+  @javascript
+  Scenario: User cancels editting of a family member
+    Given I have 1 family member
+    When I am on the family card's page
+    And I click "All family members"
+    Then the edit family member row should be collapsed
+    When I press "edit family member"
+    Then the edit family member row should be expanded
+    And I follow "Cancel" within the edit family member row
+    Then the edit family member row should be collapsed
+
   Scenario: User tries to edit a family card's family member they don't own
     Given I am logged in as "jimmy.buffet@example.com"
     And I have 1 family card
