@@ -33,7 +33,7 @@ Feature: User edits family member
       | family_member_address2   | Apt. 3                    |
       | family_member_city       | L.A.                      |
       | family_member_zip_code   | 90211                     |
-    And I press "Update Family Member"
+    And I press "Save Family Member"
     Then I should see the following table rows:
       | Relationship | First Name | Last Name | Email                    | Phone          | Address                         |
       | Father       | Jeff       | Bridges   | jeff.bridges@example.com | (912) 555-1212 | *1234 Easy St*Apt. 3*L.A.*90211 |
