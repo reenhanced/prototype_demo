@@ -75,6 +75,12 @@ Given /^I do not exist as a user$/ do
   delete_user
 end
 
+Given /the following users exist:/ do |table|
+  table.hashes.each do |user_attributes|
+    create(:user, user_attributes)
+  end
+end
+
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor

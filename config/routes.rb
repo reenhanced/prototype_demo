@@ -21,6 +21,7 @@ Bridgeway::Application.routes.draw do
 
   namespace :admin do
     resources :qualifiers, :except => :show
+    resources :users, :except => :show
   end
 
   root :to => "search#new"

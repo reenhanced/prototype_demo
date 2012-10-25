@@ -52,9 +52,6 @@ class Admin::QualifiersController < Admin::BaseController
 
   private
 
-    # Use this method to whitelist the permissible parameters. Example:
-    # params.require(:person).permit(:name, :age)
-    # Also, you can specialize this method with per-user checking of permissible attributes.
     def qualifier_params
       params.require(:qualifier).permit(:name, :category)
     end
