@@ -6,5 +6,9 @@
     =f.label :name
     =f.text_field :name
 
+  .field
+    =f.label :category
+    =f.select :category, Qualifier::CATEGORIES.map { |category| [category.capitalize, category] }, :include_blank => true
+
   .actions
     = f.submit 'Save'

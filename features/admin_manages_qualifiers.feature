@@ -22,6 +22,7 @@ Feature: Admin manages qualifiers
   Scenario: Create new qualifier
     When I click "New Qualifier"
     And I fill in "Name" with "Writes tests first"
+    And I select "Positive" from "Category"
     And I press "Save"
     Then I should be on the admin qualifiers page
     And I should see "Writes tests first"
@@ -30,6 +31,7 @@ Feature: Admin manages qualifiers
     When I click "New Qualifier"
     And I press "Save"
     Then I should see "Name can't be blank"
+    And I should see "Category is not included in the list"
 
   Scenario: See list of qualifiers
     Then I should see "Uses Pull Requests"
