@@ -7,7 +7,7 @@
 
   - @qualifiers.each do |qualifier|
     %tr{:id => "qualifier_#{qualifier.id}"}
-      %td= qualifier
+      %td{class: bootstrap_class(qualifier.category) }= qualifier.name
       %td.edit= link_to 'Edit', edit_admin_qualifier_path(qualifier)
       %td.delete= link_to 'Delete', [:admin, qualifier], method: :delete, data: { confirm: 'Are you sure?' }
 
