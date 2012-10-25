@@ -17,6 +17,9 @@ Given /^(?:I have|there is|there are) (\d+)( incomplete)? (.*)[s]?$/ do |quantit
       else
         create(:qualifier)
       end
+    when /student/i
+      @family_card = FamilyCard.last || create(:family_card, user: @user)
+      create(:student, family_card: @family_card)
     end
   end
   @family_card = FamilyCard.last

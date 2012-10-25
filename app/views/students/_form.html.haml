@@ -1,6 +1,5 @@
-%h2= t("student.headings.new", default: 'New Student')
-= form_for [@family_card, @student], remote: true do |f|
-  #student-errors
+= form_for [@family_card, student], remote: true do |f|
+  %div{ id: "student-#{student.new_record? ? '' : "#{student.id}-"}errors" }
 
   .span5
     .controls
@@ -21,11 +20,12 @@
       .controls
         = f.select :gender, [['Male', 'm'], ['Female', 'f']], {}, class: 'input-small'
 
-  .span6
-    .controls.controls-row
-      = label_tag 'use_default_parent', class: 'checkbox' do
-        = check_box_tag 'use_default_parent'
-        = t('family_member.same_as_family_card', default: 'Same as family card')
+  %div{ class: student.new_record? ? 'span6' : 'span7' }
+    - if student.new_record?
+      .controls.controls-row
+        = label_tag 'use_default_parent', class: 'checkbox' do
+          = check_box_tag 'use_default_parent'
+          = t('family_member.same_as_family_card', default: 'Same as family card')
     .controls.controls-row
       = f.text_field :email, placeholder: Student.human_attribute_name('email'), class: 'span3'
       = f.text_field :phone, placeholder: Student.human_attribute_name('phone'), class: 'span3'
@@ -37,4 +37,4 @@
       = f.text_field :zip_code, placeholder: Student.human_attribute_name('zip_code'), class: 'span2'
 
   .form-actions.clearfix
-    = f.submit t('student.actions.create'), class: 'btn btn-primary'
+    = f.submit t("student.actions.#{student.new_record? ? 'create' : 'update'}"), class: 'btn btn-primary'

@@ -1,5 +1,6 @@
 - unless student.new_record?
-  %tr
+  %tr{ id: "student-#{student.id}-row"}
+    %td= student.relationship
     %td= student.first_name
     %td= student.last_name
     %td= student.email
@@ -12,3 +13,13 @@
           = student.address2
           %br/
         = "#{student.city}, #{student.state}  #{student.zip_code}"
+    - if can? :update, student
+      %td
+        %button.btn.btn-mini.btn-info{ :type => 'button', 'data-toggle' => 'collapse', :'data-target' =>"#edit_student_#{student.id}"}
+          = t('student.actions.edit', default: 'edit')
+  - if can? :update, student
+    %tr.student-edit-form
+      %td.row.span12{ colspan: 7 }
+        .collapse{ :id => "edit_student_#{student.id}" }
+          %h2= t("student.headings.edit", default: 'Edit Student')
+          = render 'students/form', student: student
