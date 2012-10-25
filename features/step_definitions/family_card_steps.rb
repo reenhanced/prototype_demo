@@ -39,15 +39,15 @@ When /^I fill in the form with an existing parent's name$/ do
   step "I fill in \"family_member_last_name\" with \"#{@family_card.parent_last_name}\""
 end
 
-When /^I follow the parent's name$/ do
-  step "I follow \"#{@family_card.default_parent.name}\""
+When /^I follow the family card link$/ do
+  step "I follow \"#{@family_card.name}\""
 end
 
 Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
   @family_card ||= FamilyCard.last
   @parent_name = @family_card.default_parent.name
 
-  step %{I should#{negator} see "Family Info"}
+  step %{I should#{negator} see "#{@family_card.name}"}
   step %{I should#{negator} see "Parent/Guardian Name"}
   step %{I should#{negator} see "#{@parent_name}"}
   step %{I should#{negator} see "#{@family_card.parent_phone}"}
