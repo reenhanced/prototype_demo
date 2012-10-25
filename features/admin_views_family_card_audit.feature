@@ -70,7 +70,6 @@ Feature: Admin views an audit trail for a family card
   Scenario: Admin views the audit trail for a new student
     Given I have a family card with parent "Gordon Ramsy"
     When I am on the family card's page
-    And I select "Prospective Student" from "student_relationship"
     And I select "1994-02-21" as the "Birthday" date
     And I select "2013" from "student_graduation_year"
     And I select "Male" from "student_gender"
@@ -178,7 +177,6 @@ Feature: Admin views an audit trail for a family card
     Given I have a family card with parent "Gordon Ramsy"
     When I am on the family card's page
     And I click "Add student"
-    And I select "Sibling" from "student_relationship"
     And I select "1995-03-22" as the "Birthday" date
     And I select "2013" from "student_graduation_year"
     And I select "Female" from "student_gender"
@@ -193,7 +191,6 @@ Feature: Admin views an audit trail for a family card
       | student_zip_code   | 90210                    |
     And I press "Create Student"
     And I press "edit student"
-    And I select "Prospective Student" from "student_relationship"
     And I fill in the following:
       | student_first_name | Bob                       |
       | student_last_name  | Fish                      |
@@ -217,7 +214,6 @@ Feature: Admin views an audit trail for a family card
       | address 2    | Apt. 2                   |                           |
       | city         | Los Angelos              | Las Vegas                 |
       | zip code     | 90210                    | 89165                     |
-      | relationship | Sibling                  | Prospective Student       |
 
   Scenario: Admin views the audit trail with migrated data
     Given I have a created family card audit with migrated data

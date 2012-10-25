@@ -2,8 +2,6 @@
   %div{ id: "student-#{student.new_record? ? '' : "#{student.id}-"}errors" }
 
   .span5
-    .controls
-      = f.select :relationship, Student::RELATIONSHIPS
     .controls.controls-row
       = f.text_field :first_name, placeholder: Student.human_attribute_name('first_name'), class: 'small'
       = f.text_field :last_name, placeholder: Student.human_attribute_name('last_name'), class: 'small'
@@ -38,3 +36,5 @@
 
   .form-actions.clearfix
     = f.submit t("student.actions.#{student.new_record? ? 'create' : 'update'}"), class: 'btn btn-primary'
+    - unless student.new_record?
+      = link_to t('student.actions.cancel'), "#", class: 'btn btn-warning cancel-and-collapse'
