@@ -4,7 +4,11 @@ Feature: User adds call log to family card
   I can follow a link from the family card page and fill out a call log form
 
   Background:
-    Given I have initial qualifiers
+    Given the following qualifiers exist:
+      | name   | position |
+      | First  | 1        |
+      | Third  | 3        |
+      | Second | 2        |
     And I am logged in
     And today is "21 Feb 2013" at "1:00pm"
     And I have 1 call log
@@ -32,6 +36,15 @@ Feature: User adds call log to family card
     And the family card should have the selected qualifier
     When I am on the family card's page
     Then the selected qualifier should be checked
+
+  @javascript
+  Scenario: User sees qualifiers listed in order
+    When I am on the family card's page
+    And I click "Add call log"
+    Then I should see qualifier checkboxes in the following order within the popup modal:
+      | First  |
+      | Second |
+      | Third  |
 
   @javascript
   Scenario: User changes the recorded date or time of the call log
