@@ -8,6 +8,7 @@ describe Qualifier do
 
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name) }
+  it { should ensure_inclusion_of(:category).in_array(Qualifier::CATEGORIES) }
 
   context "instance methods" do
     subject { create(:qualifier, category: 'positive', name: 'Hugs bunnies') }
