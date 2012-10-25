@@ -44,7 +44,7 @@ class Admin::QualifiersController < Admin::BaseController
   def order
     qualifier_ids = params[:qualifier]
 
-    Qualifier.set_positions(qualifier_ids)
+    Qualifier.update_positions(qualifier_ids)
     head :status => :ok
   end
 

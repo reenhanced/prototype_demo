@@ -15,7 +15,7 @@ class Qualifier < ActiveRecord::Base
     order(:position)
   end
 
-  def self.set_positions(ids_array)
+  def self.update_positions(ids_array)
     ids_array.each_with_index do |qualifier_id, position|
       Qualifier.update_all({:position => position}, :id => qualifier_id)
     end

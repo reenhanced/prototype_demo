@@ -25,7 +25,7 @@ describe Qualifier do
   context "class methods" do
     subject { Qualifier }
 
-    describe ".set_positions" do
+    describe ".update_positions" do
       let!(:first)  { create(:qualifier, position: 1) }
       let!(:second) { create(:qualifier, position: 2) }
       let!(:third)  { create(:qualifier, position: 3) }
@@ -34,7 +34,7 @@ describe Qualifier do
       let(:ordered_ids) { [fourth.id, third.id, second.id, first.id] }
 
       it "updates the qualifiers specified by id so they will be returned in the proper order from Qualifier.ordered" do
-        subject.set_positions(ordered_ids)
+        subject.update_positions(ordered_ids)
 
         subject.ordered.map(&:id).should == ordered_ids
       end
