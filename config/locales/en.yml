@@ -115,7 +115,7 @@ en:
       cancel: "Cancel"
       create: "Create Family Member"
       edit: "edit family member"
-      update: "Update Family Member"
+      update: "Save Family Member"
     placeholders:
       address1:    "Street Address"
       address2:    "Street Address 2"
@@ -147,14 +147,19 @@ en:
       cancel: "Cancel"
       create: "Create Student"
       edit: "edit student"
-      update: "Update Student"
+      update: "Save Student"
     headings:
       new: "New Student"
   user:
+    actions:
+      create: "Create User"
+      new: "New User"
+      edit: "edit"
+      destroy: "delete"
+      index: "User List"
+      update: "Save User"
     change_password_button:            "Change my password"
     forgot_your_password:              "Forgot your password?"
-    headings:
-      index: "User List"
     logout:                            "Logout"
     resend_confirmation:               "Resend confirmation instructions"
     send_password_reset_instructions:  "Send me reset password instructions"

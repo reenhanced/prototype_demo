@@ -1,4 +1,7 @@
-%h1= t('user.headings.index')
+.pull-right
+  = link_to t('user.actions.new'), new_admin_user_path, class: 'btn'
+
+%h1= t('user.actions.index')
 
 %table.table.table-striped
   %tr
@@ -15,3 +18,5 @@
       %td= user.roles.join(", ")
       %td= user.created_at
       %td
+        = link_to t('user.actions.edit'), edit_admin_user_path(user), class: 'btn btn-mini'
+        = link_to t('user.actions.destroy'), [:admin, user], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-mini'
