@@ -18,7 +18,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    @user = User.new(user_params)
+    @user       = User.new(user_params)
+    @user.roles = params[:user_roles] || []
 
     respond_with(@user) do |format|
       if @user.save
@@ -30,7 +31,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user            = User.find(params[:id])
+    @user.roles      = params[:user_roles] || []
     password_changed = user_params[:password].present?
 
     successfully_updated = if password_changed

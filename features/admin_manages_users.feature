@@ -25,11 +25,13 @@ Feature: Admin manages users
     And I fill in "Email" with "ross.perot@example.com"
     And I fill in "Password" with "password"
     And I fill in "Password confirmation" with "password"
+    And I check "admin"
     And I press "Create User"
     Then I should be on the admin users page
     And I should see the following table rows:
       | Name       | Email                  | Roles | Created | Actions       |
-      | Ross Perot | ross.perot@example.com |       | *       | *edit*delete* |
+      | Ross Perot | ross.perot@example.com | admin | *       | *edit*delete* |
+    And the "last" user should have the "admin" role
 
   Scenario: See errors when invalid
     When I click "New User"
@@ -56,8 +58,27 @@ Feature: Admin manages users
       | Name        | Email                  | Roles | Created | Actions       |
       | Mr. Goodcat | mr.goodcat@example.com | *     | *       | *edit*delete* |
 
+  Scenario: Edit user roles
+    When I click "edit" within the "Carlos Slim" user row
+    Then I should see "Roles"
+    When I check "admin"
+    And I press "Save User"
+    Then I should see "User was successfully updated"
+    And I should see the following table rows in any order:
+      | Name        | Email                   | Roles | Created | Actions       |
+      | Carlos Slim | carlos.slim@example.com | admin | *       | *edit*delete* |
+    And the "Carlos Slim" user should have the "admin" role
+    When I click "edit" within the "Carlos Slim" user row
+    When I uncheck "admin"
+    And I press "Save User"
+    Then I should see "User was successfully updated"
+    And I should see the following table rows in any order:
+      | Name        | Email                   | Roles | Created | Actions       |
+      | Carlos Slim | carlos.slim@example.com |       | *       | *edit*delete* |
+    And the "Carlos Slim" user should not have the "admin" role
+
   Scenario: Edit user without updating password
-    When I click "edit" within the first user row
+    When I click "edit" within the "Carlos Slim" user row
     And I fill in "Name" with "Mr. Goodcat"
     And I fill in "Email" with "mr.goodcat@example.com"
     And I press "Save User"

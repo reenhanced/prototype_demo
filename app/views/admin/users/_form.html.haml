@@ -18,5 +18,12 @@
     =f.label :password_confirmation
     =f.password_field :password_confirmation
 
+  %h3= User.human_attribute_name(:roles)
+  .field
+    - User::ROLES.each do |role|
+      = label_tag "#{role}_user_role" do
+        = check_box_tag "user_roles[]", role, @user.roles.include?(role), id: "#{role}_user_role"
+        = role.to_s
+
   .form-actions
     = f.submit t("user.actions.#{@user.new_record? ? 'create' : 'update'}"), class: 'btn btn-primary'
