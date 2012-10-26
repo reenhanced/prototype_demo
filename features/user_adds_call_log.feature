@@ -28,10 +28,9 @@ Feature: User adds call log to family card
     When I check the first qualifier
     And I fill in "call_log_message" with "I am batman."
     And I press "Save Entry"
-    Then I should see "Successfully added call log."
-    And the new call log form should be hidden
+    Then the new call log form should be hidden
     And the call log listing should be visible
-    Then I should see the call's information
+    And I should see the call's information
     And the call should have recorded the date and time
     And the family card should have the selected qualifier
     When I am on the family card's page
@@ -61,7 +60,9 @@ Feature: User adds call log to family card
     When I select the first member from the new call log contacts
     And I fill in "call_log_message" with "I am batman."
     And I press "Save Entry"
-    Then I should see "Successfully added call log."
+    Then the new call log form should be hidden
+    And the call log listing should be visible
+    And I should see the call's information
 
   @javascript
   Scenario: User attempts to add a call log without a message to one of their family cards
