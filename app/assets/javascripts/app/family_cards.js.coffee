@@ -61,7 +61,7 @@ class @FamilyCard
           model_field.val('')
           model_field.prop('disabled', '')
 
-  callLogAdded: (call_row_html) ->
+  prependCallLog: (call_row_html) ->
     $(call_row_html).prependTo('#all-calls table tbody').hide().fadeIn()
 
 $ ->

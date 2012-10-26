@@ -11,11 +11,9 @@ class @CallLog
           $('#call-errors').html('')
           @callLog.spin()
         'ajax:error': (event, xhr) =>
-          json = JSON.parse(xhr.responseText)
-          $('#call-errors').html(json.errors_html)
+          $('#call-errors').html(xhr.responseText)
         'ajax:success': (event, html) =>
-          json = JSON.parse(html)
-          @familyCard.callLogAdded(json.call_row)
+          @familyCard.prependCallLog(html)
           $('ul.nav.nav-tabs li a[href=#all-calls]').click()
           @callLog.modal('hide')
           @callLog.find('input[type=submit]').button('reset')

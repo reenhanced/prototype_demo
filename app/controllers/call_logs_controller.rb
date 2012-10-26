@@ -12,21 +12,14 @@ class CallLogsController < ApplicationController
     respond_to do |format|
       if @call_log.save
         format.html do
-          render json: {
-              call_row: render_to_string(partial: 'call_logs/call_row',
-                                         formats: [:html],
-                                         locals: { call_log: @call_log })
-            },
-            status: :ok
+          render partial: 'call_logs/call_row',
+                 locals:  { call_log: @call_log }
         end
       else
         format.html do
-          render json: {
-              errors_html: render_to_string(partial: 'shared/error_messages',
-                                            formats: [:html],
-                                            locals: { record: @call_log }),
-            },
-            status: :unprocessable_entity
+          render partial: 'shared/error_messages',
+                 locals: { record: @call_log },
+                 status: :unprocessable_entity
         end
       end
     end
