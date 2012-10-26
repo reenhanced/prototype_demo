@@ -22,6 +22,7 @@ module Selectors
       when /the edit student row/i                then "#edit_student_#{Student.last.id}"
       when /the user row/i                        then "#user_#{User.last.id}"
       when /the first user row/i                  then "#user_#{User.first.id}"
+      when /the "(.*)" user row/i                 then "#user_#{User.find_by_name($1).id}"
       when /^"([#.]+[a-z0-9\-_]*)"$/i             then $1
       else raise "Can't find mapping from \"#{scope}\" to a selector.\n" +
                  "Now, go and add a mapping in #{__FILE__}"
