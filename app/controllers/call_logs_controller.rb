@@ -9,12 +9,27 @@ class CallLogsController < ApplicationController
     @call_log               = @family_card.call_logs.build(call_log_params)
     @call_log.qualifier_ids = params[:qualifier_ids] if params[:qualifier_ids]
 
-    if @call_log.save
-      flash[:notice] = "Successfully added call log."
-    else
-      flash[:error] = "We were unable to create the call log. Please check the information you entered and try again."
+    respond_to do |format|
+      if @call_log.save
+        format.html do
+          render json: {
+              call_row: render_to_string(partial: 'call_logs/call_row',
+                                         formats: [:html],
+                                         locals: { call_log: @call_log })
+            },
+            status: :ok
+        end
+      else
+        format.html do
+          render json: {
+              errors_html: render_to_string(partial: 'shared/error_messages',
+                                            formats: [:html],
+                                            locals: { record: @call_log }),
+            },
+            status: :unprocessable_entity
+        end
+      end
     end
-    respond_with @call_log
   end
 
   def destroy

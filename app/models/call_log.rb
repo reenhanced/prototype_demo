@@ -9,6 +9,8 @@ class CallLog < ActiveRecord::Base
   attr_accessible :message, :contact_id, :contact_type, :recorded_at
 
   validates :message, :presence => true
+  validates :contact_id, :presence => true
+  validates :contact_type, :presence => true
 
   audited :associated_with => :family_card
 
