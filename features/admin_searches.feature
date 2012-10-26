@@ -15,8 +15,8 @@ Feature: Admin searches
 
   Scenario: Search results contain 'show' links
     When I press "View All Records"
-    Then I should see a link to the family card's page with text "Todd Blankenship"
-    When I follow the parent's name
+    Then I should see a link to the family card's page with text "The Blankenship Family"
+    When I follow "The Blankenship Family"
     Then I should see the family card
 
   Scenario: "View all Cards" button

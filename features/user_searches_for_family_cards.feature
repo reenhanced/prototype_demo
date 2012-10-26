@@ -20,7 +20,7 @@ Feature: Search for card
     Then I should see the family card
     And I should see "Edit Family Card"
     But I should not see "Add Student"
-    When I follow the parent's name
+    When I follow the family card link
     Then I should be on the family card's page
     And I should see the detailed family card
 
