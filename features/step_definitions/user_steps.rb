@@ -132,3 +132,12 @@ Then /^I should see my email$/ do
   create_user
   page.should have_content @user[:email]
 end
+
+Then /^the "(.*)" user should( not)? have the "(.*)" role$/ do |user, negator, role|
+  @user = (user == 'last') ? User.last : User.find_by_name(user)
+  if negator
+    @user.roles.should_not include(role)
+  else
+    @user.roles.should include(role)
+  end
+end
