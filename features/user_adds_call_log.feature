@@ -34,8 +34,8 @@ Feature: User adds call log to family card
     Then I should see the call's information
     And the call should have recorded the date and time
     And the family card should have the selected qualifier
-    When I am on the family card's page
-    Then the selected qualifier should be checked
+    And the selected qualifier should be checked
+    And I should see "First" within the family card's qualifiers
 
   @javascript
   Scenario: User sees qualifiers listed in order

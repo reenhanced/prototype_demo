@@ -1,3 +1,13 @@
+Given /^I have a call log with the following qualifiers?:$/ do |table|
+  @user ||= create(:user)
+  @family_card ||= create(:family_card, user: @user)
+  qualifiers = []
+  table.hashes.each do |qualifier_attributes|
+    qualifiers << create(:qualifier, qualifier_attributes).id
+  end
+  create(:call_log, family_card: @family_card, contact: @family_card.family_members.last)
+end
+
 Given /^I have initial qualifiers$/ do
   3.times do
     create(:qualifier, category: 'positive')
