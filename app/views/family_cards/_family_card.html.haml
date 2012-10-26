@@ -30,10 +30,7 @@
         %span.postal-code= family_card.parent_zip_code
 
   .qualifiers
-    %h3= FamilyCard.human_attribute_name(:qualifiers)
-    - family_card.qualifiers.each do |qualifier|
-      %span.label{ class: bootstrap_class(qualifier.category, type: 'label') }
-        = qualifier.name
+    = render 'call_logs/qualifiers', qualifiers: family_card.qualifiers
 
   %ul.nav.nav-tabs.clearfix
     %li.active>

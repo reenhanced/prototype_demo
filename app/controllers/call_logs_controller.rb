@@ -12,8 +12,15 @@ class CallLogsController < ApplicationController
     respond_to do |format|
       if @call_log.save
         format.html do
-          render partial: 'call_logs/call_row',
-                 locals:  { call_log: @call_log }
+          render json: {
+            call_row: render_to_string(partial: 'call_logs/call_row',
+                                       formats: [:html],
+                                       locals: { call_log: @call_log }),
+            qualifiers: render_to_string(partial: 'call_logs/qualifiers',
+                                       formats: [:html],
+                                       locals: { qualifiers: @call_log.qualifiers }),
+            },
+            status: :ok
         end
       else
         format.html do

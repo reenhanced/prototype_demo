@@ -1,0 +1,6 @@
+.qualifiers
+  %h3= FamilyCard.human_attribute_name(:qualifiers)
+  - qualifiers.each do |qualifier|
+    %span.label{ class: bootstrap_class(qualifier.category, type: 'label') }
+      = qualifier.name
+

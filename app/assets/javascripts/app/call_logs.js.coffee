@@ -13,11 +13,13 @@ class @CallLog
         'ajax:error': (event, xhr) =>
           $('#call-errors').html(xhr.responseText)
         'ajax:success': (event, html) =>
-          @familyCard.prependCallLog(html)
+          json = JSON.parse(html)
+          @familyCard.prependCallLog(json.call_row)
           $('ul.nav.nav-tabs li a[href=#all-calls]').click()
           @callLog.modal('hide')
           @callLog.find('input[type=submit]').button('reset')
           @callLog[0].reset()
+          CallLog.updateQualifiers(json.qualifiers)
         'ajax:complete': =>
           @callLog.spin(false)
 
@@ -42,3 +44,6 @@ class @CallLog
     datetime = "#{hour}:#{minute}#{am_pm} on #{month}/#{day}/#{year}"
 
     @callLog.find('#selected-datetime').html(datetime)
+
+  updateQualifiers: (qualifiers) ->
+    @familyCard.find('.qualifiers').html(qualifiers)
