@@ -48,6 +48,10 @@ FactoryGirl.define do
     message     { Faker::Lorem.sentence(10) }
     recorded_at { DateTime.now }
 
+    after(:build) do |call_log|
+      call_log.contact ||= create(:family_member, family_card: call_log.family_card)
+    end
+
     trait :with_qualifiers do
       after(:build) do |call_log|
         call_log.qualifier_ids = [

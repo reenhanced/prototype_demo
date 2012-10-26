@@ -8,6 +8,8 @@ describe CallLog do
   it { should delegate(:qualifier_ids=).to(:family_card) }
 
   it { should validate_presence_of(:message) }
+  it { should validate_presence_of(:contact_id) }
+  it { should validate_presence_of(:contact_type) }
 
   it { should be_audited.associated_with(:family_card) }
 
