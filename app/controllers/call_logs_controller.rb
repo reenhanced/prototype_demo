@@ -11,6 +11,7 @@ class CallLogsController < ApplicationController
 
     respond_to do |format|
       if @call_log.save
+        # Even though we're rendering json, the format needs to be html or the partials won't be found
         format.html do
           render json: {
             call_row: render_to_string(partial: 'call_logs/call_row',

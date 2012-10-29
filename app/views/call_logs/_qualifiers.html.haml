@@ -1,7 +1,7 @@
 .qualifiers.clearfix
   %h3= FamilyCard.human_attribute_name(:qualifiers)
   %span.legend.well.well-small.clearfix
-    - Qualifier.uniq.pluck(:category).sort.reverse.each do |category|
+    - Qualifier::CATEGORIES.each do |category|
       %span.legend-label
         %span.label{ class: "#{bootstrap_class(category, type: 'label')}" }
         %small= category.capitalize
