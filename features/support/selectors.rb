@@ -1,6 +1,8 @@
 module Selectors
   def selector_for(scope)
     case scope
+      when /the family card's qualifiers/i        then "#family_card_#{FamilyCard.last.id} .qualifiers"
+      when /the qualifiers'? legend/i             then ".qualifiers .legend"
       when /the call log details for #(\d+)/i     then "#call_log_#{$1}_details"
       when /the call log listing/i                then "#all-calls"
       when /the family member listing/i           then "#all-family-members"

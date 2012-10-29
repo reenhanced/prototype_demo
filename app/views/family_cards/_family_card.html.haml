@@ -7,6 +7,7 @@
         = link_to_unless_current family_card.name, family_card_path(family_card)
       - else
         = family_card.name
+
   %dl.dl-horizontal.contact.span5
     %dt= t('family_member.parent_name')
     %dd= family_card.default_parent
@@ -27,6 +28,8 @@
         ,
         %span.region= family_card.parent_state
         %span.postal-code= family_card.parent_zip_code
+
+  = render 'call_logs/qualifiers', qualifiers: family_card.qualifiers
 
   %ul.nav.nav-tabs.clearfix
     %li.active>
