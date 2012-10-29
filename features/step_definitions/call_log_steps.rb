@@ -34,10 +34,14 @@ When /^I select the first member from (.*)+$/ do |member_field|
   select(first_member.name, :from => member_field)
 end
 
-When /^I check the first qualifier$/ do
+When /^I (un)?check the first qualifier$/ do |unchecked|
   @qualifier = Qualifier.first
 
-  check("qualifier_ids_#{@qualifier.id}")
+  if unchecked
+    uncheck("qualifier_ids_#{@qualifier.id}")
+  else
+    check("qualifier_ids_#{@qualifier.id}")
+  end
 end
 
 Then /^I should( not)? see the call's information?$/ do |negator|
@@ -55,17 +59,24 @@ Then /^I should( not)? see the call's information?$/ do |negator|
   }
 end
 
-Then /^the family card should have the selected qualifier$/ do
+Then /^the family card should( not)? have the selected qualifier$/ do |negator|
   @qualifier ||= Qualifier.first
   @family_card ||= FamilyCard.last
+  @qualifier.reload
+  @family_card.reload
+  @family_card.qualifiers.reload
 
-  @family_card.qualifiers.should include(@qualifier)
+  if negator
+    @family_card.qualifiers.should_not include(@qualifier)
+  else
+    @family_card.qualifiers.should include(@qualifier)
+  end
 end
 
-Then /^the selected qualifier should be checked$/ do
+Then /^the selected qualifier should( not)? be checked$/ do |negator|
   @qualifier ||= Qualifier.first
 
-  step %{the "qualifier_ids_#{@qualifier.id}" checkbox should be checked}
+  step %{the "qualifier_ids_#{@qualifier.id}" checkbox should#{negator} be checked}
 end
 
 Then /^the call should have recorded the date and time$/ do

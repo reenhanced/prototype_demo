@@ -16,12 +16,15 @@ Feature: User views call log details
   Scenario: User views a family card's qualifiers
     Given I am logged in
     And I have a call log with the following qualifiers:
-      | category | name |
+      | category | name            |
       | positive | Loves chocolate |
       | neutral  | Likes bats      |
       | negative | Loves blood     |
     When I am on the family card's page
     Then I should see "Qualifiers"
+    And I should see "Positive" within the qualifiers legend
+    And I should see "Neutral" within the qualifiers legend
+    And I should see "Negative" within the qualifiers legend
     And I should see "Loves chocolate"
     And I should see "Likes bats"
     And I should see "Loves blood"

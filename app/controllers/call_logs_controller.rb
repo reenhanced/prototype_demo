@@ -7,7 +7,7 @@ class CallLogsController < ApplicationController
 
   def create
     @call_log               = @family_card.call_logs.build(call_log_params)
-    @call_log.qualifier_ids = params[:qualifier_ids] if params[:qualifier_ids]
+    @call_log.qualifier_ids = params[:qualifier_ids] || []
 
     respond_to do |format|
       if @call_log.save
@@ -16,9 +16,11 @@ class CallLogsController < ApplicationController
             call_row: render_to_string(partial: 'call_logs/call_row',
                                        formats: [:html],
                                        locals: { call_log: @call_log }),
-            qualifiers: render_to_string(partial: 'call_logs/qualifiers',
+            qualifiers: {
+              html: render_to_string(partial: 'call_logs/qualifiers',
                                        formats: [:html],
                                        locals: { qualifiers: @call_log.qualifiers }),
+              ids: @call_log.qualifiers.pluck(:qualifier_id) }
             },
             status: :ok
         end

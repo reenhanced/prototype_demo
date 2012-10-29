@@ -35,6 +35,15 @@ Feature: User adds call log to family card
     And the family card should have the selected qualifier
     And the selected qualifier should be checked
     And I should see "First" within the family card's qualifiers
+    When I click "Add call log"
+    Then the new call log form should be visible within the popup modal
+    When I select the first member from the new call log contacts
+    And I fill in "call_log_message" with "Removing a qualifier"
+    And I uncheck the first qualifier
+    And I press "Save Entry"
+    Then the family card should not have the selected qualifier
+    And the selected qualifier should not be checked
+    And I should not see "First" within the family card's qualifiers
 
   @javascript
   Scenario: User sees qualifiers listed in order
