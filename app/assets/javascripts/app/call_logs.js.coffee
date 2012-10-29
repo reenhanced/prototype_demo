@@ -19,7 +19,8 @@ class @CallLog
           @callLog.modal('hide')
           @callLog.find('input[type=submit]').button('reset')
           @callLog[0].reset()
-          @familyCard.updateQualifiers(json.qualifiers)
+          @familyCard.updateQualifierCheckboxes(json.qualifiers)
+          @resetQualifiers(json.qualifiers)
         'ajax:complete': =>
           @callLog.spin(false)
 
@@ -44,3 +45,9 @@ class @CallLog
     datetime = "#{hour}:#{minute}#{am_pm} on #{month}/#{day}/#{year}"
 
     @callLog.find('#selected-datetime').html(datetime)
+
+  updateQualifierCheckboxes: (qualifiers) ->
+    # reset checked qualifiers on the new call log form
+    $('#new_call_log input[id*=qualifier_ids_]').attr('checked', false)
+    $.each qualifiers.ids, (index, qualifier_id) =>
+      $("#qualifier_ids_#{qualifier_id}").attr('checked', true)

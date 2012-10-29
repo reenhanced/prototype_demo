@@ -68,11 +68,6 @@ class @FamilyCard
     # update the family card's displayed qualifiers
     $('.family_card .qualifiers').html(qualifiers.html)
 
-    # reset checked qualifiers on the new call log form
-    $('#new_call_log input[id*=qualifier_ids_]').attr('checked', false)
-    $.each qualifiers.ids, (index, qualifier_id) =>
-      $("#qualifier_ids_#{qualifier_id}").attr('checked', true)
-
 $ ->
   if FamilyCard.active()
     new FamilyCard
