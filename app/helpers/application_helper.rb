@@ -22,27 +22,41 @@ module ApplicationHelper
     end
   end
 
-  def address_tag_for(object)
-    return "" unless object.respond_to?(:address1) and object.respond_to?(:address2) and
-                     object.respond_to?(:city)     and object.respond_to?(:state) and
-                     object.respond_to?(:zip_code)
+  def address_tag_for(object, options = {})
+    prefix = options[:prefix]
+    address_attributes = {
+      address1: :address1,
+      address2: :address2,
+      city: :city,
+      state: :state,
+      zip_code: :zip_code
+    }
+    if prefix
+      address_attributes.each do |attribute_key, attribute|
+        address_attributes[attribute_key] = "#{prefix}_#{attribute}".to_sym
+      end
+    end
 
-    street_address = content_tag(:span, object.address1, class: 'street-address')
-    street_address +=  tag(:br) if object.address1.present?
+    address_attributes.each do |key, value|
+      return "" unless object.respond_to?(address_attributes[key])
+    end
+
+    street_address = content_tag(:span, object.send(address_attributes[:address1]), class: 'street-address')
+    street_address +=  tag(:br) if object.send(address_attributes[:address1]).present?
 
     secondary_address = ""
-    if object.address2.present?
-      secondary_address = content_tag(:span, object.address2, class: 'extended-address') + tag(:br)
+    if object.send(address_attributes[:address2]).present?
+      secondary_address = content_tag(:span, object.send(address_attributes[:address2]), class: 'extended-address') + tag(:br)
     end
 
     city = ""
-    if object.city.present?
-      city = content_tag(:span, object.city, class: 'locality')
-      city += ", " if object.state.present?
+    if object.send(address_attributes[:city]).present?
+      city = content_tag(:span, object.send(address_attributes[:city]), class: 'locality')
+      city += ", " if object.send(address_attributes[:state]).present?
     end
 
-    state       = content_tag(:span, object.state, class: 'region')
-    postal_code = content_tag(:span, object.zip_code, class: 'postal-code')
+    state       = content_tag(:span, object.send(address_attributes[:state]), class: 'region')
+    postal_code = content_tag(:span, object.send(address_attributes[:zip_code]), class: 'postal-code')
 
     content_tag :address, class: 'adr' do
       street_address + secondary_address + city + state + " " + postal_code

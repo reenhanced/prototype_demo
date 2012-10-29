@@ -49,6 +49,15 @@ describe ApplicationHelper do
         helper.address_tag_for(family_member).should include(", ")
       end
 
+      it "returns an address tag with the full address when a prefix is specified" do
+        helper.address_tag_for(family_card, prefix: 'parent').should include(family_member.address1)
+        helper.address_tag_for(family_card, prefix: 'parent').should include(family_member.address2)
+        helper.address_tag_for(family_card, prefix: 'parent').should include(family_member.city)
+        helper.address_tag_for(family_card, prefix: 'parent').should include(family_member.state)
+        helper.address_tag_for(family_card, prefix: 'parent').should include(family_member.zip_code)
+        helper.address_tag_for(family_card, prefix: 'parent').should include(", ")
+      end
+
       it "returns a correctly formatted address tag even for partial addresses" do
         family_member.city = ""
         helper.address_tag_for(family_member).should include(family_member.address1)

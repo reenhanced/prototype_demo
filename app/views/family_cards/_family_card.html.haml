@@ -18,7 +18,7 @@
   %dl.dl-horizontal.address.span6
     %dt= FamilyCard.human_attribute_name('parent_address')
     %dd
-      = address_tag_for family_card
+      = address_tag_for family_card, prefix: "parent"
 
   = render 'call_logs/qualifiers', qualifiers: family_card.qualifiers
 
