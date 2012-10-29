@@ -9,16 +9,6 @@ class FamilyMembersController < ApplicationController
   def create
     @family_member = @family_card.family_members.build(family_member_params)
 
-    if params[:use_default_family_member]
-      @family_member.email    = @family_card.parent_email
-      @family_member.phone    = @family_card.parent_phone
-      @family_member.address1 = @family_card.parent_address1
-      @family_member.address2 = @family_card.parent_address2
-      @family_member.city     = @family_card.parent_city
-      @family_member.state    = @family_card.parent_state
-      @family_member.zip_code = @family_card.parent_zip_code
-    end
-
     if @family_member.save
       flash[:notice] = "Successfully added family member."
     else

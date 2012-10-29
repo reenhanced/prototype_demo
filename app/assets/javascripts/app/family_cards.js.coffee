@@ -52,14 +52,9 @@ class @FamilyCard
     $.each FamilyCard.parentFieldMapFor(modelType), (parent_data_id, model_field_id) =>
       parent_data_element = $(parent_data_id)
       model_field         = form.find(model_field_id)
-      if (@checked)
-        if (parent_data_element)
-          model_field.val(parent_data_element.html())
-          model_field.prop('disabled', 'disabled')
-      else
-        if (parent_data_element)
-          model_field.val('')
-          model_field.prop('disabled', '')
+
+      if (parent_data_element)
+        model_field.val(parent_data_element.html())
 
   prependCallLog: (call_row_html) ->
     $(call_row_html).prependTo('#all-calls table tbody').hide().fadeIn()
