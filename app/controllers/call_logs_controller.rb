@@ -18,8 +18,8 @@ class CallLogsController < ApplicationController
                                        locals: { call_log: @call_log }),
             qualifiers: {
               html: render_to_string(partial: 'call_logs/qualifiers',
-                                       formats: [:html],
-                                       locals: { qualifiers: @call_log.qualifiers }),
+                                     formats: [:html],
+                                     locals: { qualifiers: @call_log.qualifiers }),
               ids: @call_log.qualifiers.pluck(:qualifier_id) }
             },
             status: :ok
