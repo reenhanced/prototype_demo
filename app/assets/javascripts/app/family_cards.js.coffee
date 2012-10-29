@@ -64,6 +64,10 @@ class @FamilyCard
   prependCallLog: (call_row_html) ->
     $(call_row_html).prependTo('#all-calls table tbody').hide().fadeIn()
 
+  updateQualifiers: (qualifiers) ->
+    # update the family card's displayed qualifiers
+    $('.family_card .qualifiers').html(qualifiers.html)
+
 $ ->
   if FamilyCard.active()
     new FamilyCard

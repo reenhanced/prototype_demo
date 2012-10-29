@@ -39,6 +39,7 @@ en:
         parent_phone:       "Parent/Guardian Phone"
         parent_state:       "State"
         parent_zip_code:    "Zip Code"
+        qualifiers:         "Qualifiers"
       call_log:
         contact_id:   "Spoke to"
         message:      "Message"
