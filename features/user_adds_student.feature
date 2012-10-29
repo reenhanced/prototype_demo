@@ -34,7 +34,7 @@ Feature: User adds student to family card
   @javascript
   Scenario: User adds student to a family card and uses the default parent's address
     When I click "Add student"
-    And I click "Same as family card"
+    And I click "Copy from family card"
     Then the family card's student fields should be filled in
     When I press "Create Student"
     Then I should see the student's information with the default parent's contact info

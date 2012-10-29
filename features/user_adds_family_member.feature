@@ -32,7 +32,7 @@ Feature: User adds family member to family card
   @javascript
   Scenario: User adds a family member to a family card and uses the default family member's address
     When I click "Add family member"
-    And I click "Same as family card"
+    And I click "Copy from family card"
     Then the family card's family member fields should be filled in
     When I press "Create Family Member"
     Then I should see the family member's information with the default family member's contact info
