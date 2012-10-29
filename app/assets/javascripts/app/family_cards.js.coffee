@@ -12,6 +12,7 @@ class @FamilyCard
       'dl.address dd address.adr .street-address':    "##{modelType}_address1",
       'dl.address dd address.adr .extended-address':  "##{modelType}_address2",
       'dl.address dd address.adr .locality':          "##{modelType}_city",
+      'dl.address dd address.adr .region':            "##{modelType}_state",
       'dl.address dd address.adr .postal-code':       "##{modelType}_zip_code"
     }
 

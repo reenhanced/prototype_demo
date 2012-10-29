@@ -32,6 +32,8 @@
       = f.text_field :address2, placeholder: Student.human_attribute_name('address2'), class: 'span3'
     .controls.controls-row
       = f.text_field :city, placeholder: Student.human_attribute_name('city'), class: 'span3'
+      = subregion_select :student, :state, 'US', {}, {class: 'span3'}
+    .controls.controls-row
       = f.text_field :zip_code, placeholder: Student.human_attribute_name('zip_code'), class: 'span2'
 
   .form-actions.clearfix

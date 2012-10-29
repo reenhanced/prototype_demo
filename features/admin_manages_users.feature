@@ -88,6 +88,7 @@ Feature: Admin manages users
       | Name        | Email                  | Roles | Created | Actions       |
       | Mr. Goodcat | mr.goodcat@example.com | *     | *       | *edit*delete* |
 
+  @javascript
   Scenario: Delete user
     When I click "delete" within the first user row
     Then I should be on the admin users page
