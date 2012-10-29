@@ -19,8 +19,8 @@ class @CallLog
           @callLog.modal('hide')
           @callLog.find('input[type=submit]').button('reset')
           @callLog[0].reset()
-          @familyCard.updateQualifierCheckboxes(json.qualifiers)
-          @resetQualifiers(json.qualifiers)
+          @familyCard.updateQualifiers(json.qualifiers)
+          @updateQualifierCheckboxes(json.qualifiers)
         'ajax:complete': =>
           @callLog.spin(false)
 
