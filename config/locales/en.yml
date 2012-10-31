@@ -130,7 +130,7 @@ en:
       new: "New Family Member"
     parent_name: "Parent/Guardian Name"
     phone_number: "Phone Number"
-    same_as_family_card: "Same as family card"
+    same_as_family_card: "Copy from family card"
     street_address: "Street Address"
     student_name: "Student Name"
     zip_code: "Zip Code"

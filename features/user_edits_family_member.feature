@@ -21,6 +21,7 @@ Feature: User edits family member
       | family_member_address2   | Apt. 2                    |
       | family_member_city       | Los Angelos               |
       | family_member_zip_code   | 90210                     |
+    And I select "California" from "family_member_state"
     And I press "Create Family Member"
     And I press "edit family member"
     And I select "Father" from "family_member_relationship"
@@ -33,10 +34,11 @@ Feature: User edits family member
       | family_member_address2   | Apt. 3                    |
       | family_member_city       | L.A.                      |
       | family_member_zip_code   | 90211                     |
+    And I select "Nevada" from "family_member_state"
     And I press "Save Family Member"
     Then I should see the following table rows:
-      | Relationship | First Name | Last Name | Email                    | Phone          | Address                         |
-      | Father       | Jeff       | Bridges   | jeff.bridges@example.com | (912) 555-1212 | *1234 Easy St*Apt. 3*L.A.*90211 |
+      | Relationship | First Name | Last Name | Email                    | Phone          | Address                       |
+      | Father       | Jeff       | Bridges   | jeff.bridges@example.com | (912) 555-1212 | *1234 Easy St*Apt. 3*NV*90211 |
 
   @javascript
   Scenario: User cancels editting of a family member

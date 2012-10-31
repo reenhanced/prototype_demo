@@ -6,13 +6,7 @@
     %td= family_member.email
     %td= family_member.phone
     %td
-      %address
-        = family_member.address1
-        %br/
-        - if family_member.address2
-          = family_member.address2
-          %br/
-        = "#{family_member.city}, #{family_member.state}  #{family_member.zip_code}"
+      = address_tag_for family_member
     - if can? :update, family_member
       %td
         %button.btn.btn-mini.btn-info{ :type => 'button', 'data-toggle' => 'collapse', :'data-target' =>"#edit_family_member_#{family_member.id}"}

@@ -18,16 +18,7 @@
   %dl.dl-horizontal.address.span6
     %dt= FamilyCard.human_attribute_name('parent_address')
     %dd
-      %address.adr
-        %span.street-address= family_card.parent_address1
-        %br/
-        - if family_card.parent_address2.present?
-          %span.extended-address= family_card.parent_address2
-          %br/
-        %span.locality= family_card.parent_city
-        ,
-        %span.region= family_card.parent_state
-        %span.postal-code= family_card.parent_zip_code
+      = address_tag_for family_card, prefix: "parent"
 
   = render 'call_logs/qualifiers', qualifiers: family_card.qualifiers
 
