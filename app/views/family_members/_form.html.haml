@@ -10,10 +10,9 @@
 
   %div{ class: family_member.new_record? ? 'span6' : 'span7' }
     - if family_member.new_record?
-      .controls.controls-row
-        = label_tag 'use_default_family_member', class: 'checkbox' do
-          = check_box_tag 'use_default_family_member'
-          = t('family_member.same_as_family_card', default: 'Same as family card')
+      = link_to '#', id: 'use_default_family_member', class: 'btn btn-mini btn-info' do
+        %i.icon-refresh.icon-white
+        = t('family_member.same_as_family_card', default: 'Copy from family card')
     .controls.controls-row
       = f.text_field :email, placeholder: FamilyMember.human_attribute_name('email'), class: 'span3'
       = f.text_field :phone, placeholder: FamilyMember.human_attribute_name('phone'), class: 'span3'
@@ -22,6 +21,8 @@
       = f.text_field :address2, placeholder: FamilyMember.human_attribute_name('address2'), class: 'span3'
     .controls.controls-row
       = f.text_field :city, placeholder: FamilyMember.human_attribute_name('city'), class: 'span3'
+      = subregion_select :family_member, :state, 'US', {}, {class: 'span3'}
+    .controls.controls-row
       = f.text_field :zip_code, placeholder: FamilyMember.human_attribute_name('zip_code'), class: 'span2'
 
   .form-actions.clearfix

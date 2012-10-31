@@ -12,6 +12,7 @@ class @FamilyCard
       'dl.address dd address.adr .street-address':    "##{modelType}_address1",
       'dl.address dd address.adr .extended-address':  "##{modelType}_address2",
       'dl.address dd address.adr .locality':          "##{modelType}_city",
+      'dl.address dd address.adr .region':            "##{modelType}_state",
       'dl.address dd address.adr .postal-code':       "##{modelType}_zip_code"
     }
 
@@ -52,14 +53,9 @@ class @FamilyCard
     $.each FamilyCard.parentFieldMapFor(modelType), (parent_data_id, model_field_id) =>
       parent_data_element = $(parent_data_id)
       model_field         = form.find(model_field_id)
-      if (@checked)
-        if (parent_data_element)
-          model_field.val(parent_data_element.html())
-          model_field.prop('disabled', 'disabled')
-      else
-        if (parent_data_element)
-          model_field.val('')
-          model_field.prop('disabled', '')
+
+      if (parent_data_element)
+        model_field.val(parent_data_element.html())
 
   prependCallLog: (call_row_html) ->
     $(call_row_html).prependTo('#all-calls table tbody').hide().fadeIn()

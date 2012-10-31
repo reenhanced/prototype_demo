@@ -5,14 +5,7 @@
     %td= student.last_name
     %td= student.email
     %td= student.phone
-    %td
-      %address
-        = student.address1
-        %br/
-        - if student.address2
-          = student.address2
-          %br/
-        = "#{student.city}, #{student.state}  #{student.zip_code}"
+    %td= address_tag_for student
     - if can? :update, student
       %td
         %button.btn.btn-mini.btn-info{ :type => 'button', 'data-toggle' => 'collapse', :'data-target' =>"#edit_student_#{student.id}"}

@@ -27,11 +27,12 @@ Feature: User edits student
       | student_address2   | Apt. 3                   |
       | student_city       | L.A.                     |
       | student_zip_code   | 90211                    |
+    And I select "California" from "student_state"
     And I press "Save Student" within the edit student row
     Then the edit student row should be collapsed
     And I should see the following table rows:
-      | First Name | Last Name | Email                    | Phone          | Address                        |
-      | Donny      | Brasco    | donny.brasco@example.com | (900) 911-1212 | *321 Easy St*Apt. 3*L.A.*90211 |
+      | First Name | Last Name | Email                    | Phone          | Address                      |
+      | Donny      | Brasco    | donny.brasco@example.com | (900) 911-1212 | *321 Easy St*Apt. 3*CA*90211 |
 
   @javascript
   Scenario: User cancels editting of a student

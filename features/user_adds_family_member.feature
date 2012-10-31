@@ -32,16 +32,9 @@ Feature: User adds family member to family card
   @javascript
   Scenario: User adds a family member to a family card and uses the default family member's address
     When I click "Add family member"
-    Then the family card's family member fields should not be disabled
-    When I check "Same as family card"
+    And I click "Copy from family card"
     Then the family card's family member fields should be filled in
-    And the "Same as family card" checkbox should be checked
-    And the family card's family member fields should be disabled
-    When I uncheck "Same as family card"
-    Then the family card's family member fields should not be filled in
-    And the family card's family member fields should not be disabled
-    When I check "Same as family card"
-    And I press "Create Family Member"
+    When I press "Create Family Member"
     Then I should see the family member's information with the default family member's contact info
 
   Scenario: User tries to add a family member to a family card they don't own

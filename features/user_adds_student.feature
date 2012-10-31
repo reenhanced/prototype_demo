@@ -34,15 +34,9 @@ Feature: User adds student to family card
   @javascript
   Scenario: User adds student to a family card and uses the default parent's address
     When I click "Add student"
-    Then the family card's student fields should not be disabled
-    When I check "Same as family card"
+    And I click "Copy from family card"
     Then the family card's student fields should be filled in
-    And the family card's student fields should be disabled
-    When I uncheck "Same as family card"
-    Then the family card's student fields should not be filled in
-    And the family card's student fields should not be disabled
-    When I check "Same as family card"
-    And I press "Create Student"
+    When I press "Create Student"
     Then I should see the student's information with the default parent's contact info
 
   Scenario: User tries to add student to a family card they don't own
