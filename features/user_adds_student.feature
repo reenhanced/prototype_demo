@@ -30,8 +30,7 @@ Feature: User adds student to family card
     Then the student listing should be visible
     And the family card should have 1 student
     And I should see the student's information
-    And I should not see the following table rows within the student listing:
-      | Relationship | First Name | Last Name | Email | Phone | Address |
+    And the family card's default student should be "Bobby Jones"
 
   @javascript
   Scenario: User adds student to a family card and uses the default parent's address
@@ -40,6 +39,35 @@ Feature: User adds student to family card
     Then the family card's student fields should be filled in
     When I press "Create Student"
     Then I should see the student's information with the default parent's contact info
+
+  @javascript
+  Scenario: User adds student to a family card and makes it the default student
+    Given the family card has a default student "Prudice Johnson"
+    When I click "Add student"
+    And I click "Copy from family card"
+    And I check "Make default student" within the new student form
+    And I fill in the following:
+      | student_first_name | Annoxa |
+      | student_last_name  | Jones  |
+    When I press "Create Student"
+    Then I should see the student's information
+    And the family card's default student should be "Annoxa Jones"
+
+  @javascript
+  Scenario: User changes default student
+    Given the family card has a default student "Tom Brady"
+    When I click "Add student"
+    And I click "Copy from family card"
+    And I fill in the following:
+      | student_first_name | Praximus |
+      | student_last_name  | Jones    |
+    When I press "Create Student"
+    Then I should see the student's information
+    And the family card's default student should be "Tom Brady"
+    When I press "edit student" within the student row
+    And I check "Make default student" within the edit student row
+    And I press "Save Student" within the edit student row
+    Then the family card's default student should be "Praximus Jones"
 
   Scenario: User tries to add student to a family card they don't own
     Given I am logged in as "jimmy.buffet@example.com"

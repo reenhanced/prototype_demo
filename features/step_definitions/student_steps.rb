@@ -1,3 +1,10 @@
+Given /^the family card has a default student "(.*)"$/ do |student_name|
+  @family_card ||= FamilyCard.last
+  first_name, last_name = student_name.split(' ')
+  @family_card.default_student = create(:student, family_card: @family_card, first_name: first_name, last_name: last_name)
+  @family_card.save!
+end
+
 Then /^the family card should have (\d+) student[s]?$/ do |student_count|
   @family_card ||= FamilyCard.last
   @family_card.reload
@@ -24,4 +31,10 @@ Then /^I should( not)? see the student's information( with the default parent's 
         | #{student.first_name} | #{student.last_name} | #{student.email} | #{student.phone} | #{student_address} |
     }
   end
+end
+
+Then /^the family card's default student should be "(.*)"$/ do |student_name|
+  @family_card ||= FamilyCard.last
+  @family_card.reload
+  @family_card.default_student.to_s.should == student_name
 end

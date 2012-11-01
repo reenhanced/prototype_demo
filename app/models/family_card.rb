@@ -1,6 +1,7 @@
 class FamilyCard < ActiveRecord::Base
   belongs_to :user
   belongs_to :default_parent, :class_name => 'FamilyMember', :foreign_key => :default_parent_id, :autosave => true
+  belongs_to :default_student, :class_name => 'Student', :foreign_key => :default_student_id, :autosave => true
   has_many   :family_members, :autosave => true, :dependent => :destroy
   has_many   :students, :autosave => true, :dependent => :destroy, :order => 'created_at ASC'
   has_many   :call_logs, :dependent => :destroy
@@ -60,10 +61,6 @@ class FamilyCard < ActiveRecord::Base
     parent
   end
   alias_method_chain :default_parent, :autobuild
-
-  def default_student
-    students.first || students.build
-  end
 
   def audits_with_associated
     Audit.with_associated_for(self)

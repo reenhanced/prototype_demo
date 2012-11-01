@@ -24,12 +24,16 @@ describe Student do
       let(:default_student) { create(:student, family_card: family_card) }
       let(:another_student)  { create(:student, family_card: family_card) }
 
+      before do
+        family_card.default_student = default_student
+        family_card.save!
+      end
+
       it "returns true if the student is the default student for the family card" do
         default_student.default?.should be_true
       end
 
       it "returns false if the student is not the default student for the family card" do
-        default_student.should be
         another_student.default?.should be_false
       end
     end

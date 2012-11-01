@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe FamilyCard do
   it { should belong_to(:user) }
   it { should belong_to(:default_parent).class_name('FamilyMember') }
+  it { should belong_to(:default_student).class_name('Student') }
   it { should have_many(:family_members).dependent(:destroy) }
   it { should have_many(:students).dependent(:destroy).order('created_at ASC') }
   it { should have_many(:call_logs).dependent(:destroy) }
@@ -68,22 +69,6 @@ describe FamilyCard do
 
   context "instance methods" do
     subject { create(:family_card, parent_first_name: "Jonny", parent_last_name: "Cash") }
-
-    describe "#default_student" do
-      it "returns the first student created for the family card" do
-        student = create(:student, family_card: subject)
-        other_student = create(:student, family_card: subject)
-
-        subject.default_student.should == subject.students.first
-      end
-
-      it "builds a student if one doesn't exist" do
-        subject.students.clear
-
-        subject.default_student.should be_instance_of(Student)
-        subject.default_student.family_card.should == subject
-      end
-    end
 
     describe "#audits_with_associated" do
       before do
