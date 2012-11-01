@@ -30,6 +30,8 @@ Feature: User adds student to family card
     Then the student listing should be visible
     And the family card should have 1 student
     And I should see the student's information
+    And I should not see the following table rows within the student listing:
+      | Relationship | First Name | Last Name | Email | Phone | Address |
 
   @javascript
   Scenario: User adds student to a family card and uses the default parent's address
