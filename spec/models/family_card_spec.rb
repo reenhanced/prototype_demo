@@ -4,7 +4,7 @@ describe FamilyCard do
   it { should belong_to(:user) }
   it { should belong_to(:default_parent).class_name('FamilyMember') }
   it { should have_many(:family_members).dependent(:destroy) }
-  it { should have_many(:students).dependent(:destroy) }
+  it { should have_many(:students).dependent(:destroy).order('created_at ASC') }
   it { should have_many(:call_logs).dependent(:destroy) }
   it { should have_many(:family_card_qualifiers).dependent(:destroy) }
   it { should have_many(:qualifiers) }

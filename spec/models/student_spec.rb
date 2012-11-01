@@ -18,4 +18,21 @@ describe Student do
 
   it { should_not allow_mass_assignment_of(:family_card_id) }
 
+  context "instance methods" do
+    describe "#default?" do
+      let(:family_card)      { create(:family_card) }
+      let(:default_student) { create(:student, family_card: family_card) }
+      let(:another_student)  { create(:student, family_card: family_card) }
+
+      it "returns true if the student is the default student for the family card" do
+        default_student.default?.should be_true
+      end
+
+      it "returns false if the student is not the default student for the family card" do
+        default_student.should be
+        another_student.default?.should be_false
+      end
+    end
+  end
+
 end

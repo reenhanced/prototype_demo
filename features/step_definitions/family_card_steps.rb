@@ -56,7 +56,6 @@ Then /^I should( not)? see the( detailed)? family card$/ do |negator, detailed|
   step %{I should#{negator} see "#{@family_card.parent_city}"}
   step %{I should#{negator} see "#{@family_card.parent_state}"}
   step %{I should#{negator} see "#{@family_card.parent_zip_code}"}
-  step %{I should#{negator} see "Default Student"}
   step %{I should#{negator} see "#{@family_card.default_student.name}"}
 
   if detailed
