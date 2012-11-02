@@ -45,6 +45,8 @@ en:
         message:      "Message"
         qualifiers:   "Qualifiers"
         recorded_at:  "Call recorded at"
+      student:
+        default_student: "Make default student"
       user:
         created_at: "Created"
         email:     "Email"

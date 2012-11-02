@@ -3,6 +3,10 @@
 
   .span5
     .controls.controls-row
+      = label_tag "make_default" do
+        = check_box_tag 'make_default', true, student.default?
+        %span= Student.human_attribute_name('default_student')
+    .controls.controls-row
       = f.text_field :first_name, placeholder: Student.human_attribute_name('first_name'), class: 'small'
       = f.text_field :last_name, placeholder: Student.human_attribute_name('last_name'), class: 'small'
     .control-group

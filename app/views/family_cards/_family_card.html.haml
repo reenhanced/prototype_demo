@@ -22,12 +22,9 @@
 
   = render 'call_logs/qualifiers', qualifiers: family_card.qualifiers
 
-  %ul.nav.nav-tabs.clearfix
-    %li.active>
-      %a{ href: "#default-student-#{family_card.id}", :'data-toggle' => "tab"}
-        = FamilyCard.human_attribute_name('default_student')
-    - unless family_card_search_made?
-      %li
+  - unless family_card_search_made?
+    %ul.nav.nav-tabs.clearfix
+      %li.active
         %a{ href: '#all-students', :'data-toggle' => 'tab'}
           %i.icon-list
           = t('family_card.all_students', default: 'All students')
@@ -50,13 +47,8 @@
             %i.icon-plus
             = t('family_card.add_new_family_member', default: 'Add family member')
 
-  .tab-content
-    .tab-pane.active{ id: "default-student-#{family_card.id}" }
-      %dl.dl-horizontal.contact
-        %dt= t('family_member.student_name')
-        %dd= family_card.default_student
-    - unless family_card_search_made?
-      .tab-pane#all-students
+    .tab-content
+      .tab-pane.active#all-students
         = render 'students/students_table', family_card: family_card
       .tab-pane#all-family-members
         = render 'family_members/family_members_table', family_card: family_card
