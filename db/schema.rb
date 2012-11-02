@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015125814) do
+ActiveRecord::Schema.define(:version => 20121101190554) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -56,9 +56,10 @@ ActiveRecord::Schema.define(:version => 20121015125814) do
 
   create_table "family_cards", :force => true do |t|
     t.integer  "default_parent_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "user_id"
+    t.integer  "default_student_id"
   end
 
   add_index "family_cards", ["user_id"], :name => "index_family_cards_on_user_id"

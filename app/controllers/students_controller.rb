@@ -9,6 +9,7 @@ class StudentsController < ApplicationController
     @student = @family_card.students.build(student_params)
 
     if @student.save
+      @family_card.update_attribute(:default_student_id, @student.id) if params[:make_default] or @family_card.default_student.nil?
       flash[:notice] = "Successfully added student."
     else
       flash[:error] = "We were unable to save the student.  Please check the information you entered and try again."
@@ -18,6 +19,10 @@ class StudentsController < ApplicationController
 
   def update
     if @student.update_attributes(student_params)
+      if params[:make_default]
+        @family_card.update_attribute(:default_student_id, @student.id)
+        @student.reload
+      end
       flash[:notice] = "Successfully updated student."
     else
       flash[:error] = "We were unable to update the student.  Please check the information you entered and try again."
@@ -27,6 +32,7 @@ class StudentsController < ApplicationController
   end
 
   def destroy
+    @family_card.update_attribute(:default_student_id, @family_card.students.first.try(:id)) if @student.default?
     @student.destroy
     redirect_to @family_card, :notice => "Successfully removed the student."
   end
@@ -48,6 +54,7 @@ class StudentsController < ApplicationController
                                     :zip_code,       :gender,
                                     :birthday,       :graduation_year,
                                     :relationship,   :'birthday(1i)',
-                                    :'birthday(2i)', :'birthday(3i)'
+                                    :'birthday(2i)', :'birthday(3i)',
+                                    :make_default
   end
 end
