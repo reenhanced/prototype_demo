@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
+gem 'rails', '3.2.8'
 
 gem 'pg'
 
@@ -28,19 +28,13 @@ gem 'therubyracer', :require => 'v8'
 gem 'strong_parameters', :git => 'git://github.com/rails/strong_parameters.git'
 
 # Vagrant VM gems
-gem 'chef'
-gem 'vagrant', '~> 1.0.5'
+gem 'chef', '~> 11.16.4'
 gem 'librarian'
+gem 'librarian-chef'
 
-group :staging do
-  gem 'factory_girl_rails'
-  gem 'faker'
-end
-
-group :development, :test do
+group :development, :test, :staging do
   gem 'heroku'
   gem 'capybara-webkit'
-  gem 'debugger'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'

@@ -12,21 +12,14 @@ _This assumes a stock out-of-the-box installation_
   ```
     brew install git
   ```
-6. Install vagrant:
+6. Install vagrant (http://www.vagrantup.com/)
+7. Create directory for your virtual box:
   ```
-    sudo gem install vagrant
-  ```
-7. Install librarian:
-  ```
-    sudo gem install librarian
+    mkdir ~/VirtualBox\ VMs
   ```
 8. Boot the virtual machine:
   ```
     ./boot.sh
-  ```
-9. Start the server:
-  ```
-    script/server
   ```
 10. Open the running site in your browser: http://localhost:3000/
 

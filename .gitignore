@@ -4,6 +4,7 @@
 capybara-*.html
 .rspec
 .vagrant
+.vagrant.*
 /.bundle
 /vendor/bundle
 /log/*
