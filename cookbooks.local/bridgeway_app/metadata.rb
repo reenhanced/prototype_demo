@@ -1,4 +1,7 @@
 depends "apt"
+depends "postgresql"
+depends "rvm"
+depends "vim"
 maintainer       "reenhanced"
 maintainer_email "nhance@reehanced.com"
 license          "All rights reserved"

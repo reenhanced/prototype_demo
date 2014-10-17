@@ -98,6 +98,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   chef.json = { mysql_password: "foo" }
   # end
 
+  config.omnibus.chef_version = '11.16.4'
+
   config.vm.provision "chef_solo" do |chef|
     chef.cookbooks_path = ["cookbooks", "cookbooks.local"]
     chef.add_recipe('bridgeway_app')

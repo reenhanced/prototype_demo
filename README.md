@@ -13,6 +13,10 @@ _This assumes a stock out-of-the-box installation_
     brew install git
   ```
 6. Install vagrant (http://www.vagrantup.com/)
+7. Vagrant dependencies
+  ```
+    vagrant plugin install vagrant-omnibus
+  ```
 7. Create directory for your virtual box:
   ```
     mkdir ~/VirtualBox\ VMs
