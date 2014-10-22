@@ -109,16 +109,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         'password' => {
           'postgres' => 'postgres'
         }
-      },
-      :rvm => {
-        :rvmrc => {
-          'rvm_project_rvmrc' => 1,
-          'rvm_trust_rvmrcs_flag' => 1
-        },
-        :user_installs => [{
-          'user' => 'vagrant',
-          'default_ruby' => File.read("./.ruby-version").chomp
-        }]
       }
     }
   end
