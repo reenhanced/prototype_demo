@@ -29,3 +29,18 @@ _This assumes a stock out-of-the-box installation_
 
 
 Contact Nick (nhance@reenhanced.com) if you have any issues with this process or beyond this point.
+
+Philosophies
+=============
+
+1. Choose the right tool for the job. No tool fits every need. Choose
+   wisely and if you need to change tools, do it early.
+
+2. Don't bring any dependencies on the environment. Use Vagrant to
+   provide a consistent experience without machine concerns.
+
+3. Host on digital ocean or heroku or AWS, bundle production into the
+   project so it's always known.
+
+4. Provide auditing and a fully tested stable base so you don't have to
+   relearn good habits later. Start on the path and stay on it.

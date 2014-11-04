@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StudentsHelper do
+RSpec.describe StudentsHelper do
   context "instance methods" do
     describe "#options_for_graduation_year" do
       it "returns an array of years starting from this year and ending on the offset" do

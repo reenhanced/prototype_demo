@@ -38,6 +38,9 @@ group :development, :test, :staging do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'rspec-its' #
+  gem 'pry'
+  gem 'rspec-collection_matchers'
   gem 'timecop'
   gem 'zeus'
 end

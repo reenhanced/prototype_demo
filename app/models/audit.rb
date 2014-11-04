@@ -1,5 +1,4 @@
 class Audit < Audited::Adapters::ActiveRecord::Audit
-
   def self.with_associated_for(auditor = nil)
     return [] unless auditor
     where(

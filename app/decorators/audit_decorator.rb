@@ -1,4 +1,4 @@
-class AuditDecorator < Draper::Base
+class AuditDecorator < Draper::Decorator
   decorates :audit
 
   def action
