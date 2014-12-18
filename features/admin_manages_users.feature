@@ -90,7 +90,7 @@ Feature: Admin manages users
 
   @javascript
   Scenario: Delete user
-    When I click "delete" within the first user row
+    When I click "delete" within the "Carlos Slim" user row
     Then I should be on the admin users page
     And I should not see the following table rows:
       | Carlos Slim | carlos.slim@example.com | | * | *edit*delete* |

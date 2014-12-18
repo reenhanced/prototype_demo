@@ -27,11 +27,11 @@ Given /^I have a (.*) qualifier with "(.*)"$/ do |category, name|
   create(:qualifier, category: category, name: name)
 end
 
-When /^I select the first member from (.*)+$/ do |member_field|
+When /^I select the first member from (.+)$/ do |member_field|
   @family_card ||= FamilyCard.last
   first_member= @family_card.family_members.first
 
-  select(first_member.name, :from => member_field)
+  select(first_member.name, :from => selector_for(member_field))
 end
 
 When /^I (un)?check the first qualifier$/ do |unchecked|
