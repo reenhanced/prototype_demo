@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
 ruby '2.1.5'
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.21'
 
 gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets, :staging do
+  gem 'sass', '3.2.15'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'bootstrap-sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
