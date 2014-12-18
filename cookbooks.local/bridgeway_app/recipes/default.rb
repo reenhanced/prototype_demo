@@ -24,7 +24,7 @@ include_recipe "postgresql::server"
 
 # DEFAULT RUBY IS SET HERE.
 # WHEN UPDATING .ruby-version MAKE SURE YOU UPDATE THIS!
-rvm_default_ruby "ruby-2.1.4"
+rvm_default_ruby "ruby-2.1.5"
 
 rvm_global_gem "bundler"
 rvm_global_gem "rake"
