@@ -76,17 +76,18 @@
 }
 
 body {
-	background: #F7F7F7 url(/assets/bg-content.jpg) center top repeat-y !important;
+	background: #FFF;
 	font-family: 'AsapRegular' !important;
 }
 
 #top_nav_bar .brand {
 	display: block;
+  float: left;
 	text-indent: -9999px;
 	background: url(/assets/logo.png) 0 0 no-repeat;
 	width: 189px;
 	height: 50px;
-	margin: 10px 0 0 -8px !important;
+	margin: 10px 15px 0 -8px !important;
 }
 
 dt {

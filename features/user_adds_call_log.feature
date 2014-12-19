@@ -16,11 +16,7 @@ Feature: User adds call log to family card
   @javascript
   Scenario: User adds a call log to one of their family cards
     When I am on the family card's page
-    Then I should see "Add call log"
-    And I should see "All Calls"
-    And the new call log form should be collapsed
-    And the call log listing should be hidden
-    When I click "Add call log"
+    And I click "Add call log"
     Then the new call log form should be visible within the popup modal
     And I should see "Spoke to"
     When I select the first member from the new call log contacts
@@ -61,10 +57,8 @@ Feature: User adds call log to family card
     Then the new call log form should be visible within the popup modal
     And I should see the date and time today within the new call log form
     And I should see "Edit" within the new call log form
-    And the new call log recorded at fields should be collapsed
     When I press "Edit" within the new call log form
-    Then the new call log recorded at fields should be expanded
-    When I select "22nd Mar 2013 01:00:00 PM" as the "Call recorded at" date and time
+    And I select "22nd Mar 2013 01:00:00 PM" as the "Call recorded at" date and time
     Then I should see "1:00PM on 3/22/2013" within the new call log form
     When I select the first member from the new call log contacts
     And I fill in "call_log_message" with "I am batman."
