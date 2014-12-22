@@ -76,7 +76,7 @@
 }
 
 body {
-	background: #FFF;
+	background: #F7F7F7 url(/assets/bg-content.jpg) center top repeat-y !important;
 	font-family: 'AsapRegular' !important;
 }
 
@@ -87,7 +87,7 @@ body {
 	background: url(/assets/logo.png) 0 0 no-repeat;
 	width: 189px;
 	height: 50px;
-	margin: 10px 15px 0 -8px !important;
+	margin: 10px 0 0 -8px !important;
 }
 
 dt {

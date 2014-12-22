@@ -50,12 +50,9 @@ GEM
     addressable (2.3.6)
     arel (3.0.3)
     bcrypt (3.1.7)
-    bootstrap-sass (3.1.0.2)
-      sass (~> 3.2)
-    bootstrap-sass-rails (3.1.0.0)
-      bootstrap-sass (~> 3.1.0.0)
-      railties (>= 3.2.0)
-      sass-rails (>= 3.2.0)
+    bootstrap-sass-rails (2.3.2.1)
+      railties (>= 3.1.0)
+      sass-rails (>= 3.1.0)
     builder (3.0.4)
     cancan (1.6.10)
     capybara (2.4.4)
@@ -327,7 +324,7 @@ PLATFORMS
 
 DEPENDENCIES
   audited-activerecord!
-  bootstrap-sass-rails
+  bootstrap-sass-rails (= 2.3.2.1)
   cancan
   capybara-webkit
   carmen-rails
