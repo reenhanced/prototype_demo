@@ -3,7 +3,7 @@ class AuditsController < ApplicationController
   authorize_resource :audited, :through => :family_card
 
   def index
-    @audits = AuditDecorator.decorate(Audit.with_associated_for(@family_card)).select do |audit_presenter|
+    @audits = Audit.with_associated_for(@family_card).decorate.select do |audit_presenter|
       audit_presenter.visible?
     end
   end

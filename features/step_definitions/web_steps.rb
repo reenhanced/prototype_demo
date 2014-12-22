@@ -243,15 +243,6 @@ Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|
   end
 end
 
-Then /(.*) should be (collapsed|expanded)$/ do |selector, element_state|
-  selector = selector_for(selector)
-  if element_state == 'collapsed'
-    page.has_css?("#{selector}, [contains(@style,'height: 0px')]")
-  else
-    page.has_no_css?("#{selector}, [contains(@style,'height: 0px')]")
-  end
-end
-
 Then /^the "([^\"]+)" field should( not)? be disabled$/ do |field, negator|
   if negator
     find_field(field)['disabled'].should_not be_true

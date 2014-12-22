@@ -43,7 +43,7 @@ class @FamilyCard
   _initializeCancelCollapse: ->
     cancelButtons = $('.btn.cancel-and-collapse')
     if cancelButtons
-      cancelButtons.live 'click', ->
+      cancelButtons.on 'click', ->
         $(this).parents('div.collapse').collapse('hide')
 
   _copyParentAddressFor: (event) ->

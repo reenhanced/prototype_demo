@@ -39,12 +39,12 @@ describe User do
 
     describe "#is?" do
       it "returns true if the user has the given role" do
-        admin_user.is?('admin').should be_true
-        admin_user.is?(:admin).should be_true
+        admin_user.is?('admin').should be true
+        admin_user.is?(:admin).should be true
       end
 
       it "returns false if the user doesn't have the given role" do
-        admin_user.is?('peakock').should be_false
+        admin_user.is?('peakock').should be false
       end
     end
 

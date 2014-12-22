@@ -91,7 +91,7 @@ describe FamilyCard do
       end
 
       it "returns all family members that are associated with the family card" do
-        subject.family_members.should have(5).family_members
+        expect(subject.family_members).to have_exactly(5).family_members
       end
     end
 

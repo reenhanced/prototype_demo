@@ -30,11 +30,11 @@ describe Student do
       end
 
       it "returns true if the student is the default student for the family card" do
-        default_student.default?.should be_true
+        expect(default_student).to be_default
       end
 
       it "returns false if the student is not the default student for the family card" do
-        another_student.default?.should be_false
+        expect(another_student).to_not be_default
       end
     end
   end

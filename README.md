@@ -12,23 +12,35 @@ _This assumes a stock out-of-the-box installation_
   ```
     brew install git
   ```
-6. Install vagrant:
+6. Install vagrant (http://www.vagrantup.com/)
+7. Vagrant dependencies
   ```
-    sudo gem install vagrant
+    vagrant plugin install vagrant-omnibus
   ```
-7. Install librarian:
+7. Create directory for your virtual box:
   ```
-    sudo gem install librarian
+    mkdir ~/VirtualBox\ VMs
   ```
 8. Boot the virtual machine:
   ```
     ./boot.sh
   ```
-9. Start the server:
-  ```
-    script/server
-  ```
 10. Open the running site in your browser: http://localhost:3000/
 
 
 Contact Nick (nhance@reenhanced.com) if you have any issues with this process or beyond this point.
+
+Philosophies
+=============
+
+1. Choose the right tool for the job. No tool fits every need. Choose
+   wisely and if you need to change tools, do it early.
+
+2. Don't bring any dependencies on the environment. Use Vagrant to
+   provide a consistent experience without machine concerns.
+
+3. Host on digital ocean or heroku or AWS, bundle production into the
+   project so it's always known.
+
+4. Provide auditing and a fully tested stable base so you don't have to
+   relearn good habits later. Start on the path and stay on it.

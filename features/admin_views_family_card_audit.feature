@@ -24,8 +24,8 @@ Feature: Admin views an audit trail for a family card
     Then I should see "Family of: Gordon Ramsy"
     And I should see "Back to family card"
     And I should see the following table rows:
-      | *admin@example.com*@*02:00PM on 02/21/2013* | *Updated Family Card*The Ramsy Family* | *more details* |
-      | *admin@example.com*@*02:00PM on 02/21/2013* | *Created Family Card*The Ramsy Family* | *more details* |
+      | *admin@example.com*@*01:00PM on 02/21/2013* | *Updated Family Card*The Ramsy Family* | *more details* |
+      | *admin@example.com*@*01:00PM on 02/21/2013* | *Created Family Card*The Ramsy Family* | *more details* |
     And I should see the following table rows:
       | Changed     | From | To                       |
       | user        |      | *admin@example.com*      |
@@ -55,7 +55,7 @@ Feature: Admin views an audit trail for a family card
     And I press "Update Family Card"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Family Member*Ramsy Cornerstone* | *more details* |
+      | *admin@example.com*@*02:00PM on 03/22/2013* | *Updated Family Member*Ramsy Cornerstone* | *more details* |
     And I should see the audit changes for the updated family card's default parent:
       | first_name | Ramsy                         |
       | last_name  | Cornerstone                   |
@@ -70,6 +70,7 @@ Feature: Admin views an audit trail for a family card
   Scenario: Admin views the audit trail for a new student
     Given I have a family card with parent "Gordon Ramsy"
     When I am on the family card's page
+    And I click "Add student"
     And I select "1994-02-21" as the "Birthday" date
     And I select "2013" from "student_graduation_year"
     And I select "Male" from "student_gender"
@@ -85,7 +86,7 @@ Feature: Admin views an audit trail for a family card
     And I press "Create Student"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Created Student*Bobby Jones* | *more details* |
+      | *admin@example.com*@*02:00PM on 03/22/2013* | *Created Student*Bobby Jones* | *more details* |
     And I should see the following table rows:
       | Changed      | From | To                      |
       | first name   |      | Bobby                   |
@@ -115,7 +116,7 @@ Feature: Admin views an audit trail for a family card
     And I press "Create Family Member"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Created Family Member*Judy Garland* | *more details* |
+      | *admin@example.com*@*02:00PM on 03/22/2013* | *Created Family Member*Judy Garland* | *more details* |
     And I should see the following table rows:
       | Changed      | From | To                      |
       | family card  |      | The Ramsy Family        |
@@ -145,7 +146,7 @@ Feature: Admin views an audit trail for a family card
       | family_member_city       | Los Angelos              |
       | family_member_zip_code   | 90210                    |
     And I press "Create Family Member"
-    And I press "edit family member"
+    And I press "edit family member" within the newest family member row
     And I select "Father" from "family_member_relationship"
     And I fill in the following:
       | family_member_first_name | Bobby                     |
@@ -159,7 +160,7 @@ Feature: Admin views an audit trail for a family card
     And I press "Save Family Member"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Family Member*Bobby Fischer* | *more details* |
+      | *admin@example.com*@*02:00PM on 03/22/2013* | *Updated Family Member*Bobby Fischer* | *more details* |
     And I should see the following table rows:
       | Changed      | From                     | To                        |
       | first name   | Judy                     | Bobby                     |
@@ -203,7 +204,7 @@ Feature: Admin views an audit trail for a family card
     And I press "Save Student"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Updated Student*Bob Fish* | *more details* |
+      | *admin@example.com*@*02:00PM on 03/22/2013* | *Updated Student*Bob Fish* | *more details* |
     And I should see the following table rows:
       | Changed      | From                     | To                        |
       | first name   | Judy                     | Bob                       |
@@ -220,7 +221,7 @@ Feature: Admin views an audit trail for a family card
     When I am on the family card's page
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | System*@*03:00PM on 03/22/2013* | *Created Family Card* | *more details* |
+      | System*@*02:00PM on 03/22/2013* | *Created Family Card* | *more details* |
     And I should see the following table rows:
       | Changed        | From | To |
       | primary parent |      | 1  |
@@ -230,7 +231,7 @@ Feature: Admin views an audit trail for a family card
     When I am on the family card's page
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | System*@*03:00PM on 03/22/2013* | *Created Student* | *more details* |
+      | System*@*02:00PM on 03/22/2013* | *Created Student* | *more details* |
     And I should see the following table rows:
       | Changed     | From | To           |
       | family card |      | The * Family |
@@ -247,8 +248,8 @@ Feature: Admin views an audit trail for a family card
     And I press "Save Entry"
     And I follow "Show audit trail"
     Then I should see the following table rows:
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Created Call Log*Spoke to: Gordon Ramsy* | *more details* |
-      | *admin@example.com*@*03:00PM on 03/22/2013* | *Added Family Card Qualifier*"Eats boogers." to The Ramsy Family* | *more details* |
+      | *admin@example.com*@*02:00PM on 03/22/2013* | *Created Call Log*Spoke to: Gordon Ramsy* | *more details* |
+      | *admin@example.com*@*02:00PM on 03/22/2013* | *Added Family Card Qualifier*"Eats boogers." to The Ramsy Family* | *more details* |
     And I should see the following table rows:
       | Changed     | From | To                     |
       | family card |      | The Ramsy Family       |
@@ -259,7 +260,7 @@ Feature: Admin views an audit trail for a family card
       | message          |      | I am batman.          |
       | spoke to         |      | Gordon Ramsy          |
       | contact type     |      | FamilyMember          |
-      | call recorded at |      | 03:00PM on 03/22/2013 |
+      | call recorded at |      | 02:00PM on 03/22/2013 |
 
   Scenario: A non-admin user tries to view a family card's audit trail
     Given I am logged in

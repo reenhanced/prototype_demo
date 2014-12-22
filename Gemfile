@@ -1,14 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
+ruby '2.1.5'
+gem 'rails', '3.2.21'
 
 gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets, :staging do
+  gem 'sass', '3.2.15'
+  gem 'bootstrap-sass-rails', '2.3.2.1'
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'bootstrap-sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
@@ -28,22 +30,19 @@ gem 'therubyracer', :require => 'v8'
 gem 'strong_parameters', :git => 'git://github.com/rails/strong_parameters.git'
 
 # Vagrant VM gems
-gem 'chef'
-gem 'vagrant', '~> 1.0.5'
+gem 'chef', '~> 11.16.4'
 gem 'librarian'
+gem 'librarian-chef'
 
-group :staging do
-  gem 'factory_girl_rails'
-  gem 'faker'
-end
-
-group :development, :test do
+group :development, :test, :staging do
   gem 'heroku'
   gem 'capybara-webkit'
-  gem 'debugger'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'rspec-its' #
+  gem 'pry'
+  gem 'rspec-collection_matchers'
   gem 'timecop'
   gem 'zeus'
 end

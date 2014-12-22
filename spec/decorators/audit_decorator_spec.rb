@@ -5,7 +5,8 @@ describe AuditDecorator do
     let!(:user)                 { create(:user, email: 'testerson@example.com', name: 'Testy Testerson') }
     let(:family_card)           { create(:family_card, user: user) }
     let(:changes_table_heading) { "<thead><tr><th>Changed</th><th>From</th><th>To</th></tr></thead>" }
-    subject                     { AuditDecorator.decorate(Audit.with_associated_for(family_card).last) }
+    let(:audit)                 { Audit.with_associated_for(family_card).last }
+    subject                     { AuditDecorator.decorate(audit) }
 
     before(:each) do
       # the audited gem uses the current user, so we fake for the specs
@@ -32,7 +33,7 @@ describe AuditDecorator do
     end
 
     describe "#author" do
-      let!(:audit_created_at) { Audit.human_attribute_name(:created_at, datetime: subject.created_at) }
+      let!(:audit_created_at) { Audit.human_attribute_name(:created_at, datetime: audit.created_at) }
 
       its(:author) { should include(audit_created_at) }
 
@@ -60,23 +61,11 @@ describe AuditDecorator do
 
       context "with no longer existing audited object" do
         before do
-          subject.auditable.destroy
-          subject.reload
+          audit.auditable.destroy
+          audit.reload
         end
 
         its(:name) { should == revision_name }
-      end
-    end
-
-    describe "#visible" do
-      it "returns true if the audit has any changes" do
-        subject.audited_changes.should be_present
-        subject.visible?.should be_true
-      end
-
-      it "returns false if the audit has no changes" do
-        subject.audited_changes.stub(:any?).and_return(false)
-        subject.visible?.should be_false
       end
     end
   end

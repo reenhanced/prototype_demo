@@ -1,5 +1,6 @@
-class AuditDecorator < Draper::Base
+class AuditDecorator < Draper::Decorator
   decorates :audit
+  delegate_all
 
   def action
     presenter.action
