@@ -1,4 +1,4 @@
-bridgeway
+christian academy prototype
 =========
 
 Installation instructions for OS X 10.7+:

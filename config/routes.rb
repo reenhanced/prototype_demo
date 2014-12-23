@@ -1,4 +1,4 @@
-Bridgeway::Application.routes.draw do
+Prototype::Application.routes.draw do
 
   resources :family_cards, :except => [:index, :destroy] do
     resources :audits, :only => [:index]

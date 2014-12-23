@@ -103,7 +103,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "chef_solo" do |chef|
     chef.cookbooks_path = ["cookbooks", "cookbooks.local"]
-    chef.add_recipe('bridgeway_app')
+    chef.add_recipe('prototype_app')
 
     chef.json = {
       :postgresql => {

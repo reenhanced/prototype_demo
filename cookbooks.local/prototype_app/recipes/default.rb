@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bridgeway_app
+# Cookbook Name:: prototype_app
 # Recipe:: default
 #
 # Note: See rvm defaults assigned in ../attributes/default.rb

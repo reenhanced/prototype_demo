@@ -11,7 +11,7 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: bridgeway_development
+  database: prototype_development
   pool: 5
   username: postgres
   password: postgres
@@ -24,7 +24,7 @@ test: &test
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: bridgeway_test
+  database: prototype_test
   pool: 5
   username: postgres
   password: postgres

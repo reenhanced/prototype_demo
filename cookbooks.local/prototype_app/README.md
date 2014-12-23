@@ -1,7 +1,7 @@
 Description
 ===========
 
-Sets up the bridgeway application to be served in development mode
+Sets up the prototype application to be served in development mode
 
 Local Setup
 ===========
