@@ -1,10 +1,10 @@
-# CHANGELOG for bridgeway_app
+# CHANGELOG for prototype_app
 
-This file is used to list changes made in each version of bridgeway_app.
+This file is used to list changes made in each version of prototype_app.
 
 ## 0.1.0:
 
-* Initial release of bridgeway_app
+* Initial release of prototype_app
 
 - - - 
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

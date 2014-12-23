@@ -4,7 +4,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Bridgeway::Application.load_tasks
+Prototype::Application.load_tasks
 
 unless Rails.env.staging?
   desc 'Run factory specs.'
