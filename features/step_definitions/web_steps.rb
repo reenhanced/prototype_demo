@@ -232,7 +232,13 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
 end
 
 Then /^show me the page$/ do
-  save_and_open_page
+  path = save_page
+  puts "Open #{path} for details"
+end
+
+Then /^show me the screenshot$/ do
+  path = save_screenshot(nil)
+  puts "Open #{path} for details"
 end
 
 Then /^(.*) should be (visible|hidden)$/ do |descriptor, visible|

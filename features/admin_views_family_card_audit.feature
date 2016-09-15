@@ -147,8 +147,8 @@ Feature: Admin views an audit trail for a family card
       | family_member_zip_code   | 90210                    |
     And I press "Create Family Member"
     And I press "edit family member" within the newest family member row
-    And I select "Father" from "family_member_relationship"
-    And I fill in the following:
+    And I select "Father" from "family_member_relationship" within the edit family member form
+    And I fill in the following within the edit family member form:
       | family_member_first_name | Bobby                     |
       | family_member_last_name  | Fischer                   |
       | family_member_phone      | (900) 911-1212            |
@@ -157,7 +157,7 @@ Feature: Admin views an audit trail for a family card
       | family_member_address2   |                           |
       | family_member_city       | Las Vegas                 |
       | family_member_zip_code   | 89165                     |
-    And I press "Save Family Member"
+    And I press "Save Family Member" within the edit family member form
     And I follow "Show audit trail"
     Then I should see the following table rows:
       | *admin@example.com*@*02:00PM on 03/22/2013* | *Updated Family Member*Bobby Fischer* | *more details* |
@@ -242,7 +242,7 @@ Feature: Admin views an audit trail for a family card
     And I have a positive qualifier with "Eats boogers."
     When I am on the family card's page
     And I click "Add call log"
-    And I select the first member from the new call log contacts
+    And I select "Gordon Ramsy" from "Spoke to"
     And I check the first qualifier
     And I fill in "call_log_message" with "I am batman."
     And I press "Save Entry"
