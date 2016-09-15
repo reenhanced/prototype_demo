@@ -16,7 +16,7 @@ module Selectors
       when /the edit family member form/i         then "form#edit_family_member_#{FamilyMember.last.id}"
       when /the newest family member row/i        then "#family-member-#{FamilyMember.last.id}-row"
       when /the new student form/i                then "#new-student"
-      when /the popup modal/i                     then "body.modal-open"
+      when /the popup modal/i                     then ".modal-body"
       when /the prospect search button/i          then "#card-search-form input[name=commit]"
       when /the search error alert/i              then "#ajax-search-error"
       when /the student listing/i                 then "#all-students"

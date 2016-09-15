@@ -17,8 +17,9 @@ Feature: User adds call log to family card
   Scenario: User adds a call log to one of their family cards
     When I am on the family card's page
     And I click "Add call log"
-    Then the new call log form should be visible within the popup modal
+    Then the new call log form should be visible
     And I should see "Spoke to"
+    And show me the page
     When I select the first member from the new call log contacts
     Then the "call_log_contact_type" hidden field should contain "FamilyMember"
     When I check the first qualifier

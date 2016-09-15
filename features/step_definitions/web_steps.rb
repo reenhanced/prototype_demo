@@ -232,8 +232,7 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
 end
 
 Then /^show me the page$/ do
-  path = save_page
-  puts "Open #{path} for details"
+  puts page.body
 end
 
 Then /^show me the screenshot$/ do
