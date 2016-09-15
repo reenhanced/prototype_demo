@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-
-site 'http://supermarket.getchef.com/api/v1'
-
-cookbook 'apt'
-cookbook 'postgresql'
-cookbook 'rvm', :git => 'git://github.com/fnichol/chef-rvm.git'
-cookbook 'vim'

@@ -29,11 +29,6 @@ gem 'therubyracer', :require => 'v8'
 # Rails 4 preview stuff
 gem 'strong_parameters', :git => 'git://github.com/rails/strong_parameters.git'
 
-# Vagrant VM gems
-gem 'chef', '~> 11.16.4'
-gem 'librarian'
-gem 'librarian-chef'
-
 group :development, :test, :staging do
   gem 'heroku'
   gem 'capybara-webkit'
